@@ -1,5 +1,10 @@
+*.xz
+*.log
+bin/analyse_bots
+bin/germany
+bin/tweetsources
 cache/*/
 config
-data/hashtags/IranProtests
+data/germany/*
 node_modules
 package-lock.json
