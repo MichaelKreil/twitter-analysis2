@@ -2,9 +2,9 @@
 
 const fs = require('fs');
 const xz = require('xz');
-const utils = require('../../lib/utils.js');
+const utils = require('../../../lib/utils.js');
 const colors = require('colors');
-const scraper = (require('../../lib/scraper.js'))('hashtag');
+const scraper = (require('../../../lib/scraper.js'))('hashtag');
 const path = require('path');
 const parseQuery = (url => require('querystring').parse(require('url').parse(url).query));
 
@@ -44,7 +44,7 @@ hashtags.forEach(obj => {
 scraper.run();
 
 function runScraper(name, query, date) {
-	var filename = path.resolve(__dirname, '../../data/hashtags/'+name+'/'+name+'_'+date+'.jsonstream');
+	var filename = path.resolve(__dirname, '../data/'+name+'/'+name+'_'+date+'.jsonstream');
 
 	if (fs.existsSync(filename) || fs.existsSync(filename+'.xz')) {
 		console.log(colors.yellow('Ignore "'+name+'" "'+date+'"'));
