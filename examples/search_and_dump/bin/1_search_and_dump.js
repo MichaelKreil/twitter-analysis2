@@ -27,9 +27,10 @@ var dates = [
 
 var hashtags = [
 	{name: '34c3', query: '34c3'},
-	{name: 'netzdg', query: 'NetzDG'},
-	{name: 'silvester', query: 'Silvester'},
 	{name: 'iranprotests', query: 'تظاهرات_سراسری OR IranProtests'},
+	{name: 'netzdg', query: 'NetzDG'},
+	{name: 'olympics_2018', query: 'PyeongChang2018'},
+	{name: 'silvester', query: 'Silvester'},
 	{name: 'trump_mentions', query: 'to:realDonaldTrump OR to:POTUS'},
 	{name: 'trump_tweets', query: 'from:realDonaldTrump OR from:POTUS'},
 ]
