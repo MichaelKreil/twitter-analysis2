@@ -8,22 +8,12 @@ const scraper = (require('../../../lib/scraper.js'))('hashtag');
 const path = require('path');
 const parseQuery = (url => require('querystring').parse(require('url').parse(url).query));
 
-var dates = [
-	'2017-12-22',
-	'2017-12-23',
-	'2017-12-24',
-	'2017-12-25',
-	'2017-12-26',
-	'2017-12-27',
-	'2017-12-28',
-	'2017-12-29',
-	'2017-12-30',
-	'2017-12-31',
-	'2018-01-01',
-	'2018-01-02',
-	'2018-01-03',
-	'2018-01-04',
-]
+var dates = [];
+var today = Math.floor(Date.now()/86400000)+0.5;
+for (var i = -10; i < 0; i++) {
+	var d = Date.now()/86400000
+	dates.push((new Date((today+i)*86400000)).toISOString().substr(0,10));
+}
 
 var hashtags = [
 	{name: '34c3', query: '34c3'},
@@ -34,7 +24,6 @@ var hashtags = [
 	{name: 'trump_mentions', query: 'to:realDonaldTrump OR to:POTUS'},
 	{name: 'trump_tweets', query: 'from:realDonaldTrump OR from:POTUS'},
 ]
-
 
 hashtags.forEach(obj => {
 	dates.forEach(date => {
