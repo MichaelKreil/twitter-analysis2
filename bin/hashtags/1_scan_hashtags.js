@@ -1,11 +1,11 @@
 "use strict";
 
 const fs = require('fs');
-const zlib = require('zlib');
+const xz = require('xz');
 const utils = require('../../lib/utils.js');
 const colors = require('colors');
 const scraper = (require('../../lib/scraper.js'))('hashtag');
-const resolve = require('path').resolve;
+const path = require('path');
 const parseQuery = (url => require('querystring').parse(require('url').parse(url).query));
 
 var dates = [
@@ -20,13 +20,18 @@ var dates = [
 	'2017-12-30',
 	'2017-12-31',
 	'2018-01-01',
+	'2018-01-02',
+	'2018-01-03',
+	'2018-01-04',
 ]
 
 var hashtags = [
-	{name: '34C3', query: '34c3'},
-	{name: 'NetzDG', query: 'NetzDG'},
-	{name: 'Silvester', query: 'Silvester'},
-	{name: 'IranProtests', query: 'تظاهرات_سراسری OR IranProtests'},
+	{name: '34c3', query: '34c3'},
+	{name: 'netzdg', query: 'NetzDG'},
+	{name: 'silvester', query: 'Silvester'},
+	{name: 'iranprotests', query: 'تظاهرات_سراسری OR IranProtests'},
+	{name: 'trump_mentions', query: 'to:realDonaldTrump OR to:POTUS'},
+	{name: 'trump_tweets', query: 'from:realDonaldTrump OR from:POTUS'},
 ]
 
 
@@ -39,9 +44,9 @@ hashtags.forEach(obj => {
 scraper.run();
 
 function runScraper(name, query, date) {
-	var filename = resolve(__dirname, '../../data/hashtags/'+name+'/'+name+'_'+date+'.jsonstream');
+	var filename = path.resolve(__dirname, '../../data/hashtags/'+name+'/'+name+'_'+date+'.jsonstream');
 
-	if (fs.existsSync(filename) || fs.existsSync(filename+'.7z') || fs.existsSync(filename+'.gz')) {
+	if (fs.existsSync(filename) || fs.existsSync(filename+'.xz')) {
 		console.log(colors.yellow('Ignore "'+name+'" "'+date+'"'));
 		return;
 	}
@@ -63,19 +68,7 @@ function runScraper(name, query, date) {
 
 		tweets = tweets.map(t => t.buffer);
 
-		var firstSave = false;
-
-		while (tweets.length > 0) {
-			var buf = Buffer.concat(tweets.slice(0,300000));
-			tweets = tweets.slice(300000);
-
-			if (firstSave) {
-				fs.writeFileSync(filename, buf);
-				firstSave = false;
-			} else {
-				fs.appendFileSync(filename, buf);
-			}
-		}
+		saveBufferArray(filename, tweets);
 	})
 
 	function scrape(max_id) {
@@ -118,3 +111,33 @@ function runScraper(name, query, date) {
 	}
 }
 
+function saveBufferArray(filename, bufs) {
+	filename += '.xz';
+
+	const shortName = path.basename(filename);
+	const lines = 1000;
+	const maxLines = bufs.length;
+
+	const compression = new xz.Compressor(9);
+	const outStream = fs.createWriteStream(filename);
+
+	compression.pipe(outStream);
+
+	write()
+
+	function write() {
+		if (bufs.length === 0) return compression.end();
+
+		var chunk = Buffer.concat(bufs.slice(0,lines));
+		bufs = bufs.slice(lines);
+
+		if (compression.write(chunk)) {
+			setTimeout(write, 1);
+		} else {
+			compression.once('drain', () => {
+				write();
+			});
+		}
+		console.log('   save "'+shortName+'" '+(100*(1-bufs.length/maxLines)).toFixed(1)+'%');
+	}
+}
