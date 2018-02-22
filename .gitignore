@@ -5,6 +5,8 @@ bin/germany
 bin/tweetsources
 cache/*/
 config
-data/germany/*
+data/germany/*.gz
+data/germany/*.bin
+data/germany/*.png
 node_modules
 package-lock.json

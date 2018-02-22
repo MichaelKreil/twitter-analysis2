@@ -14,7 +14,10 @@
   },
   "homepage": "https://github.com/MichaelKreil/twitter-analysis#readme",
   "dependencies": {
+    "async": "^2.6.0",
+    "canvas": "^1.6.9",
     "colors": "^1.1.2",
+    "express": "^4.16.2",
     "level": "^2.1.1",
     "request": "^2.83.0",
     "xz": "^1.2.2"
