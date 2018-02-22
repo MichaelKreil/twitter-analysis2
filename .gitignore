@@ -1,4 +1,6 @@
 *.xz
+*.txt
+*.tsv
 *.log
 bin/analyse_bots
 bin/germany
