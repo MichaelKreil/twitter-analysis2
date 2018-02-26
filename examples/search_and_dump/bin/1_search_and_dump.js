@@ -61,7 +61,7 @@ function runScraper(name, query, date) {
 	// Prepare Compressor
 	var compressor = lzma.createCompressor({
 		check: lzma.CHECK_NONE,
-		preset: 9 | lzma.PRESET_EXTREME,
+		preset: 9/* | lzma.PRESET_EXTREME*/,
 		synchronous: false,
 		threads: 1,
 	});
