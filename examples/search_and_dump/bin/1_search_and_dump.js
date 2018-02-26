@@ -50,7 +50,7 @@ scraper.run();
 
 function runScraper(name, query, date) {
 	var filename = path.resolve(__dirname, '../data/'+name+'/'+name+'_'+date+'.jsonstream.xz');
-	var tmpFile = path.resolve(__dirname, Math.random().toFixed(16).substr(2)+'.tmp.xz');
+	var tmpFile = path.resolve(__dirname, '../tmp', Math.random().toFixed(16).substr(2)+'.tmp.xz');
 
 	// Does the file already exists
 	if (fs.existsSync(filename)) {
