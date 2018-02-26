@@ -39,7 +39,7 @@ var queries = [
 // for each of the last 14 days
 
 var today = Math.floor(Date.now()/86400000-0.25)+0.5;
-for (var i = -14; i < 0; i++) {
+for (var i = -14; i < -1; i++) {
 	var date = (new Date((today+i)*86400000)).toISOString().substr(0,10);
 	queries.forEach(obj => runScraper(obj.name, obj.query, date))
 }
@@ -51,7 +51,7 @@ scraper.run();
 
 
 function runScraper(name, query, date) {
-	var title = '"'+date+' - '+name+'"';
+	var title = '"'+name+' - '+date+'"';
 
 	var filename = path.resolve(__dirname, '../data/'+name+'/'+name+'_'+date+'.jsonstream.xz');
 	var tmpFile = path.resolve(__dirname, '../tmp', Math.random().toFixed(16).substr(2)+'.tmp.xz');
@@ -84,8 +84,8 @@ function runScraper(name, query, date) {
 	var task = scraper.getSubTask()
 
 	// flush data buffer to lzma compressor
-	function flushOutput(cb) {
-		console.log(colors.green('flushing '+title))
+	function flushOutput(percent, cb) {
+		console.log(colors.green('flushing '+title+' - '+(100*percent).toFixed(1)+'%'))
 
 		var buffer = Array.from(tweets.values());
 		tweets = new Map();
@@ -108,7 +108,7 @@ function runScraper(name, query, date) {
 	// when finished: flush data and close file
 	function closeOutput() {
 		console.log(colors.green('prepare closing '+title));
-		flushOutput(() => {
+		flushOutput(1, () => {
 			if (!writeFile) {
 				console.log(colors.green.bold('closed '+title));
 				return
@@ -153,8 +153,12 @@ function runScraper(name, query, date) {
 					}));
 				}
 
+				var date = (result.statuses[0]||{}).created_at;
+
 				if (tweets.size > 10000) {
-					flushOutput(checkRerun);
+					var percent = Date.parse(date)/86400000;
+					percent = 1 - percent + Math.floor(percent);
+					flushOutput(percent, checkRerun);
 				} else {
 					checkRerun()
 				}
@@ -162,11 +166,7 @@ function runScraper(name, query, date) {
 				function checkRerun() {
 					var min_id = utils.getTweetsMinId(result.statuses);
 					if (min_id) {
-						console.log(colors.grey(
-							'   '+
-							(result.statuses[0]||{}).created_at.replace(/ \+.*/,'')+
-							'   '+title
-						));
+						//console.log(colors.grey('\t'+date.replace(/ \+.*/,'')+'\t'+title));
 						scrape(min_id);
 					} else {
 						closeOutput();
