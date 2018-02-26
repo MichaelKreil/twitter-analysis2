@@ -7,9 +7,9 @@ const colors = require('colors');
 const scraper = (require('../../../lib/scraper.js'))('search_and_dump');
 const path = require('path');
 
+const writeFile = false;
 
 // List of search queries
-
 var queries = [
 	{name: '34c3',               query: {q:'34c3'}},
 	{name: 'iranprotests',       query: {q:'تظاهرات_سراسری OR IranProtests'}},
@@ -63,14 +63,16 @@ function runScraper(name, query, date) {
 	}
 
 	// Prepare Compressor
-	var compressor = lzma.createCompressor({
-		check: lzma.CHECK_NONE,
-		preset: 9/* | lzma.PRESET_EXTREME*/,
-		synchronous: false,
-		threads: 1,
-	});
-	var stream = fs.createWriteStream(tmpFile, {highWaterMark: 8*1024*1024});
-	compressor.pipe(stream);
+	if (writeFile) {
+		var compressor = lzma.createCompressor({
+			check: lzma.CHECK_NONE,
+			preset: 9/* | lzma.PRESET_EXTREME*/,
+			synchronous: false,
+			threads: 1,
+		});
+		var stream = fs.createWriteStream(tmpFile, {highWaterMark: 8*1024*1024});
+		compressor.pipe(stream);
+	}
 
 	// Make sure that the folder exists
 	utils.ensureDir(filename);
@@ -83,15 +85,18 @@ function runScraper(name, query, date) {
 
 	// flush data buffer to lzma compressor
 	function flushOutput(cb) {
-		tweets = Array.from(tweets.values());
 		console.log(colors.green('flushing '+title))
 
-		if (tweets.length === 0) return cb();
-
-		tweets.sort((a,b) => a.id_str < b.id_str ? -1 : 1);
-		tweets = tweets.map(t => t.buffer);
-		var buffer = Buffer.concat(tweets);
+		var buffer = Array.from(tweets.values());
 		tweets = new Map();
+
+		if (buffer.length === 0) return cb();
+
+		if (!writeFile) return cb();
+
+		buffer.sort((a,b) => a.id_str < b.id_str ? -1 : 1);
+		buffer = buffer.map(t => t.buffer);
+		buffer = Buffer.concat(buffer);
 
 		if (compressor.write(buffer)) {
 			cb();
@@ -104,6 +109,11 @@ function runScraper(name, query, date) {
 	function closeOutput() {
 		console.log(colors.green('prepare closing '+title));
 		flushOutput(() => {
+			if (!writeFile) {
+				console.log(colors.green.bold('closed '+title));
+				return
+			}
+
 			console.log(colors.green('closing '+title));
 			stream.on('close', () => {
 				console.log(colors.green.bold('closed '+title));
@@ -135,11 +145,13 @@ function runScraper(name, query, date) {
 					return true;
 				})
 
-				result.statuses.forEach(t => tweets.set(t.id_str, {
-					id_str: t.id_str,
-					created_at: t.created_at,
-					buffer: Buffer.from(JSON.stringify(t)+'\n', 'utf8')
-				}));
+				if (writeFile) {
+					result.statuses.forEach(t => tweets.set(t.id_str, {
+						id_str: t.id_str,
+						created_at: t.created_at,
+						buffer: Buffer.from(JSON.stringify(t)+'\n', 'utf8')
+					}));
+				}
 
 				if (tweets.size > 10000) {
 					flushOutput(checkRerun);
