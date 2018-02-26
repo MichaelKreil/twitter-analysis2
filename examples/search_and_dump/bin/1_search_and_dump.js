@@ -51,12 +51,14 @@ scraper.run();
 
 
 function runScraper(name, query, date) {
+	var title = '"'+date+' - '+name+'"';
+
 	var filename = path.resolve(__dirname, '../data/'+name+'/'+name+'_'+date+'.jsonstream.xz');
 	var tmpFile = path.resolve(__dirname, '../tmp', Math.random().toFixed(16).substr(2)+'.tmp.xz');
 
 	// Does the file already exists
 	if (fs.existsSync(filename)) {
-		console.log(colors.grey('Ignore "'+date+'" - "'+name+'" '));
+		console.log(colors.grey('Ignore '+title));
 		return;
 	}
 
@@ -81,8 +83,8 @@ function runScraper(name, query, date) {
 
 	// flush data buffer to lzma compressor
 	function flushOutput(cb) {
-		console.log(colors.green('flushing '+name))
 		tweets = Array.from(tweets.values());
+		console.log(colors.green('flushing '+title))
 
 		if (tweets.length === 0) return cb();
 
@@ -100,11 +102,11 @@ function runScraper(name, query, date) {
 
 	// when finished: flush data and close file
 	function closeOutput() {
-		console.log(colors.green('prepare closing '+name));
+		console.log(colors.green('prepare closing '+title));
 		flushOutput(() => {
-			console.log(colors.green('closing '+name));
+			console.log(colors.green('closing '+title));
 			stream.on('close', () => {
-				console.log(colors.green.bold('closed '+name));
+				console.log(colors.green.bold('closed '+title));
 				fs.renameSync(tmpFile, filename);
 			})
 			compressor.end();
@@ -151,7 +153,7 @@ function runScraper(name, query, date) {
 						console.log(colors.grey(
 							'   '+
 							(result.statuses[0]||{}).created_at.replace(/ \+.*/,'')+
-							'   '+name
+							'   '+title
 						));
 						scrape(min_id);
 					} else {
