@@ -7,7 +7,7 @@ const colors = require('colors');
 const scraper = (require('../../../lib/scraper.js'))('search_and_dump');
 const path = require('path');
 
-const writeFile = false;
+const writeFile = true;
 
 // List of search queries
 var queries = [
@@ -37,20 +37,27 @@ var queries = [
 
 // Search with each of these queries,
 // for each of the last 14 days
-
-var today = Math.floor(Date.now()/86400000-0.25)+0.5;
-for (var i = -14; i < -1; i++) {
-	var date = (new Date((today+i)*86400000)).toISOString().substr(0,10);
-	queries.forEach(obj => runScraper(obj.name, obj.query, date))
+var queue = [];
+var yesterday = Math.floor(Date.now()/86400000-0.25)-0.5;
+for (var i = -14; i < -3; i++) {
+	var date = (new Date((yesterday+i)*86400000)).toISOString().substr(0,10);
+	queries.forEach(obj => {
+		queue.push((cb) => {
+			runScraper(obj.name, obj.query, date, cb)
+		})
+	})
 }
 
 
 // Start scraper
 scraper.run();
 
+async.parallelLimit(queue, 4,
+	() => console.log(colors.green.bold('FINISHED'))
+)
 
 
-function runScraper(name, query, date) {
+function runScraper(name, query, date, cbScraper) {
 	var title = '"'+name+' - '+date+'"';
 
 	var filename = path.resolve(__dirname, '../data/'+name+'/'+name+'_'+date+'.jsonstream.xz');
@@ -59,7 +66,7 @@ function runScraper(name, query, date) {
 	// Does the file already exists
 	if (fs.existsSync(filename)) {
 		console.log(colors.grey('Ignore '+title));
-		return;
+		return cbScraper();
 	}
 
 	// Prepare Compressor
@@ -79,29 +86,31 @@ function runScraper(name, query, date) {
 
 	// Map of all found tweets
 	var tweets = new Map();
+	var tweetCount = 0;
 
 	// new scraper sub task
 	var task = scraper.getSubTask()
 
 	// flush data buffer to lzma compressor
-	function flushOutput(percent, cb) {
+	function flushOutput(percent, cbFlush) {
 		console.log(colors.green('flushing '+title+' - '+(100*percent).toFixed(1)+'%'))
 
 		var buffer = Array.from(tweets.values());
 		tweets = new Map();
+		tweetCount = 0;
 
-		if (buffer.length === 0) return cb();
+		if (buffer.length === 0) return cbFlush();
 
-		if (!writeFile) return cb();
+		if (!writeFile) return cbFlush();
 
 		buffer.sort((a,b) => a.id_str < b.id_str ? -1 : 1);
 		buffer = buffer.map(t => t.buffer);
 		buffer = Buffer.concat(buffer);
 
 		if (compressor.write(buffer)) {
-			cb();
+			cbFlush();
 		} else {
-			compressor.once('drain', cb);
+			compressor.once('drain', cbFlush);
 		}
 	}
 
@@ -111,15 +120,16 @@ function runScraper(name, query, date) {
 		flushOutput(1, () => {
 			if (!writeFile) {
 				console.log(colors.green.bold('closed '+title));
-				return
+				cbScraper();
+			} else {
+				console.log(colors.green('closing '+title));
+				stream.on('close', () => {
+					console.log(colors.green.bold('closed '+title));
+					fs.renameSync(tmpFile, filename);
+					cbScraper();
+				})
+				compressor.end();
 			}
-
-			console.log(colors.green('closing '+title));
-			stream.on('close', () => {
-				console.log(colors.green.bold('closed '+title));
-				fs.renameSync(tmpFile, filename);
-			})
-			compressor.end();
 		})
 	};
 
@@ -152,10 +162,11 @@ function runScraper(name, query, date) {
 						buffer: Buffer.from(JSON.stringify(t)+'\n', 'utf8')
 					}));
 				}
+				tweetCount += result.statuses.length;
 
 				var date = (result.statuses[0]||{}).created_at;
 
-				if (tweets.size > 10000) {
+				if (tweetCount > 10000) {
 					var percent = Date.parse(date)/86400000;
 					percent = 1 - percent + Math.floor(percent);
 					flushOutput(percent, checkRerun);
