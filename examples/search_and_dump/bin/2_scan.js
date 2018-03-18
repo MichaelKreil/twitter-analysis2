@@ -7,9 +7,20 @@ const path = require('path');
 
 
 // List of search queries
+/*
+floridashooting
+floridashooting2
+iranprotests
+iranprotests2
+metoo
+olympics_2018
+pyeongchang2018
+trump_mentions
+*/
 
-var query = 'floridashooting';
+var query = 'afrin';
 var dayCount = 9;
+var filestream = fs.createWriteStream(query+'.txt');
 
 var folder = path.resolve(__dirname, '../data/'+query+'/');
 
@@ -23,13 +34,14 @@ fs.readdirSync(folder).forEach(f => {
 
 	var filename = path.resolve(folder, f);
 
-	date = Math.round(Date.parse(date)/86400000-17521);
+	var dateIndex = Math.round(Date.parse(date)/86400000-17521);
 	
-	if (minDate > date) minDate = date;
-	if (maxDate < date) maxDate = date;
+	if (minDate > dateIndex) minDate = dateIndex;
+	if (maxDate < dateIndex) maxDate = dateIndex;
 
-	fileDays[date] = {
+	fileDays[dateIndex] = {
 		name: f,
+		date: date,
 		filename: filename,
 		size: fs.statSync(filename).size
 	}
@@ -52,6 +64,7 @@ var hashtags = new Map();
 var tweetCount = 0;
 
 var running = 0;
+output('\ninterval: '+fileDays[startIndex].date+' - '+fileDays[startIndex+dayCount-1].date);
 for (var i = startIndex; i <= startIndex+dayCount-1; i++) {
 	if (fileDays[i]) {
 		running++;
@@ -63,10 +76,7 @@ for (var i = startIndex; i <= startIndex+dayCount-1; i++) {
 }
 
 function finish() {
-	console.log('tweets: '+tweetCount);
-	console.log('');
-
-
+	output('\ntweets: '+tweetCount);
 
 	users = Array.from(users.values());
 	users.sort((a,b) => b.count - a.count);
@@ -74,17 +84,21 @@ function finish() {
 	var minCount = 25*dayCount;
 	minCount = Math.min(minCount, users[30].count);
 	users = users.filter(u => u.count >= minCount);
-	users = users.map(u => u.text+'\t'+u.count).join('\n');
-	console.log(users);
-	console.log('');
-
-
+	users = users.map(u => {
+		var sources = Array.from(u.sources.values());
+		sources.sort((a,b) => b.count - a.count);
+		sources = sources.map(s => s.text+':'+s.count).join(',');
+		return [u.text, u.count, sources].join('\t')
+	}).join('\n');
+	output('\nusers');
+	output(users);
 
 	hashtags = Array.from(hashtags.values());
 	hashtags.sort((a,b) => b.count - a.count);
 	hashtags = hashtags.slice(0, 30);
 	hashtags = hashtags.map(u => u.text+'\t'+u.count).join('\n');
-	console.log(hashtags);
+	output('\nhashtags');
+	output(hashtags);
 }
 
 function startScan(filename, cb) {
@@ -122,10 +136,17 @@ function startScan(filename, cb) {
 
 			// add user
 			var user = chunk.user.screen_name;
-			if (!users.has(user)) users.set(user, {text:'@'+user, count:0})
-			users.get(user).count++;
+			if (!users.has(user)) users.set(user, {text:'@'+user, count:0, sources:new Map()})
+			user = users.get(user);
+			user.count++;
+			var source = chunk.source.replace(/[^0-9<>a-z="/.]+/ig, ' ');
+			source = source.replace(/^<a href=\"http/,'');
+			source = source.replace(/\" rel=\"nofollow\">/,' ');
+			source = source.replace(/<\/a>$/,'');
+			if (!user.sources.has(source)) user.sources.set(source, {text:source, count:0})
+			user.sources.get(source).count++;
 
-			tweetCount++
+			tweetCount++;
 
 			// add hashtags
 			chunk.entities.hashtags.forEach(h => {
@@ -137,5 +158,10 @@ function startScan(filename, cb) {
 
 		buffer = [buffer.slice(i0)];
 	}
+}
+
+function output(text) {
+	console.log(colors.yellow(text));
+	filestream.write(text+'\n');
 }
 

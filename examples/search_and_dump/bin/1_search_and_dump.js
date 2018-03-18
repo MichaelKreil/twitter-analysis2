@@ -3,6 +3,7 @@
 const fs = require('fs');
 const lzma = require('lzma-native');
 const utils = require('../../../lib/utils.js');
+const async = require('async');
 const colors = require('colors');
 const scraper = (require('../../../lib/scraper.js'))('search_and_dump');
 const path = require('path');
@@ -11,27 +12,31 @@ const writeFile = true;
 
 // List of search queries
 var queries = [
-	{name: '34c3',               query: {q:'34c3'}},
-	{name: 'iranprotests',       query: {q:'تظاهرات_سراسری OR IranProtests'}},
-	{name: 'iranprotests2',      query: {q:'iranprotests OR تظاهرات_سراسرى OR مظاهرات_ايران OR تظاهرات_سراسری OR تظاهرات_سراسري'}},
-	{name: 'netzdg',             query: {q:'netzdg'}},
-	{name: 'olympics_2018',      query: {q:'#olympia2018 OR #pyeongchang2018 OR #olympics OR #olympia OR #doping'}},
-	{name: 'pyeongchang2018',    query: {q:'pyeongchang2018'}},
-	{name: 'trump_mentions',     query: {q:'to:realdonaldtrump OR to:potus'}},
-	{name: 'trump_tweets',       query: {q:'from:realdonaldtrump OR from:potus'}},
-	{name: 'emmanuelmacron',     query: {q:'from:emmanuelmacron OR to:emmanuelmacron'}},
-	{name: 'elysee',             query: {q:'from:elysee OR to:elysee'}},
-	{name: 'metoo',              query: {q:'#metoo'}},
-	{name: 'lufthansa',          query: {q:'lufthansa OR lufthansablue OR explorethenew'}},
-	{name: 'heimathorst',        query: {q:'heimathorst OR heimatministerium'}},
-	{name: 'heimat',             query: {q:'heimat'}},
-	{name: 'groko',              query: {q:'groko'}},
-	{name: 'amadeuantonio',      query: {q:'amadeuantonio OR from:amadeuantonio OR to:amadeuantonio'}},
-	{name: 'rechts_aufbruch',    query: {q:'aufbruchinsungewisse'}},
-	{name: 'rechts',             query: {q:'afdwaehlen OR antifaverbot OR merkelmussweg OR staatsfernsehen OR stopasyl OR stopislam OR widerstand'}},
 	{name: '120db',              query: {q:'frauenmarsch OR 120db OR b1702 OR dd1702 OR ndh1702 OR niun1702 OR niun OR no120db'}}, 
+	{name: '34c3',               query: {q:'34c3'}},
+	{name: 'afrin',              query: {q:'afrin'}},
+	{name: 'amadeuantonio',      query: {q:'amadeuantonio OR from:amadeuantonio OR to:amadeuantonio'}},
+	{name: 'bild',               query: {q:'BILD,BILD_Berlin,BILD_Digital,BILD_Frankfurt,BILD_Hamburg,BILD_Muenchen,BILD_News,BILD_Politik,BILD_TopNews,jreichelt'.split(',').map(a=>'from:'+a+' OR to:'+a).join(' OR ')}},
+	{name: 'elysee',             query: {q:'from:elysee OR to:elysee'}},
+	{name: 'emmanuelmacron',     query: {q:'from:emmanuelmacron OR to:emmanuelmacron'}},
 	{name: 'floridashooting',    query: {q:'emmagonzalez OR floridahighschool OR floridaschoolshooting OR floridashooter OR floridashooting OR floridastrong OR guncontrol OR guncontrolnow OR gunlawsnow OR gunreformnow OR gunsafety OR gunsense OR gunshooting OR highschoolshooter OR march4ourlives OR marchforourlives OR massshooting OR massshootings OR neveragain OR nrabloodmoney OR parklandschoolshooting OR parklandshooting OR righttobeararms OR schoolshooting'}},
 	{name: 'floridashooting2',   query: {q:'neveragain OR gunreformnow OR guncontrolnow OR guncontrol OR marchforourlives OR parkland OR parklandschoolshooting OR floridaschoolshooting OR parklandshooting OR #nra OR floridashooting OR nrabloodmoney OR banassaultweapons OR gunsense OR emmagonzalez OR schoolshooting OR parklandstudents OR parklandstudentsspeak OR gunviolence OR floridashooter OR wecallbs OR studentsstandup OR parklandstrong'}},
+	{name: 'groko',              query: {q:'groko'}},
+	{name: 'heimat',             query: {q:'heimat'}},
+	{name: 'heimathorst',        query: {q:'heimathorst OR heimatministerium'}},
+	{name: 'iranprotests',       query: {q:'تظاهرات_سراسری OR IranProtests'}},
+	{name: 'iranprotests2',      query: {q:'iranprotests OR تظاهرات_سراسرى OR مظاهرات_ايران OR تظاهرات_سراسری OR تظاهرات_سراسري'}},
+	{name: 'lufthansa',          query: {q:'lufthansa OR lufthansablue OR explorethenew'}},
+	{name: 'metoo',              query: {q:'#metoo'}},
+	{name: 'netzdg',             query: {q:'netzdg'}},
+	{name: 'nobillag',           query: {q:'#neinzunobillag OR #nobillag OR #nobillagnein'}},
+	{name: 'olympics_2018',      query: {q:'#olympia2018 OR #pyeongchang2018 OR #olympics OR #olympia OR #doping'}},
+	{name: 'pyeongchang2018',    query: {q:'pyeongchang2018'}},
+	{name: 'rechts',             query: {q:'afdwaehlen OR antifaverbot OR merkelmussweg OR staatsfernsehen OR stopasyl OR stopislam OR widerstand'}},
+	{name: 'rechts_aufbruch',    query: {q:'aufbruchinsungewisse'}},
+	{name: 'syria',              query: {q:'syria'}},
+	{name: 'trump_mentions',     query: {q:'to:realdonaldtrump OR to:potus'}},
+	{name: 'trump_tweets',       query: {q:'from:realdonaldtrump OR from:potus'}},
 ]
 
 
@@ -39,11 +44,14 @@ var queries = [
 // for each of the last 14 days
 var queue = [];
 var yesterday = Math.floor(Date.now()/86400000-0.25)-0.5;
-for (var i = -14; i < -3; i++) {
+for (var i = -14; i <= 0; i++) {
 	var date = (new Date((yesterday+i)*86400000)).toISOString().substr(0,10);
 	queries.forEach(obj => {
+		var _name  = obj.name;
+		var _query = obj.query;
+		var _date  = date;
 		queue.push((cb) => {
-			runScraper(obj.name, obj.query, date, cb)
+			runScraper(_name, _query, _date, cb)
 		})
 	})
 }
@@ -52,7 +60,7 @@ for (var i = -14; i < -3; i++) {
 // Start scraper
 scraper.run();
 
-async.parallelLimit(queue, 4,
+async.parallelLimit(queue, writeFile ? 4 : 16,
 	() => console.log(colors.green.bold('FINISHED'))
 )
 
@@ -67,6 +75,8 @@ function runScraper(name, query, date, cbScraper) {
 	if (fs.existsSync(filename)) {
 		console.log(colors.grey('Ignore '+title));
 		return cbScraper();
+	} else {
+		console.log(colors.green('Starting '+title));
 	}
 
 	// Prepare Compressor
