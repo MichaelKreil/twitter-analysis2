@@ -59,13 +59,16 @@ for (var i = minDate; i <= maxDate-dayCount+1; i++) {
 	}
 }
 
+var endIndex = startIndex+dayCount-1;
+while (!fileDays[endIndex]) endIndex--;
+
 var users = new Map();
 var hashtags = new Map();
 var tweetCount = 0;
 
 var running = 0;
-output('\ninterval: '+fileDays[startIndex].date+' - '+fileDays[startIndex+dayCount-1].date);
-for (var i = startIndex; i <= startIndex+dayCount-1; i++) {
+output('\ninterval: '+fileDays[startIndex].date+' - '+fileDays[endIndex].date);
+for (var i = startIndex; i <= endIndex; i++) {
 	if (fileDays[i]) {
 		running++;
 		startScan(fileDays[i].filename, () => {
@@ -82,7 +85,7 @@ function finish() {
 	users.sort((a,b) => b.count - a.count);
 
 	var minCount = 25*dayCount;
-	minCount = Math.min(minCount, users[30].count);
+	minCount = Math.min(minCount, users[30] && users[30].count);
 	users = users.filter(u => u.count >= minCount);
 	users = users.map(u => {
 		var sources = Array.from(u.sources.values());
