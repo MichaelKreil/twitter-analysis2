@@ -34,6 +34,7 @@ var queries = [
 	{name: 'pyeongchang2018',    query: {q:'pyeongchang2018'}},
 	{name: 'rechts',             query: {q:'afdwaehlen OR antifaverbot OR merkelmussweg OR staatsfernsehen OR stopasyl OR stopislam OR widerstand'}},
 	{name: 'rechts_aufbruch',    query: {q:'aufbruchinsungewisse'}},
+	{name: 'russianelection',    query: {q:'#ИзбирательныйУчасток OR #ПУТИН OR #Выборы2018 OR #ПУТИН2018 OR #Саки OR #городСаки OR #РеспубликаКрым OR #КрымНаш OR #МыСтроимМосты OR #КрымРоссияНавсегда OR #КрымРоссия OR #ПутинВВ OR #ТвойВыбор2018 OR #2018ТвойВыбор OR #Выбор2018 OR #ПутинВладимирВладимирович OR #ЯзаПутина OR #ЯзаПутинаВВ'}},
 	{name: 'syria',              query: {q:'syria'}},
 	{name: 'trump_mentions',     query: {q:'to:realdonaldtrump OR to:potus'}},
 	{name: 'trump_tweets',       query: {q:'from:realdonaldtrump OR from:potus'}},

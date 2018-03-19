@@ -18,7 +18,7 @@ pyeongchang2018
 trump_mentions
 */
 
-var query = 'afrin';
+var query = 'russianelection';
 var dayCount = 9;
 var filestream = fs.createWriteStream(query+'.txt');
 
