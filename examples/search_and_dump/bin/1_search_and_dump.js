@@ -149,7 +149,7 @@ function runScraper(name, query, date, cbScraper) {
 	scrape();
 
 	function scrape(max_id) {
-		var attributes = {result_type:'recent', count:100, max_id:max_id};
+		var attributes = {result_type:'recent', tweet_mode:'extended', count:100, max_id:max_id};
 		Object.keys(query).forEach(key => attributes[key] = query[key])
 
 		var minDate = new Date(date);
