@@ -16,7 +16,7 @@ var queries = [
 	{name: '34c3',               query: {q:'34c3'}},
 	{name: 'afrin',              query: {q:'afrin'}},
 	{name: 'amadeuantonio',      query: {q:'amadeuantonio OR from:amadeuantonio OR to:amadeuantonio'}},
-	{name: 'bahn',               query: {q:'bahn OR bahnhof OR hbf OR zug OR bahnsteig OR to:dbbahn OR dbbahn OR fahrradabteil OR ice OR schaffner OR bordbistro OR verspätung OR anschluss OR umsteigen OR ansage OR anzeige OR stellwerk OR störung OR weiche'}},
+	{name: 'bahn',               query: {q:'bahn OR bahnhof OR hbf OR zug OR bahnsteig OR to:dbbahn OR dbbahn OR fahrradabteil OR ice OR schaffner OR bordbistro OR verspätung OR anschluss OR umsteigen OR ansage OR anzeige OR stellwerk OR störung OR weiche', lang:'de'}},
 	{name: 'bild',               query: {q:'BILD,BILD_Berlin,BILD_Digital,BILD_Frankfurt,BILD_Hamburg,BILD_Muenchen,BILD_News,BILD_Politik,BILD_TopNews,jreichelt'.split(',').map(a=>'from:'+a+' OR to:'+a).join(' OR ')}},
 	{name: 'elysee',             query: {q:'from:elysee OR to:elysee'}},
 	{name: 'emmanuelmacron',     query: {q:'from:emmanuelmacron OR to:emmanuelmacron'}},
