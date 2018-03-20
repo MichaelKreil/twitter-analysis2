@@ -6,18 +6,6 @@ const colors = require('colors');
 const path = require('path');
 
 
-// List of search queries
-/*
-floridashooting
-floridashooting2
-iranprotests
-iranprotests2
-metoo
-olympics_2018
-pyeongchang2018
-trump_mentions
-*/
-
 var query = 'bahn';
 var dayCount = 9;
 var filestream = fs.createWriteStream(query+'.txt');
