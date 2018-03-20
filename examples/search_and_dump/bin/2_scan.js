@@ -18,7 +18,7 @@ pyeongchang2018
 trump_mentions
 */
 
-var query = 'russianelection';
+var query = 'bahn';
 var dayCount = 9;
 var filestream = fs.createWriteStream(query+'.txt');
 
