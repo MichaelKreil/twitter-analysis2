@@ -46,7 +46,7 @@ var queries = [
 // for each of the last 14 days
 var queue = [];
 var yesterday = Math.floor(Date.now()/86400000-0.25)-0.5;
-for (var i = -14; i <= 0; i++) {
+for (var i = -11; i <= 0; i++) {
 	var date = (new Date((yesterday+i)*86400000)).toISOString().substr(0,10);
 	queries.forEach(obj => {
 		var _name  = obj.name;
