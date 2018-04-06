@@ -39,6 +39,7 @@ var queries = [
 	{name: 'syria',              query: {q:'syria'}},
 	{name: 'trump_mentions',     query: {q:'to:realdonaldtrump OR to:potus'}},
 	{name: 'trump_tweets',       query: {q:'from:realdonaldtrump OR from:potus'}},
+	{name: 'ueberwachung',       query: {q:'überwachungspaket OR staatstrojaner OR bundestrojaner OR ueberwachungspaket OR zib2 OR überwachung OR privatsphäre OR datenschutz OR sicherheit OR vds OR sicherheitspaket'}},
 ]
 
 

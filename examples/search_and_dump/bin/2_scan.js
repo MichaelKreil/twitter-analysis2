@@ -6,7 +6,7 @@ const colors = require('colors');
 const path = require('path');
 
 
-var query = 'bahn';
+var query = 'ueberwachungspaket';
 var dayCount = 9;
 var filestream = fs.createWriteStream(query+'.txt');
 
