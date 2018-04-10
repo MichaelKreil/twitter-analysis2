@@ -38,7 +38,7 @@ var queries = [
 	{name: 'rechts_aufbruch',    query: {q:'aufbruchinsungewisse'}},
 	{name: 'russianelection',    query: {q:'#ИзбирательныйУчасток OR #ПУТИН OR #Выборы2018 OR #ПУТИН2018 OR #Саки OR #городСаки OR #РеспубликаКрым OR #КрымНаш OR #МыСтроимМосты OR #КрымРоссияНавсегда OR #КрымРоссия OR #ПутинВВ OR #ТвойВыбор2018 OR #2018ТвойВыбор OR #Выбор2018 OR #ПутинВладимирВладимирович OR #ЯзаПутина OR #ЯзаПутинаВВ'}},
 	{name: 'syria',              query: {q:'syria'}},
-	{name: 'trump_mentions',     query: {q:'to:realdonaldtrump OR to:potus'}},
+	{name: 'trump_mentions',     query: {q:'to:realdonaldtrump OR to:potus OR realdonaldtrump OR potus'}},
 	{name: 'trump_tweets',       query: {q:'from:realdonaldtrump OR from:potus'}},
 	{name: 'ueberwachung',       query: {q:'überwachungspaket OR staatstrojaner OR bundestrojaner OR ueberwachungspaket OR zib2 OR überwachung OR privatsphäre OR datenschutz OR sicherheit OR vds OR sicherheitspaket'}},
 ]
