@@ -29,6 +29,7 @@ var queries = [
 	{name: 'iranprotests2',      query: {q:'iranprotests OR تظاهرات_سراسرى OR مظاهرات_ايران OR تظاهرات_سراسری OR تظاهرات_سراسري'}},
 	{name: 'lufthansa',          query: {q:'lufthansa OR lufthansablue OR explorethenew'}},
 	{name: 'metoo',              query: {q:'#metoo'}},
+	{name: 'muenster',           query: {q:'muenster OR münster OR anschlag'}},
 	{name: 'netzdg',             query: {q:'netzdg'}},
 	{name: 'nobillag',           query: {q:'#neinzunobillag OR #nobillag OR #nobillagnein'}},
 	{name: 'olympics_2018',      query: {q:'#olympia2018 OR #pyeongchang2018 OR #olympics OR #olympia OR #doping'}},
