@@ -15,11 +15,8 @@ var queries = [
 	{name: '120db',              query: {q:'frauenmarsch OR 120db OR b1702 OR dd1702 OR ndh1702 OR niun1702 OR niun OR no120db'}}, 
 	{name: '34c3',               query: {q:'34c3'}},
 	{name: 'afrin',              query: {q:'afrin'}},
-	{name: 'amadeuantonio',      query: {q:'amadeuantonio OR from:amadeuantonio OR to:amadeuantonio'}},
 	{name: 'bahn',               query: {q:'bahn OR bahnhof OR hbf OR zug OR bahnsteig OR to:dbbahn OR dbbahn OR fahrradabteil OR ice OR schaffner OR bordbistro OR verspätung OR anschluss OR umsteigen OR ansage OR anzeige OR stellwerk OR störung OR weiche', lang:'de'}},
 	{name: 'bild',               query: {q:'BILD,BILD_Berlin,BILD_Digital,BILD_Frankfurt,BILD_Hamburg,BILD_Muenchen,BILD_News,BILD_Politik,BILD_TopNews,jreichelt'.split(',').map(a=>'from:'+a+' OR to:'+a).join(' OR ')}},
-	{name: 'elysee',             query: {q:'from:elysee OR to:elysee'}},
-	{name: 'emmanuelmacron',     query: {q:'from:emmanuelmacron OR to:emmanuelmacron'}},
 	{name: 'floridashooting',    query: {q:'emmagonzalez OR floridahighschool OR floridaschoolshooting OR floridashooter OR floridashooting OR floridastrong OR guncontrol OR guncontrolnow OR gunlawsnow OR gunreformnow OR gunsafety OR gunsense OR gunshooting OR highschoolshooter OR march4ourlives OR marchforourlives OR massshooting OR massshootings OR neveragain OR nrabloodmoney OR parklandschoolshooting OR parklandshooting OR righttobeararms OR schoolshooting'}},
 	{name: 'floridashooting2',   query: {q:'neveragain OR gunreformnow OR guncontrolnow OR guncontrol OR marchforourlives OR parkland OR parklandschoolshooting OR floridaschoolshooting OR parklandshooting OR #nra OR floridashooting OR nrabloodmoney OR banassaultweapons OR gunsense OR emmagonzalez OR schoolshooting OR parklandstudents OR parklandstudentsspeak OR gunviolence OR floridashooter OR wecallbs OR studentsstandup OR parklandstrong'}},
 	{name: 'groko',              query: {q:'groko'}},
@@ -41,7 +38,22 @@ var queries = [
 	{name: 'trump_mentions',     query: {q:'to:realdonaldtrump OR to:potus OR realdonaldtrump OR potus'}},
 	{name: 'trump_tweets',       query: {q:'from:realdonaldtrump OR from:potus'}},
 	{name: 'ueberwachung',       query: {q:'überwachungspaket OR staatstrojaner OR bundestrojaner OR ueberwachungspaket OR zib2 OR überwachung OR privatsphäre OR datenschutz OR sicherheit OR vds OR sicherheitspaket'}},
-]
+];
+
+[
+	'afd_orgs:afd,afd_bund,afdberlin,afdimbundestag,brandenburgafd,afdsalzgitterkv,afdkompakt,afdsaar,afd_hessen,afdfraktionagh,rlp_afd',
+	'afd_person:alice_weidel,jensmaierafd,beatrix_vstorch,poggenburgandre,fraukepetry,afdlindemann,frankhansel,uwe_junge_mdl',
+	'jensspahn:jensspahn',
+	'elysee:elysee',
+	'emmanuelmacron:emmanuelmacron',
+	'amadeuantonio:amadeuantonio',
+].forEach(l => {
+	l = l.split(':');
+	queries.push({
+		name:l[0],
+		query: {q:l[1].split(',').map(a => a+' OR from:'+a+' OR to:'+a+'').join(' OR ')}
+	})
+})
 
 
 // Search with each of these queries,
