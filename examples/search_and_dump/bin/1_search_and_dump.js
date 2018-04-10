@@ -40,20 +40,55 @@ var queries = [
 	{name: 'ueberwachung',       query: {q:'überwachungspaket OR staatstrojaner OR bundestrojaner OR ueberwachungspaket OR zib2 OR überwachung OR privatsphäre OR datenschutz OR sicherheit OR vds OR sicherheitspaket'}},
 ];
 
-[
-	'afd_orgs:afd,afd_bund,afdberlin,afdimbundestag,brandenburgafd,afdsalzgitterkv,afdkompakt,afdsaar,afd_hessen,afdfraktionagh,rlp_afd',
-	'afd_person:alice_weidel,jensmaierafd,beatrix_vstorch,poggenburgandre,fraukepetry,afdlindemann,frankhansel,uwe_junge_mdl',
+[	
+	'afd_land_#:afdsaar,afd_lv_sh,rlp_afd,afd_hamburg,afd_lsa,afd_sachsen_asa,alternativenrw,alternativends,afd_thueringen,afd_hb,afdberlin,afdbrandenburg,afd_mv,alternativebw,afd_hessen,afd_bayern,afdsaar,afd_lv_sh,rlp_afd,afd_hamburg',
+	'afd_orgs_#:afd,afd_bund,afdimbundestag,brandenburgafd,afdsalzgitterkv,afdkompakt,afdfraktionagh',
+	'afd_bund_vor_#:andreaskalbitz,joachim_kuhs,guidoreil,georg_pazderski,joerg_meuthen,steffenkoeniger,frank_pasemann,protschkastepha,kaygottschalk1,beatrix_vstorch,alice_weidel',
+	'afd_mdb_#:mueller_mdb,joernkoenigafd,jacobi_afd,verhartmannafd,frank_magnitz,chrwirthmdb,martin_sichert,braunafd,kestnerjens,jensmaierafd,drfriesenmdb,th_seitz_afd,steffenkotre,andreasbleckmdb,espendillerm,buettner_mdb,martin_hess_afd,corinnamiazga,nkleinwaechter,s_muenzenmaier,udohemmelgarn,gottfriedcurio,h_weyel,rene_springer,profmaier,m_harderkuehnel,joanacotar,petrbystronafd,dirkspaniel,marcbernhardafd,tino_chrupalla,stefankeuterafd,enricokomning,leif_erik_holm,marcus_buehl,schneider_afd,jochen_haug,stbrandner,mdb_lucassen,witt_uwe,elsnervongronow,frohnmaier_afd,marc_jongen,herrmann_afd,waldemarherdt,ulrich_oehme,friedhoff_afd,robby_schlund,nicole_hoechst,mrosek1958,uwe_kamann,m_reichardt_afd,renner_afd,tobiasmpeterka,axelgehrke,ttte94,frank_pasemann,protschkastepha,kaygottschalk1,ulschzi,gtzfrmming,beatrix_vstorch,r_hartwig_afd,buergerwohl,peterboehringer,alice_weidel',
 	'jensspahn:jensspahn',
 	'elysee:elysee',
 	'emmanuelmacron:emmanuelmacron',
 	'amadeuantonio:amadeuantonio',
 ].forEach(l => {
 	l = l.split(':');
-	queries.push({
-		name:l[0],
-		query: {q:l[1].split(',').map(a => a+' OR from:'+a+' OR to:'+a+'').join(' OR ')}
-	})
+	var name = l[0];
+	var query = l[1].split(',').map(a => a+' OR from:'+a+' OR to:'+a+'');
+
+	if (name[name.length-1] === '#') {
+		var i = 1;
+		var l = 1;
+		while (query.length > 0) {
+			if ((l > query.length) || (urlEncode(makeQuery(query.slice(0,l))).length >= 500)) {
+				addQuery(query.slice(0,l-1));
+				query = query.slice(l-1);
+				l = 0;
+				i++;
+			}
+			l++;
+		}
+	} else {
+		queries.push({name:name,query: {q:makeQuery(query)}})
+	}
+
+	function addQuery(query) { queries.push({
+		name:name.replace(/#/,(100+i).toFixed(0).slice(1)),
+		query:{q:makeQuery(query)}
+	})}
+	function makeQuery(query) { return query.join(' OR ') }
 })
+
+queries.forEach(entry => {
+	var query = urlEncode(entry.query.q);
+
+	if (query.length > 511) {
+		console.log('"'+query+'"');
+		console.log('query with '+query.length+' chars is to long for '+entry.name);
+		throw Error();
+	}
+})
+
+function urlEncode(q) { return q.replace(/ /g, '%20').replace(/:/g, '%3A') }
+
 
 
 // Search with each of these queries,
