@@ -19,7 +19,7 @@ fs.readdirSync(dataFolder).forEach(filename => {
 	if (!key) return;
 	key = key[1];
 	console.log('   read '+key);
-	colors[key] = readColors(dataFolder+filename);
+	colors[key] = readColors(path.resolve(dataFolder,filename));
 })
 console.log('read colors: finished');
 
@@ -86,8 +86,8 @@ function initServer(cb) {
 function initData(cb) {
 	console.log('init data: started');
 
-	var x = zlib.gunzipSync(fs.readFileSync(dataFolder+'positionsX.bin.gz'));
-	var y = zlib.gunzipSync(fs.readFileSync(dataFolder+'positionsY.bin.gz'));
+	var x = zlib.gunzipSync(fs.readFileSync(path.resolve(dataFolder,'positionsX.bin.gz')));
+	var y = zlib.gunzipSync(fs.readFileSync(path.resolve(dataFolder,'positionsY.bin.gz')));
 	nodeCount = x.length/8;
 
 	nodeX = new Float64Array(nodeCount);

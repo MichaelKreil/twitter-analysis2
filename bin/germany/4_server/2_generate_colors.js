@@ -3,6 +3,7 @@
 const fs = require('fs');
 const tsv = require('tsv');
 const path = require('path');
+const zlib = require('zlib');
 const level = require('level');
 
 var db = level('_server', { keyEncoding: 'utf8', valueEncoding: 'utf8' });
@@ -16,7 +17,7 @@ var colorSchemes = {
 			activity /= 86400000;
 			return getGradient(activity, 0, 5)
 		}
-	},/*
+	},
 	age: () => {
 		var start = Date.parse('2009-01-01');
 		var end = Date.parse('2017-01-01');
@@ -124,13 +125,13 @@ var colorSchemes = {
 			 '13': [255,  0,255,128]
 		}
 		return obj => (obj.utc_offset === null ? [255,0,0,64] : (colors[Math.round(obj.utc_offset/3600)] || [255,0,0,64]));
-	},*/
+	},
 }
 
 colorSchemes = Object.keys(colorSchemes).map(key => ({
 	key: key,
 	getColor: colorSchemes[key](),
-	writer: new ColorWriter(path.resolve(__dirname, '../data/color_'+key+'.bin'))
+	writer: new ColorWriter(path.resolve(__dirname, '../../../data/germany/color_'+key+'.bin.gz'))
 }))
 
 var count = 0;
@@ -182,7 +183,9 @@ function ColorWriter(filename) {
 	
 	return {
 		close: () => {
-			fs.writeFileSync(filename, buffer.slice(0,(maxIndex+1)*4));
+			buffer = buffer.slice(0,(maxIndex+1)*4);
+			buffer = zlib.gzipSync(buffer, {level:9})
+			fs.writeFileSync(filename, buffer);
 		},
 		write: (index, data) => {
 			if (index > maxIndex) maxIndex = index;
