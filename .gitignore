@@ -2,14 +2,11 @@
 *.tsv
 *.txt
 *.xz
-bin/analyse_bots
 bin/find_verified/accounts_1.txt.7z
 bin/find_verified/accounts_known.txt.7z
 bin/find_verified/accounts_next.txt.7z
 bin/find_verified/ids_sorted.txt.7z
 bin/find_verified/verified_accounts.tsv.zip
-bin/germany
-bin/tweetsources
 cache/*/
 config
 data/germany/*.bin
@@ -17,3 +14,4 @@ data/germany/*.gz
 data/germany/*.png
 node_modules
 package-lock.json
+bin/germany/4_server/_server/

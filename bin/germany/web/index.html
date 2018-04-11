@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width">
+
+	<script type="text/javascript" src="/assets/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/assets/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/assets/leaflet/leaflet.js"></script>
+
+	<link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="/assets/leaflet/leaflet.css">
+
+	<script type="text/javascript">
+		$(function () {
+			var map = L.map('map', {
+				center: [-128,128],
+				zoom: 1,
+				crs: L.CRS.Simple,
+				attributionControl: false
+			});
+			var markers = [];
+
+			initSchemes();
+			initSearch();
+
+			var timeMouseDown = 0;
+			map.on('mousedown', function (e) { timeMouseDown = Date.now(); });
+			map.on('click', function (e) {
+				if (Date.now()-timeMouseDown < 150) fetchPoint(e.latlng.lng/256, -e.latlng.lat/256);
+			});
+
+			function fetchPoint(x,y) {
+				$.getJSON('/get/point/'+x+'/'+y, drawPoints)
+			}
+
+			function drawPoints(pointList) {
+				markers.forEach(function (marker) {
+					marker.remove();
+				})
+				markers = [];
+
+				if (!pointList) return $('#output').html('nothing found');
+
+				pointList.forEach(function (entry) {
+					var lng =  entry.x*256;
+					var lat = -entry.y*256;
+					
+					markers.push(L.marker([lat,lng]).addTo(map));
+
+					html = Object.keys(entry).map(function (key) {
+						var value = entry[key];
+						switch (key) {
+							case 'created_at': value = (new Date(value)).toISOString().replace('T',' '); break;
+							case 'screen_name': value = '<a href="https://twitter.com/'+value+'" target="_blank">'+value+'</a>'; break;
+							case 'profile_image_url': value = '<img src="'+value+'" width="32" height="32">'; break;
+						}
+						return '<p><b>'+key+'</b>: '+value+'</p>';
+					})
+					$('#output').html(html);
+				})
+			}
+
+			function initSchemes() {
+				var container = $('#color');
+				var layer;
+				$.getJSON('/get/schemes', function (list) {
+					list.forEach(function (key) {
+						container.append($('<option value="'+key+'">'+key+'</option>'))
+					})
+					container.change(checkInput);
+					checkInput();
+				})
+				function checkInput() {
+					if (layer) layer.remove();
+					var key = container.val();
+					layer = L.tileLayer('/tile/'+key+'/{z}/{x}/{y}.jpg', {noWrap:true,detectRetina:true}).addTo(map);
+				}
+			}
+
+			function initSearch() {
+				var container = $('#search');
+				container.keypress(function (e) {
+					if (e.keyCode !== 13) return;
+					$.getJSON('/get/screen_name/'+container.val(), drawPoints)
+				})
+			}
+		})
+	</script>
+
+	<style type="text/css">
+		html, body, #wrapper {
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			height: 100%;
+		}
+		#wrapper {
+			position: relative;
+		}
+		#map {
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			right: 250px;
+			bottom: 0px;
+			background: #fff;
+		}
+		#sidebar {
+			position: absolute;
+			top: 0px;
+			width: 250px;
+			right: 0px;
+			bottom: 0px;
+			font-size: 12px;
+			line-height: 1.1em;
+			padding: 10px 5px;
+			overflow-wrap: break-word;
+		}
+			#searchWrapper {
+
+			}
+			#colorWrapper {
+				margin: 20px 0;
+			}
+			#output p {
+				margin: 3px 0;
+			}
+	</style>
+</head>
+<body>
+	<div id="wrapper">
+		<div id="map">
+			
+		</div>
+		<div id="sidebar">
+			<div id="searchWrapper">
+				<input id="search" type="search" name="search" class="form-control input-sm" placeholder="search">
+			</div>
+			<div id="colorWrapper"">
+				<select id="color" name="color" class="form-control input-sm"></select>
+			</div>
+			<div id="output"></div>
+		</div>
+	</div>
+</body>
+</html>
