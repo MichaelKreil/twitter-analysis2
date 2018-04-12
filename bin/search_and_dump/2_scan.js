@@ -2,8 +2,10 @@
 
 const fs = require('fs');
 const lzma = require('lzma-native');
-const colors = require('colors');
 const path = require('path');
+const async = require('async');
+const colors = require('colors');
+const stream = require('stream');
 
 
 var query = 'floridashooting2';
@@ -17,16 +19,25 @@ var fileDays = getDays();
 var users = new Map();
 var hashtags = new Map();
 var tweetCount = 0;
+var startTime = Date.now();
+var filesizeSum = fileDays.reduce((sum,day) => sum+day.filesize, 0);
+var filesizePos = 0;
 
-var running = 0;
 output('\ninterval: '+fileDays[0].date+' - '+fileDays[fileDays.length-1].date);
-fileDays.forEach(d => {
-	running++;
-	startScan(d.filename, () => {
-		running--;
-		if (running === 0) finish();
-	});
-})
+async.eachSeries(
+	fileDays,
+	(day, cb) => startScan(day.filename, cb),
+	finish
+)
+
+setInterval(() => {
+	var duration = Date.now()-startTime;
+	console.log([
+		(100*filesizePos/filesizeSum).toFixed(1)+'%',
+		(tweetCount*1000/duration).toFixed(0)+' tweets/s',
+		fmtTime(duration*(filesizeSum-filesizePos)/filesizePos)+' left',
+	].join('\t'));
+}, 10000)
 
 function finish() {
 	output('\ntweets: '+tweetCount);
@@ -58,9 +69,12 @@ function startScan(filename, cb) {
 	console.log(colors.grey('start '+filename));
 
 	var input = fs.createReadStream(filename);
+	var passthrough = new stream.PassThrough();
 	var decompressor = lzma.createDecompressor();
 
-	input.pipe(decompressor);
+	passthrough.on('data', chunk => filesizePos += chunk.length);
+
+	input.pipe(passthrough).pipe(decompressor);
 
 	var buffer = [];
 	decompressor.on('data', chunk => {
@@ -86,7 +100,10 @@ function startScan(filename, cb) {
 
 			tweet = tweet.toString('utf8');
 			tweet = tweet.replace(/\"retweeted_status\":\{.*\},\"is_quote_status/, '"is_quote_status');
+			//console.dir(tweet);
 			tweet = JSON.parse(tweet);
+			//console.dir(tweet);
+			//process.exit();
 
 			// add user
 			var user = tweet.user.screen_name;
@@ -139,7 +156,7 @@ function getDays() {
 			name: f,
 			date: date,
 			filename: filename,
-			size: fs.statSync(filename).size
+			filesize: fs.statSync(filename).size
 		}
 	})
 
@@ -147,7 +164,7 @@ function getDays() {
 	for (var i = minDate; i <= maxDate-dayCount+1; i++) {
 		var size = 0;
 		for (var j = i; j <= i+dayCount-1; j++) {
-			if (fileDays[j]) size += fileDays[j].size;
+			if (fileDays[j]) size += fileDays[j].filesize;
 		}
 		if (size > maxSize) {
 			maxSize = size;
@@ -163,3 +180,13 @@ function getDays() {
 
 	return fileDays;
 }
+
+function fmtTime(timestamp) {
+	return [
+		Math.floor(timestamp/3600000),
+		(Math.floor(timestamp/60000) % 60 + 100).toFixed(0).slice(1),
+		(Math.floor(timestamp/1000) % 60 + 100).toFixed(0).slice(1),
+	].join(':');
+}
+
+
