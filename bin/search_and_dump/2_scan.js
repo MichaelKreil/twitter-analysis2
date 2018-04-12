@@ -8,7 +8,7 @@ const colors = require('colors');
 const stream = require('stream');
 
 
-var query = 'floridashooting2';
+var query = 'syria';
 var dayCount = 1;
 var filestream = fs.createWriteStream(query+'.txt');
 
@@ -30,7 +30,7 @@ async.eachSeries(
 	finish
 )
 
-setInterval(() => {
+var progressInterval = setInterval(() => {
 	var duration = Date.now()-startTime;
 	console.log([
 		(100*filesizePos/filesizeSum).toFixed(1)+'%',
@@ -40,6 +40,7 @@ setInterval(() => {
 }, 10000)
 
 function finish() {
+	clearInterval(progressInterval);
 	output('\ntweets: '+tweetCount);
 
 	users = Array.from(users.values());
