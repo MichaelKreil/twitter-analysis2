@@ -12,59 +12,21 @@ var filestream = fs.createWriteStream(query+'.txt');
 
 var folder = path.resolve(__dirname, '../../data/search_and_dump/'+query+'/');
 
-var fileDays = [], minDate = 1e10, maxDate = 0;
-fs.readdirSync(folder).forEach(f => {
-	if (!f.startsWith(query)) return;
-	if (!f.endsWith('.jsonstream.xz')) return;
-
-	var date = f.slice(query.length+1, -14);
-	if (/^201[7-8]-[0-1][0-9]-[0-3][0-9]$/.test(f)) return;
-
-	var filename = path.resolve(folder, f);
-
-	var dateIndex = Math.round(Date.parse(date)/86400000-17521);
-	
-	if (minDate > dateIndex) minDate = dateIndex;
-	if (maxDate < dateIndex) maxDate = dateIndex;
-
-	fileDays[dateIndex] = {
-		name: f,
-		date: date,
-		filename: filename,
-		size: fs.statSync(filename).size
-	}
-})
-
-var maxSize = 0, startIndex = minDate;
-for (var i = minDate; i <= maxDate-dayCount+1; i++) {
-	var size = 0;
-	for (var j = i; j <= i+dayCount-1; j++) {
-		if (fileDays[j]) size += fileDays[j].size;
-	}
-	if (size > maxSize) {
-		maxSize = size;
-		startIndex = i;
-	}
-}
-
-var endIndex = startIndex+dayCount-1;
-while (!fileDays[endIndex]) endIndex--;
+var fileDays = getDays();
 
 var users = new Map();
 var hashtags = new Map();
 var tweetCount = 0;
 
 var running = 0;
-output('\ninterval: '+fileDays[startIndex].date+' - '+fileDays[endIndex].date);
-for (var i = startIndex; i <= endIndex; i++) {
-	if (fileDays[i]) {
-		running++;
-		startScan(fileDays[i].filename, () => {
-			running--;
-			if (running === 0) finish();
-		});
-	}
-}
+output('\ninterval: '+fileDays[0].date+' - '+fileDays[fileDays.length-1].date);
+fileDays.forEach(d => {
+	running++;
+	startScan(d.filename, () => {
+		running--;
+		if (running === 0) finish();
+	});
+})
 
 function finish() {
 	output('\ntweets: '+tweetCount);
@@ -156,3 +118,47 @@ function output(text) {
 	filestream.write(text+'\n');
 }
 
+function getDays() {
+	var fileDays = [], minDate = 1e10, maxDate = 0;
+	fs.readdirSync(folder).forEach(f => {
+		if (!f.startsWith(query)) return;
+		if (!f.endsWith('.jsonstream.xz')) return;
+
+		var date = f.slice(query.length+1, -14);
+		if (/^201[7-8]-[0-1][0-9]-[0-3][0-9]$/.test(f)) return;
+
+		var filename = path.resolve(folder, f);
+
+		var dateIndex = Math.round(Date.parse(date)/86400000-17521);
+		
+		if (minDate > dateIndex) minDate = dateIndex;
+		if (maxDate < dateIndex) maxDate = dateIndex;
+
+		fileDays[dateIndex] = {
+			name: f,
+			date: date,
+			filename: filename,
+			size: fs.statSync(filename).size
+		}
+	})
+
+	var maxSize = 0, startIndex = minDate;
+	for (var i = minDate; i <= maxDate-dayCount+1; i++) {
+		var size = 0;
+		for (var j = i; j <= i+dayCount-1; j++) {
+			if (fileDays[j]) size += fileDays[j].size;
+		}
+		if (size > maxSize) {
+			maxSize = size;
+			startIndex = i;
+		}
+	}
+
+	var endIndex = startIndex+dayCount-1;
+	while (!fileDays[endIndex]) endIndex--;
+
+	fileDays = fileDays.slice(startIndex, endIndex+1);
+	fileDays = fileDays.filter(d => d);
+
+	return fileDays;
+}
