@@ -10,13 +10,40 @@ const path = require('path');
 
 const writeFile = true;
 
+String.prototype.toFromTo = function () {
+	return this.split(',').map(a => 'from:'+a+' OR to:'+a).join(' OR ')
+}
+
+String.prototype.toWildFromTo = function () {
+	return this.split(',').map(a => a+' OR from:'+a+' OR to:'+a).join(' OR ')
+}
+
 // List of search queries
 var queries = [
 	{name: '120db',              query: {q:'frauenmarsch OR 120db OR b1702 OR dd1702 OR ndh1702 OR niun1702 OR niun OR no120db'}}, 
 	{name: '34c3',               query: {q:'34c3'}},
+	{name: 'afd_bund_vor_01',    query: {q:'andreaskalbitz,joachim_kuhs,guidoreil,georg_pazderski,joerg_meuthen,steffenkoeniger'.toWildFromTo()}},
+	{name: 'afd_bund_vor_02',    query: {q:'frank_pasemann,protschkastepha,kaygottschalk111,beatrix_vstorch,alice_weidel'.toWildFromTo()}},
+	{name: 'afd_land_01',        query: {q:'afdsaar,afd_lv_sh,rlp_afd,afd_hamburg,afd_lsa,afd_sachsen_asa,alternativenrw'.toWildFromTo()}},
+	{name: 'afd_land_02',        query: {q:'alternativends,afd_thueringen,afd_hb,afdberlin,afdbrandenburg,afd_mv,alternativebw'.toWildFromTo()}},
+	{name: 'afd_land_03',        query: {q:'afd_hessen,afd_bayern,afdsaar,afd_lv_sh,rlp_afd,afd_hamburg'.toWildFromTo()}},
+	{name: 'afd_mdb_01',         query: {q:'mueller_mdb,joernkoenigafd,jacobi_afd,verhartmannafd,frank_magnitz,chrwirthmdb'.toWildFromTo()}},
+	{name: 'afd_mdb_02',         query: {q:'martin_sichert,braunafd,kestnerjens,jensmaierafd,drfriesenmdb,th_seitz_afd,steffenkotre'.toWildFromTo()}},
+	{name: 'afd_mdb_03',         query: {q:'andreasbleckmdb,espendillerm,buettner_mdb,martin_hess_afd,corinnamiazga,nkleinwaechter'.toWildFromTo()}},
+	{name: 'afd_mdb_04',         query: {q:'s_muenzenmaier,udohemmelgarn,gottfriedcurio,h_weyel,rene_springer,profmaier,m_harderkuehnel'.toWildFromTo()}},
+	{name: 'afd_mdb_05',         query: {q:'joanacotar,petrbystronafd,dirkspaniel,marcbernhardafd,tino_chrupalla,stefankeuterafd'.toWildFromTo()}},
+	{name: 'afd_mdb_06',         query: {q:'enricokomning,leif_erik_holm,marcus_buehl,schneider_afd,jochen_haug,stbrandner,mdb_lucassen'.toWildFromTo()}},
+	{name: 'afd_mdb_07',         query: {q:'witt_uwe,elsnervongronow,frohnmaier_afd,marc_jongen,herrmann_afd,waldemarherdt,ulrich_oehme'.toWildFromTo()}},
+	{name: 'afd_mdb_08',         query: {q:'friedhoff_afd,robby_schlund,nicole_hoechst,mrosek195819581958,uwe_kamann,m_reichardt_afd'.toWildFromTo()}},
+	{name: 'afd_mdb_09',         query: {q:'renner_afd,tobiasmpeterka,axelgehrke,ttte949494,frank_pasemann,protschkastepha,kaygottschalk111'.toWildFromTo()}},
+	{name: 'afd_mdb_10',         query: {q:'ulschzi,gtzfrmming,beatrix_vstorch,r_hartwig_afd,buergerwohl,peterboehringer,alice_weidel'.toWildFromTo()}},
+	{name: 'afd_orgs_01',        query: {q:'afd,afd_bund,afdimbundestag,brandenburgafd,afdsalzgitterkv,afdkompakt,afdfraktionagh'.toWildFromTo()}},
 	{name: 'afrin',              query: {q:'afrin'}},
+	{name: 'amadeuantonio',      query: {q:'amadeuantonio'.toWildFromTo()}},
 	{name: 'bahn',               query: {q:'bahn OR bahnhof OR hbf OR zug OR bahnsteig OR to:dbbahn OR dbbahn OR fahrradabteil OR ice OR schaffner OR bordbistro OR verspätung OR anschluss OR umsteigen OR ansage OR anzeige OR stellwerk OR störung OR weiche', lang:'de'}},
-	{name: 'bild',               query: {q:'BILD,BILD_Berlin,BILD_Digital,BILD_Frankfurt,BILD_Hamburg,BILD_Muenchen,BILD_News,BILD_Politik,BILD_TopNews,jreichelt'.split(',').map(a=>'from:'+a+' OR to:'+a).join(' OR ')}},
+	{name: 'bild',               query: {q:'BILD,BILD_Berlin,BILD_Digital,BILD_Frankfurt,BILD_Hamburg,BILD_Muenchen,BILD_News,BILD_Politik,BILD_TopNews,jreichelt'.toFromTo()}},
+	{name: 'elysee',             query: {q:'elysee'.toWildFromTo()}},
+	{name: 'emmanuelmacron',     query: {q:'emmanuelmacron'.toWildFromTo()}},
 	{name: 'floridashooting',    query: {q:'emmagonzalez OR floridahighschool OR floridaschoolshooting OR floridashooter OR floridashooting OR floridastrong OR guncontrol OR guncontrolnow OR gunlawsnow OR gunreformnow OR gunsafety OR gunsense OR gunshooting OR highschoolshooter OR march4ourlives OR marchforourlives OR massshooting OR massshootings OR neveragain OR nrabloodmoney OR parklandschoolshooting OR parklandshooting OR righttobeararms OR schoolshooting'}},
 	{name: 'floridashooting2',   query: {q:'neveragain OR gunreformnow OR guncontrolnow OR guncontrol OR marchforourlives OR parkland OR parklandschoolshooting OR floridaschoolshooting OR parklandshooting OR #nra OR floridashooting OR nrabloodmoney OR banassaultweapons OR gunsense OR emmagonzalez OR schoolshooting OR parklandstudents OR parklandstudentsspeak OR gunviolence OR floridashooter OR wecallbs OR studentsstandup OR parklandstrong'}},
 	{name: 'groko',              query: {q:'groko'}},
@@ -24,6 +51,7 @@ var queries = [
 	{name: 'heimathorst',        query: {q:'heimathorst OR heimatministerium'}},
 	{name: 'iranprotests',       query: {q:'تظاهرات_سراسری OR IranProtests'}},
 	{name: 'iranprotests2',      query: {q:'iranprotests OR تظاهرات_سراسرى OR مظاهرات_ايران OR تظاهرات_سراسری OR تظاهرات_سراسري'}},
+	{name: 'jensspahn',          query: {q:'jensspahn'.toWildFromTo()}},
 	{name: 'lufthansa',          query: {q:'lufthansa OR lufthansablue OR explorethenew'}},
 	{name: 'metoo',              query: {q:'#metoo'}},
 	{name: 'muenster',           query: {q:'muenster OR münster OR anschlag'}},
@@ -40,43 +68,9 @@ var queries = [
 	{name: 'ueberwachung',       query: {q:'überwachungspaket OR staatstrojaner OR bundestrojaner OR ueberwachungspaket OR zib2 OR überwachung OR privatsphäre OR datenschutz OR sicherheit OR vds OR sicherheitspaket'}},
 ];
 
-[	
-	'afd_land_#:afdsaar,afd_lv_sh,rlp_afd,afd_hamburg,afd_lsa,afd_sachsen_asa,alternativenrw,alternativends,afd_thueringen,afd_hb,afdberlin,afdbrandenburg,afd_mv,alternativebw,afd_hessen,afd_bayern,afdsaar,afd_lv_sh,rlp_afd,afd_hamburg',
-	'afd_orgs_#:afd,afd_bund,afdimbundestag,brandenburgafd,afdsalzgitterkv,afdkompakt,afdfraktionagh',
-	'afd_bund_vor_#:andreaskalbitz,joachim_kuhs,guidoreil,georg_pazderski,joerg_meuthen,steffenkoeniger,frank_pasemann,protschkastepha,kaygottschalk1,beatrix_vstorch,alice_weidel',
-	'afd_mdb_#:mueller_mdb,joernkoenigafd,jacobi_afd,verhartmannafd,frank_magnitz,chrwirthmdb,martin_sichert,braunafd,kestnerjens,jensmaierafd,drfriesenmdb,th_seitz_afd,steffenkotre,andreasbleckmdb,espendillerm,buettner_mdb,martin_hess_afd,corinnamiazga,nkleinwaechter,s_muenzenmaier,udohemmelgarn,gottfriedcurio,h_weyel,rene_springer,profmaier,m_harderkuehnel,joanacotar,petrbystronafd,dirkspaniel,marcbernhardafd,tino_chrupalla,stefankeuterafd,enricokomning,leif_erik_holm,marcus_buehl,schneider_afd,jochen_haug,stbrandner,mdb_lucassen,witt_uwe,elsnervongronow,frohnmaier_afd,marc_jongen,herrmann_afd,waldemarherdt,ulrich_oehme,friedhoff_afd,robby_schlund,nicole_hoechst,mrosek1958,uwe_kamann,m_reichardt_afd,renner_afd,tobiasmpeterka,axelgehrke,ttte94,frank_pasemann,protschkastepha,kaygottschalk1,ulschzi,gtzfrmming,beatrix_vstorch,r_hartwig_afd,buergerwohl,peterboehringer,alice_weidel',
-	'jensspahn:jensspahn',
-	'elysee:elysee',
-	'emmanuelmacron:emmanuelmacron',
-	'amadeuantonio:amadeuantonio',
-].forEach(l => {
-	l = l.split(':');
-	var name = l[0];
-	var query = l[1].split(',').map(a => a+' OR from:'+a+' OR to:'+a+'');
 
-	if (name[name.length-1] === '#') {
-		var i = 1;
-		var l = 1;
-		while (query.length > 0) {
-			if ((l > query.length) || (urlEncode(makeQuery(query.slice(0,l))).length >= 500)) {
-				addQuery(query.slice(0,l-1));
-				query = query.slice(l-1);
-				l = 0;
-				i++;
-			}
-			l++;
-		}
-	} else {
-		queries.push({name:name,query: {q:makeQuery(query)}})
-	}
 
-	function addQuery(query) { queries.push({
-		name:name.replace(/#/,(100+i).toFixed(0).slice(1)),
-		query:{q:makeQuery(query)}
-	})}
-	function makeQuery(query) { return query.join(' OR ') }
-})
-
+// verify queries
 queries.forEach(entry => {
 	var query = urlEncode(entry.query.q);
 
@@ -85,9 +79,9 @@ queries.forEach(entry => {
 		console.log('query with '+query.length+' chars is to long for '+entry.name);
 		throw Error();
 	}
-})
 
-function urlEncode(q) { return q.replace(/ /g, '%20').replace(/:/g, '%3A') }
+	function urlEncode(q) { return q.replace(/ /g, '%20').replace(/:/g, '%3A') }
+})
 
 
 
