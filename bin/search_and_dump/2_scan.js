@@ -81,18 +81,19 @@ function startScan(filename, cb) {
 			var i1 = buffer.indexOf(10, i0);
 			if (i1 < 0) break;
 
-			var chunk = buffer.slice(i0, i1);
+			var tweet = buffer.slice(i0, i1);
 			i0 = i1+1;
 
-			chunk = chunk.toString('utf8');
-			chunk = JSON.parse(chunk);
+			tweet = tweet.toString('utf8');
+			tweet = tweet.replace(/\"retweeted_status\":\{.*\},\"is_quote_status/, '"is_quote_status');
+			tweet = JSON.parse(tweet);
 
 			// add user
-			var user = chunk.user.screen_name;
+			var user = tweet.user.screen_name;
 			if (!users.has(user)) users.set(user, {text:'@'+user, count:0, sources:new Map()})
 			user = users.get(user);
 			user.count++;
-			var source = chunk.source.replace(/[^0-9<>a-z="/.]+/ig, ' ');
+			var source = tweet.source.replace(/[^0-9<>a-z="/.]+/ig, ' ');
 			source = source.replace(/^<a href=\"http/,'');
 			source = source.replace(/\" rel=\"nofollow\">/,' ');
 			source = source.replace(/<\/a>$/,'');
@@ -102,7 +103,7 @@ function startScan(filename, cb) {
 			tweetCount++;
 
 			// add hashtags
-			chunk.entities.hashtags.forEach(h => {
+			tweet.entities.hashtags.forEach(h => {
 				var hashtag = h.text.toLowerCase();
 				if (!hashtags.has(hashtag)) hashtags.set(hashtag, {text:'#'+hashtag, count:0})
 				hashtags.get(hashtag).count++;
