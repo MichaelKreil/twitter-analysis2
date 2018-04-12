@@ -2,11 +2,11 @@
 
 const fs = require('fs');
 const lzma = require('lzma-native');
-const utils = require('../../../lib/utils.js');
+const resolve = require('path').resolve;
 const async = require('async');
+const utils = require('../../lib/utils.js');
 const colors = require('colors');
-const scraper = (require('../../../lib/scraper.js'))('search_and_dump');
-const path = require('path');
+const scraper = (require('../../lib/scraper.js'))('search_and_dump');
 
 const writeFile = true;
 
@@ -113,8 +113,8 @@ async.parallelLimit(queue, writeFile ? 4 : 16,
 function runScraper(name, query, date, cbScraper) {
 	var title = '"'+name+' - '+date+'"';
 
-	var filename = path.resolve(__dirname, '../data/'+name+'/'+name+'_'+date+'.jsonstream.xz');
-	var tmpFile = path.resolve(__dirname, '../tmp', Math.random().toFixed(16).substr(2)+'.tmp.xz');
+	var filename = resolve(__dirname, '../../data/search_and_dump/'+name+'/'+name+'_'+date+'.jsonstream.xz');
+	var tmpFile = resolve(__dirname, '../../tmp', Math.random().toFixed(16).substr(2)+'.tmp.xz');
 
 	// Does the file already exists
 	if (fs.existsSync(filename)) {

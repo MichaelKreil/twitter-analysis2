@@ -8,7 +8,7 @@ const emojiText = require('emoji-text');
 
 var query = 'bahn';
 
-var folder = path.resolve(__dirname, '../data/'+query+'/');
+var folder = path.resolve(__dirname, '../../data/search_and_dump/'+query+'/');
 
 var fileDays = [];
 fs.readdirSync(folder).forEach(f => {

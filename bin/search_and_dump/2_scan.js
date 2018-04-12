@@ -6,11 +6,11 @@ const colors = require('colors');
 const path = require('path');
 
 
-var query = 'ueberwachungspaket';
-var dayCount = 9;
+var query = 'floridashooting2';
+var dayCount = 1;
 var filestream = fs.createWriteStream(query+'.txt');
 
-var folder = path.resolve(__dirname, '../data/'+query+'/');
+var folder = path.resolve(__dirname, '../../data/search_and_dump/'+query+'/');
 
 var fileDays = [], minDate = 1e10, maxDate = 0;
 fs.readdirSync(folder).forEach(f => {
