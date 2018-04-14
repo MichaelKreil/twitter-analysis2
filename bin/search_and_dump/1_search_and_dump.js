@@ -111,13 +111,16 @@ var yesterday = Math.floor(Date.now()/86400000-0.25)-0.5;
 for (var i = -11; i <= 0; i++) {
 	var date = (new Date((yesterday+i)*86400000)).toISOString().substr(0,10);
 	queries.forEach(obj => {
-		queue.push(cb => runScraper(obj.name, obj.query, date, cb))
+		var _name = obj.name;
+		var _query = obj.query;
+		var _date = date;
+		queue.push(cb => runScraper(_name, _query, _date, cb))
 	})
 }
 
 async.parallelLimit(
 	queue,
-	4,
+	8,
 	() => console.log(colors.green.bold('FINISHED'))
 )
 
@@ -134,7 +137,7 @@ function runScraper(name, query, date, cbScraper) {
 	// Does the file already exists
 	if (fs.existsSync(filename)) {
 		console.log(colors.grey('Ignore '+title));
-		return cbScraper();
+		return setTimeout(cbScraper,0);
 	} else {
 		console.log(colors.green('Starting '+title));
 	}
@@ -178,9 +181,9 @@ function runScraper(name, query, date, cbScraper) {
 
 		// when finished: flush data and close file
 		function close(cbClose) {
-			console.log(colors.green('prepare closing '+title));
+			//console.log(colors.green('prepare closing '+title));
 			flush(1, () => {
-				console.log(colors.green('closing '+title));
+				//console.log(colors.green('closing '+title));
 				stream.on('close', () => {
 					console.log(colors.green.bold('closed '+title));
 					fs.renameSync(tempFilename, filename);
@@ -210,7 +213,7 @@ function runScraper(name, query, date, cbScraper) {
 	if (query_url.length < 511) {
 		scrape(query, () => outputStream.close(cbScraper));
 	} else {
-		async.each(
+		async.eachSeries(
 			splitQuery(query),
 			scrape,
 			() => outputStream.close(cbScraper)
@@ -218,7 +221,7 @@ function runScraper(name, query, date, cbScraper) {
 	}
 
 	function scrape(query, cbScrape) {
-		//console.log(query);
+		//console.log(name, date, query);
 		scrapeRec();
 
 		function scrapeRec(max_id) {
