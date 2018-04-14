@@ -8,8 +8,6 @@ const utils = require('../../lib/utils.js');
 const colors = require('colors');
 const scraper = (require('../../lib/scraper.js'))('search_and_dump');
 
-const writeFile = true;
-
 String.prototype.toFromTo = function () {
 	return this.split(',').map(a => 'from:'+a+' OR to:'+a).join(' OR ')
 }
@@ -105,7 +103,7 @@ for (var i = -11; i <= 0; i++) {
 // Start scraper
 scraper.run();
 
-async.parallelLimit(queue, writeFile ? 4 : 16,
+async.parallelLimit(queue, 4,
 	() => console.log(colors.green.bold('FINISHED'))
 )
 
@@ -125,16 +123,14 @@ function runScraper(name, query, date, cbScraper) {
 	}
 
 	// Prepare Compressor
-	if (writeFile) {
-		var compressor = lzma.createCompressor({
-			check: lzma.CHECK_NONE,
-			preset: 9/* | lzma.PRESET_EXTREME*/,
-			synchronous: false,
-			threads: 1,
-		});
-		var stream = fs.createWriteStream(tmpFile, {highWaterMark: 8*1024*1024});
-		compressor.pipe(stream);
-	}
+	var compressor = lzma.createCompressor({
+		check: lzma.CHECK_NONE,
+		preset: 9/* | lzma.PRESET_EXTREME*/,
+		synchronous: false,
+		threads: 1,
+	});
+	var stream = fs.createWriteStream(tmpFile, {highWaterMark: 8*1024*1024});
+	compressor.pipe(stream);
 
 	// Make sure that the folder exists
 	utils.ensureDir(filename);
@@ -156,8 +152,6 @@ function runScraper(name, query, date, cbScraper) {
 
 		if (buffer.length === 0) return cbFlush();
 
-		if (!writeFile) return cbFlush();
-
 		buffer.sort((a,b) => a.id_str < b.id_str ? -1 : 1);
 		buffer = buffer.map(t => t.buffer);
 		buffer = Buffer.concat(buffer);
@@ -173,18 +167,13 @@ function runScraper(name, query, date, cbScraper) {
 	function closeOutput() {
 		console.log(colors.green('prepare closing '+title));
 		flushOutput(1, () => {
-			if (!writeFile) {
+			console.log(colors.green('closing '+title));
+			stream.on('close', () => {
 				console.log(colors.green.bold('closed '+title));
+				fs.renameSync(tmpFile, filename);
 				cbScraper();
-			} else {
-				console.log(colors.green('closing '+title));
-				stream.on('close', () => {
-					console.log(colors.green.bold('closed '+title));
-					fs.renameSync(tmpFile, filename);
-					cbScraper();
-				})
-				compressor.end();
-			}
+			})
+			compressor.end();
 		})
 	};
 
@@ -210,13 +199,11 @@ function runScraper(name, query, date, cbScraper) {
 					return true;
 				})
 
-				if (writeFile) {
-					result.statuses.forEach(t => tweets.set(t.id_str, {
-						id_str: t.id_str,
-						created_at: t.created_at,
-						buffer: Buffer.from(JSON.stringify(t)+'\n', 'utf8')
-					}));
-				}
+				result.statuses.forEach(t => tweets.set(t.id_str, {
+					id_str: t.id_str,
+					created_at: t.created_at,
+					buffer: Buffer.from(JSON.stringify(t)+'\n', 'utf8')
+				}));
 				tweetCount += result.statuses.length;
 
 				var date = (result.statuses[0]||{}).created_at;

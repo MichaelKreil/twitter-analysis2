@@ -8,8 +8,8 @@ const colors = require('colors');
 const stream = require('stream');
 
 
-var query = 'syria';
-var dayCount = 1;
+var query = 'afd_orgs_01';
+var dayCount = 7;
 var filestream = fs.createWriteStream(query+'.txt');
 
 var folder = path.resolve(__dirname, '../../data/search_and_dump/'+query+'/');
