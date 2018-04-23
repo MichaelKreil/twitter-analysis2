@@ -2,11 +2,11 @@
 
 const fs = require('fs');
 const lzma = require('lzma-native');
-const colors = require('colors');
 const path = require('path');
-const emojiText = require('emoji-text');
+const colors = require('colors');
+const extractText = require('../../lib/extract-text.js');
 
-var query = 'bahn';
+var query = 'rechts2';
 
 var folder = path.resolve(__dirname, '../../data/search_and_dump/'+query+'/');
 
@@ -83,32 +83,11 @@ function startScan(filename, cb) {
 
 			if (tweet.retweeted_status) continue;
 
-			var text = tweet.full_text;
+			var text = extractText(tweet.full_text);
 
-			text = text.replace(/https:[a-z0-9\/\.]+/gi, ' ');
-
-			//if (text.startsWith('Ich bin in')) console.dir(tweet, {colors:true, depth:10});
-			text = emojiText.convert(text, { before:' _', after:'_ ' });
-			text = text.toLowerCase();
-			text = text.split('').map(checkChar).join('');
-			text = text.replace(/(\s|^)+/g,' ').trim();
 			texts.push(text);
 		}
 
 		buffer = [buffer.slice(i0)];
 	}
 }
-
-var charList = [];
-'abcdefghijklmnopqrstuvwxyzäöüß0123456789_@# '.split('').forEach(c => charList[c.charCodeAt(0)] = true);
-'-./:!"$%&\'()*+,;=?[]^`{|}~§\n\t\r'.split('').forEach(c => charList[c.charCodeAt(0)] = false);
-
-function checkChar(char) {
-	var code = char.charCodeAt(0);
-	var result = charList[code];
-	if (result === true) return char;
-	if (result === false) return ' ';
-	return ' ';
-	//console.log(char, code);
-}
-
