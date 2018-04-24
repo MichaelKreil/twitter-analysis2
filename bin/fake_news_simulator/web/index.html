@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="d3/d3.min.js"></script>
+	<script type="text/javascript" src="jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="main.js"></script>
+	<style type="text/css">
+		html, body, #wrapper {
+			width: 100vw;
+			height: 100vh;
+			padding: 0;
+			margin: 0;
+			overflow: hidden;
+		}
+		#wrapperleft {
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			width: 100vh;
+			height: 100vh;
+		}
+		#wrapperright {
+			position: absolute;
+			top: 0px;
+			right: 0px;
+			width: calc(100vw - 100vh);
+			height: 100vh;
+		}
+		#canvas {
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrapper">
+		<div id="wrapperleft">
+			<canvas id="canvas"></canvas>
+		</div>
+		<div id="wrapperright">
+			a
+		</div>
+	</div>
+</body>
+</html>
