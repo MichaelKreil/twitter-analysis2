@@ -73,7 +73,7 @@ streamReader.onEnd(() => {
 		if (e.direction === 1) weight = 0.1;
 		if (e.direction > 1) weight = 1;
 		weight += Math.round(Math.sqrt(e.retweets)*100)/100;
-		return [e.from, e.to, weight,Math.max(e.direction,2), e.retweets];
+		return [e.from, e.to, weight, Math.min(e.direction,2), e.retweets];
 	})
 
 	fs.writeFileSync('edges.json', JSON.stringify(edgeList), 'utf8')
