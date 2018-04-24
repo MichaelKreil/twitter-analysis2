@@ -46,15 +46,18 @@ $(function () {
 		data.edges.source = decompressDiff(decompressRLE(data.edges.from));
 		data.edges.source = data.edges.source.map(index => data.nodes[index]);
 		delete data.edges.from;
+
 		data.edges.target = decompressDiff(decompressRLE(data.edges.to));
 		data.edges.target = data.edges.target.map(index => data.nodes[index]);
 		delete data.edges.to;
 
-		data.edges.weight = decompressRLE(data.edges.weight);
-		data.edges.both = decompressRLE(data.edges.both);
+		data.edges.directions = decompressRLE(data.edges.directions);
 		data.edges.retweeting = decompressRLE(data.edges.retweeting);
 
 		data.edges = decompressObjectArray(data.edges);
+		//data.edges.forEach(e => e.weight = (e.directions > 0 ? 1 : 0));
+		//data.edges.forEach(e => e.weight = Math.pow(e.directions,4)/16);
+		data.edges.forEach(e => e.weight = Math.pow(e.retweeting,0.5));
 
 		console.log('start');
 
@@ -62,11 +65,11 @@ $(function () {
 		simulation.alphaMin(0.01);
 		simulation.alphaDecay(1 - Math.pow(simulation.alphaMin(), 1 / 100)),
 
-		simulation.force('charge', forceRepulsion(30));
+		simulation.force('charge', forceRepulsion());
 		function forceRepulsion() {
 			var nodes,
 			    strength = -10,
-			    theta2 = 2;
+			    theta2 = 1;
 
 			function force(alpha) {
 				var tree = quadtree(nodes);
@@ -112,7 +115,7 @@ $(function () {
 					})
 					xc /= w;
 					yc /= w;
-					var size = Math.sqrt(sqr(x1-x0)+sqr(y1-y0));
+					var size = sqr(x1-x0)+sqr(y1-y0);
 
 					if (Math.max(x1-x0,y1-y0) === 0) {
 						return function (n,cb) {
@@ -133,7 +136,7 @@ $(function () {
 					quad2 = quadtree(quad2);
 
 					return function (n,cb) {
-						var d = Math.sqrt(sqr(n.x-xc)+sqr(n.y-yc));
+						var d = sqr(n.x-xc)+sqr(n.y-yc);
 						if (d > theta2*size) {
 							cb(xc,yc,w); // entfernt genug
 						} else {
@@ -154,9 +157,12 @@ $(function () {
 
 			return force;
 		}
+
 		simulation.force('link', forceLink);
 		function forceLink(alpha) {
 			data.edges.forEach(link => {
+				if (link.weight === 0) return;
+
 				var target = link.target;
 				var source = link.source;
 				var x = target.x + target.vx - source.x - source.vx || jiggle();
@@ -209,18 +215,19 @@ $(function () {
 		data.nodes.forEach(n => {
 			n.px = retina*((n.x-xc)*s+width/2);
 			n.py = retina*((n.y-yc)*s+height/2);
-			n.pr = retina*0.5;
+			n.pr = retina*1;
 		})
 
+		/*
 		ctx.lineWidth = 0.1;
 		ctx.strokeStyle = 'rgba(255,0,0,0.3)';
 		data.edges.forEach(e => {
-			if (e.retweeting < 5) return;
+			if (e.weight < 0.5) return;
 			ctx.beginPath();
 			ctx.moveTo(e.source.px, e.source.py);
 			ctx.lineTo(e.target.px, e.target.py);
 			ctx.stroke();
-		})
+		})*/
 
 		ctx.fillStyle = 'rgba(0,0,0,0.3)';
 		data.nodes.forEach(n => {
