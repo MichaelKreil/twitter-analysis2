@@ -271,6 +271,7 @@ function findPoints(x,y,cbFind) {
 
 function findScreenName(screen_name, cbFind) {
 	db.get('name_'+screen_name.toLowerCase(), (err, key) => {
+		if (err) return cbFind(false);
 		db.get(key, (err, obj) => {
 			if (err) return cbFind(false);
 			obj = JSON.parse(obj);
