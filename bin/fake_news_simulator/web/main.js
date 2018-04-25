@@ -5,7 +5,7 @@ $(function () {
 	var width, height, retina, simulation;
 	var doRedraw = false;
 	var nodeCount = 3000;
-	var mouseX, mouseY, mousedown = false;
+	var mouseX, mouseY, mousedown = false, selectedNode;
 
 	canvas.mousedown(e => {mousedown = true; click(e)});
 	canvas.mouseup(() => mousedown = false);
@@ -34,7 +34,7 @@ $(function () {
 	function init() {
 		simulation = d3.forceSimulation(data.nodes);
 		simulation.alphaMin(0.1);
-		simulation.alphaDecay(1 - Math.pow(simulation.alphaMin(), 1 / 100)),
+		simulation.alphaDecay(1 - Math.pow(simulation.alphaMin(), 1 / 80)),
 
 		simulation.force('charge', forceRepulsion());
 		function forceRepulsion() {
@@ -170,7 +170,7 @@ $(function () {
 	}
 
 	function redraw() {
-		if (mousedown) /*for (var i = 0; i < 100; i++)*/ markFakeNews();
+		if (mousedown && selectedNode) /*for (var i = 0; i < 100; i++)*/ markFakeNews(selectedNode);
 
 		if (doRedraw < 1) return;
 		if (!simulation) return;
@@ -194,11 +194,12 @@ $(function () {
 		data.nodes.forEach(n => {
 			n.px = retina*((n.x-xc)*s+width/2);
 			n.py = retina*((n.y-yc)*s+height/2);
-			n.pr = retina*Math.sqrt(n.weight);
+			n.pr = retina*Math.sqrt(n.weight)*2;
 		})
 
 		if (doRedraw >= 2) {
-			ctx.lineWidth = 0.2*retina;
+			ctx.lineWidth = 0.5*retina;
+			data.edges.sort((a,b) => a.prio - b.prio);
 			data.edges.forEach(e => {
 				ctx.strokeStyle = e.color;
 				ctx.beginPath();
@@ -221,28 +222,39 @@ $(function () {
 	function click(e) {
 		mouseX = e.clientX*retina;
 		mouseY = e.clientY*retina;
-	}
-
-	function markFakeNews() {
-		doRedraw = 2;
 
 		var minD = 400*retina, minNode = false;
-		data.edges.forEach(e => e.color = '#aaf');
 		data.nodes.forEach(n => {
-			n.checked = false;
-			n.color = '#aaf';
 			var d = Math.sqrt(sqr(n.px-mouseX)+sqr(n.py-mouseY));
 			if (d < minD) {
 				minD = d;
 				minNode = n;
 			}
 		})
+		selectedNode = minNode;
+	}
 
-		if (!minNode) return;
+	function markFakeNews(startNode) {
+		if (!startNode) return;
 
-		minNode.color = '#c00';
-		minNode.checked = true;
-		var checkSender = new Set([minNode]), checkReceiver;
+		doRedraw = 2;
+
+		data.edges.forEach(e => {
+			e.color = '#bbf';
+			e.prio = 2;
+		});
+		data.nodes.forEach(n => {
+			n.checked = false;
+			n.sendFake = false;
+			n.receivedFake = false;
+			n.color = '#bbf';
+		})
+
+		startNode.color = '#c00';
+		startNode.checked = true;
+		startNode.sendFake = true;
+		startNode.receivedFake = true;
+		var checkSender = new Set([startNode]), checkReceiver;
 
 		while (checkSender.size > 0) {
 			didSomething = false;
@@ -251,16 +263,21 @@ $(function () {
 			Array.from(checkSender.values()).forEach(n => {
 				n.neighbours.forEach(entry => {
 					if (!entry[0].checked) checkReceiver.add(entry[0]);
-					entry[0].color = '#c0c';
 					entry[1].color = '#c00';
+					entry[1].prio = 0;
 				})
 			})
 
 			checkSender = new Set();
 			Array.from(checkReceiver.values()).forEach(n => {
+				
+				n.receivedFake = true;
 				if (n.prop > Math.random()) {
-					n.color = '#c00'
+					n.color = '#c00';
+					n.sendFake = true;
 					checkSender.add(n);
+				} else {
+					n.color = '#e90';	
 				}
 				n.checked = true;
 			})
