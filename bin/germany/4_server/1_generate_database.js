@@ -1,8 +1,9 @@
 "use strict"
 
 const fs = require('fs');
-const path = require('path');
-const zlib = require('zlib');
+const resolve = require('path').resolve;
+const lzma = require('lzma-native');
+const async = require('async');
 const level = require('level');
 
 const fields = [
@@ -25,7 +26,7 @@ const fields = [
 	{id:'utc_offset', convert: v => parseInt(v,10)}
 ]
 
-var dataFolder = path.resolve(__dirname, '../../../data/germany/');
+var dataFolder = resolve(__dirname, '../../../data/germany/');
 
 var indexes = fields.filter(f => f.index).map(f => f.id);
 
@@ -37,39 +38,40 @@ main();
 function main() {
 	console.log('open node2index');
 	
-	var data = fs.readFileSync(path.resolve(dataFolder, 'g_node2index.bin.gz'));
-	data = zlib.gunzipSync(data);
-	var nodeCount = data.length/4;
-	var indexes = new Uint32Array(nodeCount);
-	data.copy(Buffer.from(indexes.buffer));
-	var node = 0;
+	var data = fs.readFileSync(resolve(dataFolder, 'g_node2index.bin.xz'));
+	lzma.decompress(data, data => {
+		var nodeCount = data.length/4;
+		var indexes = new Uint32Array(nodeCount);
+		data.copy(Buffer.from(indexes.buffer));
+		var node = 0;
 
-	console.log('read streams');
+		console.log('read streams');
 
-	readStreams(
-		(obj, index, cbEntry) => {
-			if (indexes[node] !== index) return cbEntry();
+		readStreams(
+			(obj, index, cbEntry) => {
+				if (indexes[node] !== index) return cbEntry();
 
-			if (node % 5e4 === 0) console.log((100*node/nodeCount).toFixed(1)+'%');
+				if (node % 5e4 === 0) console.log((100*node/nodeCount).toFixed(1)+'%');
 
-			obj.node = node;
-			node++;
+				obj.node = node;
+				node++;
 
-			var key = 'id_'+obj.id;
+				var key = 'id_'+obj.id;
 
-			db.batch([
-				{type:'put', key:key, value:JSON.stringify(obj) },
-				{type:'put', key:'node_'+obj.node, value:key},
-				{type:'put', key:'name_'+obj.screen_name.toLowerCase(), value:key}
-			], cbEntry)
+				db.batch([
+					{type:'put', key:key, value:JSON.stringify(obj) },
+					{type:'put', key:'node_'+obj.node, value:key},
+					{type:'put', key:'name_'+obj.screen_name.toLowerCase(), value:key}
+				], cbEntry)
 
-		},
-		() => {
-			console.log('Finished');
-			console.log('nodes should: '+nodeCount);
-			console.log('nodes is: '+node);
-		}
-	)
+			},
+			() => {
+				console.log('Finished');
+				console.log('nodes should: '+nodeCount);
+				console.log('nodes is: '+node);
+			}
+		)
+	})
 }
 
 
@@ -77,14 +79,24 @@ function readStreams(cbEntry, cbFinished) {
 	var index = 0;
 	var active = fields.length;
 
-	fields.forEach(field => {
-		if (!field.filename) field.filename = 'u_'+field.id;
-		field.stream = readStream(field.filename, () => active--);
-		field.read = field.stream.read;
-		if (!field.convert) field.convert = (v => v)
-	});
-
-	next();
+	async.eachSeries(
+		fields,
+		(field, cb) => {
+			if (!field.filename) field.filename = 'u_'+field.id;
+			
+			readStream(
+				field.filename,
+				() => active--,
+				stream => {
+					field.stream = stream;
+					field.read = field.stream.read;
+					if (!field.convert) field.convert = (v => v);
+					cb();
+				}
+			)
+		},
+		next
+	);
 
 	function next() {
 		var obj = {};
@@ -113,36 +125,36 @@ function readStreams(cbEntry, cbFinished) {
 	}
 }
 
-function readStream(filename, cbLast) {
+function readStream(filename, cbFinished, cbInit) {
 	console.log('read stream "'+filename+'"');
-	filename = path.resolve(dataFolder, filename+'.tsv.gz');
+	filename = resolve(dataFolder, filename+'.tsv.xz');
 	var data = fs.readFileSync(filename);
-	data = zlib.gunzipSync(data);
+	lzma.decompress(data, data => {
+		var length = data.length;
+		var i0 = 0;
+		var finished = false;
 
-	var length = data.length;
-	var i0 = 0;
-	var finished = false;
+		cbInit({
+			read: () => {
+				if (finished) throw Error('already finished');
 
-	return {
-		read: () => {
-			if (finished) throw Error('already finished');
+				var i = i0;
+				while (data[i] !== 10) i++;
 
-			var i = i0;
-			while (data[i] !== 10) i++;
+				var result = data.slice(i0,i).toString('utf8');
+				i0 = i+1;
 
-			var result = data.slice(i0,i).toString('utf8');
-			i0 = i+1;
+				if (i0 >= length) {
+					finished = true;
+					cbFinished();
+				}
 
-			if (i0 >= length) {
-				finished = true;
-				cbLast();
-			}
-
-			return result;
-		},
-		position: () => i0+' '+length,
-		isFinished: () => finished
-	}
+				return result;
+			},
+			position: () => i0+' '+length,
+			isFinished: () => finished
+		})
+	})
 }
 
 function deleteFolderRec (path) {

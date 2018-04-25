@@ -2,8 +2,8 @@
 
 const fs = require('fs');
 const tsv = require('tsv');
-const path = require('path');
-const zlib = require('zlib');
+const lzma = require('lzma-native');
+const resolve = require('path').resolve;
 const level = require('level');
 
 var db = level('_server', { keyEncoding: 'utf8', valueEncoding: 'utf8' });
@@ -131,7 +131,7 @@ var colorSchemes = {
 colorSchemes = Object.keys(colorSchemes).map(key => ({
 	key: key,
 	getColor: colorSchemes[key](),
-	writer: new ColorWriter(path.resolve(__dirname, '../../../data/germany/color_'+key+'.bin.gz'))
+	writer: new ColorWriter(resolve(__dirname, '../../../data/germany/color_'+key+'.bin.xz'))
 }))
 
 var count = 0;
@@ -184,8 +184,7 @@ function ColorWriter(filename) {
 	return {
 		close: () => {
 			buffer = buffer.slice(0,(maxIndex+1)*4);
-			buffer = zlib.gzipSync(buffer, {level:9})
-			fs.writeFileSync(filename, buffer);
+			lzma.compress(buffer, {preset:9 | lzma.PRESET_EXTREME}, buffer => fs.writeFileSync(filename, buffer))
 		},
 		write: (index, data) => {
 			if (index > maxIndex) maxIndex = index;

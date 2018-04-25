@@ -2,34 +2,43 @@
 
 const fs = require('fs');
 const path = require('path');
-const zlib = require('zlib');
+const lzma = require('lzma-native');
 const async = require('async');
 const level = require('level');
 const Canvas = require('canvas');
 const express = require('express');
 
 var db, screen_names, nodeX, nodeY, nodeCount, app, tileTree, maxValue, decinhex;
-
+var cache = new Map();
 var dataFolder = path.resolve(__dirname, '../../../data/germany/');
 
 console.log('read colors: started');
 var colors = {};
-fs.readdirSync(dataFolder).forEach(filename => {
-	var key = filename.match(/^color_(.*)\.bin\.gz$/);
-	if (!key) return;
-	key = key[1];
-	console.log('   read '+key);
-	colors[key] = readColors(path.resolve(dataFolder,filename));
-})
-console.log('read colors: finished');
+async.eachSeries(
+	fs.readdirSync(dataFolder),
+	(filename, cb) => {
+		var key = filename.match(/^color_(.*)\.bin\.xz$/);
+		if (!key) return cb();
+		key = key[1];
+		console.log('   read '+key);
+		readColors(
+			path.resolve(dataFolder,filename),
+			result => {
+				colors[key] = result;
+				cb();
+			}
+		)
+	},
+	() => {
+		console.log('read colors: finished');
+		async.parallel([
+			initServer,
+			initData,
+			initDatabase
+		])	
+	}
+)
 
-var cache = new Map();
-
-async.parallel([
-	initServer,
-	initData,
-	initDatabase
-])
 
 function initServer(cb) {
 	console.log('init server: started');
@@ -80,34 +89,47 @@ function initServer(cb) {
 	})
 	app.listen(8080);
 
-	console.log('init server: finished');
+	console.log('init server at http://localhost:8080 - finished');
 }
 
 function initData(cb) {
 	console.log('init data: started');
+	var x,y;
 
-	var x = zlib.gunzipSync(fs.readFileSync(path.resolve(dataFolder,'positionsX.bin.gz')));
-	var y = zlib.gunzipSync(fs.readFileSync(path.resolve(dataFolder,'positionsY.bin.gz')));
-	nodeCount = x.length/8;
+	async.parallel(
+		[
+			cb => lzma.decompress(
+				fs.readFileSync(path.resolve(dataFolder,'positionsX.bin.xz')),
+				result => { x = result; cb(); }
+			),
+			cb => lzma.decompress(
+				fs.readFileSync(path.resolve(dataFolder,'positionsY.bin.xz')),
+				result => { y = result; cb(); }
+			)
+		],
+		() => {
+			nodeCount = x.length/8;
 
-	nodeX = new Float64Array(nodeCount);
-	nodeY = new Float64Array(nodeCount);
+			nodeX = new Float64Array(nodeCount);
+			nodeY = new Float64Array(nodeCount);
 
-	x.copy(Buffer.from(nodeX.buffer));
-	y.copy(Buffer.from(nodeY.buffer));
+			x.copy(Buffer.from(nodeX.buffer));
+			y.copy(Buffer.from(nodeY.buffer));
 
-	var pointList = new Array(nodeCount);
-	maxValue = 0;
-	for (var i = 0; i < nodeCount; i++) {
-		pointList[i] = i;
-		if (maxValue < Math.abs(nodeX[i])) maxValue = Math.abs(nodeX[i]);
-		if (maxValue < Math.abs(nodeY[i])) maxValue = Math.abs(nodeY[i]);
-	}
+			var pointList = new Array(nodeCount);
+			maxValue = 0;
+			for (var i = 0; i < nodeCount; i++) {
+				pointList[i] = i;
+				if (maxValue < Math.abs(nodeX[i])) maxValue = Math.abs(nodeX[i]);
+				if (maxValue < Math.abs(nodeY[i])) maxValue = Math.abs(nodeY[i]);
+			}
 
-	tileTree = [[[pointList]]];
+			tileTree = [[[pointList]]];
 
-	console.log('init data: finished');
-	cb();
+			console.log('init data: finished');
+			cb();
+		}
+	)
 }
 
 function initDatabase(cb) {
@@ -120,6 +142,7 @@ function getPointList(z,x,y) {
 	if (z < 0) return [];
 	if (x < 0) return [];
 	if (y < 0) return [];
+
 	var s = Math.pow(2,z);
 	if (x >= s) return [];
 	if (y >= s) return [];
@@ -128,10 +151,11 @@ function getPointList(z,x,y) {
 	
 	var pointList = getPointList(z-1, Math.floor(x/2), Math.floor(y/2));
 	var step = Math.pow(0.5, z)*2*maxValue;
-	var minX = (x-0.1)*step - maxValue;
-	var maxX = (x+1.1)*step - maxValue;
-	var minY = (y-0.1)*step - maxValue;
-	var maxY = (y+1.1)*step - maxValue;
+	var pad = Math.pow(10, z/13)*0.1;
+	var minX = (x  -pad)*step - maxValue;
+	var maxX = (x+1+pad)*step - maxValue;
+	var minY = (y  -pad)*step - maxValue;
+	var maxY = (y+1+pad)*step - maxValue;
 	//console.log(z, x, y, maxValue, step, minX, maxX, minY, maxY);
 
 	pointList = pointList.filter(index => {
@@ -183,29 +207,30 @@ function fetchTile(z, x, y, colors, cb) {
 	cb(canvas.toBuffer('jpg'));
 }
 
-function readColors(filename) {
+function readColors(filename, cb) {
 	if (!decinhex) {
 		decinhex = new Array(256);
 		for (var i = 0; i < 256; i++) decinhex[i] = (i+256).toString(16).slice(1);
 	}
 
 	var buffer = fs.readFileSync(filename);
-	buffer = zlib.gunzipSync(buffer);
-	var count = buffer.length/4;
-	var array = new Array(count);
-	var lookup = new Map();
+	lzma.decompress(buffer, buffer => {
+		var count = buffer.length/4;
+		var array = new Array(count);
+		var lookup = new Map();
 
-	for (var i = 0; i < count; i++) {
-		var key = `${buffer[i*4+0]},${buffer[i*4+1]},${buffer[i*4+2]},${buffer[i*4+3]}`;
-		if (!lookup.has(key)) {
-			lookup.set(key, {
-				color:`#${decinhex[buffer[i*4+0]]}${decinhex[buffer[i*4+1]]}${decinhex[buffer[i*4+2]]}`,
-				radius: Math.pow(32,buffer[i*4+3]/256)
-			});
+		for (var i = 0; i < count; i++) {
+			var key = `${buffer[i*4+0]},${buffer[i*4+1]},${buffer[i*4+2]},${buffer[i*4+3]}`;
+			if (!lookup.has(key)) {
+				lookup.set(key, {
+					color:`#${decinhex[buffer[i*4+0]]}${decinhex[buffer[i*4+1]]}${decinhex[buffer[i*4+2]]}`,
+					radius: Math.pow(32,buffer[i*4+3]/256)
+				});
+			}
+			array[i] = lookup.get(key);
 		}
-		array[i] = lookup.get(key);
-	}
-	return array;
+		cb(array);
+	});
 }
 
 function findPoints(x,y,cbFind) {
