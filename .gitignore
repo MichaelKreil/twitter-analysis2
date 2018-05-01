@@ -14,6 +14,7 @@ bin/germany/4_server/_server/
 botometer/
 cache/*/
 config
+data/*.7z
 data/germany/*.bin
 data/germany/*.gz
 data/germany/*.png
