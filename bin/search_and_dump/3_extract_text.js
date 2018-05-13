@@ -6,7 +6,7 @@ const path = require('path');
 const colors = require('colors');
 const extractText = require('../../lib/extract-text.js');
 
-var query = 'rechts2';
+var query = 'rp18';
 
 var folder = path.resolve(__dirname, '../../data/search_and_dump/'+query+'/');
 

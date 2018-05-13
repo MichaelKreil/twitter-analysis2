@@ -8,7 +8,7 @@ const colors = require('colors');
 const stream = require('stream');
 
 
-var query = 'rechts2';
+var query = 'rp18';
 var dayCount = 20;
 var filestream = fs.createWriteStream(query+'.txt');
 
@@ -103,8 +103,6 @@ function startScan(filename, cb) {
 			tweet = tweet.replace(/\"retweeted_status\":\{.*\},\"is_quote_status/, '"is_quote_status');
 			//console.dir(tweet);
 			tweet = JSON.parse(tweet);
-			//console.dir(tweet);
-			//process.exit();
 
 			// add user
 			var user = tweet.user.screen_name;
