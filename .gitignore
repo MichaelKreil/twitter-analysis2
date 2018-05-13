@@ -11,6 +11,7 @@ bin/find_verified/accounts_next.txt.7z
 bin/find_verified/ids_sorted.txt.7z
 bin/find_verified/verified_accounts.tsv.zip
 bin/germany/4_server/_server/
+bin/rp18bundeswehr/
 botometer/
 cache/*/
 config
