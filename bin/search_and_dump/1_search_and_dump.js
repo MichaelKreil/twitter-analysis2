@@ -6,7 +6,7 @@ const async = require('async');
 const utils = require('../../lib/utils.js');
 const colors = require('colors');
 const resolve = require('path').resolve;
-const scraper = (require('../../lib/scraper.js'))('search_and_dump');
+const scraper = require('../../lib/scraper.js')('search_and_dump');
 
 String.prototype.toFromTo = function () {
 	return this.split(',').map(a => 'from:'+a+' OR to:'+a).join(' OR ')
@@ -59,7 +59,6 @@ var queries = [
 	{name: 'afrin',                         query: {q:'afrin'}},
 	{name: 'amadeuantonio',                 query: {q:'amadeuantonio'.toWildFromTo()}},
 	{name: 'bahn',                          query: {q:'bahn OR bahnhof OR hbf OR zug OR bahnsteig OR to:dbbahn OR dbbahn OR fahrradabteil OR ice OR schaffner OR bordbistro OR verspätung OR anschluss OR umsteigen OR ansage OR anzeige OR stellwerk OR störung OR weiche', lang:'de'}},
-//	{name: 'berlin',                        query: {q:'', geocode:'52.5,13.4,50km'}},
 	{name: 'bild',                          query: {q:'BILD,BILD_Berlin,BILD_Digital,BILD_Frankfurt,BILD_Hamburg,BILD_Muenchen,BILD_News,BILD_Politik,BILD_TopNews,jreichelt'.toFromTo()}},
 	{name: 'brexit',                        query: {q:'brexit'}},
 	{name: 'bundesregierung',               query: {q:'SilberhornMdB,Mi_Muentefering,RitaHaglKehl,SvenjaSchulze68,LambrechtMdB,katarinabarley,StSLindner,AdlerGunther,Thomas_Bareiss,AnjaKarliczek,AnetteKramme,MiRo_SPD,JochenFlasbarth,guenterkrings,MJaegerT,W_Schmidt_,peteraltmaier,LangeMdB,jensspahn,RegSprecher,DoroBaer,fuchtel,zierke,thomasgebhart,rischwasu,AndiScheuer,NielsAnnen,KerstinGriese,OlafScholz,ChristianHirte,meister_schafft,JuliaKloeckner,HeikoMaas,SteffenBilger,petertauber,FlorianPronold,HBraun,BoehningB,wanderwitz,hubertus_heil'.toWildFromTo()}},
@@ -67,6 +66,7 @@ var queries = [
 	{name: 'deutsche_mep',                  query: {q:'RadtkeMdEP,jakob_eu,Joerg_Meuthen,MichaelDetjen,MariaHeubuch,ThomasMannEP,martina_michels,albert_dess,JStarbatty,peter_jahr,markuspieperMEP,Stefan_Eck_MEP,MHohlmeier,GabrielePreuss,TrebesiusMdEP,ElmarBrok_MEP,MepMCramer,Arne_Gericke,sabineverheyen,Bernd_Koelmel,UdoBullmann,GabiZimmerMEP,ConstanzeKrehl,WestphalKerstin,MartinaWernerEU,schulzeeuropa,Dr_KlausBuchner,MarkusFerber,BirgitSippelMEP,ArndtKohn,KaufmannSylvia,RebHarms,thaendel,MarcusPretzell,ErnstCornelia,ArneLietz,jo_leinen,langen_werner,PeterSimonMdEP,ANiebler,blochbihler,schirdewan,UliMuellerMdEP,IsmailErtug,TerryReintke,inge_graessle,HansOlafHenkel,PeterSimonMEP,WernerKuhnMdEP,AxelVossMdEP,michaelgahler,MartinHaeusling,udovoigt,joachimzeller,peterliese,martinkastler,burkhardbalz,EuropaJens,Andreas_Schwab,UlrikeRodust,MarionWinter,helmutscholz,nadjahirsch,bueti,MartinSonneborn,ManfredWeber,knufleckenstein,woelken,caspary,davidmcallister,berndlange,JanAlbrecht,sven_giegold,SkaKeller,HelgaTruepel,Senficon'.toWildFromTo()}},
 	{name: 'elysee',                        query: {q:'elysee'.toWildFromTo()}},
 	{name: 'emmanuelmacron',                query: {q:'emmanuelmacron'.toWildFromTo()}},
+	{name: 'esc2018',                       query: {q:'#ESC2018 OR #ESC18 OR #ESC2017 OR #eurovision'}},
 	{name: 'floridashooting',               query: {q:'emmagonzalez OR floridahighschool OR floridaschoolshooting OR floridashooter OR floridashooting OR floridastrong OR guncontrol OR guncontrolnow OR gunlawsnow OR gunreformnow OR gunsafety OR gunsense OR gunshooting OR highschoolshooter OR march4ourlives OR marchforourlives OR massshooting OR massshootings OR neveragain OR nrabloodmoney OR parklandschoolshooting OR parklandshooting OR righttobeararms OR schoolshooting'}},
 	{name: 'floridashooting2',              query: {q:'neveragain OR gunreformnow OR guncontrolnow OR guncontrol OR marchforourlives OR parkland OR parklandschoolshooting OR floridaschoolshooting OR parklandshooting OR #nra OR floridashooting OR nrabloodmoney OR banassaultweapons OR gunsense OR emmagonzalez OR schoolshooting OR parklandstudents OR parklandstudentsspeak OR gunviolence OR floridashooter OR wecallbs OR studentsstandup OR parklandstrong'}},
 	{name: 'groko',                         query: {q:'groko'}},
@@ -74,6 +74,7 @@ var queries = [
 	{name: 'heimathorst',                   query: {q:'heimathorst OR heimatministerium'}},
 	{name: 'iranprotests',                  query: {q:'تظاهرات_سراسری OR IranProtests'}},
 	{name: 'iranprotests2',                 query: {q:'iranprotests OR تظاهرات_سراسرى OR مظاهرات_ايران OR تظاهرات_سراسری OR تظاهرات_سراسري'}},
+	{name: 'israel',                        query: {q:'israel'}},
 	{name: 'jensspahn',                     query: {q:'jensspahn'.toWildFromTo()}},
 	{name: 'kippa',                         query: {q:'kippa', lang:'de'}},
 	{name: 'lufthansa',                     query: {q:'lufthansa OR lufthansablue OR explorethenew'}},
@@ -103,15 +104,20 @@ var queries = [
 	{name: 'nobillag',                      query: {q:'#neinzunobillag OR #nobillag OR #nobillagnein'}},
 	{name: 'olympics_2018',                 query: {q:'#olympia2018 OR #pyeongchang2018 OR #olympics OR #olympia OR #doping'}},
 	{name: 'pflege',                        query: {q:'pflegenotstand OR pflege'}},
+	{name: 'polizeigesetz',                 query: {q:'nopag OR polizeigesetz'}},
 	{name: 'pyeongchang2018',               query: {q:'pyeongchang2018'}},
 	{name: 'rechts',                        query: {q:'afdwaehlen,antifaverbot,merkelmussweg,staatsfernsehen,stopasyl,stopislam,widerstand'.toOR()}},
 	{name: 'rechts2',                       query: {q:'"aufrecht erhalten","bedauerlicher einzelfall","esreicht","fake news","große verfall","illegale masseneinwanderung","illegale migranten","islamistische gefährder","islamistischer gefährder","kampf gegen","kapituliert vor","kein einzelfall","konstatiert kontrollverlust","leistet widerstand","links grün versifft","mein vaterland","merkelmussweg","mundtot gemacht","mundtot machen","plünderung freigegeben","politisch inkorrekt","politische korrektheit","rechte ecke","schweigende mehrheit","unkontrollierte einwanderung","unkontrollierte masseneinwanderung","unser land","volkspädagogische kampagne","widerliches pack","wirklichkeitsverweigerung",abmerkeln,abschiebung,achgut,afdimbundestag,afdwaehlen,alllivesmatter,alternativemedien,altparteien,anarchokapitalist,anpassungsmoralismus,antiantifa,antifaverbot,antigender,antimerkel,antisystem,antivegan,armenimport,asyl,asylindustrie,aufrecht,banislam,bedauerlich,bereicherung,bevormundung,bimbo,bluehand,dankeerikasteinbach,defendeurope,defendgermany,demokratur,denkverbot,deplorable,deraustausch,deutschfam,diktatur,dirigismus,ditib,drachenlord,dreck,einwanderung,einzelfall,einzelfallinfos,einzeltäter,endgov,entbrüsseln,erklärung2018,erziehungsmedien,eudssr,fakenews,fakerefugees,familiennachzug,fckislm,flintenuschi,flüchtlingsproblematik,flüchtlingswelle,freekolja,freilerner,frühsexualisierung,gabfam,gedankenpolizei,gefährder,gegenlinks,gegenzecken,geldsystemkritiker,"gender mainstreaming",gendergaga,genderismus,genderterror,gesinnungsterror,gleichgeschaltet,gleichschaltung,grueneversenken,gutmensch,gutmenschen,heimatbewusst,herrschaftsfrei,heterophob,hetzer,homolobby,ichbinpack,identitätspolitik,immigrationskritik,invasoren,invasorenwelle,islambeiuns,islamisierung,islamnixgut,jungefreiheit,kartellparteien,kartoffeldeutsch,kinderehe,kinderfickersekte,klartext,klimalüge,konservativ-freiheitlich,kopftuch,kopftuchverbot,koppverlag,kriegstreiber,krimigranten,kulturbereicherer,kulturtaliban,kuscheljustiz,köterrasse,landeshochverrat,linksextremismus,linksfaschismus,linksmaden,linksnicker,linksversifft,lügenpresse,lügner,machtelite,machtwechsel,maskulist,masseneinwanderung,maulkorb,mediendiktatur,meinungsdiktat,meinungsdiktatur,meinungsfreiheit,merkelei,merkelmussweg,merkelregime,mgga,migrassoren,migrationswaffe,minimalstaat,multikultitötet,mundtot,muslime,muslimisch,männerbeauftragter,männerrechtler,nafri,national-liberal,nationalkonservativ,nationalstolz,nazikeule,neger,neokonservativ,netzdg,nichtohnemeinkopftuch,opfer-abo,opferindustrie,paulanergarten,pckills,proborders,propaganda,propagandaschau,propolizei,quotenneger,realitätsverweigerer,rechtsstaat,redpill,refugeesnotwelcome,remigration,rückführungshelfer,scharia,scheinasylant,schleiereule,schuldkult,selbstabschaffung,selbstviktimiserung,sozial-libertär,sozialparadies,sozialschmarotzer,sozialsysteme,sozialtourist,sprachpolizei,staatsfernsehen,staatspresse,stasi,steuerstaat,stopasyl,stopislam,superstaat,systemgünstlinge,systemkonform,systemkritisch,systempresse,taxationistheft,terror,terroristen,teuro,thewestisbest,tichyseinblick,toleranzdiktatur,traudichdeutschland,tugendterror,tugendwächter,umerziehung,umvolkung,unbequem,unkontrolliert,untertanengeist,unterwerfung,vaterland,vaterländisch,verabschiedungskultur,verbotskultur,verbotspartei,verbrechen,verbrecher,verfassungspatriot,verhindern,verschwulung,voelkisch,volksbetrug,volksdeutsche,volksempfinden,volkspädagogik,volksthumsleugnung,volkstod,volksverräter,voluntarismus,völkisch,werteunion,wertkonservativ,widerlich,widerstand,wirtschaftsflüchtling,zensurland,zuwanderung,zuwanderungskritisch,zwangsgebühren'.toOR(), lang:'de'}},
 	{name: 'rp18',                          query: {q:'rp18 OR republica OR "re-publica" OR "re:publica" OR from:republica OR to:republica'}},
+	{name: 'rp18-hash',                     query: {q:'#rp18'}},
+	{name: 'rp18-hash2',                    query: {q:'#rp18 OR #mcb18 OR #republica18 OR #republica'}},
+	{name: 'rp19-hash',                     query: {q:'#rp19'}},
 	{name: 'russianelection',               query: {q:'#ИзбирательныйУчасток OR #ПУТИН OR #Выборы2018 OR #ПУТИН2018 OR #Саки OR #городСаки OR #РеспубликаКрым OR #КрымНаш OR #МыСтроимМосты OR #КрымРоссияНавсегда OR #КрымРоссия OR #ПутинВВ OR #ТвойВыбор2018 OR #2018ТвойВыбор OR #Выбор2018 OR #ПутинВладимирВладимирович OR #ЯзаПутина OR #ЯзаПутинаВВ'}},
 	{name: 'syria',                         query: {q:'syria'}},
 	{name: 'trump_mentions',                query: {q:'to:realdonaldtrump OR to:potus OR realdonaldtrump OR potus'}},
 	{name: 'trump_tweets',                  query: {q:'from:realdonaldtrump OR from:potus'}},
 	{name: 'ueberwachung',                  query: {q:'überwachungspaket OR staatstrojaner OR bundestrojaner OR ueberwachungspaket OR zib2 OR überwachung OR privatsphäre OR datenschutz OR sicherheit OR vds OR sicherheitspaket'}},
+//	{name: 'berlin',                        query: {q:'', geocode:'52.5,13.4,50km'}},
 ];
 
 // Search with each of these queries,
