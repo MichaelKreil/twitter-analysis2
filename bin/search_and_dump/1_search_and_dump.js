@@ -1,5 +1,7 @@
 "use strict";
 
+const dry = true;
+
 const fs = require('fs');
 const lzma = require('lzma-native');
 const async = require('async');
@@ -202,7 +204,7 @@ function runScraper(name, query, date, cbScraper) {
 				//console.log(colors.green('closing '+title));
 				stream.on('close', () => {
 					console.log(colors.green.bold('closed '+title));
-					fs.renameSync(tempFilename, filename);
+					if (!dry) fs.renameSync(tempFilename, filename);
 					cbClose();
 				})
 				compressor.end();
@@ -259,11 +261,13 @@ function runScraper(name, query, date, cbScraper) {
 						return true;
 					})
 
-					result.statuses.forEach(t => tweets.set(t.id_str, {
-						id_str: t.id_str,
-						created_at: t.created_at,
-						buffer: Buffer.from(JSON.stringify(t)+'\n', 'utf8')
-					}));
+					if (!dry) {
+						result.statuses.forEach(t => tweets.set(t.id_str, {
+							id_str: t.id_str,
+							created_at: t.created_at,
+							buffer: Buffer.from(JSON.stringify(t)+'\n', 'utf8')
+						}));
+					}
 					tweetCount += result.statuses.length;
 
 					var date = (result.statuses[0]||{}).created_at;
