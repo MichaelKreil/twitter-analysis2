@@ -11,11 +11,13 @@ function Progress(max) {
 	//var blocks = [8193,9615,9614,9613,9612,9611,9610,9609,9608].map(code => String.fromCharCode(code));
 	var blocks = '░▓'.split('');
 
-	var startTime = Date.now();
+	var startTime = Date.now()/1000, lastTime = startTime, lastPos = 0;
 	var dirty = false;
 
 	function update() {
-		dirty = false
+		dirty = false;
+
+		if (!position) return;
 
 		var pos = position/max;
 		if (pos < 0) pos = 0;
@@ -30,8 +32,13 @@ function Progress(max) {
 			size -= n;
 		}
 
-		var timeNow = Date.now();
-		var timeLeft = ((timeNow-startTime)*(1-pos)/pos)/1000;
+		var time = Date.now()/1000;
+
+		var speed = (pos-lastPos)/(time-lastTime);
+		lastPos  = lastPos*0.8 + 0.2*pos;
+		lastTime = lastTime*0.8 + 0.2*time;
+		var timeLeft = (1-pos)/speed;
+
 		timeLeft = [
 			Math.floor(timeLeft/3600),
 			(100+(Math.floor(timeLeft/60) % 60)).toFixed(0).substr(1),
