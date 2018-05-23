@@ -7,8 +7,9 @@ function Progress(max) {
 	
 	var position = 0;
 	var width = 100;
-	var blocks = [8193,9615,9614,9613,9612,9611,9610,9609,9608];//8195,12288
-	blocks = blocks.map(code => String.fromCharCode(code));
+	//var blocks = [8193,9617,9618,9619,9608].map(code => String.fromCharCode(code));
+	//var blocks = [8193,9615,9614,9613,9612,9611,9610,9609,9608].map(code => String.fromCharCode(code));
+	var blocks = '░▓'.split('');
 
 	var startTime = Date.now();
 	var dirty = false;
@@ -20,12 +21,13 @@ function Progress(max) {
 		if (pos < 0) pos = 0;
 		if (pos > 1) pos = 1;
 
-		var size = Math.round(pos*8*width);
+		var n = blocks.length-1;
+		var size = Math.round(pos*(n*width+1));
 		var bar = [];
 		for (var i = 0; i < width; i++) {
-			var left = Math.max(0, Math.min(8, size));
+			var left = Math.max(0, Math.min(n, size));
 			bar.push(blocks[left]);
-			size -= 8;
+			size -= n;
 		}
 
 		var timeNow = Date.now();
@@ -37,7 +39,7 @@ function Progress(max) {
 		].join(':')
 		
 		process.stdout.clearLine();
-		process.stdout.write('\r['+bar.join('')+'] '+timeLeft);
+		process.stdout.write('\r▐'+bar.join('')+'▌   '+timeLeft);
 	}
 
 	var interval = setInterval(() => {
