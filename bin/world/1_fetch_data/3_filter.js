@@ -12,7 +12,7 @@ const Writer = require('../lib/lzma_writer.js');
 var fileIn  = resolve(__dirname, '../../../data/world/1_ids/ids_1.tsv.xz');
 var fileOut = resolve(__dirname, '../../../data/world/1_ids/ids_2.tsv.xz');
 
-const minFactor = 1e6;
+const minFactor = 1e9;
 
 miss.pipe(
 	new Reader(fileIn),
