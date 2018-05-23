@@ -1,5 +1,6 @@
 "use strict"
 
+const colors = require('colors');
 const miss = require('mississippi');
 const Progress = require('./progress.js');
 
@@ -82,9 +83,13 @@ module.exports = function () {
 				break;
 			}
 			var data = blocks[readBlock].data;
-			var v0 = data[readIndex  ].toFixed(0);
+			var v0 = data[readIndex  ];
 			var v1 = data[readIndex+1].toFixed(0);
-			cb(null, v0 + zeros.substr(0,9-v1.length) + v1);
+			if (v0 === 0) {
+				cb(null, v1);
+			} else {
+				cb(null, v0.toFixed(0) + zeros.substr(0,9-v1.length) + v1);
+			}
 		}
 
 		return {
