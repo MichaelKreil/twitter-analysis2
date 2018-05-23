@@ -10,7 +10,7 @@ module.exports = function (filename) {
 
 	var fileStream = fs.createReadStream(filename);
 
-	var decompressor = lzma.createDecompressor({threads:1});
+	var decompressor = lzma.createDecompressor();
 
 	var buffer = '';
 	var filePos = 0;
@@ -21,9 +21,6 @@ module.exports = function (filename) {
 
 	var lineSplitter = miss.through.obj(
 		function (chunk, enc, cb) {
-			filePos += chunk.length;
-			progress.set(filePos);
-
 			buffer += chunk.toString(enc);
 
 			var lines = buffer.split('\n');
@@ -37,14 +34,24 @@ module.exports = function (filename) {
 		},
 		function (cb) {
 			if (buffer) this.push(buffer);
+			cb();
+		}
+	)
+
+	var lineCounter = miss.through.obj(
+		function (chunk, enc, cb) {
+			filePos += chunk.length+1;
+			progress.set(filePos);
+
+			cb(null, chunk);
+		},
+		function (cb) {
 			progress.end();
 			cb();
 		}
 	)
 
-	fileStream.pipe(decompressor).pipe(lineSplitter);
-
-	return lineSplitter;
+	return miss.pipeline(fileStream, decompressor, lineSplitter, lineCounter);
 
 	function getFilesize(cb) {
 		fs.open(filename, 'r', (err, fd) => {
