@@ -2,63 +2,32 @@
 
 const fs = require('fs');
 const lzma = require('lzma-native');
+const miss = require('mississippi');
 
 module.exports = Writer;
 
 function Writer(filename) {
-	var tempFilename = Math.random().toFixed(16).substr(2)+'.tmp.xz';
+	var stream = miss.through.obj(
+		(data, enc, cb) => cb(null, data+'\n'),
+		(cb) => cb(null)
+	)
 
 	// Prepare Compressor
-	var compressor = lzma.createCompressor({
+	var compressorStream = lzma.createCompressor({
 		check: lzma.CHECK_NONE,
 		preset: 9/* | lzma.PRESET_EXTREME*/,
 		synchronous: false,
 		threads: 1,
 	});
-	var stream = fs.createWriteStream(tempFilename, {highWaterMark: 8*1024*1024});
-	compressor.pipe(stream);
 
-	var cache = [];
-	var cacheSize = 0;
+	var tempFilename = Math.random().toFixed(16).substr(2)+'.tmp.xz';
+	var fileStream = fs.createWriteStream(tempFilename);
 
-	function writeLine(line, cbWrite) {
-		cache.push(line+'\n');
-		cacheSize += line.length;
+	stream.pipe(compressorStream).pipe(fileStream);
 
-		if (cacheSize > 1e7) {
-			flush(cbWrite)
-		} else {
-			if (cbWrite) setImmediate(cbWrite);
-		}
-	}
+	fileStream.on('close', () => {
+		fs.renameSync(tempFilename, filename);
+	});
 
-	// flush data buffer to lzma compressor
-	function flush(cbFlush) {
-		var buffer = Buffer.from(cache.join(''), 'utf8');
-
-		cache = [];
-		cacheSize = 0;
-
-		if (compressor.write(buffer)) {
-			if (cbFlush) setImmediate(cbFlush);
-		} else {
-			compressor.once('drain', cbFlush);
-		}
-	}
-
-	// when finished: flush data and close file
-	function close(cbClose) {
-		flush(() => {
-			stream.on('close', () => {
-				fs.renameSync(tempFilename, filename);
-				if (cbClose) setImmediate(cbClose);
-			})
-			compressor.end();
-		})
-	}
-
-	return {
-		writeLine: writeLine,
-		close: close,
-	}
+	return stream
 }

@@ -1,74 +1,61 @@
 "use strict"
 
 const fs = require('fs');
+const colors = require('colors');
 const lzma = require('lzma-native');
-const async = require('async');
+const miss = require('mississippi');
+const Progress = require('./progress.js');
 
-module.exports = Reader;
+module.exports = function (filename) {
 
+	var fileStream = fs.createReadStream(filename);
 
-function getFilesize(filename, cb) {
-	fs.open(filename, 'r', (err, fd) => {
-		if (err) throw err;
-		lzma.parseFileIndexFD(fd, (err, info) => {
-			if (err) throw err;
-			fs.close(fd, (err) => {
-				if (err) throw err;
-				cb(info.uncompressedSize);
-			});
-		});
-	});
-}
+	var decompressor = lzma.createDecompressor({threads:1});
 
-function Reader(filename, cbEntry, cbFinished) {
-	getFilesize(filename, filesize => {
-		var input = fs.createReadStream(filename);
-		var decompressor = lzma.createDecompressor({threads:1, bufsize:1e6});
+	var buffer = '';
+	var filePos = 0;
 
-		input.pipe(decompressor);
+	console.log(colors.green.bold('Reading '+filename.split('/').slice(-5).join('/')));
+	var progress = new Progress(1e30);
+	getFilesize(size => progress.setMaximum(size));
 
-		var filepos = 0, oldFilepos = 0;
+	var lineSplitter = miss.through.obj(
+		function (chunk, enc, cb) {
+			filePos += chunk.length;
+			progress.set(filePos);
 
-		var buffer = [];
+			buffer += chunk.toString(enc);
 
-		decompressor.on('data', chunk => {
-			filepos += chunk.length;
-			buffer.push(chunk);
-			if (buffer.length > 100) {
-				decompressor.pause();
-				flush(() => {
-					oldFilepos = filepos;
-					decompressor.resume();
-				});
-			}
-		})
-		decompressor.on('end', () => {
-			flush(() => {
-				cbFinished();
-			});
-		});
+			var lines = buffer.split('\n');
+			buffer = lines.pop();
 
-		function flush(cbFlush) {
-			buffer = Buffer.concat(buffer);
-			var i0 = 0, i1;
+			lines.forEach(line => {
+				if (line) this.push(line);
+			})
 
-			read();
-
-			function read() {
-				i1 = buffer.indexOf(10, i0);
-				if (i1 < 0) {
-					buffer = [buffer.slice(i0)];
-					cbFlush();
-					return
-				}
-
-				var line = buffer.slice(i0, i1);
-				i0 = i1+1;
-
-				line = line.toString('utf8');
-
-				cbEntry(line, read, (oldFilepos+i1)/filesize);
-			}
+			cb();
+		},
+		function (cb) {
+			if (buffer) this.push(buffer);
+			progress.end();
+			cb();
 		}
-	})
+	)
+
+	fileStream.pipe(decompressor).pipe(lineSplitter);
+
+	return lineSplitter;
+
+	function getFilesize(cb) {
+		fs.open(filename, 'r', (err, fd) => {
+			if (err) throw err;
+			lzma.parseFileIndexFD(fd, (err, info) => {
+				if (err) throw err;
+				fs.close(fd, (err) => {
+					if (err) throw err;
+					cb(info.uncompressedSize);
+				});
+			});
+		});
+	}
 }

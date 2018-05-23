@@ -51,7 +51,7 @@ function Progress(max) {
 	}
 	
 	return {
-		setSize: value => {
+		setMaximum: value => {
 			if (value === max) return;
 			max = value;
 			update();
