@@ -14,7 +14,7 @@ var fileOut = resolve(__dirname, '../../../data/world/1_ids/ids_3.tsv.xz');
 miss.pipe(
 	new Reader(fileIn),
 	miss.parallel(
-		16,
+		32,
 		function (user_id, cb) {
 			var me = this;
 
