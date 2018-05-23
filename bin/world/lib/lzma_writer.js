@@ -25,7 +25,7 @@ function Writer(filename) {
 		cache.push(line+'\n');
 		cacheSize += line.length;
 
-		if (cacheSize > 1e6) {
+		if (cacheSize > 1e7) {
 			flush(cbWrite)
 		} else {
 			if (cbWrite) setImmediate(cbWrite);

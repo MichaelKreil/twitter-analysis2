@@ -23,28 +23,24 @@ Reader(
 	(user_id, cbEntry, progressValue) => {
 		progress.set(progressValue);
 		running++;
-		var pause = (running > 100);
+		var paused = (running > 100);
 		task.fetch(
 			'friends/ids',
 			{user_id:user_id, stringify_ids:true, count:5000},
 			result => {
+				return finalize();
 				if (!result.ids) return finalize();
 
-				async.eachSeries(
-					result.ids,
-					(friend_id, cb) => writer.add(friend_id, cb),
-					finalize
-				)
+				result.ids.push(user_id);
+				writer.addList(result.ids, finalize);
 
 				function finalize() {
 					running--;
-					writer.add(user_id, () => {
-						if (pause) setImmediate(cbEntry);
-					});
+					if (paused) setImmediate(cbEntry);
 				}
 			}
 		)
-		if (!pause) cbEntry();
+		if (!paused) cbEntry();
 	},
 	check
 )

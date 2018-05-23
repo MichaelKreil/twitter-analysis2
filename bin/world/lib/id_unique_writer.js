@@ -12,7 +12,16 @@ function IdWriter(filename) {
 
 	function add(id, cbAdd) {
 		set.add(id);
-		if (set.size > 1e60) {
+		check(cbAdd);
+	}
+
+	function addList(ids, cbAdd) {
+		ids.forEach(id => set.add(id));
+		check(cbAdd);
+	}
+
+	function check(cbAdd) {
+		if (set.size > 1e7) {
 			flush(cbAdd)
 		} else {
 			if (cbAdd) setImmediate(cbAdd);
@@ -21,11 +30,11 @@ function IdWriter(filename) {
 
 	function flush(cbFlush) {
 		var data = Array.from(set.values());
+		set = new Set();
 		data.sort((a,b) => {
 			if (a.length === b.length) return a.localeCompare(b);
 			return a.length - b.length;
 		})
-		set = new Set();
 
 		async.eachSeries(
 			data,
@@ -42,6 +51,7 @@ function IdWriter(filename) {
 
 	return {
 		add: add,
+		addList: addList,
 		close: close,
 	}
 }
