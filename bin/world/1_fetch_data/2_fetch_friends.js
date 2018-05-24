@@ -8,8 +8,8 @@ const scraper = require('../../../lib/scraper.js')('world_friends');
 const SortUniqId = require('../lib/sort_uniq_id.js');
 const Writer = require('../lib/lzma_writer.js');
 
-var fileIn  = resolve(__dirname, '../../../data/world/1_ids/ids_2.tsv.xz');
-var fileOut = resolve(__dirname, '../../../data/world/1_ids/ids_3.tsv.xz');
+var fileIn  = resolve(__dirname, '../../../data/world/1_ids/ids_selected.tsv.xz');
+var fileOut = resolve(__dirname, '../../../data/world/1_ids/ids_friends.tsv.xz');
 
 miss.pipe(
 	new Reader(fileIn),
@@ -24,7 +24,7 @@ miss.pipe(
 				'friends/ids',
 				{user_id:user_id, stringify_ids:true, count:5000},
 				result => {
-					return cb();
+					//return cb();
 					if (!result.ids) return cb();
 
 					result.ids.forEach(id => me.push(id));

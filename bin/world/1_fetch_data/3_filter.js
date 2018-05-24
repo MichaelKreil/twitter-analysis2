@@ -9,8 +9,8 @@ const scraper = require('../../../lib/scraper.js')('world_users');
 const SortUniqId = require('../lib/sort_uniq_id.js');
 const Writer = require('../lib/lzma_writer.js');
 
-var fileIn  = resolve(__dirname, '../../../data/world/1_ids/ids_1.tsv.xz');
-var fileOut = resolve(__dirname, '../../../data/world/1_ids/ids_2.tsv.xz');
+var fileIn  = resolve(__dirname, '../../../data/world/1_ids/ids_friends.tsv.xz');
+var fileOut = resolve(__dirname, '../../../data/world/1_ids/ids_selected.tsv.xz');
 
 const minFactor = 1e9;
 
