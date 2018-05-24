@@ -73,6 +73,10 @@ function Progress(max) {
 			position += value;
 			queueUpdate();
 		},
+		inc: () => {
+			position ++;
+			queueUpdate();
+		},
 		end: () => {
 			clearInterval(interval);
 			position = max;
