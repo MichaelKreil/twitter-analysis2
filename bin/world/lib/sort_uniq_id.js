@@ -4,6 +4,10 @@ const colors = require('colors');
 const miss = require('mississippi');
 const Progress = require('./progress.js');
 
+const maxCacheSize = 1e6;
+const maxBlocksPerBin = 256;
+const binCount = 256;
+
 module.exports = function () {
 	var set = new Set();
 	var db = new Database();
@@ -11,7 +15,7 @@ module.exports = function () {
 	var streamIn = miss.to.obj(
 		function (data, enc, cb) {
 			set.add(data);
-			if (set.size < 1e7) return cb();
+			if (set.size < maxCacheSize) return cb();
 
 			flush();
 			cb();
@@ -48,41 +52,49 @@ module.exports = function () {
 	}
 
 	function Database() {
-		var blocks = [], blockCount = 256;
-		var readBlock = 0, readIndex = -2;
+		var bins = [];
+		var readBin = 0, readIndex = -2;
 		var progress;
+		const zeros = '0000000000';
 
 		function addList(list) {
 			generateBlocks(list).forEach((newBlock, index) => {
 				if (!newBlock) return;
 				if (newBlock.length === 0) return;
-				blocks[index] = mergeBlocks(blocks[index], newBlock);
+				bins[index] = addBlock(bins[index], newBlock);
 			})
 		}
 
 		function initFetch() {
+			console.log(colors.green.bold('Prepare dumping sorted ids'));
+			bins = bins.map(bin => {
+				binBlockMerge(bin);
+				return bin[0];
+			});
 			console.log(colors.green.bold('Dumping sorted ids'));
-			progress = new Progress(blockCount);
+
+			progress = new Progress(binCount);
 		}
 
 		function fetch(cb) {
-			var zeros = '0000000000';
+			var bin;
 			while (true) {
-				if (readBlock >= blocks.length) {
+				if (readBin >= bins.length) {
 					progress.end();
 					cb(null, null);
 					return
 				}
+				bin = bins[readBin];
 				readIndex += 2;
-				if ((!blocks[readBlock]) || (readIndex >= blocks[readBlock].size)) {
+				if ((!bin) || (readIndex >= bin.size)) {
 					readIndex = -2;
-					readBlock++;
-					progress.set(readBlock);
+					readBin++;
+					progress.set(readBin);
 					continue;
 				}
 				break;
 			}
-			var data = blocks[readBlock].data;
+			var data = bins[readBin].data;
 			var v0 = data[readIndex  ];
 			var v1 = data[readIndex+1].toFixed(0);
 			if (v0 === 0) {
@@ -96,6 +108,26 @@ module.exports = function () {
 			addList: addList,
 			initFetch: initFetch,
 			fetch: fetch,
+		}
+
+		function addBlock(b1, b2) {
+			if (!b1) return [b2];
+
+			b1.push(b2);
+			checkBinBlockMerge(b1);
+			return b1;
+		}
+
+		function checkBinBlockMerge(bin) {
+			if (bin.length < maxBlocksPerBin) return;
+			binBlockMerge(bin);
+		}
+
+		function binBlockMerge(bin) {
+			while (bin.length > 1) {
+				bin.sort((a,b) => b.size - a.size);
+				bin.push(mergeBlocks(bin.pop(), bin.pop()))
+			}
 		}
 
 		function mergeBlocks(b1, b2) {
@@ -154,7 +186,7 @@ module.exports = function () {
 				var v1 = parseInt(id.slice(0,-9),10) || 0;
 				var v2 = parseInt(id.slice(  -9),10) || 0;
 				var index = estimatePosition(v1,v2);
-				index = Math.floor(index*blockCount);
+				index = Math.floor(index*binCount);
 				if (!blocks[index]) blocks[index] = [];
 				blocks[index].push([v1,v2]);
 			})
