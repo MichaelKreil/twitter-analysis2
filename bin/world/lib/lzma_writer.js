@@ -1,5 +1,6 @@
 "use strict"
 
+const colors = require('colors');
 const fs = require('fs');
 const lzma = require('lzma-native');
 const miss = require('mississippi');
@@ -9,7 +10,10 @@ module.exports = Writer;
 function Writer(filename) {
 	var stream = miss.through.obj(
 		(data, enc, cb) => cb(null, data+'\n'),
-		(cb) => cb(null)
+		cb => {
+			console.log(colors.green.bold('Finished writing ... but still compressing'));
+			cb(null)
+		}
 	)
 
 	// Prepare Compressor
@@ -27,6 +31,7 @@ function Writer(filename) {
 
 	fileStream.on('close', () => {
 		fs.renameSync(tempFilename, filename);
+		console.log(colors.green.bold('Finished writing, compressing, renaming'));
 	});
 
 	return stream

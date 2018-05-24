@@ -13,11 +13,6 @@ module.exports = function (filename) {
 	var decompressor = lzma.createDecompressor();
 
 	var buffer = '';
-	var filePos = 0;
-
-	console.log(colors.green.bold('Reading '+filename.split('/').slice(-5).join('/')));
-	var progress = new Progress(1e30);
-	getFilesize(size => progress.setMaximum(size));
 
 	var lineSplitter = miss.through.obj(
 		function (chunk, enc, cb) {
@@ -38,6 +33,11 @@ module.exports = function (filename) {
 		}
 	)
 
+
+	console.log(colors.green.bold('Reading '+filename.split('/').slice(-5).join('/')));
+	var filePos = 0, progress = new Progress(1e30);
+	getFilesize(size => progress.setMaximum(size));
+
 	var lineCounter = miss.through.obj(
 		function (chunk, enc, cb) {
 			filePos += chunk.length+1;
@@ -47,6 +47,7 @@ module.exports = function (filename) {
 		},
 		function (cb) {
 			progress.end();
+			console.log(colors.green.bold('Finished reading '+filename.split('/').slice(-5).join('/')));
 			cb();
 		}
 	)
