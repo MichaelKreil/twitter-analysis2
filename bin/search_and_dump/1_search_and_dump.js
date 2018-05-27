@@ -11,15 +11,15 @@ const resolve = require('path').resolve;
 const scraper = require('../../lib/scraper.js')('search_and_dump');
 
 String.prototype.toFromTo = function () {
-	return this.split(',').map(a => 'from:'+a+' OR to:'+a).join(' OR ')
+	return this.split(',').map(a => a.trim()).map(a => 'from:'+a+' OR to:'+a).join(' OR ')
 }
 
 String.prototype.toWildFromTo = function () {
-	return this.split(',').map(a => a+' OR from:'+a+' OR to:'+a).join(' OR ')
+	return this.split(',').map(a => a.trim()).map(a => a+' OR from:'+a+' OR to:'+a).join(' OR ')
 }
 
 String.prototype.toOR = function () {
-	return this.split(',').join(' OR ')
+	return this.split(',').map(a => a.trim()).join(' OR ')
 }
 
 // List of search queries
@@ -58,6 +58,7 @@ var queries = [
 	{name: 'afdkompakt_lv_schleswig_holstein',query: {q:'AfDOstholstein,AfD_Fraktion_SH,AfD_Stormarn,AfD_SE,D_Wamhoff_AfD,AfD_Luebeck,WittgensteinAfD,Joerg_Nobis_AfD,Kalleskoppel,AfD_RZ,KatjaJungBuhl,AfD_Pinneberg,ClausSchaffer,AfD_Kiel,AfD_LV_SH,alternativeNMS,axelgehrke,dr_karin_kaiser,DGrtzmann,JulianFlak,Daniel_Buhl_AfD,evermann'.toWildFromTo()}},
 	{name: 'afdkompakt_lv_thueringen',      query: {q:'KnieseTosca,DrFriesenMdB,VerenaSigmumd,AfD_ThL,WMuhsal,gregormodos,Denny_Jankowski,Theresa_Wittig,Ludwig_AfD,torben_braga,afd_ik_gth,Marcus_Buehl,StBrandner,geisteskerker,Robby_Schlund,MoellerAfD,AfD_Thueringen,BjoernHoecke,justineb98,KaufmannAfD,Keineausrede,Buergerwohl'.toWildFromTo()}},
 	{name: 'afdkompakt_unterstuetzer',      query: {q:'MutFuerWahrheit,afdkinzigtal,AfD_Tweets,Lettinnen,AfD_Engagement,AfDUnterstuetze,Zeit_fuer_AfD,AfD_Freunde,IchwaehleAfD,2018_AfDwaehlen,PinocchioPresse,Mundaufmachen,NickKuenzel,AfD_Support,_macmike,AfDBrandenburg,balleryna,aotto1968_2,lawyerberlin'.toWildFromTo()}},
+	{name: 'afdwegbassen',                  query: {q:'afdwegbassen,liebestatthass,wegbassen,b2705,stopptdenhass'}},
 	{name: 'afrin',                         query: {q:'afrin'}},
 	{name: 'amadeuantonio',                 query: {q:'amadeuantonio'.toWildFromTo()}},
 	{name: 'bahn',                          query: {q:'bahn OR bahnhof OR hbf OR zug OR bahnsteig OR to:dbbahn OR dbbahn OR fahrradabteil OR ice OR schaffner OR bordbistro OR verspätung OR anschluss OR umsteigen OR ansage OR anzeige OR stellwerk OR störung OR weiche', lang:'de'}},
