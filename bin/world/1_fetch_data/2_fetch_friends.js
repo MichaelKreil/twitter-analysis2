@@ -15,6 +15,7 @@ miss.pipe(
 		32,
 		function (user_id, cb) {
 			var me = this;
+			me.push(user_id);
 
 			activeFriends(
 				user_id,
