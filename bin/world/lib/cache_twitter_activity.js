@@ -2,10 +2,10 @@
 
 const CacheResults = require('../lib/cache_results.js');
 const Scraper = require('../../../lib/scraper.js');
+const maxActive = 16;
 
 
 module.exports = new (function () {
-	const maxActive = 8;
 	var active = 0;
 	var scraper = new Scraper('world_users');
 
