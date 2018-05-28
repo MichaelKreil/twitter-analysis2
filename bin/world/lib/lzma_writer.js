@@ -24,7 +24,7 @@ function Writer(filename) {
 		threads: 1,
 	});
 
-	var tempFilename = Math.random().toFixed(16).substr(2)+'.tmp.xz';
+	var tempFilename = (new Date()).toISOString().replace(/\..*/,'').replace(/[^0-9]/g,'-')+'_'+Math.random().toFixed(6).substr(2)+'.tmp.xz';
 	var fileStream = fs.createWriteStream(tempFilename);
 
 	stream.pipe(compressorStream).pipe(fileStream);
