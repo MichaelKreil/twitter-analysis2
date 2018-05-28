@@ -6,10 +6,9 @@ function Progress(max) {
 	if (!max) max = 1;
 	
 	var position = 0;
-	var width = 100;
 	//var blocks = [8193,9617,9618,9619,9608].map(code => String.fromCharCode(code));
 	//var blocks = [8193,9615,9614,9613,9612,9611,9610,9609,9608].map(code => String.fromCharCode(code));
-	var blocks = '░▓'.split('');
+	var blocks = '○●'.split('');
 
 	var startTime = Date.now()/1000, lastTime = startTime, lastPos = 0;
 	var dirty = false;
@@ -22,6 +21,8 @@ function Progress(max) {
 		var pos = position/max;
 		if (pos < 0) pos = 0;
 		if (pos > 1) pos = 1;
+
+		var width = process.stdout.columns-16;
 
 		var n = blocks.length-1;
 		var size = Math.round(pos*(n*width+1));
