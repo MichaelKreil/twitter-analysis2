@@ -15,6 +15,7 @@ function Cache(name, fallback) {
 			fallback(
 				id,
 				(err, fbResult) => {
+					//if (name === 'activity') console.log(typeof id, typeof fbResult);
 					db.put(
 						id,
 						fbResult,

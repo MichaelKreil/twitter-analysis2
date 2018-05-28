@@ -1,12 +1,14 @@
 "use strict"
 
 const CacheResults = require('../lib/cache_results.js');
-const scraper = require('../../../lib/scraper.js')('world_activity');
+const Scraper = require('../../../lib/scraper.js');
 
-const maxActive = 8;
-var active = 0;
 
 module.exports = new (function () {
+	const maxActive = 8;
+	var active = 0;
+	var scraper = new Scraper('world_users');
+
 	var buffer = [];
 
 	return new CacheResults(
