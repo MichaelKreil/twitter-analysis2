@@ -19,5 +19,6 @@ data/*.7z
 data/germany/*.bin
 data/germany/*.gz
 data/germany/*.png
+data/world/dbs/
 node_modules
 package-lock.json
