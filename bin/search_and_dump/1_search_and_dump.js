@@ -22,6 +22,15 @@ String.prototype.toOR = function () {
 	return this.split(',').map(a => a.trim()).join(' OR ')
 }
 
+String.prototype.expandMedia = function () {
+	return this.split(',').map(a => {
+		a = a.trim();
+		if (a[0] !== '@') return a
+		a = a.substr(1);
+		return 'from:'+a+' OR to:'+a;
+	}).join(' OR ')
+}
+
 // List of search queries
 var queries = [
 	{name: '120db',                         query: {q:'frauenmarsch OR 120db OR b1702 OR dd1702 OR ndh1702 OR niun1702 OR niun OR no120db'}}, 
@@ -67,14 +76,13 @@ var queries = [
 	{name: 'brexit',                        query: {q:'brexit'}},
 	{name: 'bundesregierung',               query: {q:'SilberhornMdB,Mi_Muentefering,RitaHaglKehl,SvenjaSchulze68,LambrechtMdB,katarinabarley,StSLindner,AdlerGunther,Thomas_Bareiss,AnjaKarliczek,AnetteKramme,MiRo_SPD,JochenFlasbarth,guenterkrings,MJaegerT,W_Schmidt_,peteraltmaier,LangeMdB,jensspahn,RegSprecher,DoroBaer,fuchtel,zierke,thomasgebhart,rischwasu,AndiScheuer,NielsAnnen,KerstinGriese,OlafScholz,ChristianHirte,meister_schafft,JuliaKloeckner,HeikoMaas,SteffenBilger,petertauber,FlorianPronold,HBraun,BoehningB,wanderwitz,hubertus_heil'.toWildFromTo()}},
 	{name: 'bundesverdienstkreuz',          query: {q:'bundesverdienstkreuz'}},
-	{name: 'cuentalo',                      query: {q:'cuentalo'}},
 	{name: 'deutsche_mep',                  query: {q:'RadtkeMdEP,jakob_eu,Joerg_Meuthen,MichaelDetjen,MariaHeubuch,ThomasMannEP,martina_michels,albert_dess,JStarbatty,peter_jahr,markuspieperMEP,Stefan_Eck_MEP,MHohlmeier,GabrielePreuss,TrebesiusMdEP,ElmarBrok_MEP,MepMCramer,Arne_Gericke,sabineverheyen,Bernd_Koelmel,UdoBullmann,GabiZimmerMEP,ConstanzeKrehl,WestphalKerstin,MartinaWernerEU,schulzeeuropa,Dr_KlausBuchner,MarkusFerber,BirgitSippelMEP,ArndtKohn,KaufmannSylvia,RebHarms,thaendel,MarcusPretzell,ErnstCornelia,ArneLietz,jo_leinen,langen_werner,PeterSimonMdEP,ANiebler,blochbihler,schirdewan,UliMuellerMdEP,IsmailErtug,TerryReintke,inge_graessle,HansOlafHenkel,PeterSimonMEP,WernerKuhnMdEP,AxelVossMdEP,michaelgahler,MartinHaeusling,udovoigt,joachimzeller,peterliese,martinkastler,burkhardbalz,EuropaJens,Andreas_Schwab,UlrikeRodust,MarionWinter,helmutscholz,nadjahirsch,bueti,MartinSonneborn,ManfredWeber,knufleckenstein,woelken,caspary,davidmcallister,berndlange,JanAlbrecht,sven_giegold,SkaKeller,HelgaTruepel,Senficon'.toWildFromTo()}},
 	{name: 'dsgvo',                         query: {q:'dsgvo OR dgsvo OR dataprotection OR cybersecurity OR gdpr OR datenschutz'}},
 	{name: 'dunjahayali',                   query: {q:'dunjahayali'.toWildFromTo()}},
 	{name: 'efail',                         query: {q:'#efail OR from:eff OR to:eff'}},
 	{name: 'elysee',                        query: {q:'elysee'.toWildFromTo()}},
 	{name: 'emmanuelmacron',                query: {q:'emmanuelmacron'.toWildFromTo()}},
-	{name: 'esc2018',                       query: {q:'#ESC2018 OR #ESC18 OR #ESC2017 OR #eurovision'}},
+	{name: 'emojitetra',                    query: {q:'emojitetra'.toWildFromTo()}},
 	{name: 'floridashooting',               query: {q:'emmagonzalez OR floridahighschool OR floridaschoolshooting OR floridashooter OR floridashooting OR floridastrong OR guncontrol OR guncontrolnow OR gunlawsnow OR gunreformnow OR gunsafety OR gunsense OR gunshooting OR highschoolshooter OR march4ourlives OR marchforourlives OR massshooting OR massshootings OR neveragain OR nrabloodmoney OR parklandschoolshooting OR parklandshooting OR righttobeararms OR schoolshooting'}},
 	{name: 'floridashooting2',              query: {q:'neveragain OR gunreformnow OR guncontrolnow OR guncontrol OR marchforourlives OR parkland OR parklandschoolshooting OR floridaschoolshooting OR parklandshooting OR #nra OR floridashooting OR nrabloodmoney OR banassaultweapons OR gunsense OR emmagonzalez OR schoolshooting OR parklandstudents OR parklandstudentsspeak OR gunviolence OR floridashooter OR wecallbs OR studentsstandup OR parklandstrong'}},
 	{name: 'groko',                         query: {q:'groko'}},
@@ -104,6 +112,40 @@ var queries = [
 	{name: 'mdl_schleswig_holstein',        query: {q:'CCCfuerStormarn,BHerdejuergen,WittgensteinAfD,Joerg_Nobis_AfD,JetteWaldinger,ClausSchaffer,aminajxx,TobiasLoose,DABornhoeft,regina_poersch,DGuenther_CDUSH,harms_lars,L_Petersdotter,TobiasKoch,StefanWeberSE,MarretGruen,anitaklahn,martinhabersaat,TobiasVonPein,tietze_andreas,Thomasrother,wolfgangbaasch,StephanHolowaty,AltJusoKai,c_vogt,Kumbartzky,LukasKilian,ekavonkalben,Ralf_Stegner,RasmusAndresen'.toWildFromTo()}},
 	{name: 'mdl_thueringen',                query: {q:'WMuhsal,Kristin_Flo,unsuwe44,RobertoKobelt,BPfefferlein,MoellerAfD,Frank_Warnecke,BjoernHoecke,HeikeTaubert,RalfKalich,Kati_Engel,Buehlandreas,ManfredScherer_,Scheringer_W,OMueller_Jena,dialehm,Keineausrede,GruenerDirk,MikeMohring,EMuehlbauer_SPD,MarionWalsmann,iia_i,St_Dittes,gudrunlukin,ChristianSchaft,Rainerkraeuter,henfling_m,BineB,Harzerkas,KarolaStange,Chr_Tischner,KatharinaKoenig,KKorschewsky,linkeanja,FKuschel,SusanneHennig,Astrid_RB,Katinka_Mitt,StefanGruhner,marx2009,mariovoigt'.toWildFromTo()}},
 	{name: 'mdr_sn',                        query: {q:'mdr_sn'.toWildFromTo()}},
+	{name: 'media_20min',                   query: {q:'20min.ch,@20min'.expandMedia()}},
+	{name: 'media_bild',                    query: {q:'bild.de,@BILD,@BILD_Auto,@BILD_Bayern,@BILD_Berlin,@BILD_Blaulicht,@BILD_Bochum,@BILD_Bremen,@BILD_Chemnitz,@BILD_Digital,@BILD_Dresden,@BILD_Frankfurt,@bild_freiburg,@bild_fuerth,@BILD_Hamburg,@BILD_Hannover,@bild_ingolstadt,@BILD_kaempft,@BILD_Koeln,@BILD_Lautern,@BILD_Leipzig,@BILD_Lifestyle,@BILD_Muenchen,@BILD_News,@BILD_Nuernberg,@BILD_Politik,@BILD_Promis,@BILD_Reporter,@BILD_Ruhrgebiet,@BILD_Saarland,@BILD_Sport,@BILD_Stuttgart,@BILD_TopNews,@BILD_Wolfsburg,@BILDamSONNTAG,@BILDDuesseldorf,@BILDhilft,@BILDthueringen'.expandMedia()}},
+	{name: 'media_blick_ch',                query: {q:'blick.ch,@Blickch'.expandMedia()}},
+	{name: 'media_br24',                    query: {q:'br24.de,@BR24'.expandMedia()}},
+	{name: 'media_derstandard',             query: {q:'derstandard.at,@derStandardat,@PolitikStandard'.expandMedia()}},
+	{name: 'media_dpa',                     query: {q:'@dpa'.expandMedia()}},
+	{name: 'media_epochtimes',              query: {q:'epochtimes.de,@EpochTimesDE'.expandMedia()}},
+	{name: 'media_faz',                     query: {q:'faz.net,@FAZ_Auto,@FAZ_BerufChance,@FAZ_Buch,@FAZ_Eil,@FAZ_Feuilleton,@FAZ_Finanzen,@FAZ_Hanz,@FAZ_Immobilien,@FAZ_Kunstmarkt,@FAZ_Literatur,@FAZ_NET,@FAZ_Politik,@faz_Redaktion,@FAZ_Reise,@FAZ_RheinMain,@FAZ_Sport,@FAZ_Technik,@FAZ_Vermischtes,@FAZ_Wirtschaft,@FAZ_Wissen,@FAZBoersenspiel,@faznet'.expandMedia()}},
+	{name: 'media_focus',                   query: {q:'focus.de,@focusauto,@focusdigital,@focusonline,@focuspolitik,@focusreise,@focuswissen'.expandMedia()}},
+	{name: 'media_freitag',                 query: {q:'freitag.de,@derfreitag'.expandMedia()}},
+	{name: 'media_huffingtonpost_de',       query: {q:'huffingtonpost.de,@HuffPostDE'.expandMedia()}},
+	{name: 'media_junge_freiheit',          query: {q:'jungefreiheit.de,@Junge_Freiheit'.expandMedia()}},
+	{name: 'media_jungewelt',               query: {q:'jungewelt.de,@jungewelt'.expandMedia()}},
+	{name: 'media_krone_at',                query: {q:'krone.at,@krone_at'.expandMedia()}},
+	{name: 'media_mdraktuell',              query: {q:'mdr.de,@MDRAktuell'.expandMedia()}},
+	{name: 'media_neues_deutschland',       query: {q:'neues-deutschland.de,@ndaktuell'.expandMedia()}},
+	{name: 'media_ntv',                     query: {q:'n-tv.de,@ntv_EIL,@ntvde,@ntvde_auto,@ntvde_Politik,@ntvde_politik,@ntvde_sport'.expandMedia()}},
+	{name: 'media_nzz',                     query: {q:'nzz.ch,@nzz,@NZZde,@NZZMeinung,@NZZSchweiz,@NZZWissen,@NZZStorytelling,@NZZzuerich,@NZZfeuilleton,@NZZAusland,@nzzwirtschaft,@NZZSport'.expandMedia()}},
+	{name: 'media_pi_news',                 query: {q:'pi-news.net,@p_i'.expandMedia()}},
+	{name: 'media_rbb',                     query: {q:'rbb-online.de,rbb24.de,@rbbabendschau'.expandMedia()}},
+	{name: 'media_rt_deutsch',              query: {q:'deutsch.rt.com,@RT_Deutsch'.expandMedia()}},
+	{name: 'media_spiegel',                 query: {q:'spiegel.de,@SPIEGEL_24,@SPIEGEL_alles,@SPIEGEL_Auto,@SPIEGEL_Data,@SPIEGEL_EIL,@SPIEGEL_English,@SPIEGEL_Gesund,@SPIEGEL_kolumne,@SPIEGEL_Kultur,@SPIEGEL_live,@SPIEGEL_Netz,@SPIEGEL_Pano,@SPIEGEL_Politik,@SPIEGEL_Reise,@SPIEGEL_Rezens,@SPIEGEL_SPAM,@SPIEGEL_Sport,@SPIEGEL_Top,@SPIEGEL_Video,@SPIEGEL_Wirtsch,@SPIEGEL_Wissen,@SPIEGELDAILY,@SPIEGELONLINE,@SPIEGELTV,@SPIEGELzwischen'.expandMedia()}},
+	{name: 'media_stern',                   query: {q:'stern.de,@sternde'.expandMedia()}},
+	{name: 'media_sueddeutsche',            query: {q:'sueddeutsche.de,@SZ,@SZ_WolfratsToel,@SZ_Starnberg,@SZ_Ebersberg,@SZ_Dachau,@SZ_Freising,@SZ_FFB,@SZ_Erding,@SZ_Bildung,@SZ_Medien,@SZ_Eilmeldungen,@SZ_Reise,@SZ_Gesundheit,@SZ_Wissen,@SZ_Digital,@SZ-Digital,@SZ_Auto,@SZ_Bayern,@SZ_Muenchen,@SZ_Karriere,@SZ_Gesellschaft,@SZ_Sport,@SZ_Kultur,@SZ_Geld,@SZ_Wirtschaft,@SZ_Politik,@szmagazin,@SZ_TopNews'.expandMedia()}},
+	{name: 'media_swraktuell',              query: {q:'SWRAktuell.de,@SWRAktuell'.expandMedia()}},
+	{name: 'media_tagesschau',              query: {q:'tagesschau.de,@tagesschau'.expandMedia()}},
+	{name: 'media_tagesspiegel',            query: {q:'tagesspiegel.de,@Tagesspiegel,@TspBerlin,@TspCausa,@TspLeute,@TSPSonntag,@tspsport'.expandMedia()}},
+	{name: 'media_taz',                     query: {q:'taz.de,@tazgezwitscher,@taz_news'.expandMedia()}},
+	{name: 'media_tichyseinblick',          query: {q:'tichyseinblick.de,@TichysEinblick'.expandMedia()}},
+	{name: 'media_waz',                     query: {q:'waz.de,@WAZ_Redaktion'.expandMedia()}},
+	{name: 'media_welt',                    query: {q:'welt.de,@WELT,@WELT_EIL,@WELT_Wissen,@WELT_Webwelt,@WELT_Kultur,@WELT_Sport,@WELT_Medien,@WELT_Panorama,@WELT_Geld,@WELT_Economy,@WELT_Politik'.expandMedia()}},
+	{name: 'media_zdf',                     query: {q:'zdf.de,@ZDF'.expandMedia()}},
+	{name: 'media_zdf_heute',               query: {q:'heute.de,@heutejournal,@heuteplus'.expandMedia()}},
+	{name: 'media_zeit',                    query: {q:'zeit.de,@zeitonline,@zeitonline_dig,@zeitonline_ent,@zeitonline_fam,@zeitonline_kul,@zeitonline_live,@zeitonline_pol,@zeitonline_vid,@zeitonline_wir,@zeitonline_wis,@zeitonlinesport'.expandMedia()}},
 	{name: 'metoo',                         query: {q:'#metoo'}},
 	{name: 'ministerien',                   query: {q:'sksachsentweets,Arne_Wiechmann,SMIsachsen,ChriSchni,StRegSprecherin,Boschemann,julitalk,svefri,amtzweinull,HaufeStephan,jettebo,Opp_Sprecher,ZimmermannSina,al_krampe,Medienheld,bauerzwitschert,hard_er,MSchroeren,pampel_muse,evamariamarks,RouvenKlein,ninasuza,andreasblock,foeniculum,zumtesthier'.toWildFromTo()}},
 	{name: 'netzdg',                        query: {q:'netzdg'}},
@@ -126,6 +168,8 @@ var queries = [
 	{name: 'ueberwachung',                  query: {q:'überwachungspaket OR staatstrojaner OR bundestrojaner OR ueberwachungspaket OR zib2 OR überwachung OR privatsphäre OR datenschutz OR sicherheit OR vds OR sicherheitspaket'}},
 //	{name: '1mai',                          query: {q:'c0105 OR ef0105 OR e0105 OR zwickau3004 OR b0105 OR fue0105 OR 1Mai2018 OR TagderArbeit OR 1Mai'}},
 //	{name: 'berlin',                        query: {q:'', geocode:'52.5,13.4,50km'}},
+//	{name: 'cuentalo',                      query: {q:'cuentalo'}},
+//	{name: 'esc2018',                       query: {q:'#ESC2018 OR #ESC18 OR #ESC2017 OR #eurovision'}},
 //	{name: 'muenster',                      query: {q:'muenster OR münster OR anschlag'}},
 //	{name: 'rp18',                          query: {q:'rp18 OR republica OR "re-publica" OR "re:publica" OR from:republica OR to:republica'}},
 //	{name: 'russianelection',               query: {q:'#ИзбирательныйУчасток OR #ПУТИН OR #Выборы2018 OR #ПУТИН2018 OR #Саки OR #городСаки OR #РеспубликаКрым OR #КрымНаш OR #МыСтроимМосты OR #КрымРоссияНавсегда OR #КрымРоссия OR #ПутинВВ OR #ТвойВыбор2018 OR #2018ТвойВыбор OR #Выбор2018 OR #ПутинВладимирВладимирович OR #ЯзаПутина OR #ЯзаПутинаВВ'}},
