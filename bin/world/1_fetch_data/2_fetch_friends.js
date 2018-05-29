@@ -25,6 +25,9 @@ miss.pipe(
 			activity(
 				user_id,
 				(err, result) => {
+					if ((!result) || (result === '0')) return cb();
+					if (parseInt(result, 10) < 1e3) return cb();
+
 					if (parseInt(result, 10) >= config.activityMinimum) me.push(user_id);
 
 					activeFriends(
