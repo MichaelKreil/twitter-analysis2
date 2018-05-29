@@ -1,7 +1,9 @@
 "use strict"
 
 const activeFriends = require('../lib/cache_twitter_active_friends.js');
+const activity = require('../lib/cache_twitter_activity.js');
 const colors = require('colors');
+const config = require('../config.js');
 const miss = require('mississippi');
 const Reader = require('../lib/lzma_reader.js');
 const resolve = require('path').resolve;
@@ -19,13 +21,19 @@ miss.pipe(
 			user_id = user_id.toString('utf8');
 
 			var me = this;
-			me.push(user_id);
 
-			activeFriends(
+			activity(
 				user_id,
-				(err, ids) => {
-					ids.split(',').forEach(id => me.push(id));
-					cb();
+				(err, result) => {
+					if (parseInt(result, 10) >= config.activityMinimum) me.push(user_id);
+
+					activeFriends(
+						user_id,
+						(err, ids) => {
+							ids.split(',').forEach(id => me.push(id));
+							cb();
+						}
+					)
 				}
 			)
 		}
