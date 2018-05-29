@@ -11,7 +11,7 @@ module.exports = new CacheResults(
 	(userId, cbActiveFriends) => {
 		friends(userId, (err, friendsIds) => {
 			async.filterLimit(
-				friendsIds.split(','),
+				friendsIds.split(',').filter(id => id.length > 0),
 				3000,
 				(friendId, cbFilter) => activity(
 					friendId,

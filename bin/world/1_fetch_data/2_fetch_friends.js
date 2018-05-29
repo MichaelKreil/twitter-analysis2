@@ -33,7 +33,7 @@ miss.pipe(
 					activeFriends(
 						user_id,
 						(err, ids) => {
-							ids.split(',').forEach(id => me.push(id));
+							ids.split(',').filter(id => id.length > 0).forEach(id => me.push(id));
 							cb();
 						}
 					)
