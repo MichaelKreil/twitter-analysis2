@@ -21,7 +21,7 @@ function Writer(filename) {
 		check: lzma.CHECK_NONE,
 		preset: 9/* | lzma.PRESET_EXTREME*/,
 		synchronous: false,
-		threads: 1,
+		//threads: 1,
 	});
 
 	var tempFilename = (new Date()).toISOString().replace(/\..*/,'').replace(/[^0-9]/g,'-')+'_'+Math.random().toFixed(6).substr(2)+'.tmp.xz';
