@@ -7,18 +7,23 @@ const maxActive = 16;
 
 module.exports = new (function () {
 	var active = 0;
-
 	var buffer = [];
+	var timeout;
 
 	return new CacheResults(
 		'activity',
 		(id, cbFriends) => {
 			buffer.push([id, cbFriends]);
-			checkBuffer();
+			if (!timeout) timeout = setTimeout(checkBuffer, 10);
 		}
 	)
 
 	function checkBuffer() {
+		if (timeout) {
+			clearTimeout(timeout);
+			timeout = false;
+		}
+
 		if (buffer.length <= 0) return;
 		if (active >= maxActive) return;
 
@@ -54,8 +59,10 @@ module.exports = new (function () {
 				})
 
 				active--;
-				checkBuffer();
+				setImmediate(checkBuffer);
 			}
 		)
+
+		setImmediate(checkBuffer);
 	}
 })
