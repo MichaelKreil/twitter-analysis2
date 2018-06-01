@@ -1,3 +1,3 @@
 module.exports = {
-	activityMinimum: 1e5,
+	activityMinimum: 3e4,
 }
