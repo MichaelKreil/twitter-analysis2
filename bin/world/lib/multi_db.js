@@ -25,7 +25,7 @@ function Multi_DB(path, opts) {
 		if (!dbs[dbIndex]) {
 			dbs[dbIndex] = new Levelup(
 				Path.resolve(path, dbIndex.toFixed(0)),
-				{ keyEncoding:'ascii', valueEncoding: 'utf8', cacheSize:1024*1024*1024*4 }
+				{ keyEncoding:'ascii', valueEncoding: 'utf8', cacheSize:1024*1024*4000 }
 			);
 			dbs[dbIndex].index = dbIndex;
 		}
