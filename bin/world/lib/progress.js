@@ -8,7 +8,7 @@ function Progress(max) {
 	var position = 0;
 	//var blocks = [8193,9617,9618,9619,9608].map(code => String.fromCharCode(code));
 	//var blocks = [8193,9615,9614,9613,9612,9611,9610,9609,9608].map(code => String.fromCharCode(code));
-	var blocks = '○●'.split('');
+	var blocks = '-#'.split('');
 
 	var startTime = Date.now()/1000, lastTime = startTime, lastPos = 0;
 	var dirty = false;
@@ -47,7 +47,7 @@ function Progress(max) {
 		].join(':')
 		
 		process.stdout.clearLine();
-		process.stdout.write('\r▐'+bar.join('')+'▌   '+timeLeft);
+		process.stdout.write('\r['+bar.join('')+']   '+timeLeft);
 	}
 
 	var interval = setInterval(() => {

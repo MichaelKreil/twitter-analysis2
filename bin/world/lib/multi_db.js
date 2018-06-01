@@ -23,7 +23,10 @@ function Multi_DB(path, opts) {
 	var charLookup = {};
 	digitLookup.forEach((dbIndex, digit) => {
 		if (!dbs[dbIndex]) {
-			dbs[dbIndex] = new Levelup(Path.resolve(path, dbIndex.toFixed(0)), { keyEncoding:'ascii', valueEncoding: 'utf8' });
+			dbs[dbIndex] = new Levelup(
+				Path.resolve(path, dbIndex.toFixed(0)),
+				{ keyEncoding:'ascii', valueEncoding: 'utf8', cacheSize:1024*1024*1024*8 }
+			);
 			dbs[dbIndex].index = dbIndex;
 		}
 		charLookup[digit.toFixed(0).charCodeAt(0)] = dbs[dbIndex];
