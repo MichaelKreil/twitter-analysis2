@@ -17,7 +17,7 @@ function Multi_DB(path, opts) {
 
 	var dbs = [];
 
-	var digitLookup = [0,0,1,1,2,2,3,3,4,4];
+	var digitLookup = [0,1,2,3,4,5,6,7,8,9];
 	if (singleDatabase) digitLookup = [0,0,0,0,0,0,0,0,0,0];
 
 	var charLookup = {};
@@ -25,7 +25,7 @@ function Multi_DB(path, opts) {
 		if (!dbs[dbIndex]) {
 			dbs[dbIndex] = new Levelup(
 				Path.resolve(path, dbIndex.toFixed(0)),
-				{ keyEncoding:'ascii', valueEncoding: 'utf8', cacheSize:1024*1024*4000 }
+				{ keyEncoding:'ascii', valueEncoding: 'utf8', cacheSize:1024*1024*1024*3 }
 			);
 			dbs[dbIndex].index = dbIndex;
 		}

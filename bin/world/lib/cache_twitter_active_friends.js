@@ -7,7 +7,7 @@ const config = require('../config.js');
 const friends = require('../lib/cache_twitter_friends.js');
 
 module.exports = new CacheResults(
-	'active_friends',
+	'active_friends_'+config.activityMinimumName,
 	(userId, cbActiveFriends) => {
 		friends(userId, (err, friendsIds) => {
 			async.filterLimit(

@@ -10,8 +10,8 @@ const resolve = require('path').resolve;
 const sortUniqId = require('../lib/sort_uniq_id.js');
 const Writer = require('../lib/lzma_writer.js');
 
-var fileIn  = resolve(__dirname, '../../../data/world/1_ids/ids_selected_3e4_0.tsv.xz');
-var fileOut = resolve(__dirname, '../../../data/world/1_ids/ids_selected_3e4_1.tsv.xz');
+var fileIn  = resolve(__dirname, '../../../data/world/1_ids/ids_selected_'+config.activityMinimumName+'_1.tsv.xz');
+var fileOut = resolve(__dirname, '../../../data/world/1_ids/ids_selected_'+config.activityMinimumName+'_2.tsv.xz');
 
 miss.pipe(
 	new Reader(fileIn),

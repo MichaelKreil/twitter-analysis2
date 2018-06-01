@@ -12,9 +12,9 @@ const Writer = require('../lib/lzma_writer.js');
 
 async.eachSeries(
 	[
-		'active_friends',
 		'activity',
 		'friends',
+		'active_friends_45',
 	],
 	(name, cbDB) => {
 		var db = new MultiDB(resolve(__dirname, '../../../data/world/dbs/'+name));
