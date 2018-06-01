@@ -41,7 +41,7 @@ miss.pipe(
 			)
 		}
 	),
-	miss.through((data, enc, cb) => cb()),
-	//sortUniqId,
-	//new Writer(fileOut)
+	//miss.through((data, enc, cb) => cb()),
+	sortUniqId,
+	new Writer(fileOut)
 )

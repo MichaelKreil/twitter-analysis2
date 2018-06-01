@@ -1,0 +1,1 @@
+rsync -avhtWe ssh --dry-run --exclude='/.git/' --exclude='/cache/' --exclude='/node_modules/' --exclude='/tmp/' --exclude='*.tmp.xz' --exclude='*.jsonstream.xz' --exclude='/data/world/dbs/*/' infographicsgroup@hypatia.local:/Users/infographicsgroup/dev/twitter-analysis2/ /Users/michaelkreil/Documents/Projekte/Tagesspiegel/twitter-scraper/twitter-analysis

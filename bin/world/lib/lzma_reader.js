@@ -52,7 +52,8 @@ module.exports = function (filename) {
 		}
 	)
 
-	return miss.pipeline(fileStream, decompressor, lineSplitter, lineCounter);
+	var stream = miss.pipeline(fileStream, decompressor, lineSplitter, lineCounter);
+	return stream;
 
 	function getFilesize(cb) {
 		fs.open(filename, 'r', (err, fd) => {
