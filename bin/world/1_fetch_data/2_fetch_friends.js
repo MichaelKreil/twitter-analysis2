@@ -26,9 +26,11 @@ miss.pipe(
 				user_id,
 				(err, result) => {
 					if ((!result) || (result === '0')) return cb();
-					if (parseInt(result, 10) < 1e3) return cb();
 
-					if (parseInt(result, 10) >= config.activityMinimum) me.push(user_id);
+					if (typeof result === 'string') result = parseInt(result, 10);
+					if (result < 1e3) return cb();
+
+					if (result >= config.activityMinimum) me.push(user_id);
 
 					activeFriends(
 						user_id,
@@ -42,6 +44,7 @@ miss.pipe(
 		}
 	),
 	//miss.through((data, enc, cb) => cb()),
+	//miss.through.obj((data, enc, cb) => {console.log(data);cb()}),
 	sortUniqId(),
 	new Writer(fileOut)
 )

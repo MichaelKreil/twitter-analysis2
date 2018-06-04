@@ -14,7 +14,7 @@ async.eachSeries(
 	[
 		'activity',
 		'friends',
-		'active_friends_45',
+		//'active_friends_45',
 	],
 	(name, cbDB) => {
 		var db = new MultiDB(resolve(__dirname, '../../../data/world/dbs/'+name));
@@ -22,7 +22,7 @@ async.eachSeries(
 		
 		console.log(colors.green.bold('Exporting "'+name+'"'));
 		var progress = new Progress();
-		var lastId = 0;
+		var lastId = '0';
 		var interval = setInterval(() => {
 			var percent = getPercent(lastId);
 			if (percent) progress.set(percent);
