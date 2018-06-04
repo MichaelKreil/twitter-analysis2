@@ -33,6 +33,8 @@ async.eachSeries(
 				db.getReadStream(),
 				miss.through.obj(
 					function (entry, enc, cb) {
+						if (!entry.key) return cb();
+						
 						lastId = entry.key;
 						cb(null, entry.key+'\t'+JSON.stringify(entry.value));
 					}
