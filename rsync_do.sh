@@ -1,0 +1,1 @@
+rsync -avhWe ssh --exclude-from='exclude_digital_ocean.txt' /Users/michaelkreil/Documents/Projekte/Tagesspiegel/twitter-scraper/twitter-analysis/config root@46.101.140.20:/Users/infographicsgroup/dev/twitter-analysis2/
