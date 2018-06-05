@@ -1,5 +1,5 @@
 var config = {
-	activityMinimumName: '45',
+	activityMinimumName: '40',
 }
 
 config.activityMinimum = Math.pow(10, parseFloat(config.activityMinimumName)/10),
