@@ -27,8 +27,6 @@ function Multi_DB(path, opts) {
 
 	var dbs = [];
 
-	var digitLookup = [0,1,2,3,4,5,6,7,8,9];
-
 	var charLookup = {};
 	digitLookup.forEach((dbIndex, digit) => {
 		if (!dbs[dbIndex]) {
