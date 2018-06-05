@@ -5,8 +5,8 @@ const resolve = require('path').resolve;
 
 module.exports = Cache;
 
-function Cache(name, fallback) {
-	var db = new MultiDB(resolve(__dirname, '../../../data/world/dbs/'+name));
+function Cache(name, fallback, opts) {
+	var db = new MultiDB(resolve(__dirname, '../../../data/world/dbs/'+name), opts);
 
 	return function request(id, cbRequest) {
 		db.get(id, (err, dbResult) => {

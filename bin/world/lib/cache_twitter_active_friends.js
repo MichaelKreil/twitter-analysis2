@@ -20,5 +20,6 @@ module.exports = new CacheResults(
 				(err, activeIds) => cbActiveFriends(err, activeIds.join(','))
 			);
 		})
-	}
+	},
+	{dbCount: 10}
 )

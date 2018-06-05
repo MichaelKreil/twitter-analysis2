@@ -7,25 +7,34 @@ const Levelup = require('level');
 const Path = require('path');
 const MultiStream = require('multistream')
 
-const singleDatabase = true;
-
 module.exports = Multi_DB
 
 function Multi_DB(path, opts) {
 	if (!opts) opts = {};
+	opts.dbCount = opts.dbCount || 1;
+	opts.cacheSize = opts.cacheSize || 8; // in MB
+
+	var digitLookup, singleDatabase = false;
+	switch (opts.dbCount) {
+		case  1: digitLookup = [0,0,0,0,0,0,0,0,0,0]; singleDatabase = true; break;
+		case  2: digitLookup = [0,0,0,0,0,1,1,1,1,1]; break;
+		case  5: digitLookup = [0,0,1,1,2,2,3,3,4,4]; break;
+		case 10: digitLookup = [0,1,2,3,4,5,6,7,8,9]; break;
+		default: throw Error(opts.dbCount);
+	}
+
 	ensureDir(path);
 
 	var dbs = [];
 
 	var digitLookup = [0,1,2,3,4,5,6,7,8,9];
-	if (singleDatabase) digitLookup = [0,0,0,0,0,0,0,0,0,0];
 
 	var charLookup = {};
 	digitLookup.forEach((dbIndex, digit) => {
 		if (!dbs[dbIndex]) {
 			dbs[dbIndex] = new Levelup(
 				Path.resolve(path, dbIndex.toFixed(0)),
-				{ keyEncoding:'ascii', valueEncoding: 'utf8', cacheSize:1024*1024*1024*3 }
+				{ keyEncoding:'ascii', valueEncoding: 'utf8', cacheSize:1024*1024*opts.cacheSize }
 			);
 			dbs[dbIndex].index = dbIndex;
 		}

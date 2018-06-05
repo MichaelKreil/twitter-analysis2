@@ -15,7 +15,8 @@ module.exports = new (function () {
 		(id, cbFriends) => {
 			buffer.push([id, cbFriends]);
 			if (!timeout) timeout = setTimeout(checkBuffer, 10);
-		}
+		},
+		{dbCount: 10, cacheSize: 2048}
 	)
 
 	function checkBuffer() {
