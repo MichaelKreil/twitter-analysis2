@@ -1,7 +1,7 @@
 "use strict"
 
 const CacheResults = require('../lib/cache_results.js');
-const scraper = require('../../../lib/scraper.js')('world2');
+const scraper = require('../../../lib/scraper.js')();
 
 module.exports = new CacheResults(
 	'friends',
