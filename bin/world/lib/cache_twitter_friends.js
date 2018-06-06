@@ -11,6 +11,7 @@ module.exports = new CacheResults(
 			{user_id:userId, stringify_ids:true, count:5000},
 			result => {
 				result = (result && result.ids) || [];
+				result.sort();
 				cbFriends(null, result.join(','));
 			}
 		)
