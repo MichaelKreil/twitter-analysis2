@@ -140,6 +140,7 @@ var queries = [
 	{name: 'media_stern',                   query: {q:'stern.de,@sternde'.expandMedia()}},
 	{name: 'media_sueddeutsche',            query: {q:'sueddeutsche.de,@SZ,@SZ_WolfratsToel,@SZ_Starnberg,@SZ_Ebersberg,@SZ_Dachau,@SZ_Freising,@SZ_FFB,@SZ_Erding,@SZ_Bildung,@SZ_Medien,@SZ_Eilmeldungen,@SZ_Reise,@SZ_Gesundheit,@SZ_Wissen,@SZ_Digital,@SZ-Digital,@SZ_Auto,@SZ_Bayern,@SZ_Muenchen,@SZ_Karriere,@SZ_Gesellschaft,@SZ_Sport,@SZ_Kultur,@SZ_Geld,@SZ_Wirtschaft,@SZ_Politik,@szmagazin,@SZ_TopNews'.expandMedia()}},
 	{name: 'media_swraktuell',              query: {q:'SWRAktuell.de,@SWRAktuell'.expandMedia()}},
+	{name: 'media_t_online',                query: {q:'www.t-online.de,@tonline_news'.expandMedia()}},
 	{name: 'media_tagesschau',              query: {q:'tagesschau.de,@tagesschau'.expandMedia()}},
 	{name: 'media_tagesspiegel',            query: {q:'tagesspiegel.de,@Tagesspiegel,@TspBerlin,@TspCausa,@TspLeute,@TSPSonntag,@tspsport'.expandMedia()}},
 	{name: 'media_taz',                     query: {q:'taz.de,@tazgezwitscher,@taz_news'.expandMedia()}},
