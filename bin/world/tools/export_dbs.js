@@ -13,11 +13,11 @@ const Writer = require('../lib/lzma_writer.js');
 async.eachSeries(
 	[
 		'activity',
+		//'active_friends_40',
 		'friends',
-		//'active_friends_45',
 	],
 	(name, cbDB) => {
-		var db = new MultiDB(resolve(__dirname, '../../../data/world/dbs/'+name));
+		var db = new MultiDB(resolve(__dirname, '../../../data/world/dbs/'+name), {dbCount: 10});
 		var fileOut = resolve(__dirname, '../../../data/world/dbs/'+name+'_new.ndjson.xz');
 		
 		console.log(colors.green.bold('Exporting "'+name+'"'));
