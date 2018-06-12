@@ -36,5 +36,6 @@ miss.pipe(
 			})
 		}
 	),
+	miss.checkAscendingIds(),
 	miss.writeGzipLines(fileDbOut),
 )

@@ -157,4 +157,15 @@ miss.mergeId = function merge(stream1, stream2) {
 	}
 }
 
+miss.checkAscendingIds = function checkAscendingIds() {
+	var lastId = '0';
+	return miss.through.obj((line, enc, cb) => {
+		var i = line.indexOf('\t');
+		var id = (i > 0) ? line.slice(0,i) : line;
+		if (id <= lastId) throw Error(id+' <= '+lastId);
+		lastId = id;
+		cb(null, line);
+	})
+}
+
 
