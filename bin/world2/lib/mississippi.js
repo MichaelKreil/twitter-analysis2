@@ -120,25 +120,37 @@ miss.mergeId = function merge(stream1, stream2) {
 			if (!queue1.isFinished && !queue1.isReadable) return queue1.once('changed', fetch);
 			if (!queue2.isFinished && !queue2.isReadable) return queue2.once('changed', fetch);
 
+			//console.log(queue1.id, queue1.line, queue2.id, queue2.line);
+
 			if (queue2.isFinished || (queue1.id < queue2.id)) {
-				finish([queue1.id, queue1.line, null, null]);
-				queue1.shift();
-				return;
+				return finish(
+					[queue1.id, queue1.line, null, null],
+					() => {
+						queue1.shift();
+					}
+				)
 			}
 			if (queue1.isFinished || (queue1.id > queue2.id)) {
-				finish([null, null, queue2.id, queue2.line]);
-				queue2.shift();
-				return;
+				return finish(
+					[null, null, queue2.id, queue2.line],
+					() => {
+						queue2.shift();
+					}
+				)
 			}
 			if (queue1.id === queue2.id) {
-				finish([queue1.id, queue1.line, queue2.id, queue2.line]);
-				queue1.shift();
-				queue2.shift();
-				return;
+				return finish(
+					[queue1.id, queue1.line, queue2.id, queue2.line],
+					() => {
+						queue1.shift();
+						queue2.shift();
+					}
+				)
 			}
 			throw Error();
 
-			function finish(data) {
+			function finish(data, cb) {
+				cb();
 				next(null, data);
 			}
 		}
