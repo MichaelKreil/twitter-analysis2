@@ -11,26 +11,21 @@ module.exports = miss;
 
 
 miss.readGzipLines = function readGzipLines(filename) {
-	var buffer = '';
+	var buffer = [], bufferSize = 0;
 
 	return miss.pipe(
 		fs.createReadStream(filename),
 		zlib.Gunzip(),
 		miss.through.obj(
 			function (chunk, enc, cb) {
-				buffer += chunk.toString('utf8');
-
-				var lines = buffer.split('\n');
-				buffer = lines.pop();
-
-				lines.forEach(line => {
-					if (line) this.push(line);
-				})
-
+				buffer.push(chunk);
+				bufferSize += chunk.length;
+				if (bufferSize > 1024*1024) flush(this);
 				cb();
 			},
+			
 			function (cb) {
-				if (buffer) this.push(buffer);
+				flush(this);
 				cb();
 			}
 		),
@@ -38,6 +33,18 @@ miss.readGzipLines = function readGzipLines(filename) {
 			if (err) throw Error(err);
 		}
 	)
+
+	function flush(me) {
+		buffer = Buffer.concat(buffer);
+		var i0 = 0, i1;
+		while ((i1 = buffer.indexOf(10, i0)) >= 0) {
+			me.push(buffer.slice(i0, i1).toString('utf8'));
+			i0 = i1+1;
+		}
+		buffer = buffer.slice(i0);
+		bufferSize = buffer.length;
+		buffer = [buffer];
+	}
 }
 
 
