@@ -4,7 +4,8 @@ const config = require('../config.js');
 const miss = require('../lib/mississippi.js');
 const resolve = require('path').resolve;
 
-var fileId  = resolve(__dirname, '../../../data/world/1_ids/ids_selected_'+config.activityMinimumName+'_1.tsv.gz');
+var fileId  = resolve(__dirname, '../../../data/world/dbs/friends_2.tsv.gz');
+//var fileId  = resolve(__dirname, '../../../data/world/1_ids/ids_selected_40_2.tsv.gz');
 
 var lastId = '';
 miss.pipe(
