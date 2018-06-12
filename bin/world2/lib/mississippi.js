@@ -3,7 +3,7 @@
 const colors = require('colors');
 const fs = require('fs');
 const miss = require('mississippi');
-const Stack = require('./stack.js');
+const Queue = require('./queue.js');
 const zlib = require('zlib');
 
 module.exports = miss;
@@ -51,7 +51,7 @@ miss.writeGzipLines = function writeGzipLines(filename) {
 		}
 	)
 
-	var compressorStream = zlib.Gzip({level:1}),
+	var compressorStream = zlib.Gzip({level:1});
 
 	var tempFilename = (new Date()).toISOString().replace(/\..*/,'').replace(/[^0-9]/g,'-')+'_'+Math.random().toFixed(6).substr(2)+'.tmp.gz';
 	var fileStream = fs.createWriteStream(tempFilename);
@@ -74,29 +74,38 @@ miss.sink = function sink() {
 
 
 
-miss.merge = function merge(stream1, stream2, cbMerge) {
-	var stack1 = new Stack();
-	var stack2 = new Stack();
+miss.mergeId = function merge(stream1, stream2) {
+	var queue1 = new Queue();
+	var queue2 = new Queue();
+
+	//queue1.on('changed', () => console.log('queue1: '+[queue1.isReadable, queue1.isWritable, queue1.isFinished].join(', ')));
+	//queue2.on('changed', () => console.log('queue2: '+[queue2.isReadable, queue2.isWritable, queue2.isFinished].join(', ')));
 
 	miss.each(
 		stream1,
 		function entry(data, cb) {
-			if (stack1.push(data.toString('utf8'))) cb();
-			else stack1.once('writeable', cb);
+			if (queue1.push(data.toString('utf8'))) {
+				cb();
+			} else {
+				queue1.once('writable', () => cb());
+			}
 		},
 		function flush() {
-			stack1.end();
+			queue1.end();
 		}
 	)
 
 	miss.each(
 		stream2,
 		function entry(data, cb) {
-			if (stack2.push(data.toString('utf8'))) cb();
-			else stack2.once('writeable', cb);
+			if (queue2.push(data.toString('utf8'))) {
+				cb();
+			} else {
+				queue2.once('writable', () => cb());
+			}
 		},
 		function flush() {
-			stack2.end();
+			queue2.end();
 		}
 	)
 
@@ -106,28 +115,32 @@ miss.merge = function merge(stream1, stream2, cbMerge) {
 		fetch();
 
 		function fetch() {
-			if (stack1.isFinished && stack2.isFinished) return next(null, null);
+			if (queue1.isFinished && queue2.isFinished) return next(null, null);
 
-			if (!stack1.isFinished && !stack1.isReadable) return stack1.once('changed', fetch);
-			if (!stack2.isFinished && !stack2.isReadable) return stack2.once('changed', fetch);
+			if (!queue1.isFinished && !queue1.isReadable) return queue1.once('changed', fetch);
+			if (!queue2.isFinished && !queue2.isReadable) return queue2.once('changed', fetch);
 
-			if (stack2.isFinished || (stack1.id < stack2.id)) {
-				cbMerge(stack1.id, stack1.line, null, null, next);
-				stack1.shift();
+			if (queue2.isFinished || (queue1.id < queue2.id)) {
+				finish([queue1.id, queue1.line, null, null]);
+				queue1.shift();
 				return;
 			}
-			if (stack1.isFinished || (stack1.id > stack2.id)) {
-				cbMerge(null, null, stack2.id, stack2.line, next);
-				stack2.shift();
+			if (queue1.isFinished || (queue1.id > queue2.id)) {
+				finish([null, null, queue2.id, queue2.line]);
+				queue2.shift();
 				return;
 			}
-			if (stack1.id === stack2.id) {
-				cbMerge(stack1.id, stack1.line, stack2.id, stack2.line, next);
-				stack1.shift();
-				stack2.shift();
+			if (queue1.id === queue2.id) {
+				finish([queue1.id, queue1.line, queue2.id, queue2.line]);
+				queue1.shift();
+				queue2.shift();
 				return;
 			}
 			throw Error();
+
+			function finish(data) {
+				next(null, data);
+			}
 		}
 	}
 }

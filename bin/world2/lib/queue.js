@@ -2,7 +2,7 @@
 
 const EventEmitter = require('events');
 
-class Stack extends EventEmitter {
+class Queue extends EventEmitter {
 	constructor() {
 		super();
 		this.isEnding = false;
@@ -12,7 +12,7 @@ class Stack extends EventEmitter {
 		this.id = false;
 		this.line = false;
 		this.maxEntries = 100;
-		this.stack = [];
+		this.queue = [];
 	}
 	/*
 	const me = {
@@ -34,9 +34,9 @@ class Stack extends EventEmitter {
 		if (this.isEnding) throw Error();
 		if (this.isFinished) throw Error();
 
-		this.stack.push(line);
+		this.queue.push(line);
 
-		if (this.isWritable && (this.stack.length >= this.maxEntries)) {
+		if (this.isWritable && (this.queue.length >= this.maxEntries)) {
 			this.isWritable = false;
 		}
 
@@ -44,7 +44,6 @@ class Stack extends EventEmitter {
 			this._update();
 			this.isReadable = true;
 			this.emit('changed');
-			this.emit('readable');
 		}
 
 		return this.isWritable;
@@ -53,24 +52,18 @@ class Stack extends EventEmitter {
 	shift() {
 		if (this.isFinished) throw Error();
 
-		this.stack.shift();
+		this.queue.shift();
 
-		if (this.stack.length > 0) this._update();
+		this._update();
 
-		if (this.isReadable && (this.stack.length === 0)) {
+		if (this.isReadable && (this.queue.length === 0)) {
 			this.isReadable = false;
 			if (this.isEnding) this._close();
 		}
 
-		if ((!this.isWritable) && (this.stack.length < this.maxEntries)) {
+		if ((!this.isWritable) && (this.queue.length < this.maxEntries)) {
 			this.isWritable = true;
 			this.emit('writable');
-		}
-
-		if (this.stack.length === 0) {
-			this.isFinished = true;
-			this.emit('changed');
-			this.emit('finished');
 		}
 	}
 
@@ -79,7 +72,7 @@ class Stack extends EventEmitter {
 		if (this.isFinished) throw Error();
 
 		this.isEnding = true;
-		if (this.stack.length === 0) this._close();
+		if (this.queue.length === 0) this._close();
 	}
 
 	_close() {
@@ -87,14 +80,18 @@ class Stack extends EventEmitter {
 		
 		this.isFinished = true;
 		this.emit('changed');
-		this.emit('finished');
 	}
 
 	_update() {
-		this.line = this.stack[0];
-		var i = this.line.indexOf('\t');
-		this.id = (i >= 0) ? this.line.slice(0, i) : this.line;
+		if (this.queue.length === 0) {
+			this.line = false;
+			this.id = false;
+		} else {
+			this.line = this.queue[0];
+			var i = this.line.indexOf('\t');
+			this.id = (i >= 0) ? this.line.slice(0, i) : this.line;
+		}
 	}
 }
 
-module.exports = Stack;
+module.exports = Queue;
