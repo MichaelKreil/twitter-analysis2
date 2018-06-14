@@ -33,11 +33,10 @@ miss.pipe(
 				console.log(prefix);
 				lastPrefix = prefix;
 			}
-			if (prefix >= '200') return cb(null, null);
+			
+			//if (prefix >= '500') return cb(null, null);
 
 			if (data[2] !== null) return cb(null, data[3]);
-
-			console.log('fetch '+id);
 			
 			fetchFriends(id, friends => {
 				friends.sort();
