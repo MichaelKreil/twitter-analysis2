@@ -8,7 +8,7 @@ const zlib = require('zlib');
 
 module.exports = miss;
 
-
+miss.multistream = require('multistream');
 
 miss.readGzipLines = function readGzipLines(filename) {
 	var buffer = [], bufferSize = 0;
@@ -172,6 +172,14 @@ miss.checkAscendingIds = function checkAscendingIds() {
 		if (id <= lastId) throw Error(id+' <= '+lastId);
 		lastId = id;
 		cb(null, line);
+	})
+}
+
+miss.fromArray = function fromArray(array) {
+	array = array.slice();
+	var i = 0, n = array.length;
+	return miss.from.obj(function (size, next) {
+		next(null, (i < n) ? array[i++] : null);
 	})
 }
 
