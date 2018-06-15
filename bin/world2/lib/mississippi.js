@@ -10,8 +10,18 @@ module.exports = miss;
 
 miss.multistream = require('multistream');
 
-miss.readGzipLines = function readGzipLines(filename) {
+miss.readGzipLines = function readGzipLines(filename, opts) {
+	if (!opts) opts = {};
+
 	var buffer = [], bufferSize = 0;
+
+	if (!fs.existsSync(filename)) {
+		if (opts.optional) {
+			return miss.empty();
+		} else {
+			throw Error('File does not exist "'+filename+'"');
+		}
+	}
 
 	return miss.pipe(
 		fs.createReadStream(filename),
@@ -77,6 +87,10 @@ miss.writeGzipLines = function writeGzipLines(filename) {
 
 miss.sink = function sink() {
 	return miss.to((data, enc, cb) => cb())
+}
+
+miss.empty = function empty() {
+	return miss.from((count, next) => next(null, null))
 }
 
 

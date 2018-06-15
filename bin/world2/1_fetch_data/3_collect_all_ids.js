@@ -16,17 +16,14 @@ async.eachSeries(
 	[
 		'dbs/all_accounts_'+config.step+'.tsv.gz',
 		'1_ids/ids_selected_'+config.activityMinimumName+'_'+config.step+'.tsv.gz',
+		'dbs/friends_'+config.step+'.tsv.gz',
 		'dbs/friends_'+config.stepNext+'.tsv.gz',
 	],
 	(filename, cbFile) => {
 		console.log('read "'+filename+'"');
-		if (!fs.existsSync(resolve(dir, filename))) {
-			console.log('doesn\'t exist -> ignore');
-			return cbFile();
-		}
 
 		miss.each(
-			miss.readGzipLines(resolve(dir, filename)),
+			miss.readGzipLines(resolve(dir, filename), {optional:true}),
 			(data, cbLine) => {
 				prefix = data.slice(0,3);
 				if (lastPrefix !== prefix) process.stdout.write('\r'+(lastPrefix = prefix));
@@ -43,6 +40,7 @@ async.eachSeries(
 		)
 	},
 	() => {
+		console.log('save stream')
 		miss.pipe(
 			set.getReadStream(),
 			miss.checkAscendingIds(),
