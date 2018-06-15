@@ -4,14 +4,85 @@ const miss = require('./mississippi');
 
 module.exports = SetId;
 
+
+function SetId() {
+	const hashLength = 4;
+	const minIds = 1e4;
+	const maxIds = 1e6;
+	const minLength = minIds*21;
+	const maxLength = maxIds*21;
+	var buckets = {};
+
+	return {
+		add: add,
+		getReadStream: getReadStream,
+	}
+
+	function add(id) {
+		if (id.length > 20) throw Error(id);
+		
+		var hash = id.substr(0, hashLength);
+		var bucket = buckets[hash];
+		if (!bucket) {
+			bucket = (buckets[hash] = {
+				hash:hash,
+				offset:0,
+				maxSize:minLength,
+				data:Buffer.alloc(minLength+30, 0),
+			})
+		}
+		bucket.offset += bucket.data.write(id, bucket.offset, 'ascii')+1;
+		
+		if (bucket.offset < bucket.maxSize) return;
+		compressBucket(bucket);
+	}
+
+	function getBucketIds(bucket) {
+		var ids = bucket.data.toString('ascii', 0, bucket.offset-1);
+
+		ids = ids.split('\0');
+		ids = new Set(ids);
+		ids = Array.from(ids.values());
+		ids.sort();
+		return ids;
+	}
+
+	function compressBucket(bucket) {
+		var a = bucket.offset;
+
+		var ids = getBucketIds(bucket).join('\0');
+
+		var newSize = Math.min(ids.length*3, maxLength);
+		if (bucket.maxSize === newSize) {
+			bucket.data.fill(0);
+		} else {
+			bucket.maxSize = newSize;
+			bucket.data = Buffer.alloc(bucket.maxSize+30, 0);
+		}
+		bucket.offset = bucket.data.write(ids, 0, 'ascii');
+		//console.log('compress bucket "'+bucket.hash+'": '+[a, bucket.offset, (100*bucket.offset/a).toFixed(0)+'%'].join('\t'));
+	}
+
+	function getReadStream() {
+		buckets = Object.keys(buckets).map(key => buckets[key]);
+		buckets.sort((a,b) => a.hash < b.hash ? -1 : 1);
+
+		return miss.multistream(buckets.map(bucket => {
+			return function () {
+				var ids = getBucketIds(bucket);
+				return miss.fromArray(ids);
+			}
+		}))
+	}
+}
+
+/*
 function SetId() {
 	const maxIds = 1e6;
 	const maxIdLength = 20;
 	const maxBlockSize = maxIds*maxIdLength;
-	var set = [];
+	var ids = [];
 	var db = [];
-
-	var addCount = 0;
 
 	return {
 		add: add,
@@ -20,23 +91,25 @@ function SetId() {
 
 	function add(id) {
 		if (id.length > maxIdLength) throw Error();
-		set.push(id);
-		addCount++;
-		if (addCount >= 1e7) process.exit();
-		if (set.length >= maxIds) {
-			//console.log(addCount, set.size, (100*set.size/addCount).toFixed(0)+'%');
-			//addCount = 0;
-			flush();
-		}
+		ids.push(id);
+		if (ids.length >= maxIds) flush();
 	}
 
 	function flush(force) {
 		var block = Buffer.alloc(maxBlockSize, 32);
 		
-		var ids = set;
 		ids.sort();
-		ids.forEach((id,index) => block.write(id, index*maxIdLength, 'ascii'))
-		set = [];
+
+		var lastId = '?', pos = 0;
+		ids.forEach(id => {
+			if (id !== lastId) {
+				block.write(id, pos, 'ascii');
+				pos += maxIdLength;
+				lastId = id;
+			}
+		})
+
+		ids = [];
 
 		db.unshift([block]);
 		
@@ -56,20 +129,15 @@ function SetId() {
 		}
 
 		while (criteria()) {
-			//console.dir('A '+db.map(e => e.length).join(','))
 			db.unshift(mergeBlocks(db.shift(), db.shift()))
 			db.sort((a,b) => a.length - b.length);
-			//console.dir('B '+db.map(e => e.length).join(','))
 		}
-		//process.exit();
 
 		function mergeBlocks(b1, b2) {
 			b1 = new BlockReader(b1);
 			b2 = new BlockReader(b2);
-			var b = new BlockWriter();
 
-			//var b = Buffer.alloc(maxIds*maxIdLength, 32);
-			//var blocks = [b];
+			var b = new BlockWriter();
 
 			while (true) {
 				if (b1.finished) {
@@ -157,6 +225,8 @@ function SetId() {
 	}
 
 	function getReadStream() {
+		var prefix, lastPrefix = '';
+
 		flush(true);
 
 		if (db.length !== 1) throw Error();
@@ -165,7 +235,12 @@ function SetId() {
 
 		return miss.from((size, next) => {
 			if (reader.finished) return next(null, null);
-			next(null, reader.read().trim());
+
+			var id = reader.read().trim();
+			prefix = id.slice(0,3);
+			if (lastPrefix !== prefix) console.log(lastPrefix = prefix);
+			next(null, id);
 		})
 	}
 }
+*/
