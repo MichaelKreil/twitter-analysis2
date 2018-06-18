@@ -31,7 +31,7 @@ function SetId() {
 				data:Buffer.alloc(minLength+30, 0),
 			})
 		}
-		bucket.offset += bucket.data.write(id, bucket.offset, 'ascii')+1;
+		bucket.offset += bucket.data.write(id+'\0', bucket.offset, 'ascii');
 		
 		if (bucket.offset < bucket.maxSize) return;
 		compressBucket(bucket);
@@ -50,7 +50,9 @@ function SetId() {
 	function compressBucket(bucket) {
 		var a = bucket.offset;
 
-		var ids = getBucketIds(bucket).join('\0');
+		var ids = getBucketIds(bucket);
+		//ids.forEach(id => { if (id.length >= 20) throw Error(id); })
+		ids = ids.join('\0');
 
 		var newSize = Math.min(ids.length*3, maxLength);
 		if (bucket.maxSize === newSize) {
@@ -59,7 +61,7 @@ function SetId() {
 			bucket.maxSize = newSize;
 			bucket.data = Buffer.alloc(bucket.maxSize+30, 0);
 		}
-		bucket.offset = bucket.data.write(ids, 0, 'ascii');
+		bucket.offset = bucket.data.write(ids+'\0', 0, 'ascii');
 		//console.log('compress bucket "'+bucket.hash+'": '+[a, bucket.offset, (100*bucket.offset/a).toFixed(0)+'%'].join('\t'));
 	}
 
