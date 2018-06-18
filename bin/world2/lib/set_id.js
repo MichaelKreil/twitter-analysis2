@@ -19,7 +19,7 @@ function SetId() {
 	}
 
 	function add(id) {
-		if (id.length > 20) throw Error(id);
+		if (id.length >= 20) throw Error(id);
 		
 		var hash = id.substr(0, hashLength);
 		var bucket = buckets[hash];
@@ -67,9 +67,12 @@ function SetId() {
 		buckets = Object.keys(buckets).map(key => buckets[key]);
 		buckets.sort((a,b) => a.hash < b.hash ? -1 : 1);
 
-		return miss.multistream(buckets.map(bucket => {
+		return miss.multistream.obj(buckets.map(bucket => {
 			return function () {
 				var ids = getBucketIds(bucket);
+				ids.forEach(id => {
+					if (id.length >= 20) throw Error(id)
+				})
 				return miss.fromArray(ids);
 			}
 		}))

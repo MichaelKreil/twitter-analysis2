@@ -1,7 +1,7 @@
 "use strict"
 
 const config = require('../config.js');
-const fetchFriends = require('../lib/twitter.js').fetchFriends;
+const fetchMeta = require('../lib/twitter.js').fetchMeta;
 const fs = require('fs');
 const miss = require('../lib/mississippi.js');
 const resolve = require('path').resolve;
