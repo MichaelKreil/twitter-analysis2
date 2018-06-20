@@ -1,6 +1,6 @@
 "use strict"
 
-const scraper = require('../../../lib/scraper.js')('world2');
+const Scraper = require('../../../lib/scraper.js');
 
 module.exports = {
 	fetchFriends: new FetchFriends(),
@@ -8,6 +8,7 @@ module.exports = {
 }
 
 function FetchFriends() {
+	var scraper = Scraper('world_friends');;
 	return function fetchFriends(userId, cbFriends) {
 		scraper.fetch(
 			'friends/ids',
@@ -21,6 +22,7 @@ function FetchFriends() {
 }
 
 function FetchMeta() {
+	var scraper = Scraper();
 	var buffer = [];
 	var timeout;
 
@@ -54,8 +56,6 @@ function FetchMeta() {
 				if (!result) result = [];
 
 				result.forEach(u => {
-					console.dir(u, {colors:true});
-					process.exit();
 					var id = u.id_str;
 
 					if (!lookup.has(id)) return;
