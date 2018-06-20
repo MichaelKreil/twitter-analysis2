@@ -34,7 +34,17 @@ miss.pipe(
 
 			if (data[2] !== null) return cb(null, data[3]);
 			
-			fetchMeta(id, meta => {
+			fetchMeta(id, (err,meta) => {
+				delete meta.id;
+				delete meta.status;
+				delete meta.is_translator;
+				delete meta.is_translation_enabled;
+				delete meta.profile_background_image_url;
+				delete meta.profile_image_url;
+				delete meta.following;
+				delete meta.follow_request_sent;
+				delete meta.notifications;
+				delete meta.translator_type;
 				cb(null, id+'\t'+JSON.stringify(meta));
 			})
 		}
