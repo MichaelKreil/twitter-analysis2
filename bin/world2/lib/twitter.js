@@ -2,12 +2,17 @@
 
 const Scraper = require('../../../lib/scraper.js');
 
+var initialized = false;
+
 module.exports = {
-	fetchFriends: new FetchFriends(),
-	fetchMeta: new FetchMeta(),
+	get fetchFriends() { return new FetchFriends() },
+	get fetchMeta() { return new FetchMeta() },
 }
 
 function FetchFriends() {
+	if (initialized) throw Error();
+	initialized = true;
+
 	var scraper = Scraper('world_friends');;
 	return function fetchFriends(userId, cbFriends) {
 		scraper.fetch(
@@ -22,6 +27,9 @@ function FetchFriends() {
 }
 
 function FetchMeta() {
+	if (initialized) throw Error();
+	initialized = true;
+
 	var scraper = Scraper();
 	var buffer = [];
 	var timeout;
