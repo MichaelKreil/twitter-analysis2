@@ -18,3 +18,4 @@ data/germany/*.png
 data/world/dbs/
 node_modules
 package-lock.json
+*.syncfolderspro
