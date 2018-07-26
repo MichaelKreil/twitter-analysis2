@@ -172,6 +172,7 @@ var queries = [
 	{name: 'rp19-hash',                     query: {q:'#rp19'}},
 	{name: 'seehofer',                      query: {q:'seehofer OR #seehofer'}},
 	{name: 'shooting3',                     query: {q:'santafehighschool OR santafe OR SantaFeShooting OR SantaFeSchoolShooting OR HoustonShooting'}},
+	{name: 'sibelschick',                   query: {q:'sibelschick'.toWildFromTo()}},
 	{name: 'spd',                           query: {q:'#spd'}},
 	{name: 'syria',                         query: {q:'syria'}},
 	{name: 'talk_annewill',                 query: {q:'@annewill,@AnneWillTalk,‏#annewill,annewill,"anne will"'.expandMedia()}},

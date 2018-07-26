@@ -8,7 +8,7 @@ const colors = require('colors');
 const stream = require('stream');
 
 
-var query = 'rp18';
+var query = 'sibelschick';
 var dayCount = 20;
 var filestream = fs.createWriteStream(query+'.txt');
 
@@ -48,7 +48,7 @@ function finish() {
 
 	var minCount = 25*dayCount;
 	minCount = Math.min(minCount, users[30] && users[30].count);
-	users = users.filter(u => u.count >= minCount);
+	//users = users.filter(u => u.count >= minCount);
 	users = users.map(u => {
 		var sources = Array.from(u.sources.values());
 		sources.sort((a,b) => b.count - a.count);
