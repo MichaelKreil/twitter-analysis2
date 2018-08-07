@@ -96,6 +96,7 @@ var queries = [
 	{name: 'heimat',                        query: {q:'heimat'}},
 	{name: 'heimathorst',                   query: {q:'heimathorst OR heimatministerium'}},
 	{name: 'iibigin_com',                   query: {q:'iibigin.com'}},
+	{name: 'infowars',                      query: {q:'infowars,RealAlexJones'.toWildFromTo()+' OR "alex jones"'}},
 	{name: 'iranprotests',                  query: {q:'تظاهرات_سراسری OR IranProtests'}},
 	{name: 'iranprotests2',                 query: {q:'iranprotests OR تظاهرات_سراسرى OR مظاهرات_ايران OR تظاهرات_سراسری OR تظاهرات_سراسري'}},
 	{name: 'israel',                        query: {q:'israel'}},
