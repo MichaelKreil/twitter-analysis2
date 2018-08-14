@@ -183,6 +183,7 @@ var queries = [
 	{name: 'talk_markuslanz',               query: {q:'@ZDFMarkusLanz,"Markus Lanz",#lanz'.expandMedia()}},
 	{name: 'talk_maybritillner',            query: {q:'@maybritillner,#illner,#maybritillner,maybritillner,"maybrit illner"'.expandMedia()}},
 	{name: 'tenderage',                     query: {q:'"tender age"'}},
+	{name: 'thomaswalde',                   query: {q:'thomaswalde'.toWildFromTo()}},
 	{name: 'trump_mentions',                query: {q:'to:realdonaldtrump OR to:potus OR realdonaldtrump OR potus'}},
 	{name: 'trump_tweets',                  query: {q:'from:realdonaldtrump OR from:potus'}},
 	{name: 'ueberwachung',                  query: {q:'überwachungspaket OR staatstrojaner OR bundestrojaner OR ueberwachungspaket OR zib2 OR überwachung OR privatsphäre OR datenschutz OR sicherheit OR vds OR sicherheitspaket'}},
