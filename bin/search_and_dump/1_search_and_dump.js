@@ -157,6 +157,7 @@ var queries = [
 	{name: 'media_zdf',                     query: {q:'zdf.de,@ZDF'.expandMedia()}},
 	{name: 'media_zdf_heute',               query: {q:'heute.de,@heutejournal,@heuteplus'.expandMedia()}},
 	{name: 'media_zeit',                    query: {q:'zeit.de,@zeitonline,@zeitonline_dig,@zeitonline_ent,@zeitonline_fam,@zeitonline_kul,@zeitonline_live,@zeitonline_pol,@zeitonline_vid,@zeitonline_wir,@zeitonline_wis,@zeitonlinesport'.expandMedia()}},
+	{name: 'menaretrash',                   query: {q:'menaretrash OR #menaretrash'}},
 	{name: 'metoo',                         query: {q:'#metoo'}},
 	{name: 'metwo',                         query: {q:'metwo OR #metwo'}},
 	{name: 'ministerien',                   query: {q:'sksachsentweets,Arne_Wiechmann,SMIsachsen,ChriSchni,StRegSprecherin,Boschemann,julitalk,svefri,amtzweinull,HaufeStephan,jettebo,Opp_Sprecher,ZimmermannSina,al_krampe,Medienheld,bauerzwitschert,hard_er,MSchroeren,pampel_muse,evamariamarks,RouvenKlein,ninasuza,andreasblock,foeniculum,zumtesthier'.toWildFromTo()}},
