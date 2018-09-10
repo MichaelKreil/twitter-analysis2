@@ -1,7 +1,6 @@
 *.7z
 *.gz
 *.log
-*.sh
 *.syncfolderspro
 *.tsv
 *.txt
