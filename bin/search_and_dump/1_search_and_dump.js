@@ -33,10 +33,12 @@ String.prototype.expandMedia = function () {
 
 // List of search queries
 var queries = [
+	{name: '100gruende',                    query: {q:'100gruende'}},
 	{name: '120db',                         query: {q:'frauenmarsch OR 120db OR b1702 OR dd1702 OR ndh1702 OR niun1702 OR niun OR no120db'}}, 
 	{name: '34c3',                          query: {q:'34c3'}},
 	{name: '35c3',                          query: {q:'35c3'}},
 	{name: 'afd',                           query: {q:'#afd'}},
+	{name: 'afd2',                          query: {q:'afd'}},
 	{name: 'afd_bundestagsabgeordnete',     query: {q:'mueller_mdb,JoernKoenigAfD,Jacobi_AfD,VerHartmannAfD,Frank_Magnitz,ChrWirthMdB,Martin_Sichert,BraunAfD,KestnerJens,JensMaierAfD,DrFriesenMdB,Th_Seitz_AfD,SteffenKotre,AndreasBleckMdB,EspendillerM,Buettner_MdB,Martin_Hess_AfD,CorinnaMiazga,NKleinwaechter,S_Muenzenmaier,UdoHemmelgarn,GottfriedCurio,h_weyel,Alice_Weidel,Rene_Springer,ProfMaier,M_HarderKuehnel,JoanaCotar,PetrBystronAfD,DirkSpaniel,MarcBernhardAfD,Tino_Chrupalla,StefanKeuterAfD,EnricoKomning,Leif_Erik_Holm,Marcus_Buehl,Schneider_AfD,Jochen_Haug,StBrandner,MdB_Lucassen,Witt_Uwe,ElsnervonGronow,Frohnmaier_AfD,Marc_Jongen,Herrmann_AfD,WaldemarHerdt,Ulrich_Oehme,Friedhoff_AfD,Robby_Schlund,Nicole_Hoechst,mrosek1958,uwe_kamann,M_Reichardt_AfD,Renner_AfD,TobiasMPeterka,axelgehrke,ttte94,Frank_Pasemann,ProtschkaStepha,KayGottschalk1,ulschzi,GtzFrmming,Beatrix_vStorch,R_Hartwig_AfD,Buergerwohl,PeterBoehringer,Uwe_Schulz_AfD'.toWildFromTo()}},
 	{name: 'afd_bundesvorstand',            query: {q:'AndreasKalbitz,Joachim_Kuhs,Alice_Weidel,GuidoReil,Georg_Pazderski,Joerg_Meuthen,SteffenKoeniger,Frank_Pasemann,ProtschkaStepha,KayGottschalk1,Beatrix_vStorch'.toWildFromTo()}},
 	{name: 'afd_landessprecher',            query: {q:'AndreasKalbitz,Frank_Magnitz,Martin_Sichert,Dana_Guth_AfD,thomasroecke,Helmut_Seifen,WittgensteinAfD,RalfOezkara,Uwe_Junge_MdL,Leif_Erik_Holm,Georg_Pazderski,Marc_Jongen,MoellerAfD,BjoernHoecke'.toWildFromTo()}},
@@ -170,6 +172,7 @@ var queries = [
 	{name: 'ministerien',                   query: {q:'sksachsentweets,Arne_Wiechmann,SMIsachsen,ChriSchni,StRegSprecherin,Boschemann,julitalk,svefri,amtzweinull,HaufeStephan,jettebo,Opp_Sprecher,ZimmermannSina,al_krampe,Medienheld,bauerzwitschert,hard_er,MSchroeren,pampel_muse,evamariamarks,RouvenKlein,ninasuza,andreasblock,foeniculum,zumtesthier'.toWildFromTo()}},
 	{name: 'musterfeststellungsklage',      query: {q:'musterfeststellungsklage'}},
 	{name: 'netzdg',                        query: {q:'netzdg'}},
+	{name: 'noafd',                         query: {q:'noafd'}},
 	{name: 'nobillag',                      query: {q:'#neinzunobillag OR #nobillag OR #nobillagnein'}},
 	{name: 'pflege',                        query: {q:'pflegenotstand OR pflege'}},
 	{name: 'polizeigesetz',                 query: {q:'nopag OR polizeigesetz'}},
