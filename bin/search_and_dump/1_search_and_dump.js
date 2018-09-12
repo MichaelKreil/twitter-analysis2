@@ -206,6 +206,7 @@ var queries = [
 	{name: 'trump_tweets',                  query: {q:'from:realdonaldtrump OR from:potus'}},
 	{name: 'ueberwachung',                  query: {q:'überwachungspaket OR staatstrojaner OR bundestrojaner OR ueberwachungspaket OR zib2 OR überwachung OR privatsphäre OR datenschutz OR sicherheit OR vds OR sicherheitspaket'}},
 	{name: 'unionsstreit1',                 query: {q:'unionsstreit,seehofer,csu,asylstreit,merkel,afd,ultimatum,zuwanderung,groko'.toOR(), lang:'de'}},
+	{name: 'uploadfilter',                  query: {q:'uploadfilter OR saveyourinternet OR leistungsschutzrecht OR deleteart13 OR censorshipmachine OR axelvossmdep OR from:axelvossmdep OR to:axelvossmdep OR fixcopyright'}},
 //	{name: '1mai',                          query: {q:'c0105 OR ef0105 OR e0105 OR zwickau3004 OR b0105 OR fue0105 OR 1Mai2018 OR TagderArbeit OR 1Mai'}},
 //	{name: 'afrin',                         query: {q:'afrin'}},
 //	{name: 'berlin',                        query: {q:'', geocode:'52.5,13.4,50km'}},
@@ -218,7 +219,6 @@ var queries = [
 //	{name: 'pyeongchang2018',               query: {q:'pyeongchang2018'}},
 //	{name: 'rp18',                          query: {q:'rp18 OR republica OR "re-publica" OR "re:publica" OR from:republica OR to:republica'}},
 //	{name: 'russianelection',               query: {q:'#ИзбирательныйУчасток OR #ПУТИН OR #Выборы2018 OR #ПУТИН2018 OR #Саки OR #городСаки OR #РеспубликаКрым OR #КрымНаш OR #МыСтроимМосты OR #КрымРоссияНавсегда OR #КрымРоссия OR #ПутинВВ OR #ТвойВыбор2018 OR #2018ТвойВыбор OR #Выбор2018 OR #ПутинВладимирВладимирович OR #ЯзаПутина OR #ЯзаПутинаВВ'}},
-//	{name: 'uploadfilter',                  query: {q:'uploadfilter OR saveyourinternet OR leistungsschutzrecht OR deleteart13 OR censorshipmachine OR axelvossmdep OR from:axelvossmdep OR to:axelvossmdep'}},
 //	{name: 'wwdc18',                        query: {q:'wwdc18,#wwdc18'.toOR()}},
 ];
 
