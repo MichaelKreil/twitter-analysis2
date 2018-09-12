@@ -24,6 +24,7 @@ var lists = {
 
 	bundesregierung:'wahl_beobachter/bundesregierung',
 	ministerien:'wahl_beobachter/ministeriums-twitterati',
+	ministerien2:'newstikker/bundesaemter/members',
 	deutsche_mep:'wahl_beobachter/alle-deutschen-mep',
 
 	afd_bundestagsabgeordnete:'AfD/bundestagsabgeordnete',
@@ -59,6 +60,8 @@ var lists = {
 	afdkompakt_bundesvorstand:'AfDKompakt/bundesvorstand',
 	afdkompakt_landesverbaende:'AfDKompakt/landesverb-nde',
 	afdkompakt_landtagsfraktionen:'AfDKompakt/landtagsfraktionen',
+	
+	polizei:'VerbrecherStop/polizei',
 }
 
 Object.keys(lists).forEach(name => {
