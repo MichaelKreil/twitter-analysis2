@@ -103,6 +103,7 @@ var queries = [
 	{name: 'germandream',                   query: {q:'GermanDream OR MyGermanDream'}},
 	{name: 'groko',                         query: {q:'groko'}},
 	{name: 'grossstaedte',                  query: {q:'berlin,hamburg,münchen,köln,frankfurt,stuttgart,düsseldorf,dortmund,essen,leipzig,bremen,dresden,hannover,nürnberg,duisburg,bochum,wuppertal,bielefeld,bonn,münster'.toOR()}},
+	{name: 'hambacherforst',                query: {q:'aktionunterholz,braunkohle,braunkohleabbau,endcoal,endegelaende,hambach,hambacherforst,hambacherforstbleibt,hambacherwald,hambi,hambi_bleibt,hambibleibt,hambibleibtaktion,kohle,kohleausstieg,kohlekommission,rwe'.toOR()}},
 	{name: 'heimat',                        query: {q:'heimat'}},
 	{name: 'heimathorst',                   query: {q:'heimathorst OR heimatministerium'}},
 	{name: 'iibigin_com',                   query: {q:'iibigin.com'}},
