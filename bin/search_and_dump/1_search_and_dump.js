@@ -34,6 +34,7 @@ String.prototype.expandMedia = function () {
 // List of search queries
 var queries = [
 	{name: '100gruende',                    query: {q:'100gruende'}},
+	{name: '1000gruende',                   query: {q:'1000gruende OR 1000gründe'}},
 	{name: '120db',                         query: {q:'frauenmarsch OR 120db OR b1702 OR dd1702 OR ndh1702 OR niun1702 OR niun OR no120db'}}, 
 	{name: '34c3',                          query: {q:'34c3'}},
 	{name: '35c3',                          query: {q:'35c3'}},
