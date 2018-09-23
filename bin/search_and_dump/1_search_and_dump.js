@@ -38,6 +38,7 @@ var queries = [
 	{name: '120db',                         query: {q:'frauenmarsch OR 120db OR b1702 OR dd1702 OR ndh1702 OR niun1702 OR niun OR no120db'}}, 
 	{name: '34c3',                          query: {q:'34c3'}},
 	{name: '35c3',                          query: {q:'35c3'}},
+	{name: 'unteilbar',                     query: {q:'unteilbar OR unteilbar_ OR to:unteilbar_ OR from:unteilbar_'}},
 	{name: 'skygo',                         query: {q:'skygo,SkySportDE,SkyDeutschland,DAZN_DE,SkyTicketDE,skyucl'.toWildFromTo()}},
 	{name: 'afd',                           query: {q:'#afd'}},
 	{name: 'afd2',                          query: {q:'afd'}},
