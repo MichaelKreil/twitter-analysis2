@@ -17,6 +17,7 @@ async.eachSeries(
 		'dbs/all_accounts_'+config.step+'.tsv.gz',
 		'1_ids/ids_selected_'+config.activityMinimumName+'_'+config.step+'.tsv.gz',
 		'dbs/friends_'+config.stepNext+'.tsv.gz',
+		'dbs/followers_'+config.stepNext+'.tsv.gz',
 	],
 	(filename, cbFile) => {
 		console.log('read "'+filename+'"');
