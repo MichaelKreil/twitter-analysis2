@@ -6,6 +6,7 @@ var initialized = false;
 
 module.exports = {
 	get fetchFriends() { return new FetchFriends() },
+	get fetchFollowers() { return new FetchFollowers() },
 	get fetchMeta() { return new FetchMeta() },
 }
 
@@ -17,6 +18,23 @@ function FetchFriends() {
 	return function fetchFriends(userId, cbFriends) {
 		scraper.fetch(
 			'friends/ids',
+			{user_id:userId, stringify_ids:true, count:5000},
+			result => {
+				result = (result && result.ids) || [];
+				cbFriends(result);
+			}
+		)
+	}
+}
+
+function FetchFollowers() {
+	if (initialized) throw Error();
+	initialized = true;
+
+	var scraper = Scraper('world_followers');;
+	return function fetchFollowers(userId, cbFollowers) {
+		scraper.fetch(
+			'followers/ids',
 			{user_id:userId, stringify_ids:true, count:5000},
 			result => {
 				result = (result && result.ids) || [];
