@@ -1,7 +1,7 @@
 var config = {
 	activityMinimumName: '35',
-	step: '0',
-	stepNext: '1',
+	step: '1',
+	stepNext: '2',
 }
 
 config.activityMinimum = Math.pow(10, parseFloat(config.activityMinimumName)/10),
