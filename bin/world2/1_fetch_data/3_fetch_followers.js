@@ -21,7 +21,7 @@ miss.pipe(
 		miss.readGzipLines(fileDbIn, {optional:true})
 	),
 	miss.parallel(
-		64,
+		16,
 		(data, cb) => { // data = [idId, lineId, idDb, lineDb]
 			
 			var id = data[0] || data[2];
