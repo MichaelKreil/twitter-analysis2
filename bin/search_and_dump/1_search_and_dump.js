@@ -33,13 +33,11 @@ String.prototype.expandMedia = function () {
 
 // List of search queries
 var queries = [
-	{name: '100gruende',                    query: {q:'100gruende'}},
 	{name: '1000gruende',                   query: {q:'1000gruende OR 1000gründe'}},
+	{name: '100gruende',                    query: {q:'100gruende'}},
 	{name: '120db',                         query: {q:'frauenmarsch OR 120db OR b1702 OR dd1702 OR ndh1702 OR niun1702 OR niun OR no120db'}}, 
 	{name: '34c3',                          query: {q:'34c3'}},
 	{name: '35c3',                          query: {q:'35c3'}},
-	{name: 'unteilbar',                     query: {q:'unteilbar OR unteilbar_ OR to:unteilbar_ OR from:unteilbar_'}},
-	{name: 'skygo',                         query: {q:'skygo,SkySportDE,SkyDeutschland,DAZN_DE,SkyTicketDE,skyucl'.toWildFromTo()}},
 	{name: 'afd',                           query: {q:'#afd'}},
 	{name: 'afd2',                          query: {q:'afd'}},
 	{name: 'afd_bundestagsabgeordnete',     query: {q:'WolfgangWiehle,DrHollnagel,mueller_mdb,JoernKoenigAfD,Jacobi_AfD,VerHartmannAfD,Frank_Magnitz,ChrWirthMdB,Martin_Sichert,JuergenBraunAfD,KestnerJens,JensMaierAfD,DrFriesenMdB,Th_Seitz_AfD,SteffenKotre,AndreasBleckMdB,EspendillerM,Buettner_MdB,Martin_Hess_AfD,CorinnaMiazga,NKleinwaechter,S_Muenzenmaier,UdoHemmelgarn,GottfriedCurio,h_weyel,Alice_Weidel,Rene_Springer,ProfMaier,M_HarderKuehnel,JoanaCotar,PetrBystronAfD,DirkSpaniel,MarcBernhardAfD,Tino_Chrupalla,StefanKeuterAfD,EnricoKomning,Leif_Erik_Holm,Marcus_Buehl,Schneider_AfD,Jochen_Haug,StBrandner,MdB_Lucassen,Witt_Uwe,ElsnervonGronow,Frohnmaier_AfD,Marc_Jongen,Herrmann_AfD,WaldemarHerdt,Ulrich_Oehme,Friedhoff_AfD,Thomas_Ehrhorn,Nicole_Hoechst,mrosek1958,uwe_kamann,M_Reichardt_AfD,Renner_AfD,TobiasMPeterka,axelgehrke,ttte94,Frank_Pasemann,ProtschkaStepha,KayGottschalk1,ulschzi,GtzFrmming,Beatrix_vStorch,R_Hartwig_AfD,Buergerwohl,PeterBoehringer,Uwe_Schulz_AfD'.toWildFromTo()}},
@@ -115,6 +113,7 @@ var queries = [
 	{name: 'iranprotests',                  query: {q:'تظاهرات_سراسری OR IranProtests'}},
 	{name: 'iranprotests2',                 query: {q:'iranprotests OR تظاهرات_سراسرى OR مظاهرات_ايران OR تظاهرات_سراسری OR تظاهرات_سراسري'}},
 	{name: 'israel',                        query: {q:'israel'}},
+	{name: 'itsa18',                        query: {q:'itsa18 OR itsa2018'}},
 	{name: 'jensspahn',                     query: {q:'jensspahn'.toWildFromTo()}},
 	{name: 'kippa',                         query: {q:'kippa', lang:'de'}},
 	{name: 'koethen',                       query: {q:'köthen OR koethen OR koethen0909 OR koet0909 OR k0909'}},
@@ -201,6 +200,7 @@ var queries = [
 	{name: 'seehofer',                      query: {q:'seehofer OR #seehofer'}},
 	{name: 'shooting3',                     query: {q:'santafehighschool OR santafe OR SantaFeShooting OR SantaFeSchoolShooting OR HoustonShooting'}},
 	{name: 'sibelschick',                   query: {q:'sibelschick'.toWildFromTo()}},
+	{name: 'skygo',                         query: {q:'skygo,SkySportDE,SkyDeutschland,DAZN_DE,SkyTicketDE,skyucl'.toWildFromTo()}},
 	{name: 'spd',                           query: {q:'#spd'}},
 	{name: 'syria',                         query: {q:'syria'}},
 	{name: 'talk_annewill',                 query: {q:'@annewill,@AnneWillTalk,‏#annewill,annewill,"anne will"'.expandMedia()}},
@@ -214,6 +214,7 @@ var queries = [
 	{name: 'trump_tweets',                  query: {q:'from:realdonaldtrump OR from:potus'}},
 	{name: 'ueberwachung',                  query: {q:'überwachungspaket OR staatstrojaner OR bundestrojaner OR ueberwachungspaket OR zib2 OR überwachung OR privatsphäre OR datenschutz OR sicherheit OR vds OR sicherheitspaket'}},
 	{name: 'unionsstreit1',                 query: {q:'unionsstreit,seehofer,csu,asylstreit,merkel,afd,ultimatum,zuwanderung,groko'.toOR(), lang:'de'}},
+	{name: 'unteilbar',                     query: {q:'unteilbar OR unteilbar_ OR to:unteilbar_ OR from:unteilbar_'}},
 	{name: 'uploadfilter',                  query: {q:'uploadfilter OR saveyourinternet OR leistungsschutzrecht OR deleteart13 OR censorshipmachine OR axelvossmdep OR from:axelvossmdep OR to:axelvossmdep OR fixcopyright'}},
 	{name: 'wirsindmaassen',                query: {q:'wirsindmaaßen OR wirsindmaassen'}},
 	{name: 'zeckenbiss',                    query: {q:'zeckenbiss'}},
