@@ -48,7 +48,7 @@ function FetchMeta() {
 	if (initialized) throw Error();
 	initialized = true;
 
-	var scraper = Scraper();
+	var scraper = Scraper('world_meta');
 	var buffer = [];
 	var timeout;
 
