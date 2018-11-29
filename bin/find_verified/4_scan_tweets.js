@@ -30,16 +30,16 @@ function next() {
 
 	fetchTweets(name, () => {
 		processCount--;
-		next();
+		setTimeout(next, 0);
 	});
 
-	next();
+	setTimeout(next, 0);
 }
 
 function fetchTweets(name, cbfetchTweets) {
 	var filename = 'data/tweets/'+name.replace(/[^a-z0-9_-]/g, '_')+'.json.gz';
 
-	if (fs.existsSync(filename)) return cbfetchTweets();
+	if (fs.existsSync(filename)) return setTimeout(cbfetchTweets,0);
 
 	var data = {};
 	task1.fetch('users/show', {screen_name:name}, user => {
