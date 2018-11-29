@@ -1,59 +1,68 @@
 "use strict"
 
 const fs = require('fs');
+const zlib = require('zlib');
 const colors = require('colors');
-const scraper = (require('../../lib/scraper.js'))('scan_verified');
+const scraper = (require('../../lib/scraper.js'))();
 
-const dateStart = new Date('2018-02-05 00:00:00');
-const dateEnd   = new Date('2018-02-12 00:00:00');
+const dateStart = new Date('2018-06-01 00:00:00');
+const maxProcesses = 4;
 
-var accounts = fs.readFileSync('accounts.txt', 'utf8').split('\n').filter(t => t.length > 1);
-
-var file = fs.openSync('result.txt', 'w');
-
+var accounts = fs.readFileSync('data/4_verified.tsv', 'utf8').split('\n').filter(t => t.length > 1);
 var task1 = scraper.getSubTask();
-var buffer = [];
+var processCount = 0;
 
-for (var i = 0; i < 4; i++) next();
+var accountsCount = accounts.length;
+
+next();
 
 function next() {
+	if (processCount >= maxProcesses) return;
 	if (accounts.length === 0) return;
+
+	if (accounts.length % 100 === 0) {
+		console.log(colors.grey((100*(accountsCount-accounts.length)/accountsCount).toFixed(2)+' %'));
+	}
+
 	var name = accounts.pop();
 
+	processCount++;
+
+	fetchTweets(name, () => {
+		processCount--;
+		next();
+	});
+
+	next();
+}
+
+function fetchTweets(name, cbfetchTweets) {
+	var filename = 'data/tweets/'+name.replace(/[^a-z0-9_-]/g, '_')+'.json.gz';
+
+	if (fs.existsSync(filename)) return cbfetchTweets();
+
+	var data = {};
 	task1.fetch('users/show', {screen_name:name}, user => {
-		if (!user.verified) return next();
-		if (user.protected) return next();
+		data.user = user;
 
-		scanTweets(name, dayCount => {
-			if (!dayCount) return next();
-			var sum = 0, min = 1e10;
-			for (var i = 0; i < 7; i++) {
-				sum += dayCount[i];
-				if (min > dayCount[i]) min = dayCount[i];
-			}
-			var result = [user.screen_name,user.followers_count,user.statuses_count,sum,min,dayCount.join('\t')].join('\t')+'\n';
-			buffer.push(result);
-			if (buffer.length > 10000) dump();
+		scanTweets(name, tweets => {
+			data.tweets = tweets;
+			data = Buffer.from(JSON.stringify(data), 'utf8');
+			data = zlib.gzipSync(data, {level:9});
+			fs.writeFileSync(filename, data);
 
-			if (sum >= 350) console.log(result);
-			next();
+			cbfetchTweets();
 		})
 	})
 }
 
-function dump() {
-	fs.writeSync(file, buffer.join(''));
-	buffer = [];
-}
-
 task1.finished(() => {
-	dump();
-	fs.closeSync(file);
+	console.log('Finished'.bold().green());
 })
 
-function scanTweets(name, cb) {
-	var days = [];
-	for (var i = 0; i < 7; i++) days[i] = 0;
+function scanTweets(name, cbscanTweets) {
+	//console.log(colors.grey('start '+name));
+	var tweets = [];
 	scan();
 
 	function scan(maxId) {
@@ -61,27 +70,44 @@ function scanTweets(name, cb) {
 			'statuses/user_timeline',
 			{screen_name: name, count:200, max_id:maxId, trim_user:true},
 			result => {
-				if (result.error) return cb(false);
-				//console.log(result);
-				//process.exit();
-				var finished = (result.length < 10);
-				result.forEach(tweet => {
-					var date = new Date(tweet.created_at);
+				if (result.error) return finalize();
+
+				if (!result) result = [];
+
+				var finished = !result.length;
+				if (!finished) {
+					var date = new Date(result[result.length-1].created_at);
 					if (date < dateStart) finished = true;
-					date = date.getTime() - dateStart.getTime();
-					date = Math.floor(date/86400000);
-					if (date < 0) return;
-					if (date > 6) return;
-					days[date]++;
-				})
-				if (finished) {
-					return cb(days);
-				} else {
-					var minId = result[result.length-1].id_str;
-					scan(dec(minId));
 				}
+				if (!finished) {
+					var minId = result[result.length-1].id_str;
+					minId = dec(minId);
+				}
+
+				result = result.map(t => ({
+					created_at: t.created_at,
+					id_str: t.id_str,
+					text: t.text,
+					entities: t.entities,
+					source: t.source,
+					user: t.user,
+					retweet_count: t.retweet_count,
+					favorite_count: t.favorite_count,
+					lang: t.lang,
+				}))
+				tweets.push(result);
+
+				if (finished) return finalize();
+				
+				scan(minId);
 			}
 		)
+	}
+
+	function finalize() {
+		tweets = Array.prototype.concat.apply([], tweets);
+		//console.log(colors.grey('finish '+name));
+		cbscanTweets(tweets);
 	}
 }
 
