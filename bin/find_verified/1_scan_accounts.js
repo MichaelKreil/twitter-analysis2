@@ -4,13 +4,13 @@ const fs = require('fs');
 const colors = require('colors');
 const scraper = (require('../../lib/scraper.js'))('find_verified');
 
-var curAccounts = fs.readFileSync('accounts_next.txt',  'utf8').split('\n').filter(t => t.length > 1)
+var curAccounts = fs.readFileSync('data/1_accounts.tsv', 'utf8').split('\n').filter(t => t.length > 1)
 
 var checkAccounts = [];
 
 var task1 = scraper.getSubTask();
 
-var idfile = fs.openSync('ids.txt', 'w');
+var idfile = fs.openSync('data/2_ids.txt', 'w');
 
 var nMax = 0, n = 0;
 curAccounts.forEach(name => {
