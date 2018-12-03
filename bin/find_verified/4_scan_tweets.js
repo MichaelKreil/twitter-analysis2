@@ -57,7 +57,7 @@ function fetchTweets(name, cbfetchTweets) {
 }
 
 task1.finished(() => {
-	console.log('Finished'.bold().green());
+	console.log(colors.green('Finished'));
 })
 
 function scanTweets(name, cbscanTweets) {
