@@ -4,12 +4,14 @@
 *.syncfolderspro
 *.tsv
 *.txt
+*.xlsx
 *.xz
 *.zip
 /bin/analyse_tweet_network/*.json
 /bin/analyse_tweet_network/*.ndjson
 /bin/analyse_tweet_network/web/data/*.json
 /bin/botometer/
+/bin/find_verified/data/
 /bin/germany/4_server/_server/
 /bin/rp18bundeswehr/
 /botometer/
@@ -18,4 +20,3 @@
 /data
 /node_modules
 /package-lock.json
-*.xlsx
