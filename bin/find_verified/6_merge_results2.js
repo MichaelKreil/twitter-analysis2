@@ -32,7 +32,7 @@ files.forEach((f, index) => {
 		return true;
 	})
 
-	results.push(Buffer.from(JSON.stringify(obj)+'\n'));
+	results.push(Buffer.from(JSON.stringify(data)+'\n'));
 	if (results > 1000) flush();
 })
 flush();
