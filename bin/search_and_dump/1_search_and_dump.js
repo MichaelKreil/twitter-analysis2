@@ -193,6 +193,7 @@ var queries = [
 	{name: 'rechts3',                       query: {q:'mischvölker,halbneger'.toOR(), lang:'de'}},
 	{name: 'rechts4',                       query: {q:'staatsfunk,massenmigration,mischvolk,endlösung,überfremdung'.toOR(), lang:'de'}},
 	{name: 'reisewarnung',                  query: {q:'reisewarnung OR reisehinweis'}},
+	{name: 'revolution2019',                query: {q:'revolution2019 OR #revolution2019'}},
 	{name: 'rp18-hash',                     query: {q:'#rp18'}},
 	{name: 'rp18-hash2',                    query: {q:'#rp18 OR #mcb18 OR #republica18 OR #republica'}},
 	{name: 'rp19-hash',                     query: {q:'#rp19'}},
