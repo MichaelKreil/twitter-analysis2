@@ -99,7 +99,7 @@ var queries = [
 	{name: 'elysee',                        query: {q:'elysee'.toWildFromTo()}},
 	{name: 'emmanuelmacron',                query: {q:'emmanuelmacron'.toWildFromTo()}},
 	{name: 'emojitetra',                    query: {q:'emojitetra'.toWildFromTo()}},
-	{name: 'euwahl1',                       query: {q:'euwahl OR ep2019 OR euw19 OR europawahl OR europaparlament'}},
+	{name: 'euwahl1',                       query: {q:'#election,#ep,#euro,ek2019,elections2019,ep2019,eu2019,euelections,euelections2019,europa,europaparlament,europawahl,europawahl19,europawahl2019,europe,european,europeanparliament,europeennes2019,européennes,européennes2019,euw19,euwahl,futureofeurope,ps2019'.toOR()}},
 	{name: 'fakenewssource1',               query: {q:'berliner-express.com OR truth24.net'}},
 	{name: 'floridashooting',               query: {q:'emmagonzalez OR floridahighschool OR floridaschoolshooting OR floridashooter OR floridashooting OR floridastrong OR guncontrol OR guncontrolnow OR gunlawsnow OR gunreformnow OR gunsafety OR gunsense OR gunshooting OR highschoolshooter OR march4ourlives OR marchforourlives OR massshooting OR massshootings OR neveragain OR nrabloodmoney OR parklandschoolshooting OR parklandshooting OR righttobeararms OR schoolshooting'}},
 	{name: 'floridashooting2',              query: {q:'neveragain OR gunreformnow OR guncontrolnow OR guncontrol OR marchforourlives OR parkland OR parklandschoolshooting OR floridaschoolshooting OR parklandshooting OR #nra OR floridashooting OR nrabloodmoney OR banassaultweapons OR gunsense OR emmagonzalez OR schoolshooting OR parklandstudents OR parklandstudentsspeak OR gunviolence OR floridashooter OR wecallbs OR studentsstandup OR parklandstrong'}},
