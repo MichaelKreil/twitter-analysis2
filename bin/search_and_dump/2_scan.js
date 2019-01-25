@@ -8,8 +8,8 @@ const colors = require('colors');
 const stream = require('stream');
 
 
-var query = 'sibelschick';
-var dayCount = 20;
+var query = 'euwahl1';
+var dayCount = 200;
 var filestream = fs.createWriteStream(query+'.txt');
 
 var folder = path.resolve(__dirname, '../../data/search_and_dump/'+query+'/');
@@ -46,9 +46,9 @@ function finish() {
 	users = Array.from(users.values());
 	users.sort((a,b) => b.count - a.count);
 
-	var minCount = 25*dayCount;
+	var minCount = 20;
 	minCount = Math.min(minCount, users[30] && users[30].count);
-	//users = users.filter(u => u.count >= minCount);
+	users = users.filter(u => u.count >= minCount);
 	users = users.map(u => {
 		var sources = Array.from(u.sources.values());
 		sources.sort((a,b) => b.count - a.count);
@@ -59,9 +59,9 @@ function finish() {
 	output(users);
 
 	hashtags = Array.from(hashtags.values());
+	hashtags = hashtags.filter(h => h.count >= minCount);
 	hashtags.sort((a,b) => b.count - a.count);
-	hashtags = hashtags.slice(0, 30);
-	hashtags = hashtags.map(u => u.text+'\t'+u.count).join('\n');
+	hashtags = hashtags.map(h => h.text+'\t'+h.count).join('\n');
 	output('\nhashtags');
 	output(hashtags);
 }
