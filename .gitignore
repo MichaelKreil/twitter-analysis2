@@ -20,3 +20,5 @@
 /data
 /node_modules
 /package-lock.json
+/bin/account_dump/*.json
+/bin/measure_interactions/*.json
