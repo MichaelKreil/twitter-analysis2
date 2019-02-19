@@ -76,6 +76,8 @@ var queries = [
 	{name: 'amadeuantonio',                 query: {q:'amadeuantonio'.toWildFromTo()}},
 	{name: 'antifa',                        query: {q:'antifa'}},
 	{name: 'article13',                     query: {q:'acta2,antyart13,article11,article13,artikel11,artikel13,artikel13demo,censorshipmachines,copylaw,copyrightirective,deleteart13,fixcopyright,linktax,niemehrcdu,niemehrspd,savetheinternet,saveyourinternet,stopacta2,uploadfilter,uploadfilters,wirsindbots'.toOR()}},
+	{name: 'article13a',                    query: {q:'copyrightdirective,copyright,DigitalSingleMarket,EUDigital'.toOR()}},
+	{name: 'article13_discussion',          query: {q:'ansip_eu,axelvossmdep,cdu_csu_ep,dsmeu,eff,ep_legal,eu_commission,gabrielmariya,heidihautala,juliaredamep,junckereu,katarinabarley,maxandersson,peteraltmaier,politicoeurope,senficon,shkmep,spdeuropa,tadeuszzwiefka,woelken'.toWildFromTo()}},
 	{name: 'asyl',                          query: {q:'asyl OR asylstreit OR asyltourismus OR asylgehalt'}},
 	{name: 'aufstehen',                     query: {q:'aufstehen'}},
 	{name: 'bahn',                          query: {q:'bahn OR bahnhof OR hbf OR zug OR bahnsteig OR to:dbbahn OR dbbahn OR fahrradabteil OR ice OR schaffner OR bordbistro OR verspätung OR anschluss OR umsteigen OR ansage OR anzeige OR stellwerk OR störung OR weiche', lang:'de'}},
