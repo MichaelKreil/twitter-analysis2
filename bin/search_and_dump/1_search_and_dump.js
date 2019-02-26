@@ -78,6 +78,7 @@ var queries = [
 	{name: 'article13',                     query: {q:'acta2,antyart13,article11,article13,artikel11,artikel13,artikel13demo,censorshipmachines,copylaw,copyrightirective,deleteart13,fixcopyright,linktax,niemehrcdu,niemehrspd,savetheinternet,saveyourinternet,stopacta2,uploadfilter,uploadfilters,wirsindbots'.toOR()}},
 	{name: 'article13a',                    query: {q:'copyrightdirective,copyright,DigitalSingleMarket,EUDigital'.toOR()}},
 	{name: 'article13b',                    query: {q:'merkelfilter'.toOR()}},
+	{name: 'article13c',                    query: {q:'art13'.toOR()}},
 	{name: 'article13_discussion',          query: {q:'ansip_eu,axelvossmdep,cdu_csu_ep,dsmeu,eff,ep_legal,eu_commission,gabrielmariya,heidihautala,juliaredamep,junckereu,katarinabarley,maxandersson,peteraltmaier,politicoeurope,senficon,shkmep,spdeuropa,tadeuszzwiefka,woelken'.toWildFromTo()}},
 	{name: 'asyl',                          query: {q:'asyl OR asylstreit OR asyltourismus OR asylgehalt'}},
 	{name: 'aufstehen',                     query: {q:'aufstehen'}},
