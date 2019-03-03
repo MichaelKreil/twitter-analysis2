@@ -2,31 +2,28 @@
 
 const fs = require('fs');
 const lzma = require('lzma-native');
-const path = require('path');
+const resolve = require('path').resolve;
 const async = require('async');
 const colors = require('colors');
 const stream = require('stream');
 
 
-var query = 'euwahl1';
-var dayCount = 200;
+var query = 'article13';
 var filestream = fs.createWriteStream(query+'.txt');
 
-var folder = path.resolve(__dirname, '../../data/search_and_dump/'+query+'/');
-
-var fileDays = getDays();
+var files = getFiles(resolve(__dirname, '../../data/search_and_dump/'));
 
 var users = new Map();
 var hashtags = new Map();
 var tweetCount = 0;
 var startTime = Date.now();
-var filesizeSum = fileDays.reduce((sum,day) => sum+day.filesize, 0);
+var filesizeSum = files.reduce((sum,file) => sum+file.filesize, 0);
 var filesizePos = 0;
 
-output('\ninterval: '+fileDays[0].date+' - '+fileDays[fileDays.length-1].date);
-async.eachSeries(
-	fileDays,
-	(day, cb) => startScan(day.filename, cb),
+async.eachLimit(
+	files,
+	4,
+	(file, cb) => startScan(file.fullname, cb),
 	finish
 )
 
@@ -67,7 +64,8 @@ function finish() {
 }
 
 function startScan(filename, cb) {
-	console.log(colors.grey('start '+filename));
+	var shortName = filename.split('/').pop();
+	console.log(colors.grey('   start '+shortName));
 
 	var input = fs.createReadStream(filename);
 	var passthrough = new stream.PassThrough();
@@ -84,7 +82,7 @@ function startScan(filename, cb) {
 	})
 	decompressor.on('end', () => {
 		flush()
-		console.log(colors.grey('finished '+filename));
+		console.log(colors.grey('   finished '+shortName));
 		cb();
 	});
 
@@ -135,56 +133,44 @@ function output(text) {
 	filestream.write(text+'\n');
 }
 
-function getDays() {
-	var fileDays = [], minDate = 1e10, maxDate = 0;
-	fs.readdirSync(folder).forEach(f => {
-		if (!f.startsWith(query)) return;
-		if (!f.endsWith('.jsonstream.xz')) return;
+function getFiles(folder) {
+	var subfolders = fs.readdirSync(folder).map(f => {
+		if (!f.startsWith(query)) return false;
+		f = resolve(folder, f);
+		if (!fs.statSync(f).isDirectory) return false;
+		return f;
+	}).filter(f => f);
 
-		var date = f.slice(query.length+1, -14);
-		if (/^201[7-8]-[0-1][0-9]-[0-3][0-9]$/.test(f)) return;
+	var files = [];
+	subfolders.forEach(subfolder => {
+		fs.readdirSync(subfolder).forEach(filename => {
+			if (!filename.startsWith(query)) return;
+			if (!filename.endsWith('.jsonstream.xz')) return;
 
-		var filename = path.resolve(folder, f);
+			var date = filename.slice(query.length+1, -14);
+			if (/^20\d\d-\d\d-\d\d$/.test(filename)) return;
 
-		var dateIndex = Math.round(Date.parse(date)/86400000-17521);
-		
-		if (minDate > dateIndex) minDate = dateIndex;
-		if (maxDate < dateIndex) maxDate = dateIndex;
+			var fullname = resolve(subfolder, filename);
 
-		fileDays[dateIndex] = {
-			name: f,
-			date: date,
-			filename: filename,
-			filesize: fs.statSync(filename).size
-		}
+			files.push({
+				name: filename,
+				date: date,
+				fullname: fullname,
+				filesize: fs.statSync(fullname).size
+			})
+		})
 	})
 
-	var maxSize = 0, startIndex = minDate;
-	for (var i = minDate; i <= maxDate-dayCount+1; i++) {
-		var size = 0;
-		for (var j = i; j <= i+dayCount-1; j++) {
-			if (fileDays[j]) size += fileDays[j].filesize;
-		}
-		if (size > maxSize) {
-			maxSize = size;
-			startIndex = i;
-		}
-	}
-
-	var endIndex = startIndex+dayCount-1;
-	while (!fileDays[endIndex]) endIndex--;
-
-	fileDays = fileDays.slice(startIndex, endIndex+1);
-	fileDays = fileDays.filter(d => d);
-
-	return fileDays;
+	return files;
 }
+
+
 
 function fmtTime(timestamp) {
 	return [
-		Math.floor(timestamp/3600000),
-		(Math.floor(timestamp/60000) % 60 + 100).toFixed(0).slice(1),
-		(Math.floor(timestamp/1000) % 60 + 100).toFixed(0).slice(1),
+		 Math.floor(timestamp/3600000),
+		(Math.floor(timestamp/  60000) % 60 + 100).toFixed(0).slice(1),
+		(Math.floor(timestamp/   1000) % 60 + 100).toFixed(0).slice(1),
 	].join(':');
 }
 
