@@ -88,6 +88,7 @@ var queries = [
 	{name: 'article13f',                    query: {q:'#no11,#no12,#no13,no2article11,no2article12,no2article13'.toOR()}},
 	{name: 'article13g',                    query: {q:'axelsurft,artikel15,artikel16,artikel17,article15,article16,article17'.toOR()}},
 	{name: 'article13h',                    query: {q:'demogeld,demosold,mittelfingermittwoch'.toOR()}},
+	{name: 'article13i',                    query: {q:'thankyoujulia,gehtwaehlen,dankejulia,ripinternet'.toOR()}},
 	{name: 'asyl',                          query: {q:'asyl OR asylstreit OR asyltourismus OR asylgehalt'}},
 	{name: 'aufstehen',                     query: {q:'aufstehen'}},
 	{name: 'bahn',                          query: {q:'bahn OR bahnhof OR hbf OR zug OR bahnsteig OR to:dbbahn OR dbbahn OR fahrradabteil OR ice OR schaffner OR bordbistro OR verspätung OR anschluss OR umsteigen OR ansage OR anzeige OR stellwerk OR störung OR weiche', lang:'de'}},
