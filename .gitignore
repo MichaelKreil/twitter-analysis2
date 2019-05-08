@@ -7,12 +7,15 @@
 *.xlsx
 *.xz
 *.zip
+/bin/account_dump/*.json
 /bin/analyse_tweet_network/*.json
 /bin/analyse_tweet_network/*.ndjson
 /bin/analyse_tweet_network/web/data/*.json
-/bin/botometer/
+/bin/botometer/old/
+/bin/botometer/results/
 /bin/find_verified/data/
 /bin/germany/4_server/_server/
+/bin/measure_interactions/*.json
 /bin/rp18bundeswehr/
 /botometer/
 /cache/*/
@@ -20,5 +23,3 @@
 /data
 /node_modules
 /package-lock.json
-/bin/account_dump/*.json
-/bin/measure_interactions/*.json

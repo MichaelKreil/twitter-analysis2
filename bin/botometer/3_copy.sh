@@ -1,0 +1,1 @@
+cp -v /Users/michaelkreil/Documents/Projekte/Tagesspiegel/twitter-scraper/twitter-analysis/bin/botometer/results/* /Users/michaelkreil/Dropbox/geteilt/social_bots_tsp/Botometer-Messungen/
