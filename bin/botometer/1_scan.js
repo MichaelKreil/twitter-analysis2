@@ -1,10 +1,13 @@
 "use strict";
 
+const prefix = '2019-05-08';
+
 const fs = require('fs');
+const zlib = require('zlib');
 const async = require('async');
-const botometer = require('../../lib/botometer.js');
-const scraper = require('../../lib/scraper.js')('botometer2');
-const cache = require('../../lib/cache.js')('botometer3');
+const botometer = require('../../lib/botometer.js')('botometer_'+prefix+'_1');
+const scraper = require('../../lib/scraper.js')('botometer_'+prefix+'_2');
+const cache = require('../../lib/cache.js')('botometer_'+prefix+'_3');
 const colors = require('colors');
 
 async.series([
@@ -155,13 +158,13 @@ function fetchList(screen_name, slug, cb) {
 
 function scanFile(filename, cb) {
 	var users = fs.readFileSync(filename, 'utf8').split('\n');
-	scanUsers(users, 'file_'+filename, cb);
+	scanUsers(users, 'file_'+filename.replace(/\..*?$/g,''), cb);
 }
 
 
 
 function scanUsers(users, slug, cbScanUsers) {
-	if (fs.existsSync('results/'+slug+'.json')) return cbScanUsers();
+	if (fs.existsSync('results/'+slug+'.json.gz')) return cbScanUsers();
 
 	var results = [];
 
@@ -172,7 +175,7 @@ function scanUsers(users, slug, cbScanUsers) {
 			cache(
 				user,
 				cbResult => {
-					console.log(('fetch '+user).grey);
+					//console.log(('fetch '+user).grey);
 					botometer(user, cbResult);
 				},
 				data => {
@@ -203,9 +206,14 @@ function scanUsers(users, slug, cbScanUsers) {
 			)
 		},
 		() => {
-			results.sort((a,b) => (b.score - a.score) || a.localeCompare(b));
-			fs.writeFileSync('results/'+slug+'.json', JSON.stringify(results, null, '\t'), 'utf8');
+			results.sort((a,b) => (b.score - a.score) || a.user.screen_name.localeCompare(b.user.screen_name));
 			fs.writeFileSync('results/'+slug+'.tsv', results.map(d => [d.user.screen_name, (d.score*5).toFixed(3)].join('\t')).join('\n'), 'utf8');
+
+			results = JSON.stringify(results, null, '\t');
+			results = Buffer.from(results, 'utf8');
+			results = zlib.gzipSync(results, {level:9});
+
+			fs.writeFileSync('results/'+slug+'.json.gz', results);
 			cbScanUsers();
 		}
 	)
