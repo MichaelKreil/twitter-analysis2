@@ -2,6 +2,8 @@
 
 const prefix = '2019-05-08';
 
+const dontSave = false;
+
 const fs = require('fs');
 const zlib = require('zlib');
 const async = require('async');
@@ -17,7 +19,6 @@ async.series([
 	cb => fetchFriends('zeitonline', cb),
 	cb => fetchFriends('republica', cb),
 
-	cb => scanFile('rp19.tsv', cb),
 	cb => scanFile('nasa.tsv', cb),
 
 	cb => fetchList('zeitonline', 'das-zeit-online-team', cb),
@@ -132,10 +133,14 @@ async.series([
 	cb => fetchList('wahl_beobachter', 'mdb-bundestag', cb),
 	cb => fetchList('washingtonpost', 'washington-post-people', cb),
 	cb => fetchList('wbr', 'wbr-artists', cb),
+	cb => fetchList('esa', 'astronauts', cb),
 
 	cb => fetchFriends('nytimes', cb),
 	cb => fetchFriends('washingtonpost', cb),
 	cb => fetchFriends('bbc', cb),
+
+	//cb => scanFile('rp19.tsv', cb),
+	cb => scanFile('astronauts.tsv', cb),
 ])
 
 
@@ -161,10 +166,9 @@ function scanFile(filename, cb) {
 	scanUsers(users, 'file_'+filename.replace(/\..*?$/g,''), cb);
 }
 
-
-
 function scanUsers(users, slug, cbScanUsers) {
-	if (fs.existsSync('results/'+slug+'.json.gz')) return cbScanUsers();
+	//if (users.length > 1000) return cbScanUsers();
+	if (fs.existsSync('results/'+slug+'.ndjson.gz')) return cbScanUsers();
 
 	var results = [];
 
@@ -174,31 +178,33 @@ function scanUsers(users, slug, cbScanUsers) {
 			if (index % 20 === 0) console.log((100*index/users.length).toFixed(1)+'%');
 			cache(
 				user,
-				cbResult => {
-					//console.log(('fetch '+user).grey);
-					botometer(user, cbResult);
-				},
+				cbResult => botometer(user, cbResult),
 				data => {
 					if (!data) return cb();
 					if (!data.user) return cb();
 					if (!data.scores) return cb();
 
-					data.score = (data.user.lang === 'en') ? data.scores.english : data.scores.universal;
+					var date = data.user.status ? (new Date(data.user.status.created_at)).toISOString() : '?';
 
-					results.push(data);
-					//console.log(data);
-					//process.exit();
-					
 					var line = [
 						data.user.screen_name,
 						(data.score*5).toFixed(3),
 						data.user.verified,
 						data.user.followers_count,
-						(new Date(data.user.status.created_at)).toISOString(),
+						date,
 					].join('\t');
+
+					if (!dontSave) results.push({
+						score: data.score,
+						name: data.user.screen_name,
+						tsv: line,
+						ndjson: Buffer.from(JSON.stringify(data)+'\n', 'utf8'),
+					});
+					
 					if (data.score < 0.4) line = colors.green(line);
 					else if (data.score < 0.6) line = colors.yellow(line);
 					else line = colors.red(line);
+
 					console.log(line);
 
 					cb();
@@ -206,14 +212,16 @@ function scanUsers(users, slug, cbScanUsers) {
 			)
 		},
 		() => {
-			results.sort((a,b) => (b.score - a.score) || a.user.screen_name.localeCompare(b.user.screen_name));
-			fs.writeFileSync('results/'+slug+'.tsv', results.map(d => [d.user.screen_name, (d.score*5).toFixed(3)].join('\t')).join('\n'), 'utf8');
+			if (dontSave) return cbScanUsers();
 
-			results = JSON.stringify(results, null, '\t');
-			results = Buffer.from(results, 'utf8');
+			results.sort((a,b) => (b.score - a.score) || a.name.localeCompare(b.name));
+
+			fs.writeFileSync('results/'+slug+'.tsv', results.map(d => d.tsv).join('\n'), 'utf8');
+
+			results = Buffer.concat(results.map(d => d.ndjson));
 			results = zlib.gzipSync(results, {level:9});
 
-			fs.writeFileSync('results/'+slug+'.json.gz', results);
+			fs.writeFileSync('results/'+slug+'.ndjson.gz', results);
 			cbScanUsers();
 		}
 	)
