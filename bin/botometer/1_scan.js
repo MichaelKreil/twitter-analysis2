@@ -7,6 +7,7 @@ const dontSave = false;
 const fs = require('fs');
 const zlib = require('zlib');
 const async = require('async');
+const miss = require('mississippi2');
 const botometer = require('../../lib/botometer.js')('botometer_'+prefix+'_1');
 const scraper = require('../../lib/scraper.js')('botometer_'+prefix+'_2');
 const cache = require('../../lib/cache.js')('botometer_'+prefix+'_3');
@@ -233,11 +234,18 @@ function scanUsers(users, slug, cbScanUsers) {
 
 			fs.writeFileSync('results/'+slug+'.tsv', results.map(d => d.tsv).join('\n'), 'utf8');
 
-			results = Buffer.concat(results.map(d => d.ndjson));
-			results = zlib.gzipSync(results, {level:9});
+			results = results.map(d => d.ndjson);
 
-			fs.writeFileSync('results/'+slug+'.ndjson.gz', results);
-			cbScanUsers();
+			miss.pipe(
+				miss.from((size, next) => {
+					if (results.length === 0) return next(null, null);
+
+					next(null, results.shift());
+				}),
+				zlib.createGzip({level:9}),
+				fs.createWriteStream('results/'+slug+'.ndjson.gz'),
+				() => cbScanUsers()
+			)
 		}
 	)
 }
