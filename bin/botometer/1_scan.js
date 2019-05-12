@@ -156,6 +156,7 @@ async.series([
 	cb => fetchList('zeitonline', 'die-zeit', cb),
 
 	cb => scanFile('astronauts.tsv', cb),
+	cb => scanFile('bots.tsv', cb),
 	cb => scanFile('nasa.tsv', cb),
 	//cb => scanFile('rp19.tsv', cb),
 ])
@@ -199,6 +200,8 @@ function scanUsers(users, slug, cbScanUsers) {
 					if (!data) return cb();
 					if (!data.user) return cb();
 					if (!data.scores) return cb();
+					
+					data.score = data.user.lang.startsWith('en') ? data.scores.english : data.scores.universal;
 
 					var date = data.user.status ? (new Date(data.user.status.created_at)).toISOString() : '?';
 
