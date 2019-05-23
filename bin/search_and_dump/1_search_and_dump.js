@@ -33,7 +33,7 @@ String.prototype.expandMedia = function () {
 
 // List of search queries
 var queries = [
-	{name: '120db',                         query: {q:'frauenmarsch OR 120db OR b1702 OR dd1702 OR ndh1702 OR niun1702 OR niun OR no120db'}}, 
+	{name: '120db',                         query: {q:'frauenmarsch,120db,b1702,dd1702,ndh1702,niun1702,niun,no120db'.toOR()}}, 
 	{name: '34c3',                          query: {q:'34c3'}},
 	{name: '35c3',                          query: {q:'35c3'}},
 	{name: '36c3',                          query: {q:'36c3'}},
@@ -206,6 +206,7 @@ var queries = [
 	{name: 'rechts4',                       query: {q:'staatsfunk,massenmigration,mischvolk,endlösung,überfremdung'.toOR(), lang:'de'}},
 	{name: 'reisewarnung',                  query: {q:'reisewarnung OR reisehinweis'}},
 	{name: 'revolution2019',                query: {q:'revolution2019 OR #revolution2019'}},
+	{name: 'rezovideo',                     query: {q:'rezovideo,#rezo,@rezomusik,to:rezomusik,from:rezomusik,@cdu,to:cdu,from:cdu,amthor,amthorvideo,#cdu,www.youtube.com/watch?v=4Y1lZQsyuSQ,"Zerstörung der CDU"'.toOR()}},
 	{name: 'rp19-hash',                     query: {q:'#rp19'}},
 	{name: 'rp19-hash2',                    query: {q:'#republica19 OR #republica'}},
 	{name: 'rp20-hash',                     query: {q:'#rp20 OR #republica20 OR #republica'}},
