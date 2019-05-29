@@ -1,6 +1,6 @@
 "use strict";
 
-const prefix = '2019-05-08';
+const prefix = '2019-05-29';
 
 const dontSave = false;
 
@@ -97,7 +97,6 @@ async.series([
 	cb => fetchList('NASA_Astronauts', 'nasa-astronauts', cb),
 	cb => fetchList('NatGeoExplorers', 'natgeoexplorers', cb),
 	cb => fetchList('NBAplayers', 'nba-players', cb),
-	cb => fetchList('nbaplayers', 'nba-players', cb),
 	cb => fetchList('nbc', 'nbc-talent', cb),
 	cb => fetchList('nbcolympics', 'winter-olympians-2018', cb),
 	cb => fetchList('newscientist', 'twitterbots', cb),
@@ -158,7 +157,8 @@ async.series([
 	cb => scanFile('astronauts.tsv', cb),
 	cb => scanFile('bots.tsv', cb),
 	cb => scanFile('nasa.tsv', cb),
-	//cb => scanFile('rp19.tsv', cb),
+	
+	cb => scanFile('rp19.tsv', cb),
 ])
 
 
