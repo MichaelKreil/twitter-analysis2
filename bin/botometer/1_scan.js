@@ -5,7 +5,7 @@ const prefix = '2019-05-08';
 const dontSave = false;
 
 const fs = require('fs');
-const zlib = require('zlib');
+const lzma = require('lzma-native');
 const async = require('async');
 const miss = require('mississippi2');
 const botometer = require('../../lib/botometer.js')('botometer_'+prefix+'_1');
@@ -185,7 +185,7 @@ function scanFile(filename, cb) {
 
 function scanUsers(users, slug, cbScanUsers) {
 	//if (users.length > 1000) return cbScanUsers();
-	if (fs.existsSync('results/'+slug+'.ndjson.gz')) return cbScanUsers();
+	if (fs.existsSync('results/'+slug+'.ndjson.xz')) return cbScanUsers();
 
 	var results = [];
 
@@ -201,7 +201,7 @@ function scanUsers(users, slug, cbScanUsers) {
 					if (!data.user) return cb();
 					if (!data.scores) return cb();
 					
-					data.score = data.user.lang.startsWith('en') ? data.scores.english : data.scores.universal;
+					//console.log(data.score);
 
 					var date = data.user.status ? (new Date(data.user.status.created_at)).toISOString() : '?';
 
@@ -245,8 +245,13 @@ function scanUsers(users, slug, cbScanUsers) {
 
 					next(null, results.shift());
 				}),
-				zlib.createGzip({level:9}),
-				fs.createWriteStream('results/'+slug+'.ndjson.gz'),
+				lzma.createCompressor({
+					check: lzma.CHECK_NONE,
+					preset: 9,
+					synchronous: false,
+					threads: 1,
+				}),
+				fs.createWriteStream('results/'+slug+'.ndjson.xz'),
 				() => cbScanUsers()
 			)
 		}
