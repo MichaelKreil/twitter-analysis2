@@ -2,12 +2,14 @@
 
 const fs = require('fs');
 
+const folder = 'results';//_2019-05-08';
+
 var result = [];
-fs.readdirSync('results').forEach(file => {
+fs.readdirSync(folder).forEach(file => {
 	if (!file.endsWith('.tsv')) return;
 	if (file.startsWith('_')) return;
 
-	var data = fs.readFileSync('results/'+file, 'utf8').split('\n').map(l => {
+	var data = fs.readFileSync(folder+'/'+file, 'utf8').split('\n').map(l => {
 		l = l.split('\t');
 		return {
 			name:l[0], 
@@ -19,7 +21,8 @@ fs.readdirSync('results').forEach(file => {
 		botCount/data.length,
 		[
 			(100*botCount/data.length).toFixed(1)+'%',
-			file.slice(0,-4)
+			file.slice(0,-4),
+			botCount+' of '+data.length,
 		].join('\t')
 	]);
 })
@@ -29,4 +32,4 @@ result = result.map(e => e[1]).join('\n');
 
 console.log(result);
 
-fs.writeFileSync('results/_index.tsv', result, 'utf8');
+fs.writeFileSync(folder+'/_index.tsv', result, 'utf8');
