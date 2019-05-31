@@ -147,7 +147,7 @@ async.series([
 	cb => fetchList('vicenews', 'vice-news-staff', cb),
 	cb => fetchList('wahl_beobachter', 'mdb-bundestag', cb),
 	cb => fetchList('washingtonpost', 'washington-post-people', cb),
-	cb => fetchList('wbr', 'wbr-artists', cb),
+	//cb => fetchList('wbr', 'wbr-artists', cb),
 	cb => fetchList('welt', 'staff', cb),
 	cb => fetchList('WIRED', 'wired', cb),
 	cb => fetchList('ZDF', 'zdf-redakteure', cb),
