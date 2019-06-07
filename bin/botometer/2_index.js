@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 
-const folder = 'results';//_2019-05-08';
+const folder = 'results_2019-06-07';
 
 var result = [];
 fs.readdirSync(folder).forEach(file => {
@@ -16,7 +16,7 @@ fs.readdirSync(folder).forEach(file => {
 			score:parseFloat(l[1]),
 		}
 	});
-	var botCount = data.filter(data => data.score > 2.5).length;
+	var botCount = data.filter(data => data.score > 0.76*5).length;
 	result.push([
 		botCount/data.length,
 		[

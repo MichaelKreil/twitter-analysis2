@@ -14,13 +14,13 @@ const cache = require('../../lib/cache.js')('botometer_'+prefix+'_3');
 const colors = require('colors');
 
 async.series([
+	cb => fetchFollowers('fdp', cb),
 	cb => fetchFollowers('AfD', cb),
-	//cb => fetchFollowers('CDU', cb),
-	//cb => fetchFollowers('CSU', cb),
-	//cb => fetchFollowers('fdp', cb),
-	//cb => fetchFollowers('Die_Gruenen', cb),
-	//cb => fetchFollowers('dielinke', cb),
-	//cb => fetchFollowers('spdde', cb),
+	cb => fetchFollowers('CDU', cb),
+	cb => fetchFollowers('CSU', cb),
+	cb => fetchFollowers('Die_Gruenen', cb),
+	cb => fetchFollowers('dielinke', cb),
+	cb => fetchFollowers('spdde', cb),
 	
 	/*
 	cb => fetchFriends('bbc', cb),
@@ -175,7 +175,12 @@ async.series([
 function fetchFollowers(screen_name, cbFetch) {
 	console.log('scan followers of '+screen_name)
 	scraper.fetch('followers/list', {screen_name:screen_name, count:200, skip_status:true, include_user_entities:false}, result => {
-		result = result.users.map(u => u.screen_name);
+		result = result.users;
+		result.forEach(u => {
+			u.order = parseFloat(u.id_str.split('').reverse().join(''));
+		})
+		result.sort((a,b) => a.order - b.order);
+		result = result.map(u => u.screen_name);
 		var blocks = [];
 		while (result.length > 0) {
 			blocks.push(result.slice(0,10000));
