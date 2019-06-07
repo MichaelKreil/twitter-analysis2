@@ -1,6 +1,6 @@
 "use strict";
 
-const prefix = '2019-05-29';
+const prefix = '2019-06-07';
 
 const dontSave = false;
 
@@ -14,6 +14,15 @@ const cache = require('../../lib/cache.js')('botometer_'+prefix+'_3');
 const colors = require('colors');
 
 async.series([
+	cb => fetchFollowers('AfD', cb),
+	//cb => fetchFollowers('CDU', cb),
+	//cb => fetchFollowers('CSU', cb),
+	//cb => fetchFollowers('fdp', cb),
+	//cb => fetchFollowers('Die_Gruenen', cb),
+	//cb => fetchFollowers('dielinke', cb),
+	//cb => fetchFollowers('spdde', cb),
+	
+	/*
 	cb => fetchFriends('bbc', cb),
 	cb => fetchFriends('nytimes', cb),
 	cb => fetchFriends('republica', cb),
@@ -147,7 +156,7 @@ async.series([
 	cb => fetchList('vicenews', 'vice-news-staff', cb),
 	cb => fetchList('wahl_beobachter', 'mdb-bundestag', cb),
 	cb => fetchList('washingtonpost', 'washington-post-people', cb),
-	//cb => fetchList('wbr', 'wbr-artists', cb),
+	cb => fetchList('wbr', 'wbr-artists', cb),
 	cb => fetchList('welt', 'staff', cb),
 	cb => fetchList('WIRED', 'wired', cb),
 	cb => fetchList('ZDF', 'zdf-redakteure', cb),
@@ -159,10 +168,30 @@ async.series([
 	cb => scanFile('nasa.tsv', cb),
 	
 	cb => scanFile('rp19.tsv', cb),
+	*/
 ])
 
 
+function fetchFollowers(screen_name, cbFetch) {
+	console.log('scan followers of '+screen_name)
+	scraper.fetch('followers/list', {screen_name:screen_name, count:200, skip_status:true, include_user_entities:false}, result => {
+		result = result.users.map(u => u.screen_name);
+		var blocks = [];
+		while (result.length > 0) {
+			blocks.push(result.slice(0,10000));
+			result = result.slice(10000)
+		}
+		console.log('generated '+blocks.length+' blocks');
+		async.eachOfSeries(
+			blocks,
+			(block, index, cb) => scanUsers(block, screen_name+'_followers_'+index, cb),
+			cbFetch
+		)
+	})
+}
+
 function fetchFriends(screen_name, cb) {
+	console.log('scan friends of '+screen_name)
 	scraper.fetch('friends/list', {screen_name:screen_name, count:200, skip_status:true, include_user_entities:false}, result => {
 		result = result.users.map(u => u.screen_name);
 		scanUsers(result, screen_name+'_friends', cb);
@@ -172,6 +201,7 @@ function fetchFriends(screen_name, cb) {
 
 
 function fetchList(screen_name, slug, cb) {
+	console.log('scan list '+screen_name+'/'+slug)
 	scraper.fetch('lists/members', { owner_screen_name:screen_name, slug:slug, count: 5000, skip_status:true, skip_status:true, include_user_entities:false}, result => {
 		result = result.users.map(u => u.screen_name);
 		scanUsers(result, screen_name+'_list_'+slug, cb);
@@ -235,7 +265,7 @@ function scanUsers(users, slug, cbScanUsers) {
 
 			results.sort((a,b) => (b.score - a.score) || a.name.localeCompare(b.name));
 
-			fs.writeFileSync('results/'+slug+'.tsv', results.map(d => d.tsv).join('\n'), 'utf8');
+			fs.writeFileSync('results_'+prefix+'/'+slug+'.tsv', results.map(d => d.tsv).join('\n'), 'utf8');
 
 			results = results.map(d => d.ndjson);
 
@@ -251,7 +281,7 @@ function scanUsers(users, slug, cbScanUsers) {
 					synchronous: false,
 					threads: 1,
 				}),
-				fs.createWriteStream('results/'+slug+'.ndjson.xz'),
+				fs.createWriteStream('results_'+prefix+'/'+slug+'.ndjson.xz'),
 				() => cbScanUsers()
 			)
 		}
