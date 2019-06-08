@@ -220,7 +220,7 @@ function scanFile(filename, cb) {
 
 function scanUsers(users, slug, cbScanUsers) {
 	//if (users.length > 1000) return cbScanUsers();
-	if (fs.existsSync('results/'+slug+'.ndjson.xz')) return cbScanUsers();
+	if (fs.existsSync('results_'+prefix+'/'+slug+'.ndjson.xz')) return cbScanUsers();
 
 	var results = [];
 
