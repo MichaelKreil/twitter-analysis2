@@ -15,8 +15,8 @@ const colors = require('colors');
 
 async.series([
 	cb => fetchFollowers('fdp', cb),
-	cb => fetchFollowers('AfD', cb),
 	cb => fetchFollowers('CDU', cb),
+	cb => fetchFollowers('AfD', cb),
 	cb => fetchFollowers('CSU', cb),
 	cb => fetchFollowers('Die_Gruenen', cb),
 	cb => fetchFollowers('dielinke', cb),
@@ -284,7 +284,7 @@ function scanUsers(users, slug, cbScanUsers) {
 					check: lzma.CHECK_NONE,
 					preset: 9,
 					synchronous: false,
-					threads: 1,
+					threads: 8,
 				}),
 				fs.createWriteStream('results_'+prefix+'/'+slug+'.ndjson.xz'),
 				() => cbScanUsers()
