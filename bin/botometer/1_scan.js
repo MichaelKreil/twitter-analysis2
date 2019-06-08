@@ -177,9 +177,9 @@ function fetchFollowers(screen_name, cbFetch) {
 	scraper.fetch('followers/list', {screen_name:screen_name, count:200, skip_status:true, include_user_entities:false}, result => {
 		result = result.users;
 		result.forEach(u => {
-			u.order = parseFloat(u.id_str.split('').reverse().join(''));
+			u.order = u.id_str.split('').reverse().join('');
 		})
-		result.sort((a,b) => a.order - b.order);
+		result.sort((a,b) => a.order.localeCompare(b.order));
 		result = result.map(u => u.screen_name);
 		var blocks = [];
 		while (result.length > 0) {
