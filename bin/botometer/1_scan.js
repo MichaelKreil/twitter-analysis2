@@ -14,10 +14,10 @@ const cache = require('../../lib/cache.js')('botometer_'+prefix+'_3');
 const colors = require('colors');
 
 async.series([
-	cb => fetchFollowers('fdp', cb),
-	cb => fetchFollowers('CDU', cb),
-	cb => fetchFollowers('AfD', cb),
-	cb => fetchFollowers('CSU', cb),
+	//cb => fetchFollowers('fdp', cb),
+	//cb => fetchFollowers('CDU', cb),
+	//cb => fetchFollowers('AfD', cb),
+	//cb => fetchFollowers('CSU', cb),
 	cb => fetchFollowers('Die_Gruenen', cb),
 	cb => fetchFollowers('dielinke', cb),
 	cb => fetchFollowers('spdde', cb),
