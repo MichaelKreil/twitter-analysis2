@@ -181,6 +181,7 @@ function fetchFollowers(screen_name, cbFetch) {
 		})
 		result.sort((a,b) => a.order.localeCompare(b.order));
 		result = result.map(u => u.screen_name);
+		result = result.filter(name => name.length > 0);
 		var blocks = [];
 		while (result.length > 0) {
 			blocks.push(result.slice(0,10000));
