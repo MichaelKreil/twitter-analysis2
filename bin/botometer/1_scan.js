@@ -18,7 +18,7 @@ async.series([
 	//cb => fetchFollowers('CDU', cb),
 	//cb => fetchFollowers('AfD', cb),
 	//cb => fetchFollowers('CSU', cb),
-	cb => fetchFollowers('Die_Gruenen', cb),
+	//cb => fetchFollowers('Die_Gruenen', cb),
 	cb => fetchFollowers('dielinke', cb),
 	cb => fetchFollowers('spdde', cb),
 	
