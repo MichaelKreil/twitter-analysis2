@@ -8,7 +8,7 @@ const async = require('async');
 const utils = require('../../lib/utils.js');
 const colors = require('colors');
 const resolve = require('path').resolve;
-const scraper = require('../../lib/scraper.js')('search_and_dump');
+const scraper = require('../../lib/scraper.js')();
 
 String.prototype.toFromTo = function () {
 	return this.split(',').map(a => a.trim()).map(a => 'from:'+a+' OR to:'+a).join(' OR ')
