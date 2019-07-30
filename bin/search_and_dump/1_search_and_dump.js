@@ -3,7 +3,7 @@
 const dry = false;
 
 const fs = require('fs');
-const lzma = require('lzma-native');
+const child_process = require('child_process');
 const async = require('async');
 const utils = require('../../lib/utils.js');
 const colors = require('colors');
@@ -307,14 +307,9 @@ function runScraper(name, query, date, cbScraper) {
 
 	function OutputStream(tempFilename, filename) {
 		// Prepare Compressor
-		var compressor = lzma.createCompressor({
-			check: lzma.CHECK_NONE,
-			preset: 9/* | lzma.PRESET_EXTREME*/,
-			synchronous: false,
-			threads: 1,
-		});
+		var compressor = child_process.spawn('xz', '-zkfc9 -T 1 -'.split(' '));
 		var stream = fs.createWriteStream(tempFilename, {highWaterMark: 8*1024*1024});
-		compressor.pipe(stream);
+		compressor.stdout.pipe(stream);
 
 		// Make sure that the folder exists
 		utils.ensureDir(filename);
@@ -333,10 +328,10 @@ function runScraper(name, query, date, cbScraper) {
 			buffer = buffer.map(t => t.buffer);
 			buffer = Buffer.concat(buffer);
 
-			if (compressor.write(buffer)) {
+			if (compressor.stdin.write(buffer)) {
 				cbFlush();
 			} else {
-				compressor.once('drain', cbFlush);
+				compressor.stdin.once('drain', cbFlush);
 			}
 		}
 
@@ -350,7 +345,7 @@ function runScraper(name, query, date, cbScraper) {
 					if (!dry) fs.renameSync(tempFilename, filename);
 					cbClose();
 				})
-				compressor.end();
+				compressor.stdin.end();
 			})
 		}
 
