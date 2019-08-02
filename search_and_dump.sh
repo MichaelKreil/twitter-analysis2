@@ -13,4 +13,4 @@ message() {
 git pull
 node ./bin/search_and_dump/1_search_and_dump.js || message 'search_and_dump.js failed'
 # rm -r ./cache/search_and_dump
-# node /home/igg/apps/sync/bin/dropbox.js || message 'dropbox.js failed'
+node /home/pi/projects/sync/bin/dropbox.js || message 'dropbox.js failed'
