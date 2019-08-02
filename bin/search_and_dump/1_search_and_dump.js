@@ -215,8 +215,14 @@ async.each(
 								
 								if (users.length === 0) return cbList();
 
+								var name = (screen_name+'_list_'+list.slug).toLowerCase();
+								name = name.replace(/ü/g, 'ue');
+								name = name.replace(/ö/g, 'oe');
+								name = name.replace(/ä/g, 'ae');
+								name = name.replace(/ß/g, 'ss');
+
 								queries.push({
-									name: screen_name.toLowerCase()+'_list_'+list.slug,
+									name: name,
 									query: {
 										q:users.map(u => 'from:'+u+' OR to:'+u).join(' OR ')
 									}
