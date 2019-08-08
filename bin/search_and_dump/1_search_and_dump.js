@@ -264,8 +264,6 @@ function startScraper() {
 		2,
 		() => console.log(colors.green.bold('FINISHED'))
 	)
-
-	// Start scraper
 }
 
 
@@ -280,7 +278,7 @@ function runScraper(name, query, date, cbScraper) {
 		//console.log(colors.grey('Ignore '+title));
 		return setTimeout(cbScraper,0);
 	} else {
-		console.log(colors.green('Starting '+title));
+		console.log(colors.grey('   Starting '+title));
 	}
 
 	var outputStream = new OutputStream(tempFilename, filename)
@@ -302,7 +300,7 @@ function runScraper(name, query, date, cbScraper) {
 
 		// flush data buffer to lzma compressor
 		function flush(percent, cbFlush) {
-			console.log(colors.green('flushing '+title+' - '+(100*percent).toFixed(1)+'%'))
+			console.log(colors.grey('   flushing '+title+' - '+(100*percent).toFixed(1)+'%'))
 
 			var buffer = Array.from(tweets.values());
 			tweets = new Map();
@@ -327,7 +325,7 @@ function runScraper(name, query, date, cbScraper) {
 			flush(1, () => {
 				//console.log(colors.green('closing '+title));
 				writeStream.on('close', () => {
-					console.log(colors.green.bold('closed '+title));
+					console.log(colors.grey.bold('   closed '+title));
 					if (!dry) fs.renameSync(tempFilename, filename);
 					cbClose();
 				})
