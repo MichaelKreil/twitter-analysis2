@@ -263,7 +263,7 @@ function startScraper() {
 	async.parallelLimit(
 		queue,
 		2,
-		() => console.log(colors.green.bold('FINISHED'))
+		() => console.log(colors.green.bold('## FINISHED'))
 	)
 }
 
