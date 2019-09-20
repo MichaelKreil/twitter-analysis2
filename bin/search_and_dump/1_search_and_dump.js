@@ -77,6 +77,7 @@ var queries = [
 	{name: 'cdu',                           query: {q:'#cdu'}},
 	{name: 'christchurch',                  query: {q:'christchurch,#christchurch,#eggboy,#fraseranning,#hellobrother,#neuseeland,#newzealand,#newzealandshooting,#newzealandterroristattack,حادث_نيوزيلندا_الارهابي'.toOR()}},
 	{name: 'climatestrike',                 query: {q:'#climatestrike,#fridaysforfuture,#schoolstrike4climate,#climatechange,from:gretathunberg,to:gretathunberg'.toOR()}},
+	{name: 'climatestrike2',                query: {q:'#climatestrike,#globalclimatestrike,#globalclimatestrikes,#climateactionnow,#climateemergency,#allefuersklima,#greveglobalpeloclima,#climatejustice,#climatejusticenow,#climatestrikes,#climatemarch,#climatemarchpakistan,#islamabadclimatemarch,#climatecrisis,#youthstrike4climate,#allefürsklima,#greennewdeal,#extinctionrebellion,#klimakabinett,#fridays4future,#fridaysforfurture,#scientists4future,#fridayforfuture,#cambioclimático,#fridaysforfutures,#strike4climate,#grevepourleclimat,#グローバル気候マーチ,#climatestrikethailand,#strajkklimatyczny,#actonclimate,#cambioclimatico,#huelgamundialporelclima,#marchepourleclimat,#20eylüli̇klimgrevi,#klimatstrejk,#scientistsforfuture,#youthclimatestrike,#crisisclimatica,#climatestrikeke,#viernesporelfuturo'.toOR()}},
 	{name: 'csu',                           query: {q:'#csu'}},
 	{name: 'dsgvo',                         query: {q:'dsgvo OR dgsvo OR dataprotection OR cybersecurity OR gdpr OR datenschutz'}},
 	{name: 'dunjahayali',                   query: {q:'dunjahayali'.toWildFromTo()}},
