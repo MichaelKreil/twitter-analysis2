@@ -1,6 +1,6 @@
 "use strict";
 
-const prefix = '2019-06-07';
+const prefix = '2019-10-01';
 
 const dontSave = false;
 
@@ -19,10 +19,10 @@ async.series([
 	//cb => fetchFollowers('AfD', cb),
 	//cb => fetchFollowers('CSU', cb),
 	//cb => fetchFollowers('Die_Gruenen', cb),
-	cb => fetchFollowers('dielinke', cb),
-	cb => fetchFollowers('spdde', cb),
+	//cb => fetchFollowers('dielinke', cb),
+	//cb => fetchFollowers('spdde', cb),
 	
-	/*
+/*
 	cb => fetchFriends('bbc', cb),
 	cb => fetchFriends('nytimes', cb),
 	cb => fetchFriends('republica', cb),
@@ -154,7 +154,41 @@ async.series([
 	cb => fetchList('usatodaylife', 'golden-globes-2016', cb),
 	cb => fetchList('VICE', 'vice-staff-contributors', cb),
 	cb => fetchList('vicenews', 'vice-news-staff', cb),
+
+	cb => fetchList('AuswaertigesAmt', 'venedig-london', cb),
+	cb => fetchList('AuswaertigesAmt', 'eu-außenministerien', cb),
+	cb => fetchList('AuswaertigesAmt', 'vereinte-nationen', cb),
+	cb => fetchList('AuswaertigesAmt', 'reise-und-sicherheit', cb),
+	cb => fetchList('AuswaertigesAmt', 'deutsche-vertretungen', cb),
+	
+	cb => fetchList('wahl_beobachter', 'abgeordnetenhaus-agh', cb),
+	cb => fetchList('wahl_beobachter', 'alle-25-parteien-ep2014', cb),
+	cb => fetchList('wahl_beobachter', 'botschaften', cb),
+	cb => fetchList('wahl_beobachter', 'bundesministerien', cb),
+	cb => fetchList('wahl_beobachter', 'bundesregierung', cb),
+	cb => fetchList('wahl_beobachter', 'bundestagsfraktionen', cb),
+	cb => fetchList('wahl_beobachter', 'deutsche-mep-2019-2024', cb),
+	cb => fetchList('wahl_beobachter', 'kandidaten-europawahl', cb),
 	cb => fetchList('wahl_beobachter', 'mdb-bundestag', cb),
+	cb => fetchList('wahl_beobachter', 'mdbb-bremen', cb),
+	cb => fetchList('wahl_beobachter', 'mdhb-hamburg', cb),
+	cb => fetchList('wahl_beobachter', 'mdl-baden-w-rttemberg', cb),
+	cb => fetchList('wahl_beobachter', 'mdl-bayern', cb),
+	cb => fetchList('wahl_beobachter', 'mdl-brandenburg', cb),
+	cb => fetchList('wahl_beobachter', 'mdl-hessen', cb),
+	cb => fetchList('wahl_beobachter', 'mdl-mecklenburg-vorpommen', cb),
+	cb => fetchList('wahl_beobachter', 'mdl-niedersachsen', cb),
+	cb => fetchList('wahl_beobachter', 'mdl-nrw', cb),
+	cb => fetchList('wahl_beobachter', 'mdl-rheinland-pfalz1', cb),
+	cb => fetchList('wahl_beobachter', 'mdl-saarland', cb),
+	cb => fetchList('wahl_beobachter', 'mdl-sachsen', cb),
+	cb => fetchList('wahl_beobachter', 'mdl-sachsen-anhalt', cb),
+	cb => fetchList('wahl_beobachter', 'mdl-schleswig-holstein', cb),
+	cb => fetchList('wahl_beobachter', 'mdl-th-ringen', cb),
+	cb => fetchList('wahl_beobachter', 'ministeriums-twitterati', cb),
+	cb => fetchList('wahl_beobachter', 'open-government-hamburg', cb),
+	cb => fetchList('wahl_beobachter', 'politikwissenschaftler', cb),
+
 	cb => fetchList('washingtonpost', 'washington-post-people', cb),
 	cb => fetchList('wbr', 'wbr-artists', cb),
 	cb => fetchList('welt', 'staff', cb),
@@ -162,13 +196,13 @@ async.series([
 	cb => fetchList('ZDF', 'zdf-redakteure', cb),
 	cb => fetchList('zeitonline', 'das-zeit-online-team', cb),
 	cb => fetchList('zeitonline', 'die-zeit', cb),
-
-	cb => scanFile('astronauts.tsv', cb),
-	cb => scanFile('bots.tsv', cb),
-	cb => scanFile('nasa.tsv', cb),
+*/
+	//cb => scanFile('astronauts.tsv', cb),
+	//cb => scanFile('bots.tsv', cb),
+	cb => scanFile('meps.tsv', cb),
+	//cb => scanFile('nasa.tsv', cb),
 	
-	cb => scanFile('rp19.tsv', cb),
-	*/
+	//cb => scanFile('rp19.tsv', cb),
 ])
 
 
