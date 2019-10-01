@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 
-const folder = 'results_2019-06-07';
+const folder = 'results_2019-10-01';
 
 var result = [];
 fs.readdirSync(folder).forEach(file => {
@@ -16,13 +16,15 @@ fs.readdirSync(folder).forEach(file => {
 			score:parseFloat(l[1]),
 		}
 	});
-	var botCount = data.filter(data => data.score > 0.76*5).length;
+	var botCount1 = data.filter(data => data.score > 0.5 *5).length;
+	var botCount2 = data.filter(data => data.score > 0.76*5).length;
 	result.push([
-		botCount/data.length,
+		botCount2/data.length,
 		[
-			(100*botCount/data.length).toFixed(1)+'%',
+			(100*botCount1/data.length).toFixed(1)+'%',
+			(100*botCount2/data.length).toFixed(1)+'%',
 			file.slice(0,-4),
-			botCount+' of '+data.length,
+			botCount1+'/'+botCount2+' of '+data.length,
 		].join('\t')
 	]);
 })
