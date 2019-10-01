@@ -101,6 +101,7 @@ var queries = [
 	{name: 'heimat',                        query: {q:'heimat'}},
 	{name: 'heimathorst',                   query: {q:'heimathorst OR heimatministerium'}},
 	{name: 'hgmaassen',                     query: {q:'hgmaassen'.toWildFromTo()}},
+	{name: 'hongkong',                      query: {q:'#HongKong,#HongKongProtests,#StandwithHK,#antiELAB,#HongKongPolice,#StandWithHongKong,#FreeHongKong,#HongKongProtest,#hkpolice,#chinazi,#HongKongProtester,#香港,#LIHKG,#policebrutality,#HKPoliceTerrorism,#hkpolicebrutality,#hongkongpolicebrutality,#PoliceTerrorism,#HongKongPoliceTerrorism,#antiELABhk,#Shout4HK,#StandwithHonKong,#HongKongProtesters,#HongKongHumanRightsAndDemocracyAct,#Eye4HK,#HKprotests,#FightForFreedom,#HK,#HongKongers,#antichinazi,#hkprotest,#香港デモ,#PoliceBrutalitiy,#FreedomHK'.toOR()}},
 	{name: 'infowars',                      query: {q:'infowars,RealAlexJones'.toWildFromTo()+' OR "alex jones"'}},
 	{name: 'iranprotests',                  query: {q:'تظاهرات_سراسری OR IranProtests'}},
 	{name: 'iranprotests2',                 query: {q:'iranprotests OR تظاهرات_سراسرى OR مظاهرات_ايران OR تظاهرات_سراسری OR تظاهرات_سراسري'}},

@@ -1,6 +1,6 @@
 "use strict";
 
-const query = '#cambioclimático OR #climateaction OR #climateactionnow OR #climatecrisis OR #climateemergency OR #climatejustice OR #climatejusticenow OR #climatemarch OR #climatestrike OR #climatestrikes OR #extinctionrebellion OR #fridayforfuture OR #fridays4future OR #fridaysforfuture OR #fridaysforfutures OR #globalclimatestrike OR #greveglobalpeloclima OR #grevepourleclimat OR #schoolstrike4climate OR #scientists4future OR #strike4climate OR #youthstrike4climate OR #グローバル気候マーチ';
+const query = '#HongKong OR #HongKongProtests OR #AntiELAB OR #HongKongPolice OR #StandwithHK OR #HongKongProtest OR #StandwithHongKong OR #China70yearsOfShame OR #HKPolice OR #HongKongProtester OR #hongkongpolicebrutality OR #antiELABhk OR #FreeHongKong OR #HongKongProtesters OR #shout4HK OR #HongKongPoliceTerrorism';
 const maxTweetCount = 10000;
 
 const fs = require('fs');
