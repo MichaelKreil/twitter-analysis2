@@ -198,6 +198,8 @@ var queries = [
 	{name: 'talk_maischberger',             query: {q:'@maischberger,#maischberger,maischberger'.expandMedia()}},
 	{name: 'talk_markuslanz',               query: {q:'@ZDFMarkusLanz,"Markus Lanz",#lanz'.expandMedia()}},
 	{name: 'talk_maybritillner',            query: {q:'@maybritillner,#illner,#maybritillner,maybritillner,"maybrit illner"'.expandMedia()}},
+	{name: 'tamponsteuer',                  query: {q:'tamponsteuer OR #tamponsteuer'}},
+	{name: 'tempolimit',                    query: {q:'tempolimit OR #tempolimit'}},
 	{name: 'tenderage',                     query: {q:'"tender age"'}},
 	{name: 'trudeaumustgo',                 query: {q:'trudeaumustgo OR #trudeaumustgo'}},
 	{name: 'trump_mentions',                query: {q:'to:realdonaldtrump OR to:potus OR realdonaldtrump OR potus'}},
