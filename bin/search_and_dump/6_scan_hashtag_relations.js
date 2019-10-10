@@ -1,13 +1,20 @@
 "use strict";
 
-const query = '#HongKong OR #HongKongProtests OR #AntiELAB OR #HongKongPolice OR #StandwithHK OR #HongKongProtest OR #StandwithHongKong OR #China70yearsOfShame OR #HKPolice OR #HongKongProtester OR #hongkongpolicebrutality OR #antiELABhk OR #FreeHongKong OR #HongKongProtesters OR #shout4HK OR #HongKongPoliceTerrorism';
+const query = '#halle0910 OR #haltdiefresse OR rechtsextremismus OR Halle';
 const maxTweetCount = 10000;
+const hashtagsOnly = false;
 
 const fs = require('fs');
 const utils = require('../../lib/utils.js');
 const colors = require('colors');
 const scraper = require('../../lib/scraper.js')();
 
+var wordlist = new Set();
+fs.readFileSync('wordlist/top10000de.txt', 'utf8').toLowerCase().split('\n').forEach(w => wordlist.add(w));
+fs.readFileSync('wordlist/top10000en.txt', 'utf8').toLowerCase().split('\n').forEach(w => wordlist.add(w));
+fs.readFileSync('wordlist/top10000nl.txt', 'utf8').toLowerCase().split('\n').forEach(w => wordlist.add(w));
+fs.readFileSync('wordlist/top10000fr.txt', 'utf8').toLowerCase().split('\n').forEach(w => wordlist.add(w));
+'http,https,amp'.toLowerCase().split(',').forEach(w => wordlist.add(w));
 
 startScraper(result => {
 	result.sort((a,b) => b.count - a.count);
@@ -50,15 +57,23 @@ function startScraper(cbScraper) {
 
 					result.statuses.forEach(t => {
 						if (t.retweeted_status) t = t.retweeted_status;
-						t.entities.hashtags.forEach(h => {
-							var key = h.text.toLowerCase();
-							if (!hashtags.has(key)) {
-								hashtags.set(key, {text:h.text, count:1})
+
+						var words = t.full_text.toLowerCase().replace(/[^#a-zäöüß0-9_\-]+/g, ' ').split(' ');
+						words = words.filter(w => {
+							if (w[0] === '#') return (w.length >= 3);
+							if (hashtagsOnly) return false;
+							if (w.length <= 2) return false;
+							if (wordlist.has(w)) return false;
+							return true;
+						})
+						words.forEach(w => {
+							if (!hashtags.has(w)) {
+								hashtags.set(w, {text:w, count:1})
 							} else {
-								hashtags.get(key).count++;
+								hashtags.get(w).count++;
 							}
 						})
-					});
+					})
 					
 					tweetCount += result.statuses.length;
 
