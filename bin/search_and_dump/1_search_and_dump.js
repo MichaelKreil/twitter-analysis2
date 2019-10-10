@@ -96,6 +96,7 @@ var queries = [
 	{name: 'gretathunberg',                 query: {q:'greta thunberg,gretathunberg,from:gretathunberg,to:gretathunberg'.toOR()}},
 	{name: 'groko',                         query: {q:'groko'}},
 	{name: 'grossstaedte',                  query: {q:'berlin,hamburg,münchen,köln,frankfurt,stuttgart,düsseldorf,dortmund,essen,leipzig,bremen,dresden,hannover,nürnberg,duisburg,bochum,wuppertal,bielefeld,bonn,münster'.toOR()}},
+	{name: 'halle',                         query: {q:'halle,#halle0910,antisemitismus,#hal0910,#haltdiefresse,#yomkippur,einzeltäter,#natsanalyse,#christchurch,#merkel,rassismus,rechterterror,#halleshooting,#wirstehenzusammen,alarmzeichen,#yomkippour,rechtsterrorismus,#jomkippur,synagoge,synagogue,rechtsextremismus,antisemitisch,terroranschlag'.toOR()}},
 	{name: 'hambacherforst',                query: {q:'aktionunterholz,braunkohle,braunkohleabbau,endcoal,endegelaende,hambach,hambacherforst,hambacherforstbleibt,hambacherwald,hambi,hambi_bleibt,hambibleibt,hambibleibtaktion,kohle,kohleausstieg,kohlekommission,rwe'.toOR()}},
 	{name: 'heimat',                        query: {q:'heimat'}},
 	{name: 'heimathorst',                   query: {q:'heimathorst OR heimatministerium'}},

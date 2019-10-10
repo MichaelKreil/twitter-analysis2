@@ -78,6 +78,8 @@ function startScraper(cbScraper) {
 					tweetCount += result.statuses.length;
 
 					if (tweetCount > maxTweetCount) {
+						var lastTweet = result.statuses.pop();
+						console.log(lastTweet);
 						cbScrape();
 					} else {
 						var min_id = utils.getTweetsMinId(result.statuses);
