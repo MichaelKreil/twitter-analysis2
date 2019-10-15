@@ -46,6 +46,7 @@ var queries = [
 	{name: '35c3',                          query: {q:'35c3'}},
 	{name: '36c3',                          query: {q:'36c3'}},
 	{name: '37c3',                          query: {q:'37c3'}},
+	{name: 'angst',                         query: {q:'furcht,fürchten,fürchte,befürchte,befürchten,angst,ängste,beängstigend,panik,sorge,sorgen,bedrohung,bedrohen,bedrohend,bedroht,bedrohlich,bedrohliche,bedrohlichen'.toOR()}},
 	{name: 'afd',                           query: {q:'#afd'}},
 	{name: 'afd2',                          query: {q:'afd'}},
 	{name: 'afdwegbassen',                  query: {q:'afdwegbassen,liebestatthass,wegbassen,b2705,stopptdenhass,zukunftdeutschland'.toOR()}},
