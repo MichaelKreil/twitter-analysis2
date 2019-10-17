@@ -1,6 +1,6 @@
 "use strict";
 
-const query = '#halle0910 OR #haltdiefresse OR rechtsextremismus OR Halle';
+const query = 'brexitdeal OR "brexit deal" OR nodeal';
 const maxTweetCount = 10000;
 const hashtagsOnly = false;
 
@@ -58,15 +58,25 @@ function startScraper(cbScraper) {
 					result.statuses.forEach(t => {
 						if (t.retweeted_status) t = t.retweeted_status;
 
-						var words = t.full_text.toLowerCase().replace(/[^#a-zäöüß0-9_\-]+/g, ' ').split(' ');
+						var urls = [];
+						var words = t.full_text
+							.toLowerCase()
+							.replace(/https?:\/\/[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/g, url => {
+								urls.push(url.replace(/^https?:\/\//, ''));
+							})
+							.replace(/[^#a-zäöüß0-9_\-]+/g, ' ')
+							.split(' ');
+						if (urls.length > 0) words = words.concat(urls);
+
 						words = words.filter(w => {
+							if (w.length <= 2) return false;
 							if (w[0] === '#') return (w.length >= 3);
 							if (hashtagsOnly) return false;
-							if (w.length <= 2) return false;
 							if (wordlist.has(w)) return false;
 							return true;
 						})
 						words.forEach(w => {
+							if (w === 'amviv1lhyj') console.log(t);
 							if (!hashtags.has(w)) {
 								hashtags.set(w, {text:w, count:1})
 							} else {
@@ -79,7 +89,6 @@ function startScraper(cbScraper) {
 
 					if (tweetCount > maxTweetCount) {
 						var lastTweet = result.statuses.pop();
-						console.log(lastTweet);
 						cbScrape();
 					} else {
 						var min_id = utils.getTweetsMinId(result.statuses);
