@@ -16,10 +16,10 @@ fs.readdirSync(folder).forEach(file => {
 			score:parseFloat(l[1]),
 		}
 	});
-	var botCount1 = data.filter(data => data.score > 0.5 *5).length;
-	var botCount2 = data.filter(data => data.score > 0.76*5).length;
+	var botCount1 = data.filter(data => data.score > 50).length;
+	var botCount2 = data.filter(data => data.score > 75).length;
 	result.push([
-		botCount2/data.length,
+		botCount1/data.length,
 		[
 			(100*botCount1/data.length).toFixed(1)+'%',
 			(100*botCount2/data.length).toFixed(1)+'%',

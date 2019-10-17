@@ -199,10 +199,22 @@ async.series([
 */
 	//cb => scanFile('astronauts.tsv', cb),
 	//cb => scanFile('bots.tsv', cb),
-	cb => scanFile('meps.tsv', cb),
+	//cb => scanFile('meps.tsv', cb),
 	//cb => scanFile('nasa.tsv', cb),
 	
 	//cb => scanFile('rp19.tsv', cb),
+
+	cb => scanFile('bundestagsmittagessen/afd.txt', cb),
+	cb => scanFile('bundestagsmittagessen/capgemini.txt', cb),
+	cb => scanFile('bundestagsmittagessen/cdu.txt', cb),
+	cb => scanFile('bundestagsmittagessen/fdp.txt', cb),
+	cb => scanFile('bundestagsmittagessen/fraunhofer.txt', cb),
+	cb => scanFile('bundestagsmittagessen/gaeste.txt', cb),
+	cb => scanFile('bundestagsmittagessen/gruene.txt', cb),
+	cb => scanFile('bundestagsmittagessen/linke.txt', cb),
+	cb => scanFile('bundestagsmittagessen/sap.txt', cb),
+	cb => scanFile('bundestagsmittagessen/soprasteria.txt', cb),
+	cb => scanFile('bundestagsmittagessen/spd.txt', cb),
 ])
 
 
@@ -250,7 +262,11 @@ function fetchList(screen_name, slug, cb) {
 
 function scanFile(filename, cb) {
 	var users = fs.readFileSync(filename, 'utf8').split('\n');
-	scanUsers(users, 'file_'+filename.replace(/\..*?$/g,''), cb);
+	scanUsers(
+		users,
+		'file_'+filename.replace(/\..*?$/g,'').replace(/\//g,'_'),
+		cb
+	);
 }
 
 function scanUsers(users, slug, cbScanUsers) {
@@ -275,11 +291,22 @@ function scanUsers(users, slug, cbScanUsers) {
 
 					var date = data.user.status ? (new Date(data.user.status.created_at)).toISOString() : '?';
 
+					var minDate = 1e99;
+					var maxDate = 0;
+					data.timeline.forEach(t => {
+						var date = Date.parse(t.created_at);
+						if (minDate > date) minDate = date;
+						if (maxDate < date) maxDate = date;
+					})
+					var tweetsPerDay = ((data.timeline.length-1)*86400000/(maxDate-minDate)).toFixed(2);
+					if (data.timeline.length < 100) tweetsPerDay = '';
+
 					var line = [
 						data.user.screen_name,
-						(data.score*5).toFixed(3),
+						(data.score*100).toFixed(1),
 						data.user.verified,
 						data.user.followers_count,
+						tweetsPerDay,
 						date,
 					].join('\t');
 
@@ -290,8 +317,8 @@ function scanUsers(users, slug, cbScanUsers) {
 						ndjson: Buffer.from(JSON.stringify(data)+'\n', 'utf8'),
 					});
 					
-					if (data.score < 0.4) line = colors.green(line);
-					else if (data.score < 0.6) line = colors.yellow(line);
+					if (data.score < 0.5) line = colors.green(line);
+					else if (data.score < 0.75) line = colors.yellow(line);
 					else line = colors.red(line);
 
 					console.log(line);
