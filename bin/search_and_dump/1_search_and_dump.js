@@ -73,6 +73,7 @@ var queries = [
 	{name: 'besetzen',                      query: {q:'#besetzen OR #KarnevalDerBesetzungen OR @besetzenberlin OR #besetzt OR #borni OR #RechtaufStadt OR #StadtfuerAlle OR #Reiche114 OR #KDK2018 OR #mietenwahnsinn'}},
 	{name: 'bild',                          query: {q:'BILD,BILD_Berlin,BILD_Digital,BILD_Frankfurt,BILD_Hamburg,BILD_Muenchen,BILD_News,BILD_Politik,BILD_TopNews,jreichelt'.toFromTo()}},
 	{name: 'brexit',                        query: {q:'brexit'}},
+	{name: 'brexit2',                       query: {q:'brexit,brexitdeal,brexit,theresa,borisjohnson,chlorinated,peoplesvotemarch,peoplesvote,corbyn,backstop,brexitshambles,nodeal,stopbrexit,borisjohnson,nigel_farage,meaningfulvote,farage,getbrexitdone,remainers'.toOR()}},
 	{name: 'bundesregierung',               query: {q:'SilberhornMdB,Mi_Muentefering,RitaHaglKehl,SvenjaSchulze68,LambrechtMdB,katarinabarley,StSLindner,AdlerGunther,Thomas_Bareiss,AnjaKarliczek,AnetteKramme,MiRo_SPD,JochenFlasbarth,guenterkrings,MJaegerT,W_Schmidt_,peteraltmaier,LangeMdB,jensspahn,RegSprecher,DoroBaer,fuchtel,zierke,thomasgebhart,rischwasu,AndiScheuer,NielsAnnen,KerstinGriese,OlafScholz,ChristianHirte,meister_schafft,JuliaKloeckner,HeikoMaas,SteffenBilger,petertauber,FlorianPronold,HBraun,BoehningB,wanderwitz,hubertus_heil'.toWildFromTo()}},
 	{name: 'bundesverdienstkreuz',          query: {q:'bundesverdienstkreuz'}},
 	{name: 'cdu',                           query: {q:'#cdu'}},
