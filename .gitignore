@@ -25,3 +25,5 @@
 /data
 /node_modules
 /package-lock.json
+/bin/list_scraper/data/*.txt
+/bin/list_scraper/*.svg
