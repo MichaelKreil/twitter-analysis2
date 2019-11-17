@@ -191,6 +191,7 @@ var queries = [
 	{name: 'sawsanchebli',                  query: {q:'sawsanchebli'.toWildFromTo()}},
 	{name: 'seebruecke',                    query: {q:'seebruecke OR seebrücke'}},
 	{name: 'seehofer',                      query: {q:'seehofer OR #seehofer'}},
+	{name: 'shitstormopfer1',               query: {q:'dunjahayali,janboehm,georgrestle,sawsanchebli,ebonyplusirony,fatma_morgana,igorpianist,sibelschick,hatinjuce'.toWildFromTo()}},
 	{name: 'shooting3',                     query: {q:'santafehighschool OR santafe OR SantaFeShooting OR SantaFeSchoolShooting OR HoustonShooting'}},
 	{name: 'sibelschick',                   query: {q:'sibelschick'.toWildFromTo()}},
 	{name: 'skygo',                         query: {q:'skygo,SkySportDE,SkyDeutschland,DAZN_DE,SkyTicketDE,skyucl'.toWildFromTo()}},
