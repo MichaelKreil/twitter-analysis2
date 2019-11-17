@@ -1,6 +1,6 @@
 "use strict";
 
-const scraper = (require('../../lib/scraper.js'))();
+const scraper = (require('../../lib/scraper.js'))('tmp');
 const async = require('async');
 const zlib = require('zlib');
 const fs = require('fs');
@@ -35,6 +35,8 @@ var entries = [
 
 var users = new Set();
 
+var results = [];
+
 async.eachLimit(
 	entries,
 	4,
@@ -60,20 +62,32 @@ async.eachLimit(
 				console.log('scan '+entry);
 				var parts = entry.split(':');
 				scanTweets(parts[1], newTweets => {
-					var folder = path.resolve(__dirname, 'results', parts[0]);
-					ensureFolder(folder);
+					var findList = 'ua1bt,breitscheid,amri,untersuchung,ausschuss,ausschuß,attentat'.split(',');
+					newTweets.forEach(t => {
+						var text = t.full_text.toLowerCase();
+						if (findList.every(f => text.indexOf(f) < 0)) return;
 
-					var filename = path.resolve(folder, parts[1]+'.json.gz');
+						results.push([
+							'https://twitter.com/'+t.user.screen_name+'/status/'+t.id_str,
+							t.user.screen_name,
+							(new Date(t.created_at)).toISOString(),
+							(t.retweeted_status || t).full_text.replace(/\s+/g, ' ').trim(),
+							t.in_reply_to_status_id_str ? 'reply' : '',
+							t.retweeted_status ? 'retweet' : '',
+						])
+						//console.log(t);
+						//process.exit();
+					})
 
-					var oldTweets = fs.existsSync(filename) ? loadTweets(filename) : [];
-					newTweets = updateTweets(oldTweets, newTweets);
 
-					saveTweets(filename, newTweets);
 
 					cb();
 				})
 			},
 			() => {
+				results.sort((a,b) => a[2] > b[2] ? -1 : 1);
+				results = results.map(t => t.join('\t')).join('\n');
+				fs.writeFileSync('tweets.tsv', results, 'utf8');
 				console.log('finished');
 			}
 		)

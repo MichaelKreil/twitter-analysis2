@@ -303,11 +303,11 @@ function scanUsers(users, slug, cbScanUsers) {
 
 					var line = [
 						data.user.screen_name,
-						(data.score*100).toFixed(1),
-						data.user.verified,
-						data.user.followers_count,
-						tweetsPerDay,
-						date,
+						(data.score*5).toFixed(2),
+						//data.user.verified,
+						//data.user.followers_count,
+						//tweetsPerDay,
+						//date,
 					].join('\t');
 
 					if (!dontSave) results.push({
