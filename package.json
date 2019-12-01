@@ -26,6 +26,7 @@
     "mississippi2": "^1.0.5",
     "multistream": "^2.1.1",
     "request": "^2.85.0",
+    "through2-concurrent": "^2.0.0",
     "tsv": "^0.2.0",
     "word2vec": "^1.1.2"
   }
