@@ -42,6 +42,44 @@ module.exports = function (miss) {
 		)
 	}
 
+	miss.twitterUserLanguages = function twitterUserLanguages() {
+		const cache = require('../../../lib/cache.js')('world3_user_langs');
+		return miss.parallel.obj(
+			{maxConcurrency: maxConcurrency},
+			(user, enc, cbParallel) => {
+
+				cache(
+					user.id_str,
+					cbCache => {
+						scraper.fetch(
+							'statuses/user_timeline',
+							{user_id:user.id_str, count:200, trim_user:true, exclude_replies:true, include_rts:false},
+							tweets => {
+								var langs = new Map();
+								tweets.forEach(t => {
+									var length = t.text.length;
+									var lang = t.lang;
+									if (!langs.has(lang)) {
+										langs.set(lang, [lang, length]);
+									} else {
+										langs.get(lang)[1] += length;
+									}
+								})
+								langs = Array.from(langs.values());
+								langs.sort((a,b) => b[1]-a[1]);
+								cbCache(langs);
+							}
+						)
+					},
+					result => {
+						user.langs = result;
+						cbParallel(null, user);
+					}
+				)
+			}
+		)
+	}
+
 	miss.twitterUserFriendsIdsFilteredCached = function twitterUserFriendsIdsFilteredCached(filter) {
 		const cache = require('../../../lib/cache.js')('world3_user_friends_filtered_'+config.minFollowers);
 		return miss.parallel.obj(
