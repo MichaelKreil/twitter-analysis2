@@ -17,7 +17,7 @@ miss.pipe(
 	miss.twitterUserFriendsIdsFilteredCached(
 		o => o && !o.protected && (o.followers_count >= config.minFollowers)
 	),
-	miss.sortUnique(),
+	miss.splitArraySortUniq(),
 	miss.twitterLookup(),
 	miss.writeTSV(config.userFields, fileOut),
 )
