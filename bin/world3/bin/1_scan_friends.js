@@ -19,6 +19,7 @@ miss.pipe(
 	),
 	miss.splitArraySortUniq(),
 	miss.twitterLookup(),
+	miss.filter.obj(o => o && !o.protected && (o.followers_count >= config.minFollowers)),
 	miss.writeTSV(config.userFields, fileOut),
 )
 
