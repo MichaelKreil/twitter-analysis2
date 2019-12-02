@@ -1,8 +1,8 @@
 "use strict";
 
+const config = require('../config.js');
 const async = require('async');
 const scraper = require('../../../lib/scraper.js')('world3');
-const cache = require('../../../lib/cache.js')('world3_tmp');
 
 const maxConcurrency = 4;
 
@@ -43,6 +43,7 @@ module.exports = function (miss) {
 	}
 
 	miss.twitterUserFriendsIdsFilteredCached = function twitterUserFriendsIdsFilteredCached(filter) {
+		const cache = require('../../../lib/cache.js')('world3_user_friends_filtered_'+config.minFollowers);
 		return miss.parallel.obj(
 			{maxConcurrency: maxConcurrency},
 			(id, enc, cbParallel) => {
