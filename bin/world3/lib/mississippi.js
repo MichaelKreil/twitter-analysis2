@@ -74,13 +74,13 @@ miss.deduplicate = function deduplicate() {
 	})
 }
 
-miss.splitArraySortUniq = function splitArraySortUniq() {
+miss.splitArraySortUniq = function splitArraySortUniq(key) {
 	var ids = new Set();
 	var interval = setInterval(() => console.log('sortUniq size '+ids.size), 10*1000);
 
 	return miss.through.obj(
-		(chunk, enc, cb) => {
-			chunk.forEach(id => {
+		(obj, enc, cb) => {
+			obj[key].forEach(id => {
 				if (!ids.has(id)) ids.add(id);
 			})
 			cb();

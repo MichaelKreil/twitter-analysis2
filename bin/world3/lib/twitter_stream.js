@@ -84,11 +84,14 @@ module.exports = function (miss) {
 		const cache = require('../../../lib/cache.js')('world3_user_friends_filtered_'+config.minFollowers);
 		return miss.parallel.obj(
 			{maxConcurrency: maxConcurrency},
-			(id, enc, cbParallel) => {
+			(user, enc, cbParallel) => {
 				cache(
-					id,
-					cbCache => getUserFriendsFiltered(id, filter, result => cbCache(result.map(r => r.id_str))),
-					result => cbParallel(null, result)
+					user.id_str,
+					cbCache => getUserFriendsFiltered(user.id_str, filter, result => cbCache(result.map(r => r.id_str))),
+					result => {
+						user.friends = result;
+						cbParallel(null, user);
+					}
 				)
 			}
 		)
