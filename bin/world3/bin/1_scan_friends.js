@@ -7,7 +7,7 @@ require('../lib/twitter_stream.js')(miss);
 var fileIn  = config.getDataFilename('top_accounts.tsv');
 var fileOut = config.getDataFilename('top_accounts_new.tsv');
 
-var maxFriends = 10000;
+var maxFriends = 50000;
 
 miss.pipe(
 	miss.readTSV(fileIn),
