@@ -42,6 +42,25 @@ miss.spy = function spy(log) {
 	})
 }
 
+miss.spySometimes = function spySometimes(log) {
+	var interval = setInterval(update, 1000);
+	var lastChunk;
+	var updated = false;
+	return miss.through.obj(
+		(chunk, enc, cb) => {
+			lastChunk = chunk;
+			updated = true;
+			cb(null, chunk);
+		},
+		() => clearInterval(interval)
+	)
+	function update() {
+		if (!updated) return;
+		log(lastChunk);
+		updated = false;
+	}
+}
+
 miss.drain = function spyLog() {
 	return miss.to.obj((chunk, enc, cb) => cb());
 }
