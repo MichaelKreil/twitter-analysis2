@@ -55,7 +55,10 @@ module.exports = function (miss) {
 							'statuses/user_timeline',
 							{user_id:user.id_str, count:200, trim_user:true, exclude_replies:true, include_rts:false},
 							tweets => {
+								if (!tweets) return cbCache([]);
+
 								var langs = new Map();
+
 								tweets.forEach(t => {
 									var length = t.text.length;
 									var lang = t.lang;
@@ -65,6 +68,7 @@ module.exports = function (miss) {
 										langs.get(lang)[1] += length;
 									}
 								})
+								
 								langs = Array.from(langs.values());
 								langs.sort((a,b) => b[1]-a[1]);
 								cbCache(langs);
