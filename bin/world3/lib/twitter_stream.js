@@ -2,28 +2,76 @@
 
 const config = require('../config.js');
 const async = require('async');
-const scraper = require('../../../lib/scraper.js')('world3');
+const scraper = require('../../../lib/scraper.js')();
 
 const maxConcurrency = 4;
 
 module.exports = function (miss) {
-	miss.twitterLookup = function twitterLookup() {
-		return miss.bundle(100, miss.parallel.obj(
-			{maxConcurrency: maxConcurrency},
-			(chunk, enc, cb) => {
-				scraper.fetch(
-					'users/lookup',
-					{user_id:chunk.join(','), include_entities:false},
-					result => {
-						var lookup = new Map();
-						result.forEach(u => lookup.set(u.id_str.toLowerCase(), u));
+	miss.twitterLookupId = function twitterLookupId() {
+		const cache = require('../../../lib/cache.js')('world3_user');
+		const maxActive = 4;
 
-						chunk = chunk.map(c => lookup.get(c.toLowerCase()) || false);
-						cb(null, chunk);
+		var todos = [], active = 0, finished = false;
+		var cbFlush;
+
+		scrape();
+
+		return miss.parallel.obj(
+			{maxConcurrency: 400},
+			function (obj, enc, cb) {
+				var me = this;
+				//console.log('check\t'+obj.id_str);
+				cache(
+					obj.id_str,
+					cbCache => todos.push([obj.id_str, cbCache]),
+					result => {
+						if (result) Object.keys(result).forEach(key => obj[key] = result[key]);
+						//console.log('result\t'+obj.id_str);
+						cb(null, obj);
 					}
 				)
+			},
+			cb => {
+				console.log('twitterLookupId flush');
+				cbFlush = cb
 			}
-		))
+		);
+
+		function scrape() {
+			if (finished) return;
+			if (active >= maxActive) return;
+
+			if (cbFlush && (todos.length === 0) && (active === 0)) {
+				console.log('twitterLookupId finished');
+				cbFlush();
+				finished = true;
+				return
+			}
+
+			if (todos.length === 0) {
+				setTimeout(scrape, 100);
+				return
+			}
+
+			var next = todos.slice(0,100);
+			todos = todos.slice(100);
+
+			active++;
+			console.log('twitterLookupId count:'+next.length);
+			scraper.fetch(
+				'users/lookup',
+				{user_id:next.map(e => e[0]).join(','), include_entities:false},
+				result => {
+					active--;
+					var lookup = new Map();
+					(result || []).forEach(u => lookup.set(u.id_str.toLowerCase(), u));
+					next.forEach(e => e[1](lookup.get(e[0])));
+					setTimeout(scrape, 0);
+				}
+			)
+
+			if (todos.length > 0) setTimeout(scrape, 0);
+		}
 	}
 
 	miss.twitterUserFriends = function twitterUserFriends() {

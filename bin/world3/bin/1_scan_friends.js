@@ -16,9 +16,12 @@ miss.pipe(
 	miss.twitterUserFriendsIdsFilteredCached(
 		o => o && !o.protected && (o.followers_count >= config.minFollowers)
 	),
-	miss.splitArraySortUniq('friends'),
-	miss.twitterLookup(),
+	miss.splitArrayUniq('friends'),
+	miss.toObject('id_str'),
+	miss.twitterLookupId(),
+	//miss.spy(o => console.log(o)),
 	miss.filter.obj(o => o && !o.protected && (o.followers_count >= config.minFollowers)),
+	miss.sortBy('screen_name'),
 	miss.twitterUserLanguages(),
 	miss.writeTSV(config.userFields, fileOut),
 )

@@ -74,24 +74,45 @@ miss.deduplicate = function deduplicate() {
 	})
 }
 
-miss.splitArraySortUniq = function splitArraySortUniq(key) {
-	var ids = new Set();
-	var interval = setInterval(() => console.log('sortUniq size '+ids.size), 10*1000);
+miss.splitArrayUniq = function splitArrayUniq(key) {
+	var entries = new Set();
+
+	return miss.through.obj(
+		function (obj, enc, cb) {
+			obj[key].forEach(entry => {
+				if (!entries.has(entry)) {
+					entries.add(entry);
+					this.push(entry);
+				}
+			})
+			cb();
+		}
+	)
+}
+
+miss.sortBy = function sortBy(key) {
+	var entries = [];
+	var interval = setInterval(() => console.log('sortBy size: '+entries.length), 10000);
 
 	return miss.through.obj(
 		(obj, enc, cb) => {
-			obj[key].forEach(id => {
-				if (!ids.has(id)) ids.add(id);
-			})
+			//console.log('add to sort list', obj);
+			entries.push(obj);
 			cb();
 		},
 		function (cb) {
 			clearInterval(interval);
-			ids = Array.from(ids.values());
-			ids.sort();
-			ids.forEach(id => this.push(id));
+			console.log('sorting');
+			entries.sort((a,b) => a[key] < b[key] ? -1 : 1);
+			entries.forEach(e => this.push(e));
 			cb();
 		}
+	)
+}
+
+miss.toObject = function toObject(key) {
+	return miss.through.obj(
+		(value, enc, cb) => cb(null, {[key]:value})
 	)
 }
 
