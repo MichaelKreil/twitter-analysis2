@@ -7,11 +7,9 @@ require('../lib/twitter_stream.js')(miss);
 var fileIn  = config.getDataFilename('top_accounts.tsv');
 var fileOut = config.getDataFilename('top_accounts_new.tsv');
 
-var maxFriends = 50000;
-
 miss.pipe(
 	miss.readTSV(fileIn),
-	miss.filter.obj(o => !o.protected && (o.friends_count < maxFriends)),
+	miss.filter.obj(o => !o.protected && (o.friends_count < config.maxFriends)),
 	miss.spySometimes(o => console.log([o.percentage.toFixed(2)+'%', o.friends_count, o.screen_name].join('\t'))),
 	miss.twitterUserFriendsIdsFilteredCached(
 		o => o && !o.protected && (o.followers_count >= config.minFollowers)
@@ -19,7 +17,6 @@ miss.pipe(
 	miss.splitArrayUniq('friends'),
 	miss.toObject('id_str'),
 	miss.twitterLookupId(),
-	//miss.spy(o => console.log(o)),
 	miss.filter.obj(o => o && !o.protected && (o.followers_count >= config.minFollowers)),
 	miss.sortBy('screen_name'),
 	miss.twitterUserLanguages(),

@@ -52,7 +52,10 @@ miss.spySometimes = function spySometimes(log) {
 			updated = true;
 			cb(null, chunk);
 		},
-		() => clearInterval(interval)
+		cb => {
+			clearInterval(interval);
+			cb();
+		}
 	)
 	function update() {
 		if (!updated) return;
