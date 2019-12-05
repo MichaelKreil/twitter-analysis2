@@ -14,7 +14,7 @@ miss.pipe(
 	miss.twitterUserFriendsIdsFilteredCached(
 		o => o && !o.protected && (o.followers_count >= config.minFollowers)
 	),
-	miss.splitArrayUniq('friends'),
+	miss.splitArrayUniq('friends', config.minFollowers4Scraping),
 	miss.toObject('id_str'),
 	miss.twitterLookupId(),
 	miss.filter.obj(o => o && !o.protected && (o.followers_count >= config.minFollowers)),

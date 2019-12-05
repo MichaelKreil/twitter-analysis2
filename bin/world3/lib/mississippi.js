@@ -77,15 +77,19 @@ miss.deduplicate = function deduplicate() {
 	})
 }
 
-miss.splitArrayUniq = function splitArrayUniq(key) {
-	var entries = new Set();
+miss.splitArrayUniq = function splitArrayUniq(key, minCount) {
+	if (!minCount) minCount = 1;
+	var entries = new Map();
 
 	return miss.through.obj(
 		function (obj, enc, cb) {
 			obj[key].forEach(entry => {
 				if (!entries.has(entry)) {
-					entries.add(entry);
-					this.push(entry);
+					entries.set(entry,[1]);
+					if (minCount === 1) this.push(entry);
+				} else {
+					var count = ++(entries.get(entry)[0]);
+					if (count === minCount) this.push(entry);
 				}
 			})
 			cb();
