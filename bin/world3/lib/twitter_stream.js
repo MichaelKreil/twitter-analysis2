@@ -9,7 +9,7 @@ const maxConcurrency = 4;
 module.exports = function (miss) {
 	miss.twitterLookupId = function twitterLookupId() {
 		const cache = require('../../../lib/cache.js')('world3_user');
-		const maxActive = 4;
+		const maxActive = maxConcurrency;
 
 		var todos = [], active = 0, finished = false;
 		var cbFlush;
@@ -57,7 +57,7 @@ module.exports = function (miss) {
 			todos = todos.slice(100);
 
 			active++;
-			console.log('twitterLookupId count:'+next.length);
+			//console.log('twitterLookupId count:'+next.length);
 			scraper.fetch(
 				'users/lookup',
 				{user_id:next.map(e => e[0]).join(','), include_entities:false},
