@@ -35,14 +35,16 @@ miss.bundle = function bundle(maxCount, stream) {
 	)
 }
 
-miss.spy = function spy(log) {
+miss.spy = function spy(format) {
+	if (!format) format = o => o;
 	return miss.through.obj((chunk, enc, cb) => {
-		log(chunk);
+		console.log(format(chunk));
 		cb(null, chunk);
 	})
 }
 
-miss.spySometimes = function spySometimes(log) {
+miss.spySometimes = function spySometimes(format) {
+	if (!format) format = o => o;
 	var interval = setInterval(update, 1000);
 	var lastChunk;
 	var updated = false;
@@ -59,7 +61,7 @@ miss.spySometimes = function spySometimes(log) {
 	)
 	function update() {
 		if (!updated) return;
-		log(lastChunk);
+		console.log(format(lastChunk));
 		updated = false;
 	}
 }
@@ -80,18 +82,20 @@ miss.deduplicate = function deduplicate() {
 miss.splitArrayUniq = function splitArrayUniq(key, minCount) {
 	if (!minCount) minCount = 1;
 	var entries = new Map();
+	var interval = setInterval(() => console.log('splitArrayUniq size: '+entries.length), 10000);
 
 	return miss.through.obj(
 		function (obj, enc, cb) {
 			obj[key].forEach(entry => {
-				if (!entries.has(entry)) {
-					entries.set(entry,[1]);
-					if (minCount === 1) this.push(entry);
-				} else {
-					var count = ++(entries.get(entry)[0]);
-					if (count === minCount) this.push(entry);
-				}
+				var count = (entries.get(entry) || 0)+1;
+				if (count > minCount) return;
+				if (count === minCount) this.push(entry);
+				entries.set(entry, count);
 			})
+			cb();
+		},
+		cb => {
+			clearInterval(interval);
 			cb();
 		}
 	)
