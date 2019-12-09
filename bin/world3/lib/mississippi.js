@@ -79,18 +79,53 @@ miss.deduplicate = function deduplicate() {
 	})
 }
 
-miss.splitArrayUniq = function splitArrayUniq(key, minCount) {
-	if (!minCount) minCount = 1;
-	var entries = new Map();
-	var interval = setInterval(() => console.log('splitArrayUniq size: '+entries.length), 10000);
+miss.splitArrayUniq = function splitArrayUniq(minCount) {
+	var entries, add;
+	var interval = setInterval(() => console.log('splitArrayUniq size: '+entries.size), 10000);
+
+	if (minCount === 1) {
+		entries = new Set();
+		add = (list, push) => {
+			list.forEach(e => {
+				if (entries.has(e)) return;
+				entries.add(e);
+				push(e);
+			})
+		}
+	} else {
+		entries = new Map();
+		add = (list, push) => {
+			list.forEach(e => {
+				var count = (entries.get(e) || 0)+1;
+				if (count > minCount) return;
+				if (count === minCount) push(e);
+				entries.set(e, count);
+			})
+		}
+	}
 
 	return miss.through.obj(
-		function (obj, enc, cb) {
-			obj[key].forEach(entry => {
-				var count = (entries.get(entry) || 0)+1;
-				if (count > minCount) return;
-				if (count === minCount) this.push(entry);
-				entries.set(entry, count);
+		function (list, enc, cb) {
+			add(list, this.push);
+			cb();
+		},
+		cb => {
+			clearInterval(interval);
+			cb();
+		}
+	)
+}
+
+miss.splitArrayUniqKey = function splitArrayUniqKey(key) {
+	var entries = new Set();
+	var interval = setInterval(() => console.log('splitArrayUniq size: '+entries.size), 10000);
+
+	return miss.through.obj(
+		function (list, enc, cb) {
+			list.forEach(entry => {
+				if (entries.has(entry[key])) return;
+				entries.add(entry[key]);
+				this.push(entry);
 			})
 			cb();
 		},
@@ -101,9 +136,9 @@ miss.splitArrayUniq = function splitArrayUniq(key, minCount) {
 	)
 }
 
-miss.sortBy = function sortBy(key) {
+miss.sort = function sort(func) {
 	var entries = [];
-	var interval = setInterval(() => console.log('sortBy size: '+entries.length), 10000);
+	var interval = setInterval(() => console.log('sort size: '+entries.length), 10000);
 
 	return miss.through.obj(
 		(obj, enc, cb) => {
@@ -114,10 +149,19 @@ miss.sortBy = function sortBy(key) {
 		function (cb) {
 			clearInterval(interval);
 			console.log('sorting');
-			entries.sort((a,b) => a[key] < b[key] ? -1 : 1);
+			entries.sort(func);
 			entries.forEach(e => this.push(e));
 			cb();
 		}
+	)
+}
+
+miss.splitArraySortUniq = function splitArraySortUniq(key) {
+	return miss.pipeline.obj(
+		miss.through.obj((obj, enc, cb) => cb(null, obj[key].join('\n')+'\n')),
+		miss.child('sort', ['-u']),
+		miss.split('\n'),
+		miss.filter.obj(l => l.length > 0)
 	)
 }
 

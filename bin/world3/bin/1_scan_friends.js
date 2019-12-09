@@ -12,14 +12,14 @@ miss.pipe(
 	miss.readTSV(fileIn),
 	miss.filter.obj(config.criterionIn),
 	miss.spySometimes(o => [o.percentage.toFixed(2)+'%', o.friends_count, o.screen_name].join('\t')),
-	miss.twitterUserFriendsIds(),
-	miss.splitArrayUniq('friends', config.minFollowers4Scraping),
-	//miss.spy(),
-	miss.toObject('id_str'),
-	miss.twitterLookupId(),
-	miss.filter.obj(config.criterionBasic),
+	miss.twitterUserFriendsLanguage(config.criterionBasic, config.criterionLanguage),
+	miss.splitArrayUniq(config.minFriendsForScraping),
+	miss.twitterUserById(),
 	miss.twitterUserLanguages(),
-	miss.filter.obj(config.criterionLanguage),
-	miss.sortBy('screen_name'),
+	miss.sort((a,b) => b.followers_count - a.followers_count),
 	miss.writeTSV(config.userFields, fileOut),
+	() => {
+		console.log('Finished');
+		process.exit();
+	}
 )

@@ -7,111 +7,22 @@ const scraper = require('../../../lib/scraper.js')();
 const maxConcurrency = 4;
 
 module.exports = function (miss) {
-	miss.twitterLookupId = function twitterLookupId() {
-		const cache = require('../../../lib/cache.js')('world3_user');
-		const maxActive = maxConcurrency;
 
-		var todos = [], active = 0, finished = false;
-		var cbFlush;
-
-		scrape();
-
+	miss.twitterUserById = function twitterUserById() {
 		return miss.parallel.obj(
 			{maxConcurrency: 400},
-			function (obj, enc, cb) {
-				var me = this;
-				//console.log('check\t'+obj.id_str);
-				cache(
-					obj.id_str,
-					cbCache => todos.push([obj.id_str, cbCache]),
-					result => {
-						if (result) Object.keys(result).forEach(key => obj[key] = result[key]);
-						//console.log('result\t'+obj.id_str);
-						cb(null, obj);
-					}
-				)
-			},
-			cb => {
-				console.log('twitterLookupId flush');
-				cbFlush = cb
-			}
+			(id, enc, cb) => getUser(id, obj => cb(null, obj))
 		);
-
-		function scrape() {
-			if (finished) return;
-			if (active >= maxActive) return;
-
-			if (cbFlush && (todos.length === 0) && (active === 0)) {
-				console.log('twitterLookupId finished');
-				cbFlush();
-				finished = true;
-				return
-			}
-
-			if (todos.length === 0) {
-				setTimeout(scrape, 100);
-				return
-			}
-
-			var next = todos.slice(0,100);
-			todos = todos.slice(100);
-
-			active++;
-			//console.log('twitterLookupId count:'+next.length);
-			scraper.fetch(
-				'users/lookup',
-				{user_id:next.map(e => e[0]).join(','), include_entities:false},
-				result => {
-					active--;
-					var lookup = new Map();
-					(result || []).forEach(u => lookup.set(u.id_str.toLowerCase(), u));
-					next.forEach(e => e[1](lookup.get(e[0])));
-					setTimeout(scrape, 0);
-				}
-			)
-
-			if (todos.length > 0) setTimeout(scrape, 0);
-		}
 	}
 
 	miss.twitterUserLanguages = function twitterUserLanguages() {
-		const cache = require('../../../lib/cache.js')('world3_user_langs');
 		return miss.parallel.obj(
 			{maxConcurrency: maxConcurrency},
 			(user, enc, cbParallel) => {
-
-				cache(
-					user.id_str,
-					cbCache => {
-						scraper.fetch(
-							'statuses/user_timeline',
-							{user_id:user.id_str, count:200, trim_user:true, exclude_replies:true, include_rts:false},
-							tweets => {
-								if (!tweets) return cbCache([]);
-
-								var langs = new Map();
-
-								tweets.forEach(t => {
-									var length = t.text.length;
-									var lang = t.lang;
-									if (!langs.has(lang)) {
-										langs.set(lang, [lang, length]);
-									} else {
-										langs.get(lang)[1] += length;
-									}
-								})
-								
-								langs = Array.from(langs.values());
-								langs.sort((a,b) => b[1]-a[1]);
-								cbCache(langs);
-							}
-						)
-					},
-					result => {
-						user.langs = result;
-						cbParallel(null, user);
-					}
-				)
+				getUserLanguage(user.id_str, obj => {
+					user.langs = obj;
+					cbParallel(null, user);
+				})
 			}
 		)
 	}
@@ -122,8 +33,10 @@ module.exports = function (miss) {
 			(user, enc, cbParallel) => {
 				getUserFriendsIds(
 					user.id_str,
-					result => {
-						user.friends = result;
+					obj => {
+						console.log(obj);
+						throw Error();
+						user.friends = obj;
 						cbParallel(null, user)
 					}
 				)
@@ -131,6 +44,120 @@ module.exports = function (miss) {
 		)
 	}
 
+	miss.twitterUserFriendsLanguage = function twitterUserFriendsLanguage(basicFilter, languageFilter) {
+		return miss.parallel.obj(
+			{maxConcurrency: maxConcurrency},
+			(user, enc, cbParallel) => {
+				getUserFriendsLanguage(
+					user.id_str,
+					basicFilter,
+					languageFilter,
+					result => cbParallel(null, result)
+				)
+			}
+		)
+	}
+
+	const cacheUserFriendsLanguageFiltered = require('../../../lib/cache.js')('world3_user_friends_language_filtered_'+config.slug);
+	function getUserFriendsLanguage(id, basicFilter, languageFilter, cbUserFriendsLanguage) {
+		cacheUserFriendsLanguageFiltered(
+			id,
+			cbCache => getUserFriendsIds(
+				id,
+				result => {
+					async.mapLimit(
+						result, 100,
+						(id, cb) => getUser(id, user => cb(null, user)),
+						(err, result) => {
+							result = result.filter(basicFilter);
+							async.eachLimit(
+								result, 4,
+								(obj, cb) => getUserLanguage(obj.id_str, langs => { obj.langs = langs; cb(null); }),
+								() => {
+									result = result.filter(languageFilter);
+									result = result.map(u => u.id_str);
+									cbCache(result);
+								}
+							)
+						}
+					)
+				}
+			),
+			cbUserFriendsLanguage
+		)
+	}
+
+	const cacheUser = require('../../../lib/cache.js')('world3_user');
+	var userTodos = [], activeHandleUser = 0;
+	handleUser();
+	function getUser(id, cbGetUser) {
+		cacheUser(
+			id,
+			cbCache => userTodos.push([id, cbCache]),
+			user => {
+				cbGetUser(user);
+			}
+		)
+	}
+	function handleUser() {
+		if (activeHandleUser >= maxConcurrency) return;
+
+		if (userTodos.length === 0) {
+			setTimeout(handleUser, 100);
+			return
+		}
+
+		var next = userTodos.slice(0,100);
+		userTodos = userTodos.slice(100);
+
+		activeHandleUser++;
+		scraper.fetch(
+			'users/lookup',
+			{user_id:next.map(e => e[0]).join(','), include_entities:false},
+			result => {
+				activeHandleUser--;
+				var lookup = new Map();
+				(result || []).forEach(u => lookup.set(u.id_str.toLowerCase(), u));
+				next.forEach(e => e[1](lookup.get(e[0])));
+				setTimeout(handleUser, 0);
+			}
+		)
+
+		if (userTodos.length > 0) setTimeout(handleUser, 0);
+	}
+
+	const cacheLang = require('../../../lib/cache.js')('world3_user_langs');
+	function getUserLanguage(id, cbUserLanguage) {
+		cacheLang(
+			id,
+			cbCache => {
+				scraper.fetch(
+					'statuses/user_timeline',
+					{user_id:id, count:200, trim_user:true, exclude_replies:true, include_rts:false},
+					tweets => {
+						if (!tweets) return cbCache([]);
+
+						var langs = new Map();
+
+						tweets.forEach(t => {
+							var length = t.text.length;
+							var lang = t.lang;
+							if (!langs.has(lang)) {
+								langs.set(lang, [lang, length]);
+							} else {
+								langs.get(lang)[1] += length;
+							}
+						})
+						
+						langs = Array.from(langs.values());
+						langs.sort((a,b) => b[1]-a[1]);
+						cbCache(langs);
+					}
+				)
+			},
+			result => cbUserLanguage(result)
+		)
+	}
 
 	const cacheUserFriendsIds = require('../../../lib/cache.js')('world3_user_friends_ids');
 	function getUserFriendsIds(id, cb) {
