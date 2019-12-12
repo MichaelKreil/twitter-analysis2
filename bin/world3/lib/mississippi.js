@@ -85,20 +85,20 @@ miss.splitArrayUniq = function splitArrayUniq(minCount) {
 
 	if (minCount === 1) {
 		entries = new Set();
-		add = (list, push) => {
+		add = (list, me) => {
 			list.forEach(e => {
 				if (entries.has(e)) return;
 				entries.add(e);
-				push(e);
+				me.push(e);
 			})
 		}
 	} else {
 		entries = new Map();
-		add = (list, push) => {
+		add = (list, me) => {
 			list.forEach(e => {
 				var count = (entries.get(e) || 0)+1;
 				if (count > minCount) return;
-				if (count === minCount) push(e);
+				if (count === minCount) me.push(e);
 				entries.set(e, count);
 			})
 		}
@@ -106,7 +106,7 @@ miss.splitArrayUniq = function splitArrayUniq(minCount) {
 
 	return miss.through.obj(
 		function (list, enc, cb) {
-			add(list, this.push);
+			add(list, this);
 			cb();
 		},
 		cb => {
