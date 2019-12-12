@@ -212,6 +212,7 @@ var queries = [
 	{name: 'trump_mentions',                query: {q:'to:realdonaldtrump OR to:potus OR realdonaldtrump OR potus'}},
 	{name: 'trump_tweets',                  query: {q:'from:realdonaldtrump OR from:potus'}},
 	{name: 'ueberwachung',                  query: {q:'überwachungspaket OR staatstrojaner OR bundestrojaner OR ueberwachungspaket OR zib2 OR überwachung OR privatsphäre OR datenschutz OR sicherheit OR vds OR sicherheitspaket'}},
+	{name: 'ukelection',                    query: {q:'GeneralElection2019,UKElection,GE2019'.toOR()}},
 	{name: 'unionsstreit1',                 query: {q:'unionsstreit,seehofer,csu,asylstreit,merkel,afd,ultimatum,zuwanderung,groko'.toOR(), lang:'de'}},
 	{name: 'unteilbar',                     query: {q:'unteilbar OR unteilbar_ OR to:unteilbar_ OR from:unteilbar_'}},
 	{name: 'uploadfilter',                  query: {q:'uploadfilter OR saveyourinternet OR leistungsschutzrecht OR deleteart13 OR censorshipmachine OR axelvossmdep OR from:axelvossmdep OR to:axelvossmdep OR fixcopyright'}},
