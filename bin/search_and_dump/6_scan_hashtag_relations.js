@@ -1,6 +1,6 @@
 "use strict";
 
-const query = 'brexitdeal OR "brexit deal" OR nodeal';
+const query = 'welcome110';
 const maxTweetCount = 10000;
 const hashtagsOnly = false;
 
