@@ -4,13 +4,15 @@ const config = require('../config.js');
 const async = require('async');
 const scraper = require('../../../lib/scraper.js')();
 
-const maxConcurrency = 4;
+const maxConcurrency = 1;
+const waitSlow = 500;
+const waitFast = 500;
 
 module.exports = function (miss) {
 
 	miss.twitterUserById = function twitterUserById() {
 		return miss.parallel.obj(
-			{maxConcurrency: 400},
+			{maxConcurrency: 1000},
 			(id, enc, cb) => getUser(id, obj => cb(null, obj))
 		);
 	}
@@ -103,7 +105,7 @@ module.exports = function (miss) {
 		if (activeHandleUser >= maxConcurrency) return;
 
 		if (userTodos.length === 0) {
-			setTimeout(handleUser, 100);
+			setTimeout(handleUser, waitSlow);
 			return
 		}
 
@@ -111,6 +113,7 @@ module.exports = function (miss) {
 		userTodos = userTodos.slice(100);
 
 		activeHandleUser++;
+		//console.log('users/lookup '+next.length);
 		scraper.fetch(
 			'users/lookup',
 			{user_id:next.map(e => e[0]).join(','), include_entities:false},
@@ -119,11 +122,16 @@ module.exports = function (miss) {
 				var lookup = new Map();
 				(result || []).forEach(u => lookup.set(u.id_str.toLowerCase(), u));
 				next.forEach(e => e[1](lookup.get(e[0])));
-				setTimeout(handleUser, 0);
+
+				if (userTodos.length < 100) {
+					setTimeout(handleUser, waitSlow);
+				} else {
+					setTimeout(handleUser, waitFast);
+				}
 			}
 		)
 
-		if (userTodos.length > 0) setTimeout(handleUser, 0);
+		if (userTodos.length > 100) setTimeout(handleUser, waitFast);
 	}
 
 	const cacheLang = require('../../../lib/cache.js')('world3_user_langs');
@@ -131,6 +139,7 @@ module.exports = function (miss) {
 		cacheLang(
 			id,
 			cbCache => {
+				console.log('statuses/user_timeline');
 				scraper.fetch(
 					'statuses/user_timeline',
 					{user_id:id, count:200, trim_user:true, exclude_replies:true, include_rts:false},
@@ -163,11 +172,14 @@ module.exports = function (miss) {
 	function getUserFriendsIds(id, cb) {
 		cacheUserFriendsIds(
 			id,
-			cbCache => scraper.fetch(
-				'friends/ids',
-				{user_id:id, stringify_ids:true, count:5000},
-				result => cbCache(result.ids || [])
-			),
+			cbCache => {
+				//console.log('friends/ids');
+				scraper.fetch(
+					'friends/ids',
+					{user_id:id, stringify_ids:true, count:5000},
+					result => cbCache(result.ids || [])
+				)
+			},
 			cb
 		)
 	}

@@ -1,6 +1,6 @@
 "use strict";
 
-const query = 'welcome110';
+const query = 'muslim OR muslime OR moslem OR moslems OR muslimisch OR muslimische OR muslimischen OR moslimisch OR moslimische OR moslimischen OR muslimin OR muslima OR islam lang:de';
 const maxTweetCount = 10000;
 const hashtagsOnly = false;
 
