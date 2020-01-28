@@ -14,20 +14,20 @@
   },
   "homepage": "https://github.com/MichaelKreil/twitter-analysis#readme",
   "dependencies": {
-    "async": "^2.6.0",
-    "canvas": "^1.6.10",
-    "colors": "^1.2.1",
+    "async": "^3.1.1",
+    "canvas": "^2.6.1",
+    "colors": "^1.4.0",
     "deep-extend": "^0.6.0",
     "emoji-text": "^0.2.6",
-    "express": "^4.16.3",
-    "level": "^2.1.2",
-    "lzma-native": "^3.0.8",
-    "mississippi": "^3.0.0",
+    "express": "^4.17.1",
+    "level": "^6.0.0",
+    "lzma-native": "^6.0.0",
+    "mississippi": "^4.0.0",
     "mississippi2": "^1.0.5",
-    "multistream": "^2.1.1",
-    "request": "^2.85.0",
+    "multistream": "^4.0.0",
+    "request": "^2.88.0",
     "through2-concurrent": "^2.0.0",
     "tsv": "^0.2.0",
-    "word2vec": "^1.1.2"
+    "word2vec": "^1.1.4"
   }
 }
