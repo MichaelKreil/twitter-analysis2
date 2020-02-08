@@ -206,6 +206,7 @@ var queries = [
 	{name: 'tamponsteuer',                  query: {q:'tamponsteuer OR #tamponsteuer'}},
 	{name: 'tempolimit',                    query: {q:'tempolimit OR #tempolimit'}},
 	{name: 'tenderage',                     query: {q:'"tender age"'}},
+	{name: 'thueringenmpwahl',              query: {q:'afd,afdp,akk,antifa,björn,bodoramelow,c_lindner,cdu,cdu_fraktion_th,cdu_thueringen,dammbruch,faschist,faschisten,fckfdp,fdp,fdp_thueringen,gnaden,hirte,höcke,kanzlerin,kemmerich,kemmerichruecktritt,kemmerichrücktritt,kemmerichs,kemmerichthl,kramp-karrenbauer,lindner,merkel,mikemohring,ministerpräsident,ministerpräsidentenwahl,mohring,mpwahl,neuwahl,niewieder,noafd,paktieren,paktiert,ramelow,rechtsextremen,rot-rot-grün,steigbügelhalter,tabubruch,thueringen,thueringenwahl,thüringen,thüringens,unfassbar,unverzeihlich,werteunion'.toOR()}},
 	{name: 'toptweets_de_20',               query: {q:'lang:de min_retweets:20'}},
 	{name: 'toptweets_de_50',               query: {q:'lang:de min_retweets:50'}},
 	{name: 'toptweets_en_10k',              query: {q:'lang:en min_retweets:10000'}},

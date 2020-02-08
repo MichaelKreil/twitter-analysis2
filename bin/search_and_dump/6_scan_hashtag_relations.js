@@ -1,6 +1,6 @@
 "use strict";
 
-const query = 'muslim OR muslime OR moslem OR moslems OR muslimisch OR muslimische OR muslimischen OR moslimisch OR moslimische OR moslimischen OR muslimin OR muslima OR islam lang:de';
+const query = '(thueringen OR thüringen OR kemmerich OR mpwahl OR faschisten OR ramelow OR dammbruch OR afdp OR kemmerichruecktritt OR mohring) AND min_retweets:20';
 const maxTweetCount = 10000;
 const hashtagsOnly = false;
 
