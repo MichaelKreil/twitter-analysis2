@@ -1,6 +1,6 @@
 "use strict";
 
-const query = '(thueringen OR thüringen OR kemmerich OR mpwahl OR faschisten OR ramelow OR dammbruch OR afdp OR kemmerichruecktritt OR mohring) AND min_retweets:20';
+const query = '(hanau) AND min_retweets:5';
 const maxTweetCount = 10000;
 const hashtagsOnly = false;
 
