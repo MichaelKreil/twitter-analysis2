@@ -1,6 +1,6 @@
 "use strict";
 
-const query = '(hanau) AND min_retweets:5';
+const query = '(coronavirus) AND min_retweets:100';
 const maxTweetCount = 10000;
 const hashtagsOnly = false;
 
