@@ -1,6 +1,6 @@
 "use strict";
 
-const query = '(coronavirus) AND min_retweets:100';
+const query = 'volkmarsen';
 const maxTweetCount = 10000;
 const hashtagsOnly = false;
 
