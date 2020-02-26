@@ -1,6 +1,6 @@
 "use strict";
 
-const query = 'volkmarsen';
+const query = 'coronarvirus,#coronarvirus,wuhan,#wuhan,#coronaoutbreak,#coronavirus,#coronavirusoutbreak,#wuhancoronavirus,#wuhancoronovirus,coronavirus,#wuhanvirus,#covid19,#covid2019,#covid_19,covid-19,covid19,covid2019,covid_19,epidemic,pandemic,quarantine,quarantined'.replace(/,/g, ' OR ');
 const maxTweetCount = 10000;
 const hashtagsOnly = false;
 
@@ -63,8 +63,9 @@ function startScraper(cbScraper) {
 							.toLowerCase()
 							.replace(/https?:\/\/[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/g, url => {
 								urls.push(url.replace(/^https?:\/\//, ''));
+								return ' ';
 							})
-							.replace(/[^#a-zäöüß0-9_\-]+/g, ' ')
+							.replace(/[\s,.?!;()*“”":'`´]+/g, ' ')
 							.split(' ');
 						if (urls.length > 0) words = words.concat(urls);
 
