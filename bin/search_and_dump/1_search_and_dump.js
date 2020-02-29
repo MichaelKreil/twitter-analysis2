@@ -82,6 +82,7 @@ var queries = [
 	{name: 'coronarvirus',                  query: {q:'coronarvirus,#coronarvirus,wuhan,#wuhan,#coronaoutbreak,#coronavirus,#coronavirusoutbreak,#wuhancoronavirus,#wuhancoronovirus,coronavirus,#wuhanvirus'.toOR()}},
 	{name: 'coronarvirus2',                 query: {q:'#covid19,#covid2019,#covid_19,covid-19,covid19,covid2019,covid_19,epidemic,pandemic,quarantine,quarantined'.toOR()}},
 	{name: 'coronarvirus3',                 query: {q:'covid,#covid,covidー19,#covidー19,โควิด19,#โควิด19,xj621,coronavírus'.toOR()}},
+	{name: 'coronarvirus4',                 query: {q:'coronavirusde,#coronavirusde'.toOR()}},
 	{name: 'csu',                           query: {q:'#csu'}},
 	{name: 'donalphonso',                   query: {q:'_donalphonso'.toWildFromTo()}},
 	{name: 'dsgvo',                         query: {q:'dsgvo OR dgsvo OR dataprotection OR cybersecurity OR gdpr OR datenschutz'}},
