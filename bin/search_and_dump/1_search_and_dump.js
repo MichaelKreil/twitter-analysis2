@@ -277,7 +277,7 @@ function startScraper() {
 
 	async.parallelLimit(
 		queue,
-		1,
+		4,
 		() => console.log(colors.green.bold('## FINISHED'))
 	)
 }
@@ -287,7 +287,7 @@ function runScraper(name, query, date, cbScraper) {
 	var title = '"'+name+' - '+date+'"';
 	
 	var tempFilename = resolve(__dirname, '../../tmp', Math.random().toFixed(16).substr(2)+'.tmp.xz');
-	var filename = resolve(__dirname, '../../data/search_and_dump/'+name+'/'+name+'_'+date+'.jsonstream.xz');
+	var filename = resolve(__dirname, '/root/data/twitter/data_280/'+name+'/'+name+'_'+date+'.jsonstream.xz');
 
 	// Does the file already exists
 	if (fs.existsSync(filename)) {
@@ -342,7 +342,10 @@ function runScraper(name, query, date, cbScraper) {
 				//console.log(colors.green('closing '+title));
 				writeStream.on('close', () => {
 					console.log(colors.grey.bold('   closed '+title));
-					if (!dry) fs.renameSync(tempFilename, filename);
+					if (!dry) {
+						fs.copyFileSync(tempFilename, filename, fs.constants.COPYFILE_EXCL);
+						fs.unlinkSync(tempFilename);
+					}
 					cbClose();
 				})
 				bufferStream.end();
