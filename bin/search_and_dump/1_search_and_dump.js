@@ -316,8 +316,6 @@ function runScraper(name, query, date, cbScraper) {
 
 		// flush data buffer to lzma compressor
 		function flush(percent, cbFlush) {
-			console.log(colors.grey('   flushing '+title+' - '+(100*percent).toFixed(1)+'%'))
-
 			var buffer = Array.from(tweets.values());
 			tweets = new Map();
 			tweetCount = 0;
@@ -416,6 +414,8 @@ function runScraper(name, query, date, cbScraper) {
 					if (tweetCount > 2000) {
 						var percent = Date.parse(date)/86400000;
 						percent = 1 - percent + Math.floor(percent);
+
+						console.log(colors.grey('   flushing '+title+' - '+(100*percent).toFixed(1)+'% - '+date))
 						outputStream.flush(percent, checkRerun);
 					} else {
 						checkRerun()
