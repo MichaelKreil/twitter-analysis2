@@ -9,7 +9,7 @@ const utils = require('../../lib/utils.js');
 const colors = require('colors');
 const miss = require('mississippi2');
 const resolve = require('path').resolve;
-const scraper = require('../../lib/scraper.js')('');
+const scraper = require('../../lib/scraper.js')();
 
 String.prototype.toFromTo = function () {
 	return this.split(',').map(a => a.trim()).map(a => 'from:'+a+' OR to:'+a).join(' OR ')
