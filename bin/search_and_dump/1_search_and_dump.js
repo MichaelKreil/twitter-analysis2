@@ -66,7 +66,7 @@ var queries = [
 	{name: 'cdu',                           query: {q:'#cdu'}},
 	{name: 'christchurch',                  query: {q:'christchurch,#christchurch,#eggboy,#fraseranning,#hellobrother,#neuseeland,#newzealand,#newzealandshooting,#newzealandterroristattack,حادث_نيوزيلندا_الارهابي'.toOR()}},
 	{name: 'climatestrike',                 query: {q:'#20eylüli̇klimgrevi,#actonclimate,#allefuersklima,#allefürsklima,#cambioclimatico,#cambioclimático,#climateactionnow,#climatechange,#climatecrisis,#climateemergency,#climatejustice,#climatejusticenow,#climatemarch,#climatemarchpakistan,#climatestrike,#climatestrikeke,#climatestrikes,#climatestrikethailand,#crisisclimatica,#extinctionrebellion,#fridayforfuture,#fridays4future,#fridaysforfurture,#fridaysforfuture,#fridaysforfutures,#globalclimatestrike,#globalclimatestrikes,#greennewdeal,#greveglobalpeloclima,#grevepourleclimat,#huelgamundialporelclima,#islamabadclimatemarch,#klimakabinett,#klimatstrejk,#marchepourleclimat,#schoolstrike4climate,#scientists4future,#scientistsforfuture,#strajkklimatyczny,#strike4climate,#viernesporelfuturo,#youthclimatestrike,#youthstrike4climate,#グローバル気候マーチ,from:gretathunberg,to:gretathunberg'.toOR()}},
-	{name: 'coronarvirus4',                 query: {q:'#coronaoutbreak,#coronarvirus,#coronavirus,#coronavirusde,#coronavirusoutbreak,#covid,#covid19,#covid2019,#covid_19,#covidー19,#wuhan,#wuhancoronavirus,#wuhancoronovirus,#wuhanvirus,#โควิด19,coronarvirus,coronavirus,coronavirusde,coronavírus,covid,covid-19,covid19,covid2019,covid_19,covidー19,epidemic,pandemic,quarantine,quarantined,wuhan,xj621,โควิด19'.toOR()}},
+	{name: 'coronarvirus4',                 query: {q:'#coronaoutbreak,#coronarvirus,#coronavirus,#coronavirusde,#coronavirusoutbreak,#covid,#covid19,#covid2019,#covid_19,#covidー19,#wuhan,#wuhancoronavirus,#wuhancoronovirus,#wuhanvirus,#โควิด19,coronarvirus,coronavirus,coronavirusde,coronavírus,covid,covid-19,covid19,covid2019,covid_19,covidー19,epidemic,pandemic,quarantine,quarantined,wuhan,xj621,โควิด19'.toOR(), splitTime:24}},
 	{name: 'coronarvirus5',                 query: {q:'coronadeutschland,#coronadeutschland,coronapanik,#coronapanik'.toOR()}},
 	{name: 'csu',                           query: {q:'#csu'}},
 	{name: 'donalphonso',                   query: {q:'_donalphonso'.toWildFromTo()}},
@@ -200,7 +200,7 @@ var queries = [
 	{name: 'toptweets_de_50',               query: {q:'lang:de min_retweets:50'}},
 	{name: 'toptweets_en_10k',              query: {q:'lang:en min_retweets:10000'}},
 	{name: 'trudeaumustgo',                 query: {q:'trudeaumustgo OR #trudeaumustgo'}},
-	{name: 'trump_mentions',                query: {q:'to:realdonaldtrump OR to:potus OR realdonaldtrump OR potus'}},
+	{name: 'trump_mentions',                query: {q:'to:realdonaldtrump OR to:potus OR realdonaldtrump OR potus', splitTime:6}},
 	{name: 'trump_tweets',                  query: {q:'from:realdonaldtrump OR from:potus'}},
 	{name: 'ueberwachung',                  query: {q:'überwachungspaket OR staatstrojaner OR bundestrojaner OR ueberwachungspaket OR zib2 OR überwachung OR privatsphäre OR datenschutz OR sicherheit OR vds OR sicherheitspaket'}},
 	{name: 'ukelection',                    query: {q:'GeneralElection2019,UKElection,GE2019'.toOR()}},
@@ -265,13 +265,14 @@ function startScraper() {
 	// for each of the last 14 days
 	var queue = [];
 	var yesterday = Math.floor(Date.now()/86400000)-0.5;
-	for (var i = -10; i <= 0; i++) {
-		var date = (new Date((yesterday+i)*86400000)).toISOString().substr(0,10);
-		queries.forEach(obj => {
-			var _name = obj.name;
-			var _query = obj.query;
-			var _date = date;
-			queue.push(cb => runScraper(_name, _query, _date, cb))
+	for (var i = -1; i <= 0; i++) {
+		var minDate = (new Date((yesterday+i  )*86400000)).toISOString().substr(0,10);
+		var maxDate = (new Date((yesterday+i+1)*86400000)).toISOString().substr(0,10);
+		queries.forEach(entry => {
+			var _entry = JSON.parse(JSON.stringify(entry));
+			_entry.minDate = minDate;
+			_entry.maxDate = maxDate;
+			queue.push(cb => runScraper(_entry, cb))
 		})
 	}
 
@@ -283,16 +284,20 @@ function startScraper() {
 }
 
 
-function runScraper(name, query, date, cbScraper) {
-	var title = '"'+name+' - '+date+'"';
+function runScraper(entry, cbScraper) {
+	entry.query.minDateValue = Date.parse(entry.minDate);
+	entry.query.maxDateValue = Date.parse(entry.maxDate);
+
+	var name = entry.name;
+	var title = '"'+name+' - '+entry.minDate+'"';
 	
 	var tempFilename = resolve(__dirname, '../../tmp', Math.random().toFixed(16).substr(2)+'.tmp.xz');
-	var filename = resolve(__dirname, '/root/data/twitter/data_280/'+name+'/'+name+'_'+date+'.jsonstream.xz');
+	var filename = resolve(__dirname, '/root/data/twitter/data_280/'+name+'/'+name+'_'+entry.minDate+'.jsonstream.xz');
+	//var filename = resolve(__dirname, '../../data/twitter/data_280/'+name+'/'+name+'_'+entry.minDate+'.jsonstream.xz');
 
 	// Does the file already exists
 	if (fs.existsSync(filename)) {
-		//console.log(colors.grey('Ignore '+title));
-		return setTimeout(cbScraper,0);
+		return queueMicrotask(cbScraper);
 	} else {
 		console.log(colors.grey('   Starting '+title));
 	}
@@ -316,15 +321,11 @@ function runScraper(name, query, date, cbScraper) {
 
 		// flush data buffer to lzma compressor
 		function flush(percent, cbFlush) {
-			var buffer = Array.from(tweets.values());
-			tweets = new Map();
+			var buffer = Buffer.concat(tweets);
+			tweets = [];
 			tweetCount = 0;
 
 			if (buffer.length === 0) return cbFlush();
-
-			buffer.sort((a,b) => a.id_str < b.id_str ? -1 : 1);
-			buffer = buffer.map(t => t.buffer);
-			buffer = Buffer.concat(buffer);
 
 			if (bufferStream.write(buffer)) {
 				cbFlush();
@@ -338,7 +339,7 @@ function runScraper(name, query, date, cbScraper) {
 			//console.log(colors.green('prepare closing '+title));
 			flush(1, () => {
 				//console.log(colors.green('closing '+title));
-				writeStream.on('close', () => {
+				writeStream.on('finish', () => {
 					console.log(colors.grey.bold('   closed '+title));
 					if (!dry) {
 						fs.copyFileSync(tempFilename, filename, fs.constants.COPYFILE_EXCL);
@@ -346,6 +347,7 @@ function runScraper(name, query, date, cbScraper) {
 					}
 					cbClose();
 				})
+				//console.log(colors.green('ending '+title));
 				bufferStream.end();
 			})
 		}
@@ -356,76 +358,77 @@ function runScraper(name, query, date, cbScraper) {
 		}
 	}
 
-	// Map of all found tweets
-	var tweets = new Map();
+	var tweets = [];
 	var tweetCount = 0;
+	var task = scraper.getSubTask();
 
-	// new scraper sub task
-	var task = scraper.getSubTask()
+	var queries = [entry.query];
+	queries = [].concat.apply([], queries.map(splitQueryByLength));
+	queries = [].concat.apply([], queries.map(splitQueryByTime));
 
-	// start recursive scraper
+	if (queries.length > 1) console.log(colors.grey('      '+queries.length+' queries'));
 
-	var query_url = urlEncode(query.q);
+	queries.forEach(q => q.dateValue = q.maxDateValue);
 
-	if (query_url.length < 511) {
-		scrape(query, () => outputStream.close(cbScraper));
-	} else {
-		async.eachSeries(
-			splitQuery(query),
-			scrape,
-			() => outputStream.close(cbScraper)
-		)
-	}
+	async.each(
+		queries,
+		scrape,
+		() => {
+			outputStream.close(cbScraper)
+		}
+	)
 
 	function scrape(query, cbScrape) {
-		//console.log(name, date, query);
-		scrapeRec();
+		var since_id = dateValue2Id(query.minDateValue);
+		var max_id = dateValue2Id(query.maxDateValue);
+		scrapeRec(max_id);
 
 		function scrapeRec(max_id) {
-			var attributes = {result_type:'recent', tweet_mode:'extended', count:100, max_id:max_id};
-			Object.keys(query).forEach(key => attributes[key] = query[key])
-
-			var minDate = new Date(date);
-			var maxDate = new Date(minDate.getTime()+86400000);
-			attributes.until = maxDate.toISOString().substr(0,10);
+			var attributes = {result_type:'recent', tweet_mode:'extended', count:100, since_id:since_id, max_id:max_id};
+			Object.keys(query).forEach(key => {
+				switch (key) {
+					case 'q':
+					case 'geocode':
+					case 'lang':
+						attributes[key] = query[key];
+					break;
+					case 'minDateValue':
+					case 'maxDateValue':
+					case 'dateValue':
+					case 'splitTime':
+					return
+					default:
+						throw Error('unknown key "'+key+'"')
+				}
+			})
 
 			task.fetch(
 				'search/tweets',
 				attributes,
 				result => {
-					result.statuses = result.statuses.filter(t => {
-						var d = new Date(t.created_at);
-						if (d < minDate) return false;
-						if (d > maxDate) return false;
-						return true;
-					})
+					//console.log(result);
+					if (!result.statuses || result.statuses.length === 0) return cbScrape();
 
 					if (!dry) {
-						result.statuses.forEach(t => tweets.set(t.id_str, {
-							id_str: t.id_str,
-							created_at: t.created_at,
-							buffer: Buffer.from(JSON.stringify(t)+'\n', 'utf8')
-						}));
+						tweets.push(Buffer.from(result.statuses.map(t => JSON.stringify(t)+'\n').join('')));
 					}
 					tweetCount += result.statuses.length;
 
-					var date = (result.statuses[0]||{}).created_at;
+					var minId = getTweetsMinId(result.statuses);
+					var nextMaxId = decId(minId);
+					query.dateValue = id2DateValue(minId);
 
-					if (tweetCount > 2000) {
-						var percent = Date.parse(date)/86400000;
-						percent = 1 - percent + Math.floor(percent);
+					if (tweetCount < 2000) return checkRerun();
 
-						console.log(colors.grey('   flushing '+title+' - '+(100*percent).toFixed(1)+'% - '+date))
-						outputStream.flush(percent, checkRerun);
-					} else {
-						checkRerun()
-					}
+					var sum1 = queries.reduce((s,q) => s+(   q.dateValue - q.minDateValue || 0), 0);
+					var sum2 = queries.reduce((s,q) => s+(q.maxDateValue - q.minDateValue || 0), 0);
+					var percent = 1 - sum1/sum2;
+					console.log(colors.grey('   flushing '+title+' - '+(100*percent).toFixed(1)+'%'))
+					outputStream.flush(percent, checkRerun);
 
 					function checkRerun() {
-						var min_id = utils.getTweetsMinId(result.statuses);
-						if (min_id) {
-							//console.log(colors.grey('\t'+date.replace(/ \+.*/,'')+'\t'+title));
-							scrapeRec(min_id);
+						if (isIdBiggerThan(nextMaxId, since_id)) {
+							scrapeRec(nextMaxId);
 						} else {
 							cbScrape();
 						}
@@ -433,7 +436,6 @@ function runScraper(name, query, date, cbScraper) {
 				}
 			)
 		}
-
 	}
 }
 
@@ -442,10 +444,32 @@ function urlEncode(q) {
 	return q.replace(/ /g, '%20').replace(/:/g, '%3A')
 }
 
-function splitQuery(query) {
+function splitQueryByTime(query) {
+	if (!query.splitTime || query.splitTime === 1) return [query]
+	
+	var minDateValue = query.minDateValue;
+	var maxDateValue = query.maxDateValue;
+	var duration = (maxDateValue - minDateValue)/query.splitTime;
+	var newQueries = [];
+	var queryString = JSON.stringify(query);
+
+	for (var i = 0; i < query.splitTime; i++) {
+		var newQuery = JSON.parse(queryString);
+		newQuery.minDateValue = minDateValue+(i  )*duration;
+		newQuery.maxDateValue = minDateValue+(i+1)*duration;
+		newQueries.push(newQuery);
+	}
+
+	return newQueries;
+}
+
+function splitQueryByLength(query) {
+	if (urlEncode(query.q).length < 500) return [query];
+
 	var q = query.q.split(' OR ');
 	var newQuery = q.shift();
 	var newQueries = [];
+	var queryString = JSON.stringify(query);
 
 	while (q.length > 0) {
 		var newString = q.shift();
@@ -463,10 +487,8 @@ function splitQuery(query) {
 			console.log(newQueries);
 			process.exit();
 		}
-		var obj = {q:q};
-		Object.keys(query).forEach(key => {
-			if (key !== 'q') obj[key] = query[key];
-		})
+		var obj = JSON.parse(queryString);
+		obj.q = q;
 		return obj;
 	})
 
@@ -481,7 +503,7 @@ function BufferStream(maxSize) {
 	var finished = false;
 
 	function write(data, enc, cb) {
-		bufferList.unshift(data);
+		bufferList.push(data);
 		bufferSize += data.length;
 
 		triggerRead();
@@ -490,20 +512,21 @@ function BufferStream(maxSize) {
 		cbsWrite.push(cb);
 	}
 
-	function flush() {
+	function flush(cb) {
 		finished = true;
 		triggerRead();
+		cb();
 	}
 
 	function triggerRead() {
-		if (cbsRead.length === 0) return;
-		cbsRead.forEach(cb => setTimeout(() => read(0,cb), 0));
-		cbsRead = [];
+		while ((cbsRead.length > 0) && ((bufferList.length > 0) || finished)) {
+			read(0, cbsRead.shift());
+		}
 	}
 
 	function read(size, next) {
 		if (bufferList.length > 0) {
-			var chunk = bufferList.pop();
+			var chunk = bufferList.shift();
 			bufferSize -= chunk.length;
 			next(null, chunk);
 		} else {
@@ -515,11 +538,35 @@ function BufferStream(maxSize) {
 		}
 
 		if ((cbsWrite.length > 0) && (bufferSize < maxSize/2)) {
-			cbsWrite.forEach(cb => setTimeout(cb,0));
+			cbsWrite.forEach(queueMicrotask);
 			cbsWrite = [];
 		}
-
 	}
 
 	return miss.duplex( miss.to(write, flush), miss.from(read) )
+}
+
+function dateValue2Id(date) {
+	return (BigInt(date-1288834974657) << 22n).toString();
+}
+
+function id2DateValue(id) {
+	return Number((BigInt(id) >> 22n)+1288834974657n);
+}
+
+function isIdBiggerThan(id1, id2) {
+	return (id1.length === id2.length) ? (id1 > id2) : (id1.length > id2.length);
+}
+
+function getTweetsMinId(tweets) {
+	var ids = tweets.map(t => BigInt(t.id_str));
+	var minId = ids.pop();
+	ids.forEach(id => {
+		if (minId > id) minId = id;
+	})
+	return minId.toString();
+}
+
+function decId(id) {
+	return (BigInt(id) - 1n).toString();
 }
