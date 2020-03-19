@@ -308,7 +308,9 @@ function runScraper(entry, cbScraper) {
 		// Prepare Compressor
 		var bufferStream = BufferStream(64*1024*1024);
 
-		var compressor = child_process.spawn('xz', '-zkfc9 -T 1 -'.split(' '));
+		var T = entry.query.splitTime ? 4 : 1;
+
+		var compressor = child_process.spawn('xz', '-zkfc9 -T '+T+' -'.split(' '));
 		compressor = miss.duplex(compressor.stdin, compressor.stdout);
 
 		var writeStream = fs.createWriteStream(tempFilename, {highWaterMark: 8*1024*1024});
