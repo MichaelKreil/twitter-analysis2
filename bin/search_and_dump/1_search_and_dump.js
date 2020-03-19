@@ -265,7 +265,7 @@ function startScraper() {
 	// for each of the last 14 days
 	var queue = [];
 	var yesterday = Math.floor(Date.now()/86400000)-0.5;
-	for (var i = -1; i <= 0; i++) {
+	for (var i = -10; i <= 0; i++) {
 		var minDate = (new Date((yesterday+i  )*86400000)).toISOString().substr(0,10);
 		var maxDate = (new Date((yesterday+i+1)*86400000)).toISOString().substr(0,10);
 		queries.forEach(entry => {
