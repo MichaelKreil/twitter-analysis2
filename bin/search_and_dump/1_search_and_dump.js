@@ -207,6 +207,7 @@ var queries = [
 	{name: 'unteilbar',                     query: {q:'unteilbar,unteilbar_,to:unteilbar_,from:unteilbar_'.toOR()}},
 	{name: 'uploadfilter',                  query: {q:'uploadfilter,saveyourinternet,leistungsschutzrecht,deleteart13,censorshipmachine,axelvossmdep,from:axelvossmdep,to:axelvossmdep,fixcopyright'.toOR()}},
 	{name: 'volkmarsen',                    query: {q:'volkmarsen,menschenmenge,rosenmontag,rosenmontagsumzug,rosenmontagszug'.toOR()}},
+	{name: 'wirvsvirushackathon',           query: {q:'wirvsvirus,#wirvsvirus,wirvsvirushackathon,#wirvsvirushackathon,from:wirvsvirushack,to:wirvsvirushack,wirvsvirushack,#wirvsvirushack,hackathon,#hackathon'.toOR()}},
 ];
 
 

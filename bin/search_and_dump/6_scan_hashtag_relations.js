@@ -1,6 +1,6 @@
 "use strict";
 
-const query = 'coronarvirus,#coronarvirus,wuhan,#wuhan,#coronaoutbreak,#coronavirus,#coronavirusoutbreak,#wuhancoronavirus,#wuhancoronovirus,coronavirus,#wuhanvirus,#covid19,#covid2019,#covid_19,covid-19,covid19,covid2019,covid_19,epidemic,pandemic,quarantine,quarantined'.replace(/,/g, ' OR ');
+const query = 'wirvsvirus,#wirvsvirus,wirvsvirushackathon,#wirvsvirushackathon,from:wirvsvirushack,to:wirvsvirushack,wirvsvirushack,#wirvsvirushack,hackathon,#hackathon'.replace(/,/g, ' OR ');
 const maxTweetCount = 10000;
 const hashtagsOnly = false;
 
