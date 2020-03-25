@@ -35,6 +35,7 @@ String.prototype.expandMedia = function () {
 var lists = [
 	'AfD',
 	'AfDkompakt',
+	'gfd_grundgesetz',
 	'wahl_beobachter',
 	'bild',
 ];
