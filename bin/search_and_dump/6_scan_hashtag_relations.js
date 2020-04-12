@@ -1,6 +1,6 @@
 "use strict";
 
-const query = 'wirvsvirus,#wirvsvirus,wirvsvirushackathon,#wirvsvirushackathon,from:wirvsvirushack,to:wirvsvirushack,wirvsvirushack,#wirvsvirushack,hackathon,#hackathon'.replace(/,/g, ' OR ');
+const query = 'heinsberg,heinsbergstudie,heinsbergprotokoll'.replace(/,/g, ' OR ');
 const maxTweetCount = 10000;
 const hashtagsOnly = false;
 
