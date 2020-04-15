@@ -212,6 +212,7 @@ var queries = [
 	{name: 'uploadfilter',                  query: {q:'uploadfilter,saveyourinternet,leistungsschutzrecht,deleteart13,censorshipmachine,axelvossmdep,from:axelvossmdep,to:axelvossmdep,fixcopyright'.toOR()}},
 	{name: 'volkmarsen',                    query: {q:'volkmarsen,menschenmenge,rosenmontag,rosenmontagsumzug,rosenmontagszug'.toOR()}},
 	{name: 'wirvsvirushackathon',           query: {q:'wirvsvirus,#wirvsvirus,wirvsvirushackathon,#wirvsvirushackathon,from:wirvsvirushack,to:wirvsvirushack,wirvsvirushack,#wirvsvirushack,hackathon,#hackathon'.toOR()}},
+	{name: 'youtube_3z0gnXgK8Do',           query: {q:'url:3z0gnXgK8Do'}},
 ];
 
 
