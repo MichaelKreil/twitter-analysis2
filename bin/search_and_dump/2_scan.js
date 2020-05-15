@@ -8,7 +8,7 @@ const colors = require('colors');
 const stream = require('stream');
 
 
-var query = 'article13';
+var query = '#maennerwelten';
 var filestream = fs.createWriteStream(query+'.txt');
 
 var files = getFiles(resolve(__dirname, '../../data/search_and_dump/'));

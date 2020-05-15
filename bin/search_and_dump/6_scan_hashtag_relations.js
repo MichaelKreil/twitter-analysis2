@@ -1,6 +1,6 @@
 "use strict";
 
-const query = 'heinsberg,heinsbergstudie,heinsbergprotokoll'.replace(/,/g, ' OR ');
+const query = '#closethegates,#stopgates,soros,#banbill,#soros,#wwg1wgaworldwide,#infowar,#wwg1gwa,@byoblu24,#byoblu24,#byoblu,@byoblu,#oann,@oann'.replace(/,/g, ' OR ');
 const maxTweetCount = 10000;
 const hashtagsOnly = false;
 
