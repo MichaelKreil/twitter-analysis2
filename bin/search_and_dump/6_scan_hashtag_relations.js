@@ -1,6 +1,7 @@
 "use strict";
 
-const query = 'racism,racist,racists,prejudice,anti-semitic,homophobe,lgbtq+,supremacy,superiority,#blacklivesmater,#blacklivesmatter,#youaintblack'.replace(/,/g, ' OR ');
+const query = 'justiceforgeorgefloyd,GeorgeFloyd,MinneapolisRiot,derekchauvin,georgefloydprotest,minneapolisprotests,chauvin,icantbreathe,justiceforgeorge,georgefloydmurder,justiceforfloyd,georgefloydwasmurdered'.replace(/,/g, ' OR ');
+
 const maxTweetCount = 10000;
 const hashtagsOnly = false;
 
