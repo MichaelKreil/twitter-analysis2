@@ -1,6 +1,6 @@
 "use strict";
 
-const query = '#closethegates,#stopgates,soros,#banbill,#soros,#wwg1wgaworldwide,#infowar,#wwg1gwa,@byoblu24,#byoblu24,#byoblu,@byoblu,#oann,@oann'.replace(/,/g, ' OR ');
+const query = 'racism,racist,racists,prejudice,anti-semitic,homophobe,lgbtq+,supremacy,superiority,#blacklivesmater,#blacklivesmatter,#youaintblack'.replace(/,/g, ' OR ');
 const maxTweetCount = 10000;
 const hashtagsOnly = false;
 
