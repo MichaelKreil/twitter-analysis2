@@ -1,8 +1,8 @@
 "use strict";
 
-const query = 'justiceforgeorgefloyd,GeorgeFloyd,MinneapolisRiot,derekchauvin,georgefloydprotest,minneapolisprotests,chauvin,icantbreathe,justiceforgeorge,georgefloydmurder,justiceforfloyd,georgefloydwasmurdered'.replace(/,/g, ' OR ');
+const query = 'Antifa'.replace(/,/g, ' OR ');
 
-const maxTweetCount = 10000;
+const maxTweetCount = 1000;
 const hashtagsOnly = false;
 
 const fs = require('fs');
