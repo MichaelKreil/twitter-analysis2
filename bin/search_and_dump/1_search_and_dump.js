@@ -86,6 +86,7 @@ var queries = [
 	{name: 'gauland',                       query: {q:'#gauland,#gaulandpause'.expand()}},
 	{name: 'georgefloyd',                   query: {q:'justiceforgeorgefloyd,georgefloyd,minneapolisriot,derekchauvin,georgefloydprotest,minneapolisprotests,chauvin,icantbreathe,justiceforgeorge,georgefloydmurder,justiceforfloyd,georgefloydwasmurdered'.toOR()}},
 	{name: 'georgefloyd2',                  query: {q:'BLACK_LIVES_MATTERS,vidasnegrasimportam,protests2020'.toOR()}},
+	{name: 'georgefloyd3',                  query: {q:'black_lives_matter,blackhistorymonth,blacklivemattters,blacklivesmattter,blackoutday2020,blackouttuesday,dictatortrump,georgeflyod,trumpdictatorship,washingtondcprotest,whyididntreport'.toOR()}},
 	{name: 'gretathunberg',                 query: {q:'greta thunberg,#gretathunberg,@gretathunberg'.expand()}},
 	{name: 'groko',                         query: {q:'#groko'.expand()}},
 	{name: 'grossstaedte',                  query: {q:'berlin,hamburg,münchen,köln,frankfurt,stuttgart,düsseldorf,dortmund,essen,leipzig,bremen,dresden,hannover,nürnberg,duisburg,bochum,wuppertal,bielefeld,bonn,münster'.toOR()}},

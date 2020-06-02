@@ -1,6 +1,6 @@
 "use strict";
 
-const query = 'Antifa'.replace(/,/g, ' OR ');
+const query = 'dictatortrump'.replace(/,/g, ' OR ');
 
 const maxTweetCount = 1000;
 const hashtagsOnly = false;
