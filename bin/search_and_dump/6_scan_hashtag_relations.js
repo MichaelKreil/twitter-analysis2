@@ -1,9 +1,9 @@
 "use strict";
 
-const query = 'dictatortrump'.replace(/,/g, ' OR ');
+const query = 'WhiteLivesMatter,whiteoutwednesday,bluelivesmatter'.replace(/,/g, ' OR ');
 
-const maxTweetCount = 1000;
-const hashtagsOnly = false;
+const maxTweetCount = 10000;
+const hashtagsOnly = true;
 
 const fs = require('fs');
 const utils = require('../../lib/utils.js');
