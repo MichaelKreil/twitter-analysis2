@@ -4,7 +4,7 @@ const fs = require('fs');
 const async = require('async');
 const scraper = (require('../../lib/scraper.js'))('dump');
 
-var users = 'mdrde'.split(',');
+var users = 'NieTwojInteresQ'.split(',');
 
 users.forEach(username => {
 	var task = scraper.getSubTask();

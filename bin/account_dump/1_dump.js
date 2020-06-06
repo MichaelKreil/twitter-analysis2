@@ -2,11 +2,11 @@
 
 const fs = require('fs');
 const async = require('async');
-const scraper = (require('../../lib/scraper.js'))('dump');
+const scraper = require('../../lib/scraper.js')();
 
 const userKeys = 'id_str,name,screen_name,location,description,url,entities,protected,followers_count,friends_count,listed_count,created_at,favourites_count,utc_offset,time_zone,verified,statuses_count,lang,default_profile,default_profile_image'.split(',');
 
-var users = 'kahrs'.split(',');
+var users = 'NieTwojInteresQ'.split(',');
 
 users.forEach(username => {
 	var data = {};
