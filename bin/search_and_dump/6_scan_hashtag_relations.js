@@ -1,6 +1,6 @@
 "use strict";
 
-const query = 'EXPOSEANTIFA,ExposeAntifaTerrorists'.replace(/,/g, ' OR ');
+const query = 'Normandy'.replace(/,/g, ' OR ');
 
 const maxTweetCount = 10000;
 const hashtagsOnly = false;
