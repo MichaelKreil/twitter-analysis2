@@ -1,9 +1,9 @@
 "use strict";
 
-const query = 'Normandy'.replace(/,/g, ' OR ');
+const query = 'IamAntifa,IchbinAntifa'.replace(/,/g, ' OR ');
 
-const maxTweetCount = 10000;
-const hashtagsOnly = false;
+const maxTweetCount = 3000;
+const hashtagsOnly = true;
 
 const fs = require('fs');
 const utils = require('../../lib/utils.js');
