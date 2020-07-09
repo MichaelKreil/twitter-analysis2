@@ -32,14 +32,6 @@ String.prototype.expand = function () {
 	}).join(' OR ')
 }
 
-var lists = [
-	'AfD',
-	'AfDkompakt',
-	'gfd_grundgesetz',
-	'wahl_beobachter',
-	'bild',
-];
-
 // List of search queries
 var queries = [
 	{name: '120db',                         query: {q:'frauenmarsch,120db,b1702,dd1702,ndh1702,niun1702,niun,no120db'.toOR()}}, 
@@ -71,6 +63,7 @@ var queries = [
 	{name: 'cdu',                           query: {q:'cdu'.expand()}},
 	{name: 'christchurch',                  query: {q:'christchurch,#christchurch,#eggboy,#fraseranning,#hellobrother,#neuseeland,#newzealand,#newzealandshooting,#newzealandterroristattack,حادث_نيوزيلندا_الارهابي'.toOR()}},
 	{name: 'climatestrike',                 query: {q:'#20eylüli̇klimgrevi,#actonclimate,#allefuersklima,#allefürsklima,#cambioclimatico,#cambioclimático,#climateactionnow,#climatechange,#climatecrisis,#climateemergency,#climatejustice,#climatejusticenow,#climatemarch,#climatemarchpakistan,#climatestrike,#climatestrikeke,#climatestrikes,#climatestrikethailand,#crisisclimatica,#extinctionrebellion,#fridayforfuture,#fridays4future,#fridaysforfurture,#fridaysforfuture,#fridaysforfutures,#globalclimatestrike,#globalclimatestrikes,#greennewdeal,#greveglobalpeloclima,#grevepourleclimat,#huelgamundialporelclima,#islamabadclimatemarch,#klimakabinett,#klimatstrejk,#marchepourleclimat,#schoolstrike4climate,#scientists4future,#scientistsforfuture,#strajkklimatyczny,#strike4climate,#viernesporelfuturo,#youthclimatestrike,#youthstrike4climate,#グローバル気候マーチ,from:gretathunberg,to:gretathunberg'.toOR()}},
+	// sorry, habe corona falsch getippt, muss jetzt aber die id konstant weiter behalten
 	{name: 'coronarvirus6',                 query: {q:'coronadeutschland,#coronadeutschland,coronapanik,#coronapanik,#corona,corona,covidiot,#covidiot,#coronaoutbreak,#coronarvirus,#coronavirus,#coronavirusde,#coronavirusoutbreak,#covid,#covid19,#covid2019,#covid_19,#covidー19,#wuhan,#wuhancoronavirus,#wuhancoronovirus,#wuhanvirus,#โควิด19,coronarvirus,coronavirus,coronavirusde,coronavírus,covid,covid-19,covid19,covid2019,covid_19,covidー19,epidemic,pandemic,quarantine,quarantined,wuhan,xj621,โควิด19'.toOR(), splitTime:6}},
 	{name: 'csu',                           query: {q:'csu'.expand()}},
 	{name: 'donalphonso',                   query: {q:'@_donalphonso'.expand()}},
@@ -227,6 +220,13 @@ var queries = [
 	{name: 'wirvsvirushackathon',           query: {q:'wirvsvirus,#wirvsvirus,wirvsvirushackathon,#wirvsvirushackathon,from:wirvsvirushack,to:wirvsvirushack,wirvsvirushack,#wirvsvirushack,hackathon,#hackathon'.toOR()}},
 ];
 
+var lists = [
+	'AfD',
+	'AfDkompakt',
+	'gfd_grundgesetz',
+	'wahl_beobachter',
+	'bild',
+];
 
 //fetch lists
 var listsTask = scraper.getSubTask()
