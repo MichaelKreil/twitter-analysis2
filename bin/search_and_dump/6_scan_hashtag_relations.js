@@ -1,6 +1,6 @@
 "use strict";
 
-const query = 'IamAntifa,IchbinAntifa'.replace(/,/g, ' OR ');
+const query = '#نه_به_اعدام'.replace(/,/g, ' OR ');
 
 const maxTweetCount = 3000;
 const hashtagsOnly = true;
