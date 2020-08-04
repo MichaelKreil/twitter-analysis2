@@ -53,6 +53,7 @@ var queries = [
 	{name: 'asyl',                          query: {q:'asyl OR asylstreit OR asyltourismus OR asylgehalt'}},
 	{name: 'aufstehen',                     query: {q:'aufstehen'}},
 	{name: 'bahn',                          query: {q:'bahn OR bahnhof OR hbf OR zug OR bahnsteig OR to:dbbahn OR dbbahn OR fahrradabteil OR ice OR schaffner OR bordbistro OR verspätung OR anschluss OR umsteigen OR ansage OR anzeige OR stellwerk OR störung OR weiche', lang:'de'}},
+	{name: 'beirut',                        query: {q:'beirut,lebanon'.expand()}},
 	{name: 'berlin',                        query: {q:'', geocode:'52.5,13.4,50km'}},
 	{name: 'bild',                          query: {q:'BILD,BILD_Berlin,BILD_Digital,BILD_Frankfurt,BILD_Hamburg,BILD_Muenchen,BILD_News,BILD_Politik,BILD_TopNews,jreichelt'.toFromTo()}},
 	{name: 'brexit',                        query: {q:'#brexit'.expand()}},
