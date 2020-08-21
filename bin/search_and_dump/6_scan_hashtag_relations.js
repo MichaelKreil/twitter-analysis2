@@ -1,8 +1,8 @@
 "use strict";
 
-const query = '#نه_به_اعدام'.replace(/,/g, ' OR ');
+const query = 'election2020'.replace(/,/g, ' OR ');
 
-const maxTweetCount = 3000;
+const maxTweetCount = 10000;
 const hashtagsOnly = true;
 
 const fs = require('fs');
