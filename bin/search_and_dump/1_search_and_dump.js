@@ -53,6 +53,7 @@ var queries = [
 	{name: 'asyl',                          query: {q:'asyl OR asylstreit OR asyltourismus OR asylgehalt'}},
 	{name: 'aufstehen',                     query: {q:'aufstehen'}},
 	{name: 'b3008',                         query: {q:'#b2808,#b2908,#b3008,#b3108'.toOR()}},
+	{name: 'b3008b',                        query: {q:'#abstandhaltengegenrechts,#b2808info,#be2808,#b2908info,#be2908,#b3008info,#be3008,#b3108info,#be3108,#berlin2808,#berlin2908,#berlin3008,#berlin3108,#berlindemo,#berlinprotest,#berlinprotests,#coronademo,#covidioten,#demo,#demoberlin,#querdenken,#querdenken711,#sturmaufberlin'.toOR()}},
 	{name: 'bahn',                          query: {q:'bahn OR bahnhof OR hbf OR zug OR bahnsteig OR to:dbbahn OR dbbahn OR fahrradabteil OR ice OR schaffner OR bordbistro OR verspätung OR anschluss OR umsteigen OR ansage OR anzeige OR stellwerk OR störung OR weiche', lang:'de'}},
 	{name: 'beirut',                        query: {q:'beirut,lebanon'.expand()}},
 	{name: 'berlin',                        query: {q:'', geocode:'52.5,13.4,50km'}},
