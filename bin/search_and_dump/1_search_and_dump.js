@@ -34,6 +34,7 @@ String.prototype.expand = function () {
 
 // List of search queries
 var queries = [
+{name:'moria1',query:{q:'moria'}},
 	{name: '120db',                         query: {q:'frauenmarsch,120db,b1702,dd1702,ndh1702,niun1702,niun,no120db'.toOR()}}, 
 	{name: '36c3',                          query: {q:'36c3'}},
 	{name: '37c3',                          query: {q:'37c3'}},
