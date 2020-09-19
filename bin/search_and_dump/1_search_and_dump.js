@@ -190,6 +190,7 @@ var queries = [
 	{name: 'rp19-hash2',                    query: {q:'#republica19 OR #republica'}},
 	{name: 'rp20-hash',                     query: {q:'#rp20 OR #republica20 OR #republica'}},
 	{name: 'rp21-hash',                     query: {q:'#rp21 OR #republica21 OR #republica'}},
+	{name: 'rbg',                           query: {q:'rbg,roshhashanah,ruthbaderginsburg,ruthbaderginsberg,ginsburg,ginsberg,ripruthbaderginsburg,ripruthbaderginsberg,scotus,riprbg,rbgrip'.toOR()}},
 	{name: 'sarrazin',                      query: {q:'sarrazin OR sarazin'}},
 	{name: 'sawsanchebli',                  query: {q:'sawsanchebli'.toWildFromTo()}},
 	{name: 'seebruecke',                    query: {q:'seebruecke OR seebrücke'}},

@@ -1,9 +1,9 @@
 "use strict";
 
-const query = 'abstandhaltengegenrechts,b2908,b2908info,be2908,berlin2908,berlindemo,abstände,auflagen,auflösung,demo,demonstranten,demos,idioten,mindestabstand,reichsflaggen'.replace(/,/g, ' OR ');
+const query = '#rbg'.replace(/,/g, ' OR ');
 
 const maxTweetCount = 10000;
-const hashtagsOnly = true;
+const hashtagsOnly = false;
 
 const fs = require('fs');
 const utils = require('../../lib/utils.js');
