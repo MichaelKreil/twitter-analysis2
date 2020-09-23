@@ -70,6 +70,7 @@ var queries = [
 	// sorry, habe corona falsch getippt, muss jetzt aber die id konstant weiter behalten
 	{name: 'coronarvirus6',                 query: {q:'coronadeutschland,#coronadeutschland,coronapanik,#coronapanik,#corona,corona,covidiot,#covidiot,#coronaoutbreak,#coronarvirus,#coronavirus,#coronavirusde,#coronavirusoutbreak,#covid,#covid19,#covid2019,#covid_19,#covidー19,#wuhan,#wuhancoronavirus,#wuhancoronovirus,#wuhanvirus,#โควิด19,coronarvirus,coronavirus,coronavirusde,coronavírus,covid,covid-19,covid19,covid2019,covid_19,covidー19,epidemic,pandemic,quarantine,quarantined,wuhan,xj621,โควิด19'.toOR(), splitTime:6}},
 	{name: 'csu',                           query: {q:'csu'.expand()}},
+	{name: 'dankepolizei',                  query: {q:'dankepolizei'.expand()}},
 	{name: 'donalphonso',                   query: {q:'@_donalphonso'.expand()}},
 	{name: 'dsgvo',                         query: {q:'#dsgvo,#dgsvo,#dataprotection,#cybersecurity,#gdpr,#datenschutz'.expand()}},
 	{name: 'dunjahayali',                   query: {q:'@dunjahayali'.expand()}},
