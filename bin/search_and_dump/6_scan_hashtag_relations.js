@@ -1,6 +1,6 @@
 "use strict";
 
-const query = '#rbg'.replace(/,/g, ' OR ');
+const query = 'debate2020,presidentialdebate,debates2020,presidentialdebate2020'.replace(/,/g, ' OR ');
 
 const maxTweetCount = 10000;
 const hashtagsOnly = false;
