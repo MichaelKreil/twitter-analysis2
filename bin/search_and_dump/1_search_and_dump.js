@@ -24,12 +24,15 @@ String.prototype.toOR = function () {
 }
 
 String.prototype.expand = function () {
-	return this.split(',').map(a => {
-		a = a.trim();
-		if (a[0] !== '@') return a
+	let set = new Set();
+	this.split(',').forEach(a => {
+		a = a.trim().toLowerCase();
+		if (a[0] !== '@') return set.add(a)
 		a = a.substr(1);
-		return 'from:'+a+' OR to:'+a+' OR '+a;
-	}).join(' OR ')
+		set.add('from:'+a);
+		set.add('to:'+a);
+	});
+	return Array.from(set.values()).join(' OR ');
 }
 
 // List of search queries
