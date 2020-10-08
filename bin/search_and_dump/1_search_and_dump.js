@@ -35,7 +35,7 @@ String.prototype.expand = function () {
 // List of search queries
 var queries = [
 {name:'moria1',query:{q:'moria'}},
-	{name: '120db',                         query: {q:'frauenmarsch,120db,b1702,dd1702,ndh1702,niun1702,niun,no120db'.toOR()}}, 
+	{name: '120db',                         query: {q:'frauenmarsch,120db,b1702,dd1702,ndh1702,niun1702,niun,no120db'.toOR()}},
 	{name: '36c3',                          query: {q:'36c3'}},
 	{name: '37c3',                          query: {q:'37c3'}},
 	{name: '38c3',                          query: {q:'38c3'}},
@@ -103,6 +103,7 @@ var queries = [
 	{name: 'iranprotests',                  query: {q:'تظاهرات_سراسری,IranProtests'.expand()}},
 	{name: 'iranprotests2',                 query: {q:'iranprotests,تظاهرات_سراسرى,مظاهرات_ايران,تظاهرات_سراسری,تظاهرات_سراسري'.expand()}},
 	{name: 'iranprotests3',                 query: {q:',نه_به_اعدام,stopexecutionsiniran,اعدام_نکنید,notoexecusion,notoexecusioniran,stopexecutionofiranianprotestors,نه_به_اعدام_معترضان,دادگاه_علنی,iranianlivesmatter,بهبهان,اعدام_نكنيد,stopexecutionofiranianprotesters,اعتراضات_سراسری,notoexecutioniniran,stopexecutioniniran,stopexecutionslnlran,اعدامنکنید,آزاد_کنید,بهطالبانباجندهید,noexecutioniniran'.expand()}},
+	{name: 'iranprotests4',                 query: {q:'@AlinejadMasih,MasihAlinejad,مسیح علی‌نژاد‎,ForcedHijab,حجاب'.expand()}},
 	{name: 'israel',                        query: {q:'#israel'.expand()}},
 	{name: 'jensspahn',                     query: {q:'jensspahn'.toWildFromTo()}},
 	{name: 'kippa',                         query: {q:'kippa', lang:'de'}},
@@ -225,6 +226,8 @@ var queries = [
 	{name: 'uselection2020_hashtags_1',     query: {q:'#1u,#2018midterms,#2020election,#2020elections,#absenteeballot,#activemeasures,#aksen,#alsen,#america,#americafirst,#american,#americans,#arsen,#azsen,#ballots,#beatexasvoter,#berniesanders,#biden,#biden2020,#bidenforprison,#bidenharris,#bidenharris2020,#bidenharris2020landslide,#bidenharris2020tosaveamerica,#bidenharrislandslide2020,#bidensamerica,#bidenstoplyin,#blue2020,#bluetsunami,#bluetsunami2018,#bluewave,#bluewave2018,#bluewave2020,#bluewavecoming2018,#bluewaveiscoming,#buildthewall,#bunkerboy,#casen,#cavotes,#ccot,#ccp,#cheatbymail,#clinton,#colinpowell,#congress,#corruptdemocrats,#cosen,#ctsen,#demcast,#demconvention,#demconvention2020,#demforce,#democrat,#democratic,#democraticconvention,#democraticconvention2020,#democraticnationalconvention,#democraticparty,#democrats,#democratsaredestroyingamerica,#democratshateamerica,#dems,#demsenate2020,#demswork4usa,#desen,#dnc,#dnc2020,#dncconvention,#dncconvention2020,#dobbs,#donaldtrump,#draintheswamp,#dumptrump,#dumptrump2020,#election,#election2018,#election2020,#election2020-nov-3,#election2024,#electioncommission,#electionday,#electionfraud,#elections,#elections2020,#electionseason,#electiontwitter,#extrememagashoutout,#fairelections,#fakenews,#fakepolls,#fakepresident,#fbr,#fbresistance,#fbrparty,#fighttovote,#flipitblue,#flsen,#fucktrump,#gasen,#geeksresist,#gop,#gopbetrayedamerica,#gotv,#govote,#greatawakening,#harris,#harrisbiden2020,#hillaryclinton,#hisen,#hunterbiden,#iasen,#idsen,#ilsen,#impeach45,#impeachtrump,#imwithher,#indivisible,#insen,#insidepolitics,#joebiden,#joebiden2020,#joebidenforpresident2020,#joebidenisapedo,#joebidenkamalaharris2020,#kag,#kag2018,#kag2020,#kamalaharris,#kamalaharrisvp,#kavanaugh,#keepitblue,#kssen,#kysen,#lasen,#leadership,#letherspeak,#maga,#maga2020,#mailboxes,#mailinballot,#mailinballots,#mailinvoterfraud,#mailinvoting,#makeamericagreatagain,#marxist,#masen,#maskup,#mdsen,#mesen,#michelleobama,#midterm,#midterm18,#midterm2018,#midterms,#midterms2018,#milesguo,#misen,#mnsen,#mosen,#mssen,#mtsen,#myvotematters,#ncsen,#ndsen,#nesen,#neverbiden,#nevertrump,#nhsen,#njsen,#nmsen,#notmypresident,#november2020,#nra,#nvsen,#ny24,#nysen,#ohsen,#oksen,#openthedebates,#orangecounty,#orsen,#paresists,#pasen,#patriots,#plaidshirtguy,#politics,#polls,#portland,#postalservice,#postoffice,#potus,#president,#presidentbiden,#presidential,#presidentialelection,#presidentialelection2020,#presidenttrump,#propaganda,#protectthevote,#realdonaldtrump,#reconnectthemailsortersnow,#redwave,#redwave2020,#redwaverising,#registertovote,#registertovote2020,#rememberinnovember,#replacepelosi,#republican,#republicans,#republicansforbiden,#resist,#resistance,#ridinwithbiden,#risen,#rnc2020,#savethepostalservice,#savethepostoffice,#scsen,#sdsen,#senate,#settleforbiden,#signofresistance,#sleepyjoe,#sleepyjoebiden,#socialismkills,#specialelection,#stayhometovote,#stevebannon,#streamtext,#strongertogether,#swingstates,#takeitback,#taxcuts,#tcot,#teambidenharris,#thanksgop,#thanksobama,#theatlantavoice,#thegreatawakening,#theresistance,#thursdaymotivation,#tnsen,#tradewar,#trump,#trump2020,#trump2020landslide,#trump2020nowmorethanever,#trumpcanceledamerica,#trumpcorruption,#trumpisanationaldisgrace,#trumpislosing,#trumpisnotwell,#trumpmeltdown,#trumprussia,#trumptrain,#trumpvirus,#txsen,#unrigthesystem,#us,#usa2020,#uspostalservice,#usps,#uspsprotests,#uspssabotage,#ussenate,#utpol,#utsen,#vasen,#vote,#vote2020,#votebidenharris2020,#votebidenharristosaveamerica,#voteblue,#voteblue2018,#voteblue2020,#voteblueforamerica,#votebluetoendthisnightmare,#votebluetosaveamerica,#votebluetosaveamerica2020,#votebold,#votebymail,#votebymail2020,#votebymailearly,#votedem,#voteearly,#votefordemocracy,#voteforher,#votegold,#votegold2020,#votegopout,#votehimout,#votelikeyourlifedependsonit,#votered,#votered2018,#votered2020,#voteredtosaveamerica,#voteredtosaveamerica2020,#voterepublican,#voterfraud,#voterid,#voters,#votersfirst,#votersuppression,#votersuppressionisreal,#votethemout,#votetrumpout,#votewhileyoustillcan,#voting,#votingmatters,#vtsen,#wakeupamerica,#walkaway,#walkawaycampaign,#walkawayfromdemocrats,#walkawayfromdemocrats2018,#wasen,#wethepeople,#winblue,#wisen,#wrwy,#wvsen,#wwg1wga,#wysen,#yeswecan,#yourvotematters'.expand()}},
 	{name: 'uselection2020_hashtags_2',     query: {q:'#debate2020,#presidentialdebate,#debates2020,#presidentialdebate2020'.expand()}},
 	{name: 'uselection2020_accounts_1',     query: {q:'@gop,@housedemocrats,@housegop,@joebiden,@kamalaharris,@mike_pence,@realdonaldtrump,@senatedems,@senategop,@thedemocrats'.expand()}},
+	{name: 'uselection2020_keywords',     query: {q:'ballot,mailin,mail-in,mail,donaldtrump,donaldjtrump,donald,joebiden,biden,mike,michael,mikepence,michaelpence,kamala,kamalaharris,#DonaldTrump,PresidentTrump,MAGA,trump2020,Sleepy,Sleepyjoe,HidenBiden,CreepyJoeBiden,NeverBiden,BidenUkraineScandal,DumpTrump,NeverTrump,VoteRed,VoteBlue,RussiaHoax'.expand()}},
+	{name: 'uselection2020_accounts_2',     query: {q:'@GovBillWeld,@MarkSanford,@WalshFreedom,@MichaelBennet,@CoryBooker,@GovernorBullock,@PeteButtigieg,@JulianCastro,@BilldeBlasio,@JohnDelaney,@TulsiGabbard,@gillbrandny,@SenKamalaHarris,@Hickenlooper,@JayInslee,@amyklobuchar,@SenAmyKlobuchar,@WayneMessam,@sethmoulton,@BetoORourke,@TimRyan,@BernieSanders,@ericswalwell,@ewarren,@SenWarren,@marwilliamson,@AndrewYang,@JoeSestak,@MikeGravel,@TomSteyer,@DevalPatrick,@MikeBloomberg,@staceyabrams,@SenDuckworth,@TammyforIL,@KeishaBottoms,@RepValDemings,@val_demings,@AmbassadorRice,@GovMLG,@Michelle4NM,@SenatorBaldwin,@tammybaldwin,@KarenBassTweets,@RepKarenBass,@Maggie_Hassan,@SenatorHassan,@GovRaimondo,@GinaRaimondo,@GovWhitmer,'.expand()}},
 	{name: 'verschwoerung1',                query: {q:'billgatesisevil,clintonbodycount,clintoncrimefamily,clintonemails,coronahoax,covid1984,deepstate,frazzledrip,generalflynn,georgesorosriots,greatawakeningworldwide,inittogether,isaackappy,justiceiscoming,merkelgate,obamagate,obamagate,pedogate,pedowood,pizzagate,podestaemails,qanon,qanongermany,transitiontogreatness,unitednotdivided,wachtauf,wakeupworld,wearethenewsnow,wearetherevolution,weinerslaptop,weltfrieden,wwg1wga'.expand()}},
 	{name: 'virologen',                     query: {q:'drosten,kekule,streeck,@c_drosten,@alexanderkekule,@hendrikstreeck'.expand()}},
 	{name: 'volkmarsen',                    query: {q:'volkmarsen,menschenmenge,rosenmontag,rosenmontagsumzug,rosenmontagszug'.toOR()}},
@@ -256,7 +259,7 @@ async.each(
 							{list_id:list.id_str, count:5000, include_entities:false, skip_status:true},
 							response2 => {
 								var users = response2.users.map(u => u.screen_name);
-								
+
 								if (users.length === 0) return cbList();
 
 								var name = (screen_name+'_list_'+list.slug).toLowerCase();
@@ -318,7 +321,7 @@ function runScraper(entry, cbScraper) {
 
 	var name = entry.name;
 	var title = '"'+name+' - '+entry.minDate+'"';
-	
+
 	var tempFilename = resolve(__dirname, '../../tmp', Math.random().toFixed(16).substr(2)+'.tmp.xz');
 	var filename = resolve(__dirname, '/root/data/twitter/data_280/'+name+'/'+name+'_'+entry.minDate+'.jsonstream.xz');
 	//var filename = resolve(__dirname, '../../data/twitter/data_280/'+name+'/'+name+'_'+entry.minDate+'.jsonstream.xz');
@@ -476,7 +479,7 @@ function urlEncode(q) {
 
 function splitQueryByTime(query) {
 	if (!query.splitTime || query.splitTime === 1) return [query]
-	
+
 	var minDateValue = query.minDateValue;
 	var maxDateValue = query.maxDateValue;
 	var duration = (maxDateValue - minDateValue)/query.splitTime;
