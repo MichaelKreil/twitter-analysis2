@@ -222,6 +222,7 @@ var queries = [
 	{name: 'trudeaumustgo',                 query: {q:'trudeaumustgo OR #trudeaumustgo'}},
 	{name: 'trump_mentions',                query: {q:'to:realdonaldtrump OR to:potus OR realdonaldtrump OR potus', splitTime:6}},
 	{name: 'trump_tweets',                  query: {q:'from:realdonaldtrump OR from:potus'}},
+	{name: 'trump_quoted',                  query: {q:'url:twitter.com/realdonaldtrump OR url:twitter.com/potus'}},
 	{name: 'ueberwachung',                  query: {q:'überwachungspaket OR staatstrojaner OR bundestrojaner OR ueberwachungspaket OR zib2 OR überwachung OR privatsphäre OR datenschutz OR sicherheit OR vds OR sicherheitspaket'}},
 	{name: 'ukelection',                    query: {q:'GeneralElection2019,UKElection,GE2019'.toOR()}},
 	{name: 'unionsstreit1',                 query: {q:'unionsstreit,seehofer,csu,asylstreit,merkel,afd,ultimatum,zuwanderung,groko'.toOR(), lang:'de'}},
