@@ -1,6 +1,6 @@
 "use strict";
 
-const query = '#ThrowbackThursday'.replace(/,/g, ' OR ');
+const query = 'magamillionmarch,magamillionmarch2020,marchfortrump,millionmagamarch,millionmagamarch2020,millionmoronmarch'.replace(/,/g, ' OR ');
 
 const maxTweetCount = 10000;
 const hashtagsOnly = false;
@@ -44,7 +44,7 @@ function startScraper(cbScraper) {
 
 		function scrapeRec(max_id) {
 			var attributes = {
-				result_type:'recent',
+				//result_type:'recent',
 				tweet_mode:'extended',
 				count:100,
 				max_id:max_id,
@@ -59,13 +59,10 @@ function startScraper(cbScraper) {
 					result.statuses.forEach(t => {
 						if (t.retweeted_status) t = t.retweeted_status;
 
-						var urls = [];
+						var urls = t.entities.urls.map(u => u.expanded_url)
 						var words = t.full_text
 							.toLowerCase()
-							.replace(/https?:\/\/[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/g, url => {
-								urls.push(url.replace(/^https?:\/\//, ''));
-								return ' ';
-							})
+							.replace(/https?:\/\/[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/gi, ' ')
 							.replace(/[\s,.?!;()*“”":'`´]+/g, ' ')
 							.split(' ');
 						if (urls.length > 0) words = words.concat(urls);
@@ -78,7 +75,6 @@ function startScraper(cbScraper) {
 							return true;
 						})
 						words.forEach(w => {
-							if (w === 'amviv1lhyj') console.log(t);
 							if (!hashtags.has(w)) {
 								hashtags.set(w, {text:w, count:1})
 							} else {
