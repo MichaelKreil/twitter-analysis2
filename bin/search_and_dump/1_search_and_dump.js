@@ -248,6 +248,7 @@ var lists = [
 	'gfd_grundgesetz',
 	'wahl_beobachter',
 	'bild',
+	'splitternackt_',
 ];
 
 //fetch lists
