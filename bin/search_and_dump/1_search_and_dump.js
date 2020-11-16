@@ -271,7 +271,7 @@ async.each(
 
 								if (users.length === 0) return cbList();
 
-								var name = (screen_name+'_list_'+list.slug).toLowerCase();
+								var name = (screen_name+'_list2_'+list.slug).toLowerCase();
 								name = name.replace(/ü/g, 'ue');
 								name = name.replace(/ö/g, 'oe');
 								name = name.replace(/ä/g, 'ae');
@@ -280,7 +280,7 @@ async.each(
 								queries.push({
 									name: name,
 									query: {
-										q:users.map(u => 'from:'+u+' OR to:'+u).join(' OR ')
+										q:users.map(u => 'from:'+u+' OR to:'+u+' OR url:twitter.com/'+u+'/status').join(' OR ')
 									}
 								})
 								cbList();
