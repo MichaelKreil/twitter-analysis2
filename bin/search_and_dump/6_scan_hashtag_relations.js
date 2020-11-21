@@ -1,6 +1,6 @@
 "use strict";
 
-const query = 'magamillionmarch,magamillionmarch2020,marchfortrump,millionmagamarch,millionmagamarch2020,millionmoronmarch'.replace(/,/g, ' OR ');
+const query = '#carrefour,#vidasnegrasimportam,#carrefourassassino'.replace(/,/g, ' OR ');
 
 const maxTweetCount = 10000;
 const hashtagsOnly = false;
