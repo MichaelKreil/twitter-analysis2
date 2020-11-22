@@ -1,6 +1,6 @@
 "use strict";
 
-const query = '#carrefour,#vidasnegrasimportam,#carrefourassassino'.replace(/,/g, ' OR ');
+const query = 'mietendeckel'.replace(/,/g, ' OR ');
 
 const maxTweetCount = 10000;
 const hashtagsOnly = false;

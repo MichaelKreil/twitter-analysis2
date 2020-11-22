@@ -171,6 +171,7 @@ var queries = [
 	{name: 'menaretrash',                   query: {q:'menaretrash OR #menaretrash'}},
 	{name: 'metoo',                         query: {q:'#metoo OR metoo'}},
 	{name: 'metwo',                         query: {q:'#metwo OR metwo'}},
+	{name: 'mietendeckel',                  query: {q:'mietendeckel,mietpreisbremse,url:mietendeckel,url:mietpreisbremse,mietenwahnsinn,mietendeckelrechner,miethöhe,miete,mieten,mieter,dwenteignen,vermieter,vermieterin,vermietende,vermietende,wohnungsmarkt'.toOR()}},
 	{name: 'ministerien',                   query: {q:'sksachsentweets,Arne_Wiechmann,SMIsachsen,ChriSchni,StRegSprecherin,Boschemann,julitalk,svefri,amtzweinull,HaufeStephan,jettebo,Opp_Sprecher,ZimmermannSina,al_krampe,Medienheld,bauerzwitschert,hard_er,MSchroeren,pampel_muse,evamariamarks,RouvenKlein,ninasuza,andreasblock,foeniculum,zumtesthier'.toWildFromTo()}},
 	{name: 'ministerien2',                  query: {q:'AA_SicherReisen,Digital_Bund,BMVg_Afrika,BundesKultur,TDE2018Berlin,bfarm_de,bka,Stammtisch20,BVerfG,BSI_Presse,Bundestag,ADS_Bund,BBK_Bund,BMBF_Bund,BStU_Presse,BMG_Bund,BMJV_Bund,BAFA_Bund,BMAS_Bund,BAMF_Dialog,BMWi_Bund,netzausbau,BMI_Bund,BMFSFJ,BMF_Bund,GermanyDiplo,BMZ_Bund,bmel,AuswaertigesAmt,BMVI,destatis,RegSprecher,Bundestagsradar,bmu,Umweltbundesamt,bundesrat,bpb_de,HiBTag'.toWildFromTo()}},
 	{name: 'muslime',                       query: {q:'islam,moslem,moslems,moslimisch,moslimische,moslimischer,moslimischen,muslim,muslima,muslime,muslimen,muslimin,muslimisch,muslimische,muslimischen,muslimischer'.toOR(), lang:'de'}},
