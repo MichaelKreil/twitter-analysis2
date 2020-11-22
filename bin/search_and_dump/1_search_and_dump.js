@@ -210,6 +210,7 @@ var queries = [
 	{name: 'sibelschick',                   query: {q:'sibelschick'.toWildFromTo()}},
 	{name: 'skygo',                         query: {q:'skygo,SkySportDE,SkyDeutschland,DAZN_DE,SkyTicketDE,skyucl'.toWildFromTo()}},
 	{name: 'spd',                           query: {q:'#spd'}},
+	{name: 'scholl',                        query: {q:'scholl'}},
 	{name: 'stopgates',                     query: {q:'#closethegates,#stopgates,soros,#banbill,#soros,#wwg1wgaworldwide,#infowar,#wwg1gwa,@byoblu24,#byoblu24,#byoblu,@byoblu,#oann,@oann'.expand()}},
 	{name: 'syria',                         query: {q:'syria'}},
 	{name: 'talk_annewill',                 query: {q:'@annewill,@AnneWillTalk,‏#annewill,annewill,"anne will"'.expand()}},
