@@ -1,8 +1,8 @@
 "use strict";
 
-const query = 'mietendeckel'.replace(/,/g, ' OR ');
+const query = 'independent'.replace(/,/g, ' OR ');
 
-const maxTweetCount = 10000;
+const maxTweetCount = 100;
 const hashtagsOnly = false;
 
 const fs = require('fs');
