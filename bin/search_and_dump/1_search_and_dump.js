@@ -191,7 +191,6 @@ var queries = [
 	{name: 'media4_wsj',                    query: {q:'@wsj,url:wsj.com'.expand()}},
 	{name: 'media4_yahoo_news',             query: {q:'url:news.yahoo.com'.expand()}},
 	{name: 'media4_zdf',                    query: {q:'url:zdf.de,@ZDF'.expand()}},
-	{name: 'media4_zdf',                    query: {q:'url:zdf.de,@ZDF'.expand()}},
 	{name: 'media4_zdf_heute',              query: {q:'url:heute.de,@heutejournal,@heuteplus'.expand()}},
 	{name: 'media4_zeit',                   query: {q:'url:zeit.de,@zeitonline,@zeitonline_dig,@zeitonline_ent,@zeitonline_fam,@zeitonline_kul,@zeitonline_live,@zeitonline_pol,@zeitonline_vid,@zeitonline_wir,@zeitonline_wis,@zeitonlinesport'.expand()}},
 	{name: 'menaretrash',                   query: {q:'menaretrash OR #menaretrash'}},
