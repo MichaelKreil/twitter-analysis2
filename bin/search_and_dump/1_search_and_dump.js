@@ -251,6 +251,7 @@ var queries = [
 	{name: 'toptweets_de_20',               query: {q:'lang:de min_retweets:20'}},
 	{name: 'toptweets_de_50',               query: {q:'lang:de min_retweets:50'}},
 	{name: 'toptweets_en_10k',              query: {q:'lang:en min_retweets:10000'}},
+	{name: 'trier',                         query: {q:'trier'}},
 	{name: 'trudeaumustgo',                 query: {q:'trudeaumustgo OR #trudeaumustgo'}},
 	{name: 'trump_mentions',                query: {q:'to:realdonaldtrump OR to:potus OR realdonaldtrump OR potus', splitTime:6}},
 	{name: 'trump_quoted',                  query: {q:'url:twitter.com/realdonaldtrump OR url:twitter.com/potus'}},
