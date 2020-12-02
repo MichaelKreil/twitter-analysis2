@@ -282,6 +282,8 @@ var lists = [
 	'wahl_beobachter',
 	'bild',
 	'splitternackt_',
+	'VictoriaLinnea1',
+	'goldtogreen_',
 ];
 
 //fetch lists
