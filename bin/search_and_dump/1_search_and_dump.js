@@ -75,6 +75,7 @@ var queries = [
 	{name: 'climatestrike',                 query: {q:'#20eylüli̇klimgrevi,#actonclimate,#allefuersklima,#allefürsklima,#cambioclimatico,#cambioclimático,#climateactionnow,#climatechange,#climatecrisis,#climateemergency,#climatejustice,#climatejusticenow,#climatemarch,#climatemarchpakistan,#climatestrike,#climatestrikeke,#climatestrikes,#climatestrikethailand,#crisisclimatica,#extinctionrebellion,#fridayforfuture,#fridays4future,#fridaysforfurture,#fridaysforfuture,#fridaysforfutures,#globalclimatestrike,#globalclimatestrikes,#greennewdeal,#greveglobalpeloclima,#grevepourleclimat,#huelgamundialporelclima,#islamabadclimatemarch,#klimakabinett,#klimatstrejk,#marchepourleclimat,#schoolstrike4climate,#scientists4future,#scientistsforfuture,#strajkklimatyczny,#strike4climate,#viernesporelfuturo,#youthclimatestrike,#youthstrike4climate,#グローバル気候マーチ,from:gretathunberg,to:gretathunberg'.toOR()}},
 	// sorry, habe corona falsch getippt, muss jetzt aber die id konstant weiter behalten
 	{name: 'coronarvirus6',                 query: {q:'coronadeutschland,#coronadeutschland,coronapanik,#coronapanik,#corona,corona,covidiot,#covidiot,#coronaoutbreak,#coronarvirus,#coronavirus,#coronavirusde,#coronavirusoutbreak,#covid,#covid19,#covid2019,#covid_19,#covidー19,#wuhan,#wuhancoronavirus,#wuhancoronovirus,#wuhanvirus,#โควิด19,coronarvirus,coronavirus,coronavirusde,coronavírus,covid,covid-19,covid19,covid2019,covid_19,covidー19,epidemic,pandemic,quarantine,quarantined,wuhan,xj621,โควิด19'.toOR(), splitTime:6}},
+	{name: 'crybabytrump',                  query: {q:'crybabytrump'.expand()}},
 	{name: 'csu2',                          query: {q:'csu,@csu'.expand()}},
 	{name: 'dankepolizei',                  query: {q:'dankepolizei'.expand()}},
 	{name: 'donalphonso',                   query: {q:'@_donalphonso'.expand()}},
@@ -116,6 +117,7 @@ var queries = [
 	{name: 'kippa',                         query: {q:'kippa', lang:'de'}},
 	{name: 'knobloch',                      query: {q:'#knobloch'.expand()}},
 	{name: 'ladg',                          query: {q:'ladg,landesantidiskriminierungsgesetz'.toOR()}},
+	{name: 'lockdownjetzt',                 query: {q:'lockdownjetzt'.expand()}},
 	{name: 'lufthansa',                     query: {q:'lufthansa,lufthansablue,explorethenew'.toOR()}},
 	{name: 'maassen',                       query: {q:'maassen,maaßen,verfassungsschutz,verfassungsschutzchef,vs-chef,vs-präsident,verfassung'.toOR()}},
 	{name: 'maassen3',                      query: {q:'@HGMaassen'.expand()}},
@@ -229,6 +231,7 @@ var queries = [
 	{name: 'rp20-hash',                     query: {q:'#rp20 OR #republica20 OR #republica'}},
 	{name: 'rp21-hash',                     query: {q:'#rp21 OR #republica21 OR #republica'}},
 	{name: 'rundfunkbeitrag',               query: {q:'rundfunkbeitrag'}},
+	{name: 'rücktritt',                     query: {q:'rücktritt'.expand()}},
 	{name: 'sarrazin',                      query: {q:'sarrazin OR sarazin'}},
 	{name: 'sawsanchebli2',                 query: {q:'@sawsanchebli'.expand()}},
 	{name: 'scholl',                        query: {q:'scholl'}},
