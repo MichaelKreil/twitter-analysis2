@@ -1,8 +1,8 @@
 "use strict";
 
-const query = 'independent'.replace(/,/g, ' OR ');
+const query = 'Timnit Gebru,@timnitgebru,istandwithtimnit'.replace(/,/g, ' OR ');
 
-const maxTweetCount = 100;
+const maxTweetCount = 1000;
 const hashtagsOnly = false;
 
 const fs = require('fs');
