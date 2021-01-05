@@ -1,6 +1,6 @@
 "use strict";
 
-const query = 'Timnit Gebru,@timnitgebru,istandwithtimnit'.replace(/,/g, ' OR ');
+const query = 'trumptreason,trumpbeggedlikeadog,lockhimup,trumpmeltdown,countryovertrump,impeachagain,trumptape,trumpisacriminal,trumptapes,trumpbegged'.replace(/,/g, ' OR ');
 
 const maxTweetCount = 1000;
 const hashtagsOnly = false;
