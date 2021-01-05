@@ -270,7 +270,7 @@ var queries = [
 	{name: 'toptweets_en_10k',              query: {q:'lang:en min_retweets:10000'}},
 	{name: 'trier',                         query: {q:'trier'}},
 	{name: 'trudeaumustgo',                 query: {q:'trudeaumustgo OR #trudeaumustgo'}},
-	{name: 'trump_hashtags1',               query: {q:'trumptreason,trumpbeggedlikeadog,lockhimup,trumpmeltdown,countryovertrump,impeachagain,trumptape,trumpisacriminal,trumptapes,trumpbegged'.expand()}}
+	{name: 'trump_hashtags_1',              query: {q:'trumptreason,trumpbeggedlikeadog,lockhimup,trumpmeltdown,countryovertrump,impeachagain,trumptape,trumpisacriminal,trumptapes,trumpbegged'.expand()}},
 	{name: 'trump_mentions',                query: {q:'to:realdonaldtrump OR to:potus OR realdonaldtrump OR potus', splitTime:6}},
 	{name: 'trump_quoted',                  query: {q:'url:twitter.com/realdonaldtrump OR url:twitter.com/potus'}},
 	{name: 'trump_tweets',                  query: {q:'from:realdonaldtrump OR from:potus'}},
