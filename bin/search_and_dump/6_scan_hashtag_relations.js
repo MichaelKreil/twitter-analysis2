@@ -1,8 +1,8 @@
 "use strict";
 
-const query = '25amendmentnow,25thamendment,amendment25,arresttrump,capitolbreach,capitolhill,capitolriots,impeachtrump,january6th,lockhimupnow,locktrumpup,removetrumpnow,resignnowtrump,riots2021,trumpcoupattempt,trumpresignnow,uscapitol,uscoupattempt'.replace(/,/g, ' OR ');
+const query = 'corbynwasright'.replace(/,/g, ' OR ');
 
-const maxTweetCount = 10000;
+const maxTweetCount = 1000;
 const hashtagsOnly = false;
 
 const fs = require('fs');
