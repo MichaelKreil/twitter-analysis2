@@ -1,6 +1,6 @@
 "use strict";
 
-const query = 'corbynwasright'.replace(/,/g, ' OR ');
+const query = 'impfen'.replace(/,/g, ' OR ');
 
 const maxTweetCount = 1000;
 const hashtagsOnly = false;
