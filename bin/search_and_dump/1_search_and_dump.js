@@ -202,6 +202,7 @@ var queries = [
 	{name: 'media4_zdf_heute',              query: {q:'url:heute.de,@heutejournal,@heuteplus'.expand()}},
 	{name: 'media4_zeit',                   query: {q:'url:zeit.de,@zeitonline,@zeitonline_dig,@zeitonline_ent,@zeitonline_fam,@zeitonline_kul,@zeitonline_live,@zeitonline_pol,@zeitonline_vid,@zeitonline_wir,@zeitonline_wis,@zeitonlinesport'.expand()}},
 	{name: 'menaretrash',                   query: {q:'menaretrash OR #menaretrash'}},
+	{name: 'merz1',                         query: {q:'aufbruch2020,ausmerzen,frauenfuermerz,frauenfürmerz,frauengegenmerz,merz,merzworte,teammerz,wirfrauenfuermerz,wirfrauenfürmerz,wirfrauengegenmerz,wirfuermerz,wirfürmerz,@_FriedrichMerz'.expand()}},
 	{name: 'metoo',                         query: {q:'#metoo OR metoo'}},
 	{name: 'metwo',                         query: {q:'#metwo OR metwo'}},
 	{name: 'mietendeckel',                  query: {q:'mietendeckel,mietpreisbremse,url:mietendeckel,url:mietpreisbremse,mietenwahnsinn,mietendeckelrechner,miethöhe,miete,mieten,mieter,dwenteignen,vermieter,vermieterin,vermietende,vermietende,wohnungsmarkt'.toOR()}},
