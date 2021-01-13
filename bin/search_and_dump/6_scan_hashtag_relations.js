@@ -1,6 +1,6 @@
 "use strict";
 
-const query = 'impfen'.replace(/,/g, ' OR ');
+const query = 'machtbueroszu,machtdiebueroszu'.replace(/,/g, ' OR ');
 
 const maxTweetCount = 1000;
 const hashtagsOnly = false;

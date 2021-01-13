@@ -79,6 +79,7 @@ var queries = [
 	{name: 'coronarvirus6',                 query: {q:'coronadeutschland,#coronadeutschland,coronapanik,#coronapanik,#corona,corona,covidiot,#covidiot,#coronaoutbreak,#coronarvirus,#coronavirus,#coronavirusde,#coronavirusoutbreak,#covid,#covid19,#covid2019,#covid_19,#covidー19,#wuhan,#wuhancoronavirus,#wuhancoronovirus,#wuhanvirus,#โควิด19,coronarvirus,coronavirus,coronavirusde,coronavírus,covid,covid-19,covid19,covid2019,covid_19,covidー19,epidemic,pandemic,quarantine,quarantined,wuhan,xj621,โควิด19'.toOR(), splitTime:6}},
 	{name: 'coronarvirus7',                 query: {q:'mutation'.toOR()}},
 	{name: 'coronarvirus8',                 query: {q:'zerocovid'.toOR()}},
+	{name: 'coronarvirus9',                 query: {q:'machtbueroszu,machtbüroszu,machtdiebueroszu,machtdiebüroszu'.toOR()}},
 	{name: 'crybabytrump',                  query: {q:'crybabytrump'.expand()}},
 	{name: 'csu2',                          query: {q:'csu,@csu'.expand()}},
 	{name: 'dankepolizei',                  query: {q:'dankepolizei'.expand()}},
