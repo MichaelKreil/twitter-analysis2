@@ -248,6 +248,7 @@ var queries = [
 	{name: 'shooting3',                     query: {q:'santafehighschool,santafe,SantaFeShooting,SantaFeSchoolShooting,HoustonShooting'.expand()}},
 	{name: 'sibelschick2',                  query: {q:'@sibelschick'.expand()}},
 	{name: 'spd',                           query: {q:'#spd'}},
+	{name: 'luisamneubauer',                query: {q:'@luisamneubauer'.expand()}},
 	{name: 'sterbenmitstreeck',             query: {q:'sterbenmitstreeck'}},
 	{name: 'sticker',                       query: {q:'@stickerarchive,@c3stoc'.expand()}},
 	{name: 'stopgates',                     query: {q:'#closethegates,#stopgates,soros,#banbill,#soros,#wwg1wgaworldwide,#infowar,#wwg1gwa,@byoblu24,#byoblu24,#byoblu,@byoblu,#oann,@oann'.expand()}},
