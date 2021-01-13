@@ -111,6 +111,7 @@ var queries = [
 	{name: 'hanau',                         query: {q:'hanau,rechterterror,hanaushooting,rechtsterrorismus,hanauattack,rechtsextremismus'.toOR()}},
 	{name: 'heimat',                        query: {q:'heimat'}},
 	{name: 'heinsberg',                     query: {q:'heinsberg,heinsbergstudie,heinsbergprotokoll,streeck,@hendrikstreeck,heinsberg-studie,storymachine,@hbergprotokoll,@mmronz'.expand()}},
+	{name: 'homeoffice',                    query: {q:'homeoffice'}},
 	{name: 'hongkong',                      query: {q:'#HongKong,#HongKongProtests,#StandwithHK,#antiELAB,#HongKongPolice,#StandWithHongKong,#FreeHongKong,#HongKongProtest,#hkpolice,#chinazi,#HongKongProtester,#香港,#LIHKG,#policebrutality,#HKPoliceTerrorism,#hkpolicebrutality,#hongkongpolicebrutality,#PoliceTerrorism,#HongKongPoliceTerrorism,#antiELABhk,#Shout4HK,#StandwithHonKong,#HongKongProtesters,#HongKongHumanRightsAndDemocracyAct,#Eye4HK,#HKprotests,#FightForFreedom,#HK,#HongKongers,#antichinazi,#hkprotest,#香港デモ,#PoliceBrutalitiy,#FreedomHK'.toOR()}},
 	{name: 'impfen1',                       query: {q:'impfaktion,impfbereitschaft,impfdosen,impfen,impfertminvergabe,impfgegner,impfkampagne,impfmotivation,impfpflicht,impfquote,impfschutz,impfskepsis,impfskeptischen,impfskeptisch,impfskeptische,impfstart,impfstoff,impfstoffe,impfstoffen,impfstoffs,impft,impften,impftermin,impfterminvergabe,impfung,impfungen,impfzentren,impfzentrum,impfzwang'.expand()}},
 	{name: 'infowars2',                     query: {q:'@infowars,@RealAlexJones'.expand()+' OR "alex jones"'}},
