@@ -46,7 +46,7 @@ var queries = [
 	{name: '120db',                         query: {q:'frauenmarsch,120db,b1702,dd1702,ndh1702,niun1702,niun,no120db'.toOR()}},
 	{name: 'afd',                           query: {q:'#afd'}},
 	{name: 'afd2',                          query: {q:'afd'}},
-	{name: 'alicehasters',                  query: {q:'alicehasters,from:alicehasters,to:alicehasters,url:twitter.com/alicehasters/status'.toOR()}},
+	{name: 'alicehasters',                  query: {q:'@alicehasters'.expand()}},
 	{name: 'amadeuantonio2',                query: {q:'@amadeuantonio'.expand()}},
 	{name: 'angst',                         query: {q:'furcht,fürchten,fürchte,befürchte,befürchten,angst,ängste,beängstigend,panik,sorge,sorgen,bedrohung,bedrohen,bedrohend,bedroht,bedrohlich,bedrohliche,bedrohlichen'.toOR()}},
 	{name: 'antifa4',                       query: {q:'#antifa,antifa,anti-faschismus,anti-faschist,anti-faschisten,anti-faschistin,anti-faschistisch,anti-fascism,anti-fascismo,anti-fascist,anti-fascista,anti-fascists,antifaschismus,antifaschist,antifaschisten,antifaschistin,antifaschistisch,antifascism,antifascismo,antifascist,antifascista,antifascists,faschismus,faschist,faschisten,faschistin,faschistisch,fascism,fascismo,fascist,fascista,fascists,exposeantifa,exposeantifaterrorists,iamantifa,yotambiensoyterrorista,weareantifa,iamantifascist,ichbinantifa,americanpatriotsareantifa,weareallantifa'.expand()}},
