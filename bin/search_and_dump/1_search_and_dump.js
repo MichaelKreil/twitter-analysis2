@@ -63,6 +63,7 @@ var queries = [
 	{name: 'black_in_ai',                   query: {q:'@black_in_ai'.expand()}},
 	{name: 'brexit',                        query: {q:'#brexit'.expand()}},
 	{name: 'brexit2',                       query: {q:'brexit,brexitdeal,brexit,theresa,borisjohnson,chlorinated,peoplesvotemarch,peoplesvote,corbyn,backstop,brexitshambles,nodeal,stopbrexit,borisjohnson,nigel_farage,meaningfulvote,farage,getbrexitdone,remainers'.toOR()}},
+	{name: 'brinkmannlab',                  query: {q:'@brinkmannlab'.expand()}},
 	{name: 'bundesregierung',               query: {q:'SilberhornMdB,Mi_Muentefering,RitaHaglKehl,SvenjaSchulze68,LambrechtMdB,katarinabarley,StSLindner,AdlerGunther,Thomas_Bareiss,AnjaKarliczek,AnetteKramme,MiRo_SPD,JochenFlasbarth,guenterkrings,MJaegerT,W_Schmidt_,peteraltmaier,LangeMdB,jensspahn,RegSprecher,DoroBaer,fuchtel,zierke,thomasgebhart,rischwasu,AndiScheuer,NielsAnnen,KerstinGriese,OlafScholz,ChristianHirte,meister_schafft,JuliaKloeckner,HeikoMaas,SteffenBilger,petertauber,FlorianPronold,HBraun,BoehningB,wanderwitz,hubertus_heil'.toWildFromTo()}},
 	{name: 'bundesverdienstkreuz',          query: {q:'bundesverdienstkreuz'}},
 	{name: 'bunkertrump',                   query: {q:'AmericaOrTrump,bunkerboy,cowardinchief,bunkertrump,bunkerdon,voteouthate,bunkerbabytrump,bunker'.toOR()}},
