@@ -1,8 +1,8 @@
 "use strict";
 
-const query = 'machtbueroszu,machtdiebueroszu'.replace(/,/g, ' OR ');
+const query = 'Inauguration'.replace(/,/g, ' OR ');
 
-const maxTweetCount = 1000;
+const maxTweetCount = 10000;
 const hashtagsOnly = false;
 
 const fs = require('fs');
