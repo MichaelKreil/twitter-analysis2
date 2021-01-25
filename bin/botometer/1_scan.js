@@ -1,6 +1,6 @@
 "use strict";
 
-const prefix = '2019-10-01';
+const prefix = '2021-01-25';
 
 const dontSave = false;
 
@@ -203,7 +203,7 @@ async.series([
 	//cb => scanFile('nasa.tsv', cb),
 	
 	//cb => scanFile('rp19.tsv', cb),
-
+/*
 	cb => scanFile('bundestagsmittagessen/afd.txt', cb),
 	cb => scanFile('bundestagsmittagessen/capgemini.txt', cb),
 	cb => scanFile('bundestagsmittagessen/cdu.txt', cb),
@@ -215,6 +215,8 @@ async.series([
 	cb => scanFile('bundestagsmittagessen/sap.txt', cb),
 	cb => scanFile('bundestagsmittagessen/soprasteria.txt', cb),
 	cb => scanFile('bundestagsmittagessen/spd.txt', cb),
+*/
+	cb => scanFile2('climate.txt', cb),
 ])
 
 
@@ -269,6 +271,17 @@ function scanFile(filename, cb) {
 	);
 }
 
+function scanFile2(filename, cb) {
+	var users = fs.readFileSync(filename, 'utf8').split('\n');
+	users = users.map(u => u.trim().split(/\s+/)[1]);
+	users = users.filter(u => u && (u.length > 0));
+	scanUsers(
+		users,
+		'file_'+filename.replace(/\..*?$/g,'').replace(/\//g,'_'),
+		cb
+	);
+}
+
 function scanUsers(users, slug, cbScanUsers) {
 	//if (users.length > 1000) return cbScanUsers();
 	if (fs.existsSync('results_'+prefix+'/'+slug+'.ndjson.xz')) return cbScanUsers();
@@ -276,49 +289,46 @@ function scanUsers(users, slug, cbScanUsers) {
 	var results = [];
 
 	async.eachOfLimit(
-		users, 4,
+		users, 1,
 		(user, index, cb) => {
+			//console.log(JSON.stringify(user));
+			
 			if (index % 20 === 0) console.log((100*index/users.length).toFixed(1)+'%');
 			cache(
 				user,
 				cbResult => botometer(user, cbResult),
 				data => {
+					//console.log(data.display_scores);
 					if (!data) return cb();
 					if (!data.user) return cb();
-					if (!data.scores) return cb();
+					//if (!data.scores) return cb();
 					
 					//console.log(data.score);
 
 					var date = data.user.status ? (new Date(data.user.status.created_at)).toISOString() : '?';
 
-					var minDate = 1e99;
-					var maxDate = 0;
-					data.timeline.forEach(t => {
-						var date = Date.parse(t.created_at);
-						if (minDate > date) minDate = date;
-						if (maxDate < date) maxDate = date;
-					})
-					var tweetsPerDay = ((data.timeline.length-1)*86400000/(maxDate-minDate)).toFixed(2);
-					if (data.timeline.length < 100) tweetsPerDay = '';
-
+					if (!data.raw_scores) return cb();
+					
 					var line = [
+						(data.raw_scores.english.overall*5).toFixed(2),
+						data.user.verified,
+						data.user.followers_count,
 						data.user.screen_name,
-						(data.score*5).toFixed(2),
-						//data.user.verified,
-						//data.user.followers_count,
 						//tweetsPerDay,
 						//date,
 					].join('\t');
 
+					/*
 					if (!dontSave) results.push({
 						score: data.score,
 						name: data.user.screen_name,
 						tsv: line,
 						ndjson: Buffer.from(JSON.stringify(data)+'\n', 'utf8'),
-					});
+					})
+					*/
 					
-					if (data.score < 0.5) line = colors.green(line);
-					else if (data.score < 0.75) line = colors.yellow(line);
+					if (data.raw_scores.english.overall < 0.43) line = colors.green(line);
+					else if (data.raw_scores.english.overall < 0.75) line = colors.yellow(line);
 					else line = colors.red(line);
 
 					console.log(line);
