@@ -11,6 +11,7 @@ const miss = require('mississippi2');
 const botometer = require('../../lib/botometer.js')('botometer_'+prefix+'_1');
 const scraper = require('../../lib/scraper.js')('botometer_'+prefix+'_2');
 const cache = require('../../lib/cache.js')('botometer_'+prefix+'_3');
+const cacheTmp = require('../../lib/cache.js')('botometer_'+prefix+'_tmp');
 const colors = require('colors');
 
 async.series([
@@ -293,42 +294,49 @@ function scanUsers(users, slug, cbScanUsers) {
 		(user, index, cb) => {
 			//console.log(JSON.stringify(user));
 			
-			if (index % 20 === 0) console.log((100*index/users.length).toFixed(1)+'%');
-			cache(
+			if (index % 100 === 0) console.log('status\t'+index+'\t'+(100*index/users.length).toFixed(3)+'%');
+			cacheTmp(
 				user,
-				cbResult => botometer(user, cbResult),
-				data => {
-					//console.log(data.display_scores);
-					if (!data) return cb();
-					if (!data.user) return cb();
-					//if (!data.scores) return cb();
-					
-					//console.log(data.score);
+				cbCacheTmp => {
+					cache(
+						user,
+						cbCache => botometer(user, cbCache),
+						data => {
+							if (!data) return cbCacheTmp();
+							if (!data.user) return cbCacheTmp();
+							if (!data.raw_scores) return cbCacheTmp();
 
-					var date = data.user.status ? (new Date(data.user.status.created_at)).toISOString() : '?';
+							let englishCount = 0;
+							data.timeline.forEach(t => {
+								if (t.lang === 'en') englishCount++;
+							})
+							let score;
+							if (englishCount > data.timeline.length/2) {
+								score = data.raw_scores.english;
+							} else {
+								score = data.raw_scores.universal;
+							}
 
-					if (!data.raw_scores) return cb();
-					
-					var line = [
-						(data.raw_scores.english.overall*5).toFixed(2),
-						data.user.verified,
-						data.user.followers_count,
-						data.user.screen_name,
-						//tweetsPerDay,
-						//date,
-					].join('\t');
+							let line = [
+								score.overall,
+								data.user.verified,
+								data.user.followers_count,
+								data.user.screen_name,
+							];
 
-					/*
-					if (!dontSave) results.push({
-						score: data.score,
-						name: data.user.screen_name,
-						tsv: line,
-						ndjson: Buffer.from(JSON.stringify(data)+'\n', 'utf8'),
-					})
-					*/
-					
-					if (data.raw_scores.english.overall < 0.43) line = colors.green(line);
-					else if (data.raw_scores.english.overall < 0.75) line = colors.yellow(line);
+							return cbCacheTmp(line);
+						}
+					)
+				},
+				line => {
+					if (!line) return cb();
+
+					let score = line[0];
+					line[0] = (line[0]*5).toFixed(2);
+					line = line.join('\t')
+							
+					if (score < 0.43) line = colors.green(line);
+					else if (score < 0.75) line = colors.yellow(line);
 					else line = colors.red(line);
 
 					console.log(line);
