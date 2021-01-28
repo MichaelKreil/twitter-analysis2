@@ -291,6 +291,7 @@ var queries = [
 	{name: 'verschwoerung1',                query: {q:'billgatesisevil,clintonbodycount,clintoncrimefamily,clintonemails,coronahoax,covid1984,deepstate,frazzledrip,generalflynn,georgesorosriots,greatawakeningworldwide,inittogether,isaackappy,justiceiscoming,merkelgate,obamagate,obamagate,pedogate,pedowood,pizzagate,podestaemails,qanon,qanongermany,transitiontogreatness,unitednotdivided,wachtauf,wakeupworld,wearethenewsnow,wearetherevolution,weinerslaptop,weltfrieden,wwg1wga'.expand()}},
 	{name: 'virologen2',                    query: {q:'drosten,kekule,streeck,@c_drosten,@alexanderkekule,@hendrikstreeck'.expand()}},
 	{name: 'volkmarsen',                    query: {q:'volkmarsen,menschenmenge,rosenmontag,rosenmontagsumzug,rosenmontagszug'.toOR()}},
+	{name: 'wallstreetbets',                query: {q:'gamestop,robinhood,wallstreetbets'.expand()}},
 	{name: 'wirmachenauf',                  query: {q:'wirmacheneuchdicht,wirmachenauf,lasstdieschulenzu,wirhabenplatz,wirmacheneuchwiederzu,keinlockdownmehr'.expand()}},
 	{name: 'wirvsvirushackathon',           query: {q:'wirvsvirus,#wirvsvirus,wirvsvirushackathon,#wirvsvirushackathon,from:wirvsvirushack,to:wirvsvirushack,wirvsvirushack,#wirvsvirushack,hackathon,#hackathon'.toOR()}},
 ];
