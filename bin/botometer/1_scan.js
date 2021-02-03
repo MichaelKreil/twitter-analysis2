@@ -294,7 +294,7 @@ function scanUsers(users, slug, cbScanUsers) {
 		(user, index, cb) => {
 			//console.log(JSON.stringify(user));
 			
-			if (index % 100 === 0) console.log('status\t'+index+'\t'+(100*index/users.length).toFixed(3)+'%');
+			if (index % 500 === 0) console.log('status\t'+index+'\t'+(100*index/users.length).toFixed(3)+'%');
 			cacheTmp(
 				user,
 				cbCacheTmp => {
