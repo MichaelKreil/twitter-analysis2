@@ -1,6 +1,7 @@
 "use strict";
 
 const dry = false;
+const parallelLimit = 4;
 
 const fs = require('fs');
 const child_process = require('child_process');
@@ -375,7 +376,7 @@ function startScraper() {
 
 	async.parallelLimit(
 		queue,
-		2,
+		parallelLimit,
 		() => console.log(colors.green.bold('## FINISHED'))
 	)
 }
