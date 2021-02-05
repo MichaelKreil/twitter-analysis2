@@ -295,12 +295,11 @@ function scanUsers(users, slug, cbScanUsers) {
 		(user, index, cb) => {
 			//console.log(JSON.stringify(user));
 			
-			if (index % 100 === 0) {
+			if (index % 1000 === 0) {
 				console.log('status\t'+index+'\t'+(100*index/users.length).toFixed(3)+'%');
 				fs.writeSync(outputFile, results.join(''));
 				results = [];
 			}
-
 			cacheTmp(
 				user,
 				cbCacheTmp => {
