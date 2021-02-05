@@ -285,7 +285,8 @@ function scanFile2(filename, cb) {
 
 function scanUsers(users, slug, cbScanUsers) {
 	//if (users.length > 1000) return cbScanUsers();
-	if (fs.existsSync('results_'+prefix+'/'+slug+'.ndjson.xz')) return cbScanUsers();
+	//if (fs.existsSync('results_'+prefix+'/'+slug+'.ndjson.xz')) return cbScanUsers();
+	let outputFile = fs.openSync('results.tsv', 'w');
 
 	var results = [];
 
@@ -294,7 +295,12 @@ function scanUsers(users, slug, cbScanUsers) {
 		(user, index, cb) => {
 			//console.log(JSON.stringify(user));
 			
-			if (index % 100 === 0) console.log('status\t'+index+'\t'+(100*index/users.length).toFixed(3)+'%');
+			if (index % 100 === 0) {
+				console.log('status\t'+index+'\t'+(100*index/users.length).toFixed(3)+'%');
+				fs.writeSync(outputFile, results.join(''));
+				results = [];
+			}
+
 			cacheTmp(
 				user,
 				cbCacheTmp => {
@@ -302,9 +308,9 @@ function scanUsers(users, slug, cbScanUsers) {
 						user,
 						cbCache => botometer(user, cbCache),
 						data => {
-							if (!data) return cbCacheTmp();
-							if (!data.user) return cbCacheTmp();
-							if (!data.raw_scores) return cbCacheTmp();
+							if (!data) return cbCacheTmp(user);
+							if (!data.user) return cbCacheTmp(user);
+							if (!data.raw_scores) return cbCacheTmp(user);
 
 							let englishCount = 0;
 							data.timeline.forEach(t => {
@@ -318,11 +324,12 @@ function scanUsers(users, slug, cbScanUsers) {
 							}
 
 							let line = [
-								score.overall,
+								user,
+								(score.overall*5).toFixed(2),
 								data.user.verified,
 								data.user.followers_count,
 								data.user.screen_name,
-							];
+							].join('\t');
 
 							return cbCacheTmp(line);
 						}
@@ -331,21 +338,14 @@ function scanUsers(users, slug, cbScanUsers) {
 				line => {
 					if (!line) return cb();
 
-					let score = line[0];
-					line[0] = (line[0]*5).toFixed(2);
-					line = line.join('\t')
-							
-					if (score < 0.43) line = colors.green(line);
-					else if (score < 0.75) line = colors.yellow(line);
-					else line = colors.red(line);
-
-					console.log(line);
+					results.push(line+'\n');
 
 					cb();
 				}
 			)
 		},
 		() => {
+			/*
 			if (dontSave) return cbScanUsers();
 
 			results.sort((a,b) => (b.score - a.score) || a.name.localeCompare(b.name));
@@ -369,6 +369,7 @@ function scanUsers(users, slug, cbScanUsers) {
 				fs.createWriteStream('results_'+prefix+'/'+slug+'.ndjson.xz'),
 				() => cbScanUsers()
 			)
+			*/
 		}
 	)
 }
