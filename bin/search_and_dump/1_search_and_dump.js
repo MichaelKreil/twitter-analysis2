@@ -263,7 +263,7 @@ var queries = [
 	{name: 'spd',                           query: {q:'#spd'}},
 	{name: 'sterbenmitstreeck',             query: {q:'sterbenmitstreeck'}},
 	{name: 'sticker',                       query: {q:'@stickerarchive,@c3stoc'.expand()}},
-	{name: 'stopasianhate'                  query: {q:'stopaapihate,stopasianhate,stopasianhatecrimes'.expand()}},
+	{name: 'stopasianhate',                 query: {q:'stopaapihate,stopasianhate,stopasianhatecrimes'.expand()}},
 	{name: 'stopgates',                     query: {q:'#closethegates,#stopgates,soros,#banbill,#soros,#wwg1wgaworldwide,#infowar,#wwg1gwa,@byoblu24,#byoblu24,#byoblu,@byoblu,#oann,@oann'.expand()}},
 	{name: 'syria',                         query: {q:'syria'}},
 	{name: 'tabubruch',                     query: {q:'tabubruch'.expand()}},
