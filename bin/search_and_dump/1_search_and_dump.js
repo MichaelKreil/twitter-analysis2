@@ -117,6 +117,7 @@ var queries = [
 	{name: 'hakenkreuz',                    query: {q:'hakenkreuz'}},
 	{name: 'halle',                         query: {q:'halle,#halle0910,antisemitismus,#hal0910,#haltdiefresse,#yomkippur,einzeltäter,#natsanalyse,#christchurch,#merkel,rassismus,rechterterror,#halleshooting,#wirstehenzusammen,alarmzeichen,#yomkippour,rechtsterrorismus,#jomkippur,synagoge,synagogue,rechtsextremismus,antisemitisch,terroranschlag'.toOR()}},
 	{name: 'haltdiefressebild',             query: {q:'haltdiefressebild'}},
+	{name: 'haltdiefressejasmina',          query: {q:'haltdiefressejasmina'.expand()}},
 	{name: 'hambacherforst',                query: {q:'aktionunterholz,braunkohle,braunkohleabbau,endcoal,endegelaende,hambach,hambacherforst,hambacherforstbleibt,hambacherwald,hambi,hambi_bleibt,hambibleibt,hambibleibtaktion,kohle,kohleausstieg,kohlekommission,rwe'.toOR()}},
 	{name: 'hanau',                         query: {q:'hanau,rechterterror,hanaushooting,rechtsterrorismus,hanauattack,rechtsextremismus'.toOR()}},
 	{name: 'heimat',                        query: {q:'heimat'}},
