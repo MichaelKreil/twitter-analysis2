@@ -92,6 +92,7 @@ var queries = [
 	{name: 'dankepolizei',                  query: {q:'dankepolizei'.expand()}},
 	{name: 'dictaturesanitaire',            query: {q:'dictaturesanitaire'.expand()}},
 	{name: 'dieletzteinstanz',              query: {q:'dieletzteinstanz,gottschalk,janine kunze,tom buhrow,jürgen milski'.expand()}},
+	{name: 'donaldjtrump',                  query: {q:'url:donaldjtrump.com'.expand()}},
 	{name: 'donalphonso',                   query: {q:'@_donalphonso'.expand()}},
 	{name: 'dsgvo',                         query: {q:'#dsgvo,#dgsvo,#dataprotection,#cybersecurity,#gdpr,#datenschutz'.expand()}},
 	{name: 'dunjahayali2',                  query: {q:'@dunjahayali'.expand()}},
