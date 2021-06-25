@@ -225,6 +225,7 @@ var queries = [
 	{name: 'metoo',                         query: {q:'#metoo OR metoo'}},
 	{name: 'metwo',                         query: {q:'#metwo OR metwo'}},
 	{name: 'mietendeckel',                  query: {q:'mietendeckel,mietpreisbremse,url:mietendeckel,url:mietpreisbremse,mietenwahnsinn,mietendeckelrechner,miethöhe,miete,mieten,mieter,dwenteignen,vermieter,vermieterin,vermietende,vermietende,wohnungsmarkt'.toOR()}},
+	{name: 'migrationshintergrund',         query: {q:'migrationshintergrund'}},
 	{name: 'ministerien',                   query: {q:'sksachsentweets,Arne_Wiechmann,SMIsachsen,ChriSchni,StRegSprecherin,Boschemann,julitalk,svefri,amtzweinull,HaufeStephan,jettebo,Opp_Sprecher,ZimmermannSina,al_krampe,Medienheld,bauerzwitschert,hard_er,MSchroeren,pampel_muse,evamariamarks,RouvenKlein,ninasuza,andreasblock,foeniculum,zumtesthier'.toWildFromTo()}},
 	{name: 'ministerien2',                  query: {q:'AA_SicherReisen,Digital_Bund,BMVg_Afrika,BundesKultur,TDE2018Berlin,bfarm_de,bka,Stammtisch20,BVerfG,BSI_Presse,Bundestag,ADS_Bund,BBK_Bund,BMBF_Bund,BStU_Presse,BMG_Bund,BMJV_Bund,BAFA_Bund,BMAS_Bund,BAMF_Dialog,BMWi_Bund,netzausbau,BMI_Bund,BMFSFJ,BMF_Bund,GermanyDiplo,BMZ_Bund,bmel,AuswaertigesAmt,BMVI,destatis,RegSprecher,Bundestagsradar,bmu,Umweltbundesamt,bundesrat,bpb_de,HiBTag'.toWildFromTo()}},
 	{name: 'moria1',                        query: {q:'moria'}},
@@ -309,6 +310,7 @@ var queries = [
 	{name: 'weidel',                        query: {q:'weidel'.expand()}},
 	{name: 'wirmachenauf',                  query: {q:'wirmacheneuchdicht,wirmachenauf,lasstdieschulenzu,wirhabenplatz,wirmacheneuchwiederzu,keinlockdownmehr'.expand()}},
 	{name: 'wirvsvirushackathon',           query: {q:'wirvsvirus,#wirvsvirus,wirvsvirushackathon,#wirvsvirushackathon,from:wirvsvirushack,to:wirvsvirushack,wirvsvirushack,#wirvsvirushack,hackathon,#hackathon'.toOR()}},
+	{name: 'wuerzburg',                     query: {q:'wuerzburg,würzburg'.expand()}},
 ];
 
 var lists = [
