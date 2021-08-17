@@ -48,6 +48,7 @@ var queries = [
 	{name: 'afd',                           query: {q:'#afd'}},
 	{name: 'afd2',                          query: {q:'afd'}},
 	{name: 'afghanistan1',                  query: {q:'afghanistan,kabul,kabulairport,afghanistanburning,taliban,afghan,afghans'.expand()}},
+	{name: 'afghanistan2',                  query: {q:'afganistan,afganisthan,afghanisthan'.expand()}},
 	{name: 'alicehasters',                  query: {q:'@alicehasters'.expand()}},
 	{name: 'amadeuantonio2',                query: {q:'@amadeuantonio'.expand()}},
 	{name: 'angst',                         query: {q:'furcht,fürchten,fürchte,befürchte,befürchten,angst,ängste,beängstigend,panik,sorge,sorgen,bedrohung,bedrohen,bedrohend,bedroht,bedrohlich,bedrohliche,bedrohlichen'.toOR()}},
