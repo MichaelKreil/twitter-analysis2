@@ -63,6 +63,7 @@ var queries = [
 	{name: 'beirut',                        query: {q:'beirut,lebanon'.expand()}},
 	{name: 'berlin',                        query: {q:'', geocode:'52.5,13.4,50km'}},
 	{name: 'bild',                          query: {q:'BILD,BILD_Berlin,BILD_Digital,BILD_Frankfurt,BILD_Hamburg,BILD_Muenchen,BILD_News,BILD_Politik,BILD_TopNews,jreichelt'.toFromTo()}},
+	{name: 'bild2',                         query: {q:'dankebild'.expand()}},
 	{name: 'black_in_ai',                   query: {q:'@black_in_ai'.expand()}},
 	{name: 'brexit',                        query: {q:'#brexit'.expand()}},
 	{name: 'brexit2',                       query: {q:'brexit,brexitdeal,brexit,theresa,borisjohnson,chlorinated,peoplesvotemarch,peoplesvote,corbyn,backstop,brexitshambles,nodeal,stopbrexit,borisjohnson,nigel_farage,meaningfulvote,farage,getbrexitdone,remainers'.toOR()}},
