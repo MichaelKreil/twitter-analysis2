@@ -316,6 +316,7 @@ var queries = [
 	{name: 'wirmachenauf',                  query: {q:'wirmacheneuchdicht,wirmachenauf,lasstdieschulenzu,wirhabenplatz,wirmacheneuchwiederzu,keinlockdownmehr'.expand()}},
 	{name: 'wirvsvirushackathon',           query: {q:'wirvsvirus,#wirvsvirus,wirvsvirushackathon,#wirvsvirushackathon,from:wirvsvirushack,to:wirvsvirushack,wirvsvirushack,#wirvsvirushack,hackathon,#hackathon'.toOR()}},
 	{name: 'wuerzburg',                     query: {q:'wuerzburg,würzburg'.expand()}},
+	{name: 'xsarahleee',                    query: {q:'xsarahleee,to:xsarahleee,from:xsarahleee,rassismus gegen weisse'.expand()}},
 ];
 
 var lists = [
