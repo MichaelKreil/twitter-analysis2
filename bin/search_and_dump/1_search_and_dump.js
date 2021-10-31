@@ -327,7 +327,7 @@ var lists = [
 	'bild',
 	'splitternackt_',
 	'VictoriaLinnea1',
-	'goldtogreen_',
+//	'goldtogreen_',
 ];
 
 //fetch lists
