@@ -5,7 +5,7 @@ const { Readable } = require('stream');
 const { resolve } = require('path');
 
 const miss = require('mississippi2');
-const through2Concurrent = require('through2-concurrent');
+const transform = require('parallel-transform');
 
 const scraper = require('../../lib/scraper.js')('test');
 const { readLinesMulti, xzWriter } = require('./lib/helper.js');
@@ -17,27 +17,27 @@ start()
 function start() {
 	miss.pipeline(
 		Readable.from(getBlocks()),
-		through2Concurrent.obj(
-			{ maxConcurrency: 64 },
-			(block, enc, callback) => {
-				let now = Date.now();
-				scraper.fetch(
-					'users/lookup',
-					{ user_id:block.ids.join(','), include_entities:false, tweet_mode:'extended' },
-					result => {
-						let lookup = new Map(block.ids.map(e => [e[0],e]));
-						result.forEach(u => {
-							u.now = now;
-							let line = lookup.get(u.id_str);
-							if (!line) return;
-							line[0] = u.id_str+'\t'+JSON.stringify(u);
-						})
-						let buffer = Buffer.from(block.lines.join('\n')+'\n');
-						callback(null, buffer);
-					}
-				)
-			}
-		),
+		transform(16, (block, callback) => {
+			let now = Date.now();
+			let ids = block.ids.map(i => i[0]);
+
+			scraper.fetch(
+				'users/lookup',
+				{ user_id:ids.join(','), include_entities:false, tweet_mode:'extended' },
+				result => {
+					let lookup = new Map(block.ids.map(e => [e[0],e]));
+					result.forEach(u => {
+						u.now = now;
+						let line = lookup.get(u.id_str);
+						if (!line) return;
+						line[0] = u.id_str+'\t'+JSON.stringify(u);
+					})
+					block = block.lines.map(l => l[0]).join('\n')+'\n';
+					block = Buffer.from(block);
+					callback(null, block);
+				}
+			)
+		}),
 		xzWriter(resolve(dataFolder, `2_status-${getTime()}.tsv.xz`)),
 	)
 }
