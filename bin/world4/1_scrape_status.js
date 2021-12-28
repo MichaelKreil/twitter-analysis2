@@ -7,7 +7,7 @@ const { resolve } = require('path');
 const miss = require('mississippi2');
 const through2Concurrent = require('through2-concurrent');
 
-const scraper = require('../../lib/scraper.js')();
+const scraper = require('../../lib/scraper.js')('test');
 const { readLinesMulti, xzWriter } = require('./lib/helper.js');
 
 const dataFolder = '/root/data/twitter/world4'
@@ -18,7 +18,7 @@ function start() {
 	miss.pipeline(
 		Readable.from(getBlocks()),
 		through2Concurrent.obj(
-			{ maxConcurrency: 8 },
+			{ maxConcurrency: 64 },
 			(block, enc, callback) => {
 				let now = Date.now();
 				scraper.fetch(

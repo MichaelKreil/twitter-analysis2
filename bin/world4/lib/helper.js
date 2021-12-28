@@ -2,17 +2,24 @@
 
 const fs = require('fs');
 const child_process = require('child_process');
+const miss = require('mississippi2');
 
 module.exports = {
 	//parallelTransform,
 	readLinesMulti,
 	//read
 	//readLines,
-	//readXzLines,
+	readXzLines,
 	//readXzNdjsonEntries,
 	//sleep,
 	//sluggify,
 	xzWriter,
+	uniq,
+}
+
+function uniq() {
+	let uniq = child_process.spawn('uniq');
+	return miss.duplex(uniq.stdin, uniq.stdout);
 }
 
 function sleep(time) {
@@ -109,7 +116,7 @@ function getXZ(filename, showProgress) {
 			let progress = pos/size;
 			let eta = (new Date((Date.now() - start)/progress+start)).toLocaleTimeString('de-DE', { timeZone: 'Europe/Berlin' });
 
-			console.error((100*progress).toFixed(2)+'% - '+eta);
+			process.stderr.write('\r'+(100*progress).toFixed(2)+'% - '+eta);
 		});
 	}
 
