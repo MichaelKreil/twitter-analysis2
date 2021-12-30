@@ -15,6 +15,11 @@ module.exports = {
 	//sluggify,
 	xzWriter,
 	uniq,
+	getTimeSlug,
+}
+
+function getTimeSlug() {
+	return (new Date()).toISOString().split(/[^0-9]+/g).slice(0,6).join('-');
 }
 
 function uniq() {

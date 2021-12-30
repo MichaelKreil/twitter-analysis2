@@ -25,6 +25,7 @@
     "mississippi": "^4.0.0",
     "mississippi2": "^1.0.5",
     "multistream": "^4.0.0",
+    "parallel-transform": "^1.2.0",
     "request": "^2.88.0",
     "through2-concurrent": "^2.0.0",
     "tsv": "^0.2.0",

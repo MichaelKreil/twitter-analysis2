@@ -8,7 +8,7 @@ const miss = require('mississippi2');
 const transform = require('parallel-transform');
 
 const scraper = require('../../lib/scraper.js')('test');
-const { readLinesMulti, xzWriter } = require('./lib/helper.js');
+const { readLinesMulti, xzWriter, getTimeSlug } = require('./lib/helper.js');
 
 const dataFolder = '/root/data/twitter/world4'
 
@@ -38,7 +38,7 @@ function start() {
 				}
 			)
 		}),
-		xzWriter(resolve(dataFolder, `2_status-${getTime()}.tsv.xz`)),
+		xzWriter(resolve(dataFolder, `2_status-${getTimeSlug()}.tsv.xz`)),
 	)
 }
 
@@ -74,8 +74,4 @@ async function* getBlocks() {
 	function newBlock() {
 		return {ids:[],lines:[]};
 	}
-}
-
-function getTime() {
-	return (new Date()).toISOString().split(/[^0-9]+/g).slice(0,6).join('-');
 }
