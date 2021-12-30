@@ -1,3 +1,12 @@
+# Ignore all
+*
+# Unignore all with extensions
+!*.*
+# Unignore all dirs
+!*/
+
+
+
 *.7z
 *.gz
 *.log
@@ -6,6 +15,7 @@
 *.xlsx
 *.xz
 *.zip
+.DS_Store
 /bin/account_dump/*.json
 /bin/analyse_bots/tweets/*.txt
 /bin/analyse_tweet_network/*.json
@@ -16,6 +26,8 @@
 /bin/find_verified/data/
 /bin/germany/4_server/*.txt
 /bin/germany/4_server/_server/
+/bin/list_scraper/*.svg
+/bin/list_scraper/data/*.txt
 /bin/measure_interactions/*.json
 /bin/rp18bundeswehr/
 /bin/search/*.txt
@@ -25,6 +37,3 @@
 /data
 /node_modules
 /package-lock.json
-/bin/list_scraper/data/*.txt
-/bin/list_scraper/*.svg
-.DS_Store
