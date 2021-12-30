@@ -1,5 +1,6 @@
 // rustc -C opt-level=3 ./count.rs
-// xz -dkc 4_friends-2021-12-28-22-53-25.tsv.xz | head -n 3 | grep -Eo '\[.*\]' | ~/projects/twitter-analysis2/bin/world4/lib/count
+// xz -dkc 4_friends-2021-12-28-22-53-25.tsv.xz | head -n 3 | grep -Eo '\[.*\]' | ~/projects/twitter-analysis2/bin/world4/lib/count 300
+// v 4_friends-2021-12-28-22-53-25.tsv.xz | xz -d | grep -Eo '\[.*\]' | ~/projects/twitter-analysis2/bin/world4/lib/count 100
 
 use std::collections::BTreeMap;
 use std::io::{prelude::*};
