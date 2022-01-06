@@ -119,7 +119,7 @@ function getXZ(filename, showProgress) {
 		file.on('data', c => {
 			pos += c.length;
 			let progress = pos/size;
-			let eta = (new Date((Date.now() - start)/progress+start)).toLocaleTimeString('de-DE', { timeZone: 'Europe/Berlin' });
+			let eta = (new Date((Date.now() - start)/progress+start)).toLocaleString('de-DE', { timeZone: 'Europe/Berlin' });
 
 			process.stderr.write('\r'+(100*progress).toFixed(2)+'% - '+eta);
 		});
