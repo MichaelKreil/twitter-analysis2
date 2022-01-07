@@ -14,13 +14,21 @@ module.exports = {
 	//readXzNdjsonEntries,
 	//sleep,
 	//sluggify,
+	count,
 	findDataFile,
 	getDataFile,
 	getTempFile,
+	getXZ,
+	jq,
 	readLinesMulti,
 	readXzLines,
 	uniq,
 	xzWriter,
+}
+
+function getSpawn(cmd, args) {
+	let cp = child_process.spawn(cmd, args)
+	return miss.duplex(cp.stdin, cp.stdout);
 }
 
 function findDataFile(name) {
@@ -44,8 +52,15 @@ function getTempFile(name) {
 }
 
 function uniq() {
-	let uniq = child_process.spawn('uniq');
-	return miss.duplex(uniq.stdin, uniq.stdout);
+	return getSpawn('uniq')
+}
+
+function count(min) {
+	return getSpawn('count', [min]);
+}
+
+function jq(query) {
+	return getSpawn('jq', ['-rc', query]);
 }
 
 function sleep(time) {
