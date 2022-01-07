@@ -2,24 +2,20 @@
 
 const fs = require('fs');
 const { Readable } = require('stream');
-const { resolve } = require('path');
 
 const miss = require('mississippi2');
 const transform = require('parallel-transform');
 
 const scraper = require('../../lib/scraper.js')('test2');
-const { readLinesMulti, xzWriter, getTimeSlug } = require('./lib/helper.js');
-
-const dataFolder = '/root/data/twitter/world4'
+const { findDataFile, getDataFile, readLinesMulti, xzWriter, getTimeSlug } = require('./lib/helper.js');
 
 start()
 
 function start() {
-	let files = ['3_id-2021-12-28-22-26-15.tsv.xz'].map(f => resolve(dataFolder, f));
 	let index = 0;
 	miss.pipeline(
-		Readable.from(readLinesMulti(files)),
 		transform(16, (entry, callback) => {
+		Readable.from(readLinesMulti([findDataFile('3_ids'), findDataFile('4_friends')])),
 			if (entry.lines[0].length > entry.key.length) {
 				return callback(null, entry.lines[0]+'\n')
 			}
@@ -43,6 +39,6 @@ function start() {
 			)
 		}),
 		//process.stderr,
-		xzWriter(resolve(dataFolder, `4_friends-${getTimeSlug()}.tsv.xz`)),
+		xzWriter(getDataFile('4_friends')),
 	)
 }

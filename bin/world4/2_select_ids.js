@@ -27,6 +27,6 @@ function start() {
 			}
 		),
 		uniq(),
-		xzWriter(getDataFile('3_id')),
+		xzWriter(getDataFile('3_ids')),
 	)
 }
