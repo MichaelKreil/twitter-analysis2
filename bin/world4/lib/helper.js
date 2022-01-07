@@ -20,6 +20,7 @@ module.exports = {
 	uniq,
 	findDataFile,
 	getDataFile,
+	getTempFile,
 }
 
 function findDataFile(name) {
@@ -34,6 +35,12 @@ function getDataFile(name) {
 	let d = (new Date()).toISOString().split(/[^0-9]+/g);
 	d = d[0]+'_'+d[1]+'_'+d[2]+'_'+d[3]+d[4]+d[5];
 	return resolve(dataFolder, name+'-'+d+'.tsv.xz');
+}
+
+function getTempFile(name) {
+	let d = (new Date()).toISOString().split(/[^0-9]+/g);
+	d = d[0]+'_'+d[1]+'_'+d[2]+'_'+d[3]+d[4]+d[5];
+	return resolve(dataFolder, 'temp-'+d+'-'+Math.random().toString(36).slice(2,10)+'.tsv.xz');
 }
 
 function uniq() {
@@ -58,41 +65,44 @@ function sluggify(text) {
 }
 
 async function* readLinesMulti(filenames) {
+	//console.log('readLinesMulti',filenames);
 	let streams = filenames.map((f,i) => ({
+		i,
 		dirty:true,
 		active:true,
 		iter:readXzLines(f, i === 0),
 	}));
+
 	while (true) {
 		let minKey = false;
 		for (let stream of streams) {
+			//console.log({i:stream.i, dirty:stream.dirty, active:stream.active});
 			if (stream.dirty) {
 				if (stream.active) {
 					let result = await stream.iter.next();
 					stream.line = result.value;
+					//console.log('read', stream.line.slice(0,30))
 					if (result.done) {
 						stream.active = false;
-					} else {
-						let tabPos = stream.line.indexOf('\t');
-						if (tabPos < 0) tabPos = stream.line.length;
-						stream.key = stream.line.slice(0, tabPos);
+						continue;
 					}
+					let tabPos = stream.line.indexOf('\t');
+					stream.key = (tabPos < 0) ? stream.line : stream.line.slice(0, tabPos);
+					stream.dirty = false;
 				}
-				stream.dirty = false;
 			}
 			if (stream.active) {
-				if (!minKey || (minKey.length < stream.key.length) || (minKey < stream.key)) minKey = stream.key;
+				if (!minKey || (minKey.length > stream.key.length) || (minKey > stream.key)) minKey = stream.key;
 			}
 		}
 		if (!minKey) return;
 		yield {
 			key:minKey,
 			lines: streams.map(stream => {
-				if (stream.active && (stream.key === minKey)) {
-					stream.dirty = true;
-					return stream.line;
-				}
-				return false
+				if (!stream.active) return false;
+				if (stream.key !== minKey) return false;
+				stream.dirty = true;
+				return stream.line;
 			})
 		}
 	}

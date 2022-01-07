@@ -7,14 +7,17 @@ const miss = require('mississippi2');
 const transform = require('parallel-transform');
 
 const scraper = require('../../lib/scraper.js');
-const { findDataFile, getDataFile, readXzLines, xzWriter } = require('./lib/helper.js');
+const { findDataFile, getDataFile, getTempFile, readXzLines, xzWriter } = require('./lib/helper.js');
 
 const dataFolder = '/root/data/twitter/world4'
 
 start()
 
 function start() {
-	miss.pipeline(
+	let tempFilename = getTempFile();
+	let dataFilename = getDataFile('2_status');
+
+	miss.pipe(
 		Readable.from(getBlocks()),
 		transform(16, (ids, callback) => {
 			let now = Date.now();
@@ -30,7 +33,8 @@ function start() {
 				}
 			)
 		}),
-		xzWriter(getDataFile('2_status')),
+		xzWriter(tempFilename),
+		() => fs.renameSync(tempFilename, dataFilename)
 	)
 }
 

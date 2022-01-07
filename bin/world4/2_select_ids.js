@@ -5,12 +5,15 @@ const { Readable } = require('stream');
 
 const miss = require('mississippi2');
 
-const { findDataFile, getDataFile, readXzLines, xzWriter, uniq } = require('./lib/helper.js');
+const { findDataFile, getDataFile, getTempFile, readXzLines, xzWriter, uniq } = require('./lib/helper.js');
 
 start()
 
 function start() {
-	miss.pipeline(
+	let tempFilename = getTempFile();
+	let dataFilename = getDataFile('3_ids');
+	
+	miss.pipe(
 		Readable.from(readXzLines(findDataFile('2_status'), true)),
 		miss.through.obj(
 			(entry, enc, callback) => {
@@ -27,6 +30,7 @@ function start() {
 			}
 		),
 		uniq(),
-		xzWriter(getDataFile('3_ids')),
+		xzWriter(tempFilename),
+		() => fs.renameSync(tempFilename, dataFilename)
 	)
 }
