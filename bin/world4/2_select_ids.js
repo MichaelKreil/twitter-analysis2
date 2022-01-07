@@ -14,10 +14,8 @@ function start() {
 		Readable.from(readXzLines(findDataFile('2_status'), true)),
 		miss.through.obj(
 			(entry, enc, callback) => {
-				entry = entry.split('\t');
-				if (entry.length < 2) return callback();
 				try {
-					entry = JSON.parse(entry[1]);
+					entry = JSON.parse(entry);
 				} catch (err) {
 					console.error(entry);
 					console.error(err);
