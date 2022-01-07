@@ -85,7 +85,7 @@ async function* readLinesMulti(filenames) {
 		i,
 		dirty:true,
 		active:true,
-		iter:readXzLines(f, i === 0),
+		iter:readXzLines(f, i === filenames.length-1),
 	}));
 
 	while (true) {
