@@ -9,18 +9,18 @@ const dataFolder = '/root/data/twitter/world4';
 
 module.exports = {
 	//parallelTransform,
-	readLinesMulti,
 	//read
 	//readLines,
-	readXzLines,
 	//readXzNdjsonEntries,
 	//sleep,
 	//sluggify,
-	xzWriter,
-	uniq,
 	findDataFile,
 	getDataFile,
 	getTempFile,
+	readLinesMulti,
+	readXzLines,
+	uniq,
+	xzWriter,
 }
 
 function findDataFile(name) {
