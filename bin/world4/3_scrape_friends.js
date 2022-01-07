@@ -4,7 +4,7 @@ const fs = require('fs');
 const { Readable } = require('stream');
 
 const miss = require('mississippi2');
-const transform = require('parallel-transform');
+const transformParallel = require('parallel-transform');
 
 const scraper = require('../../lib/scraper.js')('temp');
 const { findDataFile, getDataFile, readLinesMulti, xzWriter, getTimeSlug } = require('./lib/helper.js');
@@ -14,8 +14,9 @@ start()
 function start() {
 	let index = 0;
 	miss.pipeline(
-		transform(16, (entry, callback) => {
 		Readable.from(readLinesMulti([findDataFile('3_ids'), findDataFile('4_friends')])),
+		transformParallel(1, (entry, callback) => {
+			console.log(entry);
 			if (entry.lines[0].length > entry.key.length) {
 				return callback(null, entry.lines[0]+'\n')
 			}
