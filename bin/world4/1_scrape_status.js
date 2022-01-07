@@ -6,7 +6,7 @@ const { Readable } = require('stream');
 const miss = require('mississippi2');
 const transform = require('parallel-transform');
 
-const scraper = require('../../lib/scraper.js')('temp');
+const scraper = require('../../lib/scraper.js');
 const { findDataFile, getDataFile, readXzLines, xzWriter } = require('./lib/helper.js');
 
 const dataFolder = '/root/data/twitter/world4'
