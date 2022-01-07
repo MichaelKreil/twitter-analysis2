@@ -104,6 +104,7 @@ async function* readLines(stream) {
 }
 
 function getXZ(filename, showProgress) {
+	let lastUpdate = 0;
 	if (!fs.existsSync(filename)) throw Error(`file does not exist "${filename}"`)
 
 	const file = fs.createReadStream(filename)
@@ -118,11 +119,18 @@ function getXZ(filename, showProgress) {
 		let pos = 0;
 		file.on('data', c => {
 			pos += c.length;
+
+			let now = Date.now();
+
+			if (now - lastUpdate < 1000) return;
+
+			lastUpdate = now;
 			let progress = pos/size;
-			let eta = (new Date((Date.now() - start)/progress+start)).toLocaleString('de-DE', { timeZone: 'Europe/Berlin' });
+			let eta = (new Date((now - start)/progress+start)).toLocaleString('de-DE', { timeZone: 'Europe/Berlin' });
 
 			process.stderr.write('\r'+(100*progress).toFixed(2)+'% - '+eta);
 		});
+		file.on('close', () => process.stderr.write('\n'));
 	}
 
 	file.pipe(xz.stdin);
