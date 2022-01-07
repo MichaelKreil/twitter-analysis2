@@ -3,6 +3,9 @@
 const fs = require('fs');
 const child_process = require('child_process');
 const miss = require('mississippi2');
+const { resolve } = require('path');
+
+const dataFolder = '/root/data/twitter/world4';
 
 module.exports = {
 	//parallelTransform,
@@ -15,11 +18,22 @@ module.exports = {
 	//sluggify,
 	xzWriter,
 	uniq,
-	getTimeSlug,
+	findDataFile,
+	getDataFile,
 }
 
-function getTimeSlug() {
-	return (new Date()).toISOString().split(/[^0-9]+/g).slice(0,6).join('-');
+function findDataFile(name) {
+	name += '-';
+	let files = fs.readdirSync(dataFolder);
+	files = files.filter(f => f.startsWith(name) && f.endsWith('.tsv.xz'));
+	files.sort();
+	return resolve(dataFolder, files.pop());
+}
+
+function getDataFile(name) {
+	let d = (new Date()).toISOString().split(/[^0-9]+/g);
+	d = d[0]+'_'+d[1]+'_'+d[2]+'_'+d[3]+d[4]+d[5];
+	return resolve(dataFolder, name+'-'+d+'.tsv.xz');
 }
 
 function uniq() {
@@ -152,8 +166,8 @@ async function* readXzLines(filename, showProgress) {
 	yield* readLines(getXZ(filename, showProgress));
 }
 
-async function* readXzNdjsonEntries(filename) {
-	const xz = getXZ(filename);
+async function* readXzNdjsonEntries(filename, showProgress) {
+	const xz = getXZ(filename, showProgress);
 
 	let buffer = Buffer.alloc(0);
 	for await (let block of xz) {

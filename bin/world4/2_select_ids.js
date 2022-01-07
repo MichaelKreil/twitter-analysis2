@@ -2,19 +2,16 @@
 
 const fs = require('fs');
 const { Readable } = require('stream');
-const { resolve } = require('path');
 
 const miss = require('mississippi2');
 
-const { readXzLines, xzWriter, uniq, getTimeSlug } = require('./lib/helper.js');
-
-const dataFolder = '/root/data/twitter/world4';
+const { findDataFile, getDataFile, readXzLines, xzWriter, uniq } = require('./lib/helper.js');
 
 start()
 
 function start() {
 	miss.pipeline(
-		Readable.from(readXzLines(resolve(dataFolder, '2_status-2021-12-28-21-44-04.tsv.xz'), true)),
+		Readable.from(readXzLines(findDataFile('2_status'), true)),
 		miss.through.obj(
 			(entry, enc, callback) => {
 				entry = entry.split('\t');
@@ -32,6 +29,6 @@ function start() {
 			}
 		),
 		uniq(),
-		xzWriter(resolve(dataFolder, `3_id-${getTimeSlug()}.tsv.xz`)),
+		xzWriter(getDataFile('3_id')),
 	)
 }

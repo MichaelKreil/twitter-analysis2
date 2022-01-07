@@ -2,13 +2,12 @@
 
 const fs = require('fs');
 const { Readable } = require('stream');
-const { resolve } = require('path');
 
 const miss = require('mississippi2');
 const transform = require('parallel-transform');
 
 const scraper = require('../../lib/scraper.js')('temp');
-const { readXzLines, xzWriter, getTimeSlug } = require('./lib/helper.js');
+const { findDataFile, getDataFile, readXzLines, xzWriter } = require('./lib/helper.js');
 
 const dataFolder = '/root/data/twitter/world4'
 
@@ -31,7 +30,7 @@ function start() {
 				}
 			)
 		}),
-		xzWriter(resolve(dataFolder, `2_status-${getTimeSlug()}.tsv.xz`)),
+		xzWriter(getDataFile('2_status')),
 	)
 }
 
@@ -40,7 +39,7 @@ async function* getBlocks() {
 
 	let block = [];
 
-	for await (let line of readXzLines(resolve(dataFolder, '1_ids-2022-01-06-20-53-48.tsv.xz'), true)) {
+	for await (let line of readXzLines(findDataFile('1_ids'), true)) {
 		if (!line) throw Error('id is missing');
 		block.push(line);
 
