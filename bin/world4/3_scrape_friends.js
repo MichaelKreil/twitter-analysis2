@@ -6,7 +6,7 @@ const { Readable } = require('stream');
 const miss = require('mississippi2');
 const transform = require('parallel-transform');
 
-const scraper = require('../../lib/scraper.js')('test2');
+const scraper = require('../../lib/scraper.js')('temp');
 const { findDataFile, getDataFile, readLinesMulti, xzWriter, getTimeSlug } = require('./lib/helper.js');
 
 start()
