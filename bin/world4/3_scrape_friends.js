@@ -19,10 +19,6 @@ function start() {
 	miss.pipe(
 		Readable.from(readLinesMulti([findDataFile('3_ids'), findDataFile('4_friends')])),
 		transformParallel(16, (entry, callback) => {
-			index++;
-			if (index % 1000 === 0) console.log('index:',index);
-			//console.log({key:entry.key, lines:entry.lines.map(l => l && l.slice(0,20))});
-
 			if (!entry.lines[0]) return callback();
 			if (entry.lines[1]) callback(null, entry.lines[1]+'\n');
 
