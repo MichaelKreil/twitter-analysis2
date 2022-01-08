@@ -177,10 +177,10 @@ function getXZ(filename, showProgress) {
 	return xz.stdout;
 }
 
-function xzWriter(filename) {
+function xzWriter(filename, level = 9, singleThread = false) {
 	const xz = child_process.spawn(
 		'xz',
-		['-z9T 0'],
+		[`-z${level}T`, singleThread ? 1 : 0],
 		{ stdio: ['pipe', 'pipe', process.stderr] }
 	)
 	xz.stdout.pipe(fs.createWriteStream(filename));
