@@ -22,6 +22,7 @@ module.exports = {
 	jq,
 	readLinesMulti,
 	readXzLines,
+	smallerThan,
 	uniq,
 	xzWriter,
 }
@@ -79,6 +80,10 @@ function sluggify(text) {
 	}).replace(/[^a-z0-9]+/g,'_').replace(/^_+|_+$/g, '');
 }
 
+function smallerThan(a,b) {
+	return (a.length === b.length) ? (a < b) : (a.length < b.length);
+}
+
 async function* readLinesMulti(filenames) {
 	//console.log('readLinesMulti',filenames);
 	let streams = filenames.map((f,i) => ({
@@ -107,7 +112,7 @@ async function* readLinesMulti(filenames) {
 				}
 			}
 			if (stream.active) {
-				if (!minKey || (minKey.length > stream.key.length) || (minKey > stream.key)) minKey = stream.key;
+				if (!minKey || smallerThan(stream.key, minKey)) minKey = stream.key;
 			}
 		}
 		if (!minKey) return;
