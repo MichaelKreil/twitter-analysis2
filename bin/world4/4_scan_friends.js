@@ -16,7 +16,7 @@ function start() {
 	miss.pipe(
 		getXZ(findDataFile('4_friends'), true),
 		jq('.ids? | join(",")'),
-		count(300),
+		count(100),
 		xzWriter(tempFilename),
 		() => fs.renameSync(tempFilename, dataFilename)
 	)
