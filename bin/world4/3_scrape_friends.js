@@ -46,7 +46,7 @@ function start() {
 			)
 		}),
 		//miss.to((d,e,c) => c()),
-		xzWriter(tempFilename, 9),
+		xzWriter(tempFilename, 1),
 		() => fs.renameSync(tempFilename, dataFilename)
 	)
 }
