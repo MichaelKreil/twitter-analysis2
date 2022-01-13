@@ -60,8 +60,12 @@ function count(min) {
 	return getSpawn(resolve(__dirname, 'count'), [min]);
 }
 
-function jq(query) {
-	return getSpawn('jq', ['-rc', query]);
+function jq(query, parallel = 0) {
+	if (parallel) {
+		return getSpawn('parallel', ['-j'+parallel, '--pipe', '--block', '64M', 'jq', '-rc', query]);
+	} else {
+		return getSpawn('jq', ['-rc', query]);
+	}
 }
 
 function sleep(time) {
