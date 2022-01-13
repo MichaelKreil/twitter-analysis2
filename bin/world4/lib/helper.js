@@ -53,11 +53,11 @@ function getTempFile(name) {
 }
 
 function uniq() {
-	return getSpawn('uniq', { cwd:__dirname })
+	return getSpawn(resolve(__dirname, 'uniq'))
 }
 
 function count(min) {
-	return getSpawn('count', [min], { cwd:__dirname });
+	return getSpawn(resolve(__dirname, 'count'), [min]);
 }
 
 function jq(query) {
