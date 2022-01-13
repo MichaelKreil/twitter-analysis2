@@ -27,8 +27,8 @@ module.exports = {
 	xzWriter,
 }
 
-function getSpawn(cmd, args) {
-	let cp = child_process.spawn(cmd, args)
+function getSpawn() {
+	let cp = child_process.spawn(...arguments)
 	return miss.duplex(cp.stdin, cp.stdout);
 }
 
@@ -53,11 +53,11 @@ function getTempFile(name) {
 }
 
 function uniq() {
-	return getSpawn('uniq')
+	return getSpawn('uniq', { cwd:__dirname })
 }
 
 function count(min) {
-	return getSpawn('count', [min]);
+	return getSpawn('count', [min], { cwd:__dirname });
 }
 
 function jq(query) {
