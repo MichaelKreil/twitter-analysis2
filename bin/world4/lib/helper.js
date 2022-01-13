@@ -182,10 +182,10 @@ function getXZ(filename, showProgress) {
 	return xz.stdout;
 }
 
-function xzWriter(filename, level = 9, singleThread = false) {
+function xzWriter(filename, level = 9, threads = 0) {
 	const xz = child_process.spawn(
 		'xz',
-		[`-z${level}T`, singleThread ? 1 : 0],
+		[`-z${level}T`, threads],
 		{ stdio: ['pipe', 'pipe', process.stderr] }
 	)
 	xz.stdout.pipe(fs.createWriteStream(filename));

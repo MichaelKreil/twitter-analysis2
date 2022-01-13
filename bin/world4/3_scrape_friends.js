@@ -37,7 +37,7 @@ function start() {
 				}
 			)
 		}),
-		xzWriter(tempFilename, 5),
+		xzWriter(tempFilename, 5, 4),
 		() => fs.renameSync(tempFilename, dataFilename)
 	)
 }
