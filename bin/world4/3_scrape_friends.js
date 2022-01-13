@@ -25,28 +25,19 @@ function start() {
 		transformParallel(16, (entry, callback) => {
 			if (!entry.lines[0]) return callback();
 			if ( entry.lines[1]) return callback(null, entry.lines[1]+'\n');
-			//console.log(entry);
 
 			let id = entry.key;
-
-			//active++;
-			//let start = Date.now();
-			//console.log(active, id);
 
 			scraper.fetch(
 				'friends/ids',
 				{ user_id:id, stringify_ids:true, count:5000 },
 				result => {
-					//active--;
-					//console.log(active, Date.now()-start);
-					
 					result = { ids:result.ids, now:Date.now() };
 					callback(null, id+'\t'+JSON.stringify(result)+'\n');
 				}
 			)
 		}),
-		//miss.to((d,e,c) => c()),
-		xzWriter(tempFilename, 1),
+		xzWriter(tempFilename, 5),
 		() => fs.renameSync(tempFilename, dataFilename)
 	)
 }
