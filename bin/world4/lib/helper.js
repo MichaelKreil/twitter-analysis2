@@ -22,7 +22,18 @@ module.exports = {
 }
 
 function getRust(name, args) {
-	child_process.spawnSync('rustc', ['-C', 'opt-level=3', resolve(__dirname, name)+'.rs'], {stdio:'inherit'})
+	child_process.spawnSync('rustc', [
+		'-C', 'codegen-units=1',
+		'-C', 'lto=yes',
+		'-C', 'opt-level=3',
+		'-C', 'overflow-checks=yes',
+		'-C', 'panic=abort',
+		'-C', 'prefer-dynamic=yes',
+		'-C', 'remark=all',
+		'-C', 'target-cpu=native',
+		'-C', 'tune-cpu=native',
+		resolve(__dirname, name)+'.rs'
+	], {stdio:'inherit'})
 	return getSpawn(resolve(__dirname, name), args)
 }
 
