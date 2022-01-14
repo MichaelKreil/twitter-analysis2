@@ -10,6 +10,7 @@ const dataFolder = '/root/data/twitter/world4';
 module.exports = {
 	findDataFile,
 	getDataFile,
+	getRust,
 	getSpawn,
 	getTempFile,
 	getXZ,
@@ -18,6 +19,11 @@ module.exports = {
 	readXzLines,
 	smallerThan,
 	xzWriter,
+}
+
+function getRust(name, args) {
+	child_process.spawnSync('rustc', ['-C', 'opt-level=3', resolve(__dirname, name)+'.rs'], {stdio:'inherit'})
+	return getSpawn(resolve(__dirname, name), args)
 }
 
 function getSpawn() {

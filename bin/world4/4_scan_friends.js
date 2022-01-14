@@ -5,7 +5,7 @@ const { Readable } = require('stream');
 
 const miss = require('mississippi2');
 
-const { findDataFile, getDataFile, getTempFile, getXZ, xzWriter, getSpawn } = require('./lib/helper.js');
+const { findDataFile, getDataFile, getTempFile, getXZ, xzWriter, getRust } = require('./lib/helper.js');
 
 start()
 
@@ -15,7 +15,7 @@ function start() {
 	
 	miss.pipe(
 		getXZ(findDataFile('4_friends'), true),
-		getSpawn(resolve(__dirname, 'lib/count_in_array'), [10]),
+		getRust('count_in_array', [10]),
 		xzWriter(tempFilename),
 		() => fs.renameSync(tempFilename, dataFilename)
 	)
