@@ -164,10 +164,16 @@ function getXZ(filename, showProgress) {
 			if (now - lastUpdate < 1000) return;
 
 			lastUpdate = now;
+			let duration = now - start;
 			let progress = pos/size;
-			let eta = (new Date((now - start)/progress+start)).toLocaleString('de-DE', { timeZone: 'Europe/Berlin' });
+			let eta = (new Date(duration/progress + start)).toLocaleString('de-DE', { timeZone: 'Europe/Berlin' });
+			let speed = (pos/1048576)/(duration/1000);
 
-			process.stderr.write('\r'+(100*progress).toFixed(2)+'% - '+eta);
+			process.stderr.write('\r'+[
+				(100*progress).toFixed(2)+'%',
+				speed.toFixed(2)+'MB/s',
+				eta,
+			].join(' - '));
 		});
 		file.on('close', () => process.stderr.write('\n'));
 	}
