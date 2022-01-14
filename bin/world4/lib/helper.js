@@ -27,12 +27,14 @@ function getRust(name, args) {
 		'-C', 'opt-level=3',
 		'-C', 'overflow-checks=yes',
 		//'-C', 'panic=abort',
-		'-C', 'prefer-dynamic=yes',
+		//'-C', 'prefer-dynamic=yes',
 		//'-C', 'remark=all',
 		'-C', 'target-cpu=native',
 		//'-C', 'tune-cpu=native',
+		'-o', resolve(__dirname, name),
 		resolve(__dirname, name)+'.rs'
-	], {stdio:'inherit'})
+	], { stdio:'inherit' })
+
 	return getSpawn(resolve(__dirname, name), args)
 }
 
