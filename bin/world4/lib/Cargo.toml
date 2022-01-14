@@ -1,0 +1,24 @@
+[package]
+name = "twitter-analysis"
+version = "0.1.0"
+edition = "2021"
+
+autobins = false
+autoexamples = false
+autotests = false
+autobenches = false
+
+[[bin]]
+name = "count_in_array"
+path = "count_in_array.rs"
+
+[[bin]]
+name = "count"
+path = "count.rs"
+
+[[bin]]
+name = "uniq"
+path = "uniq.rs"
+
+[dependencies]
+nohash-hasher = "0.2.0"
