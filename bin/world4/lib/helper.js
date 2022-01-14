@@ -7,6 +7,8 @@ const { resolve } = require('path');
 
 const dataFolder = '/root/data/twitter/world4';
 
+let compiled = false;
+
 module.exports = {
 	findDataFile,
 	getDataFile,
@@ -22,20 +24,9 @@ module.exports = {
 }
 
 function getRust(name, args) {
-	child_process.spawnSync('rustc', [
-		'-C', 'codegen-units=1',
-		'-C', 'opt-level=3',
-		'-C', 'overflow-checks=yes',
-		//'-C', 'panic=abort',
-		//'-C', 'prefer-dynamic=yes',
-		//'-C', 'remark=all',
-		'-C', 'target-cpu=native',
-		//'-C', 'tune-cpu=native',
-		'-o', resolve(__dirname, name),
-		resolve(__dirname, name)+'.rs'
-	], { stdio:'inherit' })
-
-	return getSpawn(resolve(__dirname, name), args)
+	child_process.spawnSync('./build.sh', { stdio:'inherit' })
+	compiled = true;
+	return getSpawn(resolve(__dirname, 'release', name), args)
 }
 
 function getSpawn() {
