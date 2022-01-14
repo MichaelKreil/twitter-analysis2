@@ -21,4 +21,4 @@ name = "uniq"
 path = "uniq.rs"
 
 [dependencies]
-nohash-hasher = "0.2.0"
+rustc-hash = "1.1.0"

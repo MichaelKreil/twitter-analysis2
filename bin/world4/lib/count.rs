@@ -1,7 +1,7 @@
-// rustc -C opt-level=3 ./count.rs
-// xz -dkc 4_friends-2021-12-28-22-53-25.tsv.xz | ~/projects/twitter-analysis2/bin/world4/lib/count 300
 
-use std::collections::BTreeMap;
+//use std::collections::BTreeMap;
+use rustc_hash::FxHashMap;
+
 use std::io::{prelude::*};
 use std::env;
 
@@ -12,7 +12,9 @@ fn main() {
 		min_count = args[1].parse::<u32>().unwrap();
 	}
 
-	let mut id_count: BTreeMap<u64,u32> = BTreeMap::new();
+	//let mut id_count: BTreeMap<u64,u32> = BTreeMap::new();
+	let mut id_count: FxHashMap<u64,u32> = FxHashMap::default();
+
 	let stdin = std::io::stdin();
 	let lines = stdin.lock().lines();
 
