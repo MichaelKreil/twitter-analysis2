@@ -1,7 +1,7 @@
 // rustc -C opt-level=3 ./count_in_array.rs
 // xz -dkc 4_friends-2021-12-28-22-53-25.tsv.xz | ~/projects/twitter-analysis2/bin/world4/lib/count_in_array 300
 
-use std::collections::BTreeMap;
+use nohash_hasher::IntMap;
 use std::io::{prelude::*};
 use std::env;
 
@@ -12,7 +12,7 @@ fn main() {
 		min_count = args[1].parse::<u32>().unwrap();
 	}
 
-	let mut id_count: BTreeMap<u64,u32> = BTreeMap::new();
+	let mut id_count: IntMap<u64,u32> = IntMap::default();
 	let stdin = std::io::stdin();
 	let lines = stdin.lock().lines();
 
