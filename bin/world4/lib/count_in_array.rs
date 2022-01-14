@@ -39,12 +39,12 @@ fn main() {
 						id = number.parse::<u64>().unwrap();
 						*id_count.entry(id).or_insert(0) += 1;
 					}
-					if *c == ']' {
+					if c == ']' {
 						in_brackets = false;
 					}
 				}
 			} else {
-				if *c == '[' {
+				if c == '[' {
 					in_brackets = true;
 				}
 			}
