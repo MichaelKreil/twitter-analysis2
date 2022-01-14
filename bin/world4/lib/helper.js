@@ -8,27 +8,21 @@ const { resolve } = require('path');
 const dataFolder = '/root/data/twitter/world4';
 
 module.exports = {
-	//parallelTransform,
-	//read
-	//readLines,
-	//readXzNdjsonEntries,
-	//sleep,
-	//sluggify,
-	count,
 	findDataFile,
 	getDataFile,
+	getSpawn,
 	getTempFile,
 	getXZ,
 	jq,
 	readLinesMulti,
 	readXzLines,
 	smallerThan,
-	uniq,
 	xzWriter,
 }
 
 function getSpawn() {
 	let cp = child_process.spawn(...arguments)
+	cp.stderr.pipe(process.stderr);
 	return miss.duplex(cp.stdin, cp.stdout);
 }
 
@@ -52,20 +46,8 @@ function getTempFile(name) {
 	return resolve(dataFolder, 'temp-'+d+'-'+Math.random().toString(36).slice(2,10)+'.tsv.xz');
 }
 
-function uniq() {
-	return getSpawn(resolve(__dirname, 'uniq'))
-}
-
-function count(min) {
-	return getSpawn(resolve(__dirname, 'count'), [min]);
-}
-
-function jq(query, parallel = 0) {
-	if (parallel) {
-		return getSpawn('parallel', ['-j'+parallel, '--pipe', '--block', '64M', 'jq', '-rc', query]);
-	} else {
-		return getSpawn('jq', ['-rc', query]);
-	}
+function jq(query) {
+	return getSpawn('jq', ['-rc', query]);
 }
 
 function sleep(time) {
