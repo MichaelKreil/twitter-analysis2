@@ -24,11 +24,12 @@
 /bin/measure_interactions/*.json
 /bin/rp18bundeswehr/
 /bin/search/*.txt
+/bin/world4/lib/Cargo.lock
+/bin/world4/lib/debug
+/bin/world4/lib/release
 /botometer/
 /cache/*/
 /config
 /data
 /node_modules
 /package-lock.json
-Cargo.lock
-release

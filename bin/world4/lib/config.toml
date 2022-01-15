@@ -3,9 +3,19 @@
 
 
 
+[profile.debug]
+
+codegen-units = 1
+debug = true
+opt-level = 0
+overflow-checks = true
+target-cpu = "native"
+
+
 [profile.release]
 
 codegen-units = 1
 opt-level = 3
 overflow-checks = true
 target-cpu = "native"
+
