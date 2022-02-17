@@ -145,6 +145,7 @@ var queries = [
 	{name: 'kippa',                         query: {q:'kippa', lang:'de'}},
 	{name: 'knobloch',                      query: {q:'#knobloch'.expand()}},
 	{name: 'ladg',                          query: {q:'ladg,landesantidiskriminierungsgesetz'.toOR()}},
+	{name: 'lauterbach',                    query: {q:'lauterbach'.expand()}},
 	{name: 'lockdownjetzt',                 query: {q:'lockdownjetzt'.expand()}},
 	{name: 'lufthansa',                     query: {q:'lufthansa,lufthansablue,explorethenew'.toOR()}},
 	{name: 'luisamneubauer',                query: {q:'@luisamneubauer'.expand()}},
