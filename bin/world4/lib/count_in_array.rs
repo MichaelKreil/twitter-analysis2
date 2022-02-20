@@ -11,7 +11,7 @@ use std::io::BufWriter;
 use std::io::prelude::*;
 //use std::rc::Rc;
 
-const BUFFER_MAX_COUNT:usize = 128*1024;
+const MAX_BLOCK_ENTRIES_COUNT:usize = 128*1024;
 
 //#[derive(Debug)]
 //#[repr(C)]
@@ -38,15 +38,15 @@ impl Entry {
 }
 	*/
 
-struct Database {
+struct Block {
 	map: BTreeMap<u64,u32>,
 	filename: String,
 	is_ready_to_write: bool,
 }
 
-impl Database {
+impl Block {
 	fn new(index: usize) -> Self {
-		let mut _self = Database {
+		let mut _self = Block {
 			map: BTreeMap::new(),
 			filename: format!("count_in_array_{}.tmp", index),
 			is_ready_to_write: true,
@@ -75,31 +75,39 @@ impl Database {
 
 	fn is_full(&self) -> bool {
 		assert!(self.is_ready_to_write, "not ready to read fullness");
-		return self.map.len() >= BUFFER_MAX_COUNT;
+		return self.map.len() >= MAX_BLOCK_ENTRIES_COUNT;
 	}
 }
 
-struct DatabaseWrapper {
-	list: Vec<Database>,
+struct Database {
+	list: Vec<Block>,
 }
 
-impl DatabaseWrapper {
+impl Database {
 	fn new() -> Self {
-		let mut _self = DatabaseWrapper {
+		let mut _self = Database {
 			list: Vec::new(),
 		};
-		_self.list.push(Database::new(0));
+		_self.list.push(Block::new(0));
 		return _self;
 	}
 
 	fn add(&mut self, id: &u64) {
-		let database:&mut Database = self.list.last_mut().unwrap();
+		let database:&mut Block = self.list.last_mut().unwrap();
 		if database.is_full() {
 			database.flush();
-			&self.list.push(Database::new(self.list.len()));
+			&self.list.push(Block::new(self.list.len()));
 			self.list.last_mut().unwrap().add(&id);
 		} else {
 			database.add(&id);
+		}
+	}
+
+	fn iter(&mut self) {
+		if self.list.len() === 1 {
+
+		} else {
+			
 		}
 	}
 }
@@ -112,7 +120,7 @@ fn main() {
 	}
 	eprintln!("min_count: {}", min_count);
 
-	let mut databases = DatabaseWrapper::new();
+	let mut database = Database::new();
 
 	let stdin = std::io::stdin();
 	let lines = stdin.lock().lines();
@@ -137,7 +145,7 @@ fn main() {
 				} else {
 					if in_number {
 						in_number = false;
-						databases.add(&id);
+						database.add(&id);
 					}
 					if code == 93 {
 						in_brackets = false;
@@ -151,14 +159,10 @@ fn main() {
 		}
 	}
 
-	//println!("{}", databases.len())
-	//database.flush_buffer();
-/*
-	for (id, count) in id_count.iter() {
+	for (id, count) in database.iter() {
 		if count < &min_count {
 			continue
 		}
 		println!("{}", id);
 	}
-	*/
 }
