@@ -1,114 +1,156 @@
-// test: rustc count_in_array.rs
+/*
+	test:
+		rustc count_in_array.rs && xz -dkc friends_10.tsv.xz | ./count_in_array
+*/
 
 #![allow(unused_must_use)]
 
-//use std::io::BufReader;
-//use std::mem::{size_of, transmute};
+#![feature(map_first_last)]
 use std::collections::BTreeMap;
 use std::env;
 use std::fs::File;
+use std::io::BufReader;
 use std::io::BufWriter;
 use std::io::prelude::*;
-//use std::rc::Rc;
+//use std::io::Result;
+
 
 const MAX_BLOCK_ENTRIES_COUNT:usize = 128*1024;
 
-//#[derive(Debug)]
-//#[repr(C)]
-//struct Entry {
-//	id: u64,
-//	count: u32,
-//}
-
-	/*
-impl Entry {
-	fn readFrom(mut file: &BufReader) -> Self {
-		let entry: Entry = {
-			let mut h = [0u8; size_of::<Entry>()];
-			file.read_exact(&mut h[..]).unwrap();
-			unsafe { transmute(h) }
-		};
-		return entry;
-	}
-
-	fn writeTo(self, mut bufWriter: BufWriter<File>) {
-		let bytes: [u8; size_of::<Entry>()] = unsafe { transmute(self) };
-		bufWriter.write(&bytes).unwrap();
-	}
-}
-	*/
-
-struct Block {
-	map: BTreeMap<u64,u32>,
-	filename: String,
-	is_ready_to_write: bool,
+struct Entry {
+	id: u64,
+	count: u32,
 }
 
-impl Block {
-	fn new(index: usize) -> Self {
-		let mut _self = Block {
-			map: BTreeMap::new(),
-			filename: format!("count_in_array_{}.tmp", index),
-			is_ready_to_write: true,
-		};
-		return _self;
+struct BlockWriter {
+	map: BTreeMap<u64,u32>
+}
+
+impl BlockWriter {
+	fn new() -> Self {
+		return BlockWriter {
+			map: BTreeMap::new()
+		}
 	}
 
-	fn add(&mut self, id: &u64) {
-		assert!(self.is_ready_to_write, "not ready to add data");
-		*self.map.entry(*id).or_insert(0) += 1;
+	fn add(&mut self, &id: &u64) {
+		*self.map.entry(id).or_insert(0) += 1;
 	}
 
-	fn flush(&mut self) {
-		let file = File::create(&self.filename).unwrap();
+	fn is_full(&self) -> bool {
+		return self.map.len() >= MAX_BLOCK_ENTRIES_COUNT;
+	}
+
+	fn save(&mut self, filename:&String) {
+		let file = File::create(filename).unwrap();
 		let mut buffered_file = BufWriter::with_capacity(65536, file);
 		for (id, count) in self.map.iter() {
 			buffered_file.write(&id.to_le_bytes());
 			buffered_file.write(&count.to_le_bytes());
 		}
 		buffered_file.flush();
-		self.is_ready_to_write = false;
-
-		drop(buffered_file);
-		self.map.clear();
-	}
-
-	fn is_full(&self) -> bool {
-		assert!(self.is_ready_to_write, "not ready to read fullness");
-		return self.map.len() >= MAX_BLOCK_ENTRIES_COUNT;
 	}
 }
 
-struct Database {
-	list: Vec<Block>,
+struct BlockReader {
+	reader: BufReader<File>,
 }
 
-impl Database {
-	fn new() -> Self {
-		let mut _self = Database {
-			list: Vec::new(),
+impl BlockReader {
+	fn new(filename:&String) -> Self {
+		let file = File::open(filename).unwrap();
+		return BlockReader {
+			reader: BufReader::with_capacity(65536, file),
 		};
-		_self.list.push(Block::new(0));
-		return _self;
 	}
+}
 
-	fn add(&mut self, id: &u64) {
-		let database:&mut Block = self.list.last_mut().unwrap();
-		if database.is_full() {
-			database.flush();
-			&self.list.push(Block::new(self.list.len()));
-			self.list.last_mut().unwrap().add(&id);
-		} else {
-			database.add(&id);
+impl Iterator for BlockReader {
+	type Item = Entry;
+ 	
+	fn next(&mut self) -> Option<Self::Item> {
+		let buf1 = &mut [0u8;8];
+		let buf2 = &mut [0u8;4];
+
+		self.reader.read_exact(buf1).ok()?;
+		self.reader.read_exact(buf2).ok()?;
+
+		return Some(Entry {
+			id: u64::from_le_bytes(*buf1),
+			count: u32::from_le_bytes(*buf2),
+		})
+	}
+}
+
+struct LookupEntry {
+	reader_ids: Vec<usize>,
+	id: u64,
+	count: u32,
+}
+
+struct BlockReaders {
+	readers: Vec<BlockReader>,
+	entries: BTreeMap<u64,LookupEntry>,
+}
+
+impl BlockReaders {
+	fn new() -> Self {
+		return BlockReaders {
+			readers: Vec::new(),
+			entries: BTreeMap::new(),
 		}
 	}
 
-	fn iter(&mut self) {
-		if self.list.len() === 1 {
+	fn add_block_reader(&mut self, filename:&String) {
+		let reader_id:usize = self.readers.len();
+		self.readers.push(BlockReader::new(filename));
+		self.add_reader_entry(&reader_id);
+	}
 
-		} else {
-			
+	fn add_reader_entry(&mut self, reader_id:&usize) -> bool {
+		let block_reader:&mut BlockReader = &mut self.readers[*reader_id];
+		let result:Option<Entry> = block_reader.next();
+
+		if result.is_none() {
+			return false
 		}
+
+		let entry:Entry = result.unwrap();
+
+		if self.entries.contains_key(&entry.id) {
+			let lookup_entry = self.entries.get_mut(&entry.id).unwrap();
+			lookup_entry.count += entry.count;
+			lookup_entry.reader_ids.push(*reader_id);
+		} else {
+			let mut lookup_entry = LookupEntry {
+				reader_ids: Vec::new(),
+				id: entry.id,
+				count: entry.count,
+			};
+			lookup_entry.reader_ids.push(*reader_id);
+			self.entries.insert(lookup_entry.id, lookup_entry);
+		}
+
+		return true;
+	}
+}
+
+impl Iterator for BlockReaders {
+	type Item = Entry;
+
+	fn next(&mut self) -> Option<Self::Item> {
+		if self.entries.is_empty() {
+			return None;
+		}
+
+		let (_id,lookup_entry):(u64,LookupEntry) = self.entries.pop_first().unwrap();
+		for reader_id in lookup_entry.reader_ids.iter() {
+			self.add_reader_entry(reader_id);
+		}
+		return Some(Entry {
+			id:lookup_entry.id,
+			count:lookup_entry.count,
+		})
 	}
 }
 
@@ -120,7 +162,8 @@ fn main() {
 	}
 	eprintln!("min_count: {}", min_count);
 
-	let mut database = Database::new();
+	let mut block = BlockWriter::new();
+	let mut block_filenames:Vec<String> = Vec::new();
 
 	let stdin = std::io::stdin();
 	let lines = stdin.lock().lines();
@@ -145,7 +188,14 @@ fn main() {
 				} else {
 					if in_number {
 						in_number = false;
-						database.add(&id);
+						block.add(&id);
+						if block.is_full() {
+							let filename:String = format!("count_in_array_{}.tmp", block_filenames.len());
+							block.save(&filename);
+							block_filenames.push(filename);
+							drop(block);
+							block = BlockWriter::new();
+						}
 					}
 					if code == 93 {
 						in_brackets = false;
@@ -159,10 +209,23 @@ fn main() {
 		}
 	}
 
-	for (id, count) in database.iter() {
-		if count < &min_count {
-			continue
+	if block_filenames.len() == 0 {
+		for (id, count) in block.map.iter() {
+			if count < &min_count {
+				continue;
+			}
+			println!("{}", id);
 		}
-		println!("{}", id);
+	} else {
+		let mut block_readers = BlockReaders::new();
+		for filename in block_filenames.iter() {
+			block_readers.add_block_reader(filename);
+		}
+		for entry in block_readers {
+			if entry.count < min_count {
+				continue;
+			}
+			println!("{}", entry.id);
+		}
 	}
 }
