@@ -3,6 +3,7 @@
 *.gz
 *.log
 *.syncfolderspro
+*.tmp
 *.tsv
 *.xlsx
 *.xz
@@ -25,6 +26,7 @@
 /bin/rp18bundeswehr/
 /bin/search/*.txt
 /bin/world4/lib/Cargo.lock
+/bin/world4/lib/count_in_array
 /bin/world4/lib/debug
 /bin/world4/lib/release
 /botometer/
@@ -33,4 +35,3 @@
 /data
 /node_modules
 /package-lock.json
-*.tmp

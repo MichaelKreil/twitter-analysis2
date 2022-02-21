@@ -12,7 +12,6 @@ use std::fs;
 use std::io::BufReader;
 use std::io::BufWriter;
 use std::io::prelude::*;
-//use std::io::Result;
 
 struct Entry {
 	id: u64,
