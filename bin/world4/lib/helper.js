@@ -4,6 +4,7 @@ const fs = require('fs');
 const child_process = require('child_process');
 const miss = require('mississippi2');
 const { resolve } = require('path');
+const SortedMap = require('collections/sorted-map');
 
 const dataFolder = '/root/data/twitter/world4';
 
@@ -17,10 +18,84 @@ module.exports = {
 	getTempFile,
 	getXZ,
 	jq,
+	lineMerger,
 	readLinesMulti,
 	readXzLines,
 	smallerThan,
+	uniqSortedLines,
 	xzWriter,
+}
+
+function lineMerger() {
+	return miss.through((chunk, enc, cb) => cb(null, chunk+'\n');
+}
+
+function uniqSortedLines(streams) {
+	let compare = (a,b) => (a.length - b.length) || ((a < b) ? -1 : 1);
+	let map = new SortedMap(null, null, compare);
+	let lastLine;
+	let streamCount = streams.length;
+	let readyCount = 0;
+	let finishedCount = 0;
+	let handler = new Handler();
+
+	streams.forEach((stream,i) => {
+		miss.to.obj(
+			(line, enc, cb) => {
+				if (map.has(line)) {
+					map.get(line).push(cb);
+				} else {
+					map.set(line, [cb]);
+				}
+				readyCount++;
+				handler.trigger();
+				cb();
+			},
+			cb => {
+				finishedCount++;
+				readyCount++;
+				handler.trigger();
+				cb();
+			}
+		)
+	})
+
+	miss.from.obj((size, next) => {
+		handler.once(() => {
+			if (map.length === 0) {
+				if (finishedCount !== streamCount) throw Error();
+				return next(null, null);
+			}
+			let line = map.min();
+			let callbacks = map.get(line);
+			map.delete(line);
+
+			if (compare(lastLine, line) >= 0) throw Error()
+			lastLine = line;
+
+			readyCount -= callbacks.length;
+			callbacks.forEach(cb);
+
+			next(null, line);
+		})
+	})
+
+	function Handler() {
+		let callback;
+		return { trigger, once }
+		function trigger() {
+			if (readyCount !== streamCount) return;
+			if (callback) {
+				process.nextTick(callback);
+				callback = false;
+			}
+		}
+		function once(cb) {
+			if (callback) throw Error();
+			callback = cb;
+			trigger();
+		}
+	}
 }
 
 function getRust(name, args) {
