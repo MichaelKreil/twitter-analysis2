@@ -24,7 +24,7 @@ module.exports = {
 }
 
 function getRust(name, args) {
-	child_process.spawnSync('./build.sh', { stdio:'inherit' })
+	child_process.spawnSync(resolve(__dirname, './build.sh'), { stdio:'inherit', cwd:resolve(__dirname) })
 	compiled = true;
 	return getSpawn(resolve(__dirname, 'release', name), args)
 }
