@@ -4,7 +4,6 @@ const fs = require('fs');
 const child_process = require('child_process');
 const miss = require('mississippi2');
 const { resolve } = require('path');
-const SortedMap = require('collections/sorted-map');
 
 const dataFolder = '/root/data/twitter/world4';
 
@@ -27,54 +26,66 @@ module.exports = {
 }
 
 function lineMerger() {
-	return miss.through((chunk, enc, cb) => cb(null, chunk+'\n');
+	return miss.through((chunk, enc, cb) => cb(null, chunk+'\n'));
 }
 
 function uniqSortedLines(streams) {
 	let compare = (a,b) => (a.length - b.length) || ((a < b) ? -1 : 1);
-	let map = new SortedMap(null, null, compare);
-	let lastLine;
-	let streamCount = streams.length;
+	let lastLine = '';
 	let readyCount = 0;
 	let finishedCount = 0;
+	let streamCount = streams.length;
 	let handler = new Handler();
 
-	streams.forEach((stream,i) => {
-		miss.to.obj(
-			(line, enc, cb) => {
-				if (map.has(line)) {
-					map.get(line).push(cb);
-				} else {
-					map.set(line, [cb]);
+	streams = streams.map((stream,i) => {
+		let obj = { stream };
+		stream.pipe(miss.to.obj(
+			(line, enc, cbTo) => {
+				obj.value = line;
+				obj.cb = () => {
+					obj.cb = false;
+					cbTo();
 				}
 				readyCount++;
+				//console.log('read',i,line,readyCount);
 				handler.trigger();
-				cb();
 			},
 			cb => {
+				//console.log('finished',i,readyCount);
 				finishedCount++;
 				readyCount++;
 				handler.trigger();
 				cb();
 			}
-		)
+		))
+		return obj;
 	})
 
-	miss.from.obj((size, next) => {
+	return miss.from.obj((size, next) => {
 		handler.once(() => {
-			if (map.length === 0) {
-				if (finishedCount !== streamCount) throw Error();
+			if (finishedCount === streamCount) {
 				return next(null, null);
 			}
-			let line = map.min();
-			let callbacks = map.get(line);
-			map.delete(line);
+			let line = 'AAAAAAAAAAAAAAAAAAAA';
+			streams.forEach(s => {
+				if (!s.cb) return;
+				if (compare(line, s.value) < 0) return;
+				line = s.value;
+			})
+
+			//console.log('write',line,readyCount);
 
 			if (compare(lastLine, line) >= 0) throw Error()
 			lastLine = line;
 
-			readyCount -= callbacks.length;
-			callbacks.forEach(cb);
+			streams.forEach(s => {
+				if (s.value === line) {
+					process.nextTick(s.cb);
+					s.cb = false;
+					s.value = false;
+					readyCount--;
+				}
+			})
 
 			next(null, line);
 		})
