@@ -20,7 +20,7 @@ function start() {
 	*/
 	miss.pipe(
 		getXZ(inputFilename, true),
-		getRust('count_in_array', [10]),
+		getRust('count_in_array', [10, 64*1024*1024]),
 		xzWriter(tempFilename),
 		() => fs.renameSync(tempFilename, dataFilename)
 	)
