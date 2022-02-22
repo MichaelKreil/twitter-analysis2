@@ -10,11 +10,16 @@ const { findDataFile, getDataFile, getTempFile, getXZ, xzWriter, getRust } = req
 start()
 
 function start() {
+	let inputFilename = findDataFile('4_friends');
 	let tempFilename = getTempFile();
 	let dataFilename = getDataFile('5_friend_ids');
-	
+	/*
+	inputFilename = 'lib/friends_3000.tsv.xz';
+	tempFilename = 'lib/temp.tsv.xz';
+	dataFilename = 'lib/result.tsv.xz';
+	*/
 	miss.pipe(
-		getXZ(findDataFile('4_friends'), true),
+		getXZ(inputFilename, true),
 		getRust('count_in_array', [10]),
 		xzWriter(tempFilename),
 		() => fs.renameSync(tempFilename, dataFilename)
