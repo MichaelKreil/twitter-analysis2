@@ -239,21 +239,27 @@ function getXZ(filename, showProgress) {
 	xz.on('error', e => { throw e });
 
 	if (showProgress) {
-		let start = Date.now();
 		let size = fs.statSync(filename).size;
 		let pos = 0;
+		let times = [{pos,time:Date.now()}];
 		file.on('data', c => {
 			pos += c.length;
 
 			let now = Date.now();
 
 			if (now - lastUpdate < 1000) return;
+			if (now - times[0].start > 30000) {
+				times.push({pos,time:now});
+				if (times.length > 10) times.slice(-10);
+			}
 
 			lastUpdate = now;
-			let duration = now - start;
+			let posDiff  = pos - times[0].pos;
+			let timeDiff = now - times[0].time;
 			let progress = pos/size;
-			let eta = (new Date(duration/progress + start)).toLocaleString('de-DE', { timeZone: 'Europe/Berlin' });
-			let speed = (pos/1048576)/(duration/1000);
+			let eta = (new Date(timeDiff*(size-pos)/posDiff + now));
+			eta = eta.toLocaleString('de-DE', { timeZone: 'Europe/Berlin' });
+			let speed = (posDiff/1048576)/(timeDiff/1000);
 
 			process.stderr.write('\r'+[
 				(100*progress).toFixed(2)+'%',
