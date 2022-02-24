@@ -22,7 +22,7 @@ module.exports = {
 	readXzLines,
 	smallerThan,
 	uniqSortedLines,
-	xzWriter,
+	xzCompressor,
 }
 
 function lineMerger() {
@@ -275,14 +275,13 @@ function getXZ(filename, showProgress) {
 	return xz.stdout;
 }
 
-function xzWriter(filename, level = 9, threads = 0) {
+function xzCompressor(level = 9, threads = 0) {
 	const xz = child_process.spawn(
 		'xz',
 		[`-z${level}T`, threads],
 		{ stdio: ['pipe', 'pipe', process.stderr] }
 	)
-	xz.stdout.pipe(fs.createWriteStream(filename));
-	return xz.stdin;
+	return miss.duplex(xz.stdin, xz.stdout);
 }
 
 async function* readXzLines(filename, showProgress) {

@@ -5,7 +5,7 @@ const { Readable } = require('stream');
 
 const miss = require('mississippi2');
 
-const { uniqSortedLines, lineMerger, findDataFile, getDataFile, getTempFile, getXZ, xzWriter } = require('./lib/helper.js');
+const { uniqSortedLines, lineMerger, findDataFile, getDataFile, getTempFile, getXZ, xzCompressor } = require('./lib/helper.js');
 
 start()
 
@@ -26,7 +26,8 @@ function start() {
 			getXZ(inputFilename2, true).pipe(miss.split()),
 		]),
 		lineMerger(),
-		xzWriter(tempFilename),
+		xzCompressor(),
+		fs.createWriteStream(tempFilename),
 		() => fs.renameSync(tempFilename, dataFilename)
 	)
 }

@@ -7,7 +7,7 @@ const miss = require('mississippi2');
 const transform = require('parallel-transform');
 
 const scraper = require('../../lib/scraper.js')('world4_temp1');
-const { findDataFile, getDataFile, getTempFile, readXzLines, xzWriter } = require('./lib/helper.js');
+const { findDataFile, getDataFile, getTempFile, readXzLines, xzCompressor } = require('./lib/helper.js');
 
 start()
 
@@ -31,7 +31,8 @@ function start() {
 				}
 			)
 		}),
-		xzWriter(tempFilename),
+		xzCompressor(),
+		fs.createWriteStream(tempFilename),
 		() => fs.renameSync(tempFilename, dataFilename)
 	)
 }

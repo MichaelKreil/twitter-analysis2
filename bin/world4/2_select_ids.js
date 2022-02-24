@@ -5,7 +5,7 @@ const { Readable } = require('stream');
 
 const miss = require('mississippi2');
 
-const { findDataFile, getDataFile, getTempFile, readXzLines, xzWriter, getRust } = require('./lib/helper.js');
+const { findDataFile, getDataFile, getTempFile, readXzLines, xzCompressor, getRust } = require('./lib/helper.js');
 
 start()
 
@@ -30,7 +30,8 @@ function start() {
 			}
 		),
 		getRust('uniq'),
-		xzWriter(tempFilename),
+		xzCompressor(),
+		fs.createWriteStream(tempFilename),
 		() => fs.renameSync(tempFilename, dataFilename)
 	)
 }

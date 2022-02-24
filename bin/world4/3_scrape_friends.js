@@ -7,7 +7,7 @@ const miss = require('mississippi2');
 const transformParallel = require('parallel-transform');
 
 const scraper = require('../../lib/scraper.js')('world4_temp3');
-const { findDataFile, getDataFile, getTempFile, readLinesMulti, xzWriter, getTimeSlug } = require('./lib/helper.js');
+const { findDataFile, getDataFile, getTempFile, readLinesMulti, xzCompressor, getTimeSlug } = require('./lib/helper.js');
 
 start()
 
@@ -23,6 +23,7 @@ function start() {
 			findDataFile('4_friends'),
 		])),
 		transformParallel(16, (entry, callback) => {
+			console.log(entry);
 			if (!entry.lines[0]) return callback();
 			if ( entry.lines[1]) return callback(null, entry.lines[1]+'\n');
 
@@ -37,7 +38,8 @@ function start() {
 				}
 			)
 		}),
-		xzWriter(tempFilename, 5, 4),
+		xzCompressor(5,4),
+		fs.createWriteStream(tempFilename),
 		() => fs.renameSync(tempFilename, dataFilename)
 	)
 }

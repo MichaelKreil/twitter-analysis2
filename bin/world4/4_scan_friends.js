@@ -5,7 +5,7 @@ const { Readable } = require('stream');
 
 const miss = require('mississippi2');
 
-const { findDataFile, getDataFile, getTempFile, getXZ, xzWriter, getRust } = require('./lib/helper.js');
+const { findDataFile, getDataFile, getTempFile, getXZ, xzCompressor, getRust } = require('./lib/helper.js');
 
 start()
 
@@ -21,7 +21,8 @@ function start() {
 	miss.pipe(
 		getXZ(inputFilename, true),
 		getRust('count_in_array', [30, 64*1024*1024]),
-		xzWriter(tempFilename),
+		xzCompressor(),
+		fs.createWriteStream(tempFilename),
 		() => fs.renameSync(tempFilename, dataFilename)
 	)
 }
