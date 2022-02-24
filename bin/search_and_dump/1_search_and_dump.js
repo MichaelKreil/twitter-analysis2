@@ -299,6 +299,7 @@ var queries = [
 	{name: 'tupoka_o',                      query: {q:'@tupoka_o'.expand()}},
 	{name: 'ueberwachung',                  query: {q:'überwachungspaket OR staatstrojaner OR bundestrojaner OR ueberwachungspaket OR zib2 OR überwachung OR privatsphäre OR datenschutz OR sicherheit OR vds OR sicherheitspaket'}},
 	{name: 'ukelection',                    query: {q:'GeneralElection2019,UKElection,GE2019'.toOR()}},
+	{name: 'ukraine',                       query: {q:'ukraine,putin,russia,selenskyj'.expand()}},
 	{name: 'unionsstreit1',                 query: {q:'unionsstreit,seehofer,csu,asylstreit,merkel,afd,ultimatum,zuwanderung,groko'.toOR(), lang:'de'}},
 	{name: 'unteilbar',                     query: {q:'unteilbar,unteilbar_,to:unteilbar_,from:unteilbar_'.toOR()}},
 	{name: 'uploadfilter',                  query: {q:'uploadfilter,saveyourinternet,leistungsschutzrecht,deleteart13,censorshipmachine,axelvossmdep,from:axelvossmdep,to:axelvossmdep,fixcopyright'.toOR()}},
