@@ -1,6 +1,5 @@
 
-//use std::collections::BTreeMap;
-use rustc_hash::FxHashMap;
+use std::collections::BTreeMap;
 
 use std::io::{prelude::*};
 use std::env;
@@ -12,8 +11,7 @@ fn main() {
 		min_count = args[1].parse::<u32>().unwrap();
 	}
 
-	//let mut id_count: BTreeMap<u64,u32> = BTreeMap::new();
-	let mut id_count: FxHashMap<u64,u32> = FxHashMap::default();
+	let mut id_count: BTreeMap<u64,u32> = BTreeMap::new();
 
 	let stdin = std::io::stdin();
 	let lines = stdin.lock().lines();
