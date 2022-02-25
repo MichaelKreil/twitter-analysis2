@@ -23,7 +23,6 @@ function start() {
 			findDataFile('4_friends'),
 		])),
 		transformParallel(16, (entry, callback) => {
-			console.log(entry);
 			if (!entry.lines[0]) return callback();
 			if ( entry.lines[1]) return callback(null, entry.lines[1]+'\n');
 
@@ -38,7 +37,7 @@ function start() {
 				}
 			)
 		}),
-		xzCompressor(5,4),
+		xzCompressor(),
 		fs.createWriteStream(tempFilename),
 		() => fs.renameSync(tempFilename, dataFilename)
 	)
