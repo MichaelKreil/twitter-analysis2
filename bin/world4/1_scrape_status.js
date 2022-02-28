@@ -4,7 +4,7 @@ const fs = require('fs');
 const { Readable } = require('stream');
 
 const miss = require('mississippi2');
-const transform = require('parallel-transform');
+const transformParallel = require('pipeline-pipe');
 
 const scraper = require('../../lib/scraper.js')('world4_temp1');
 const { findDataFile, getDataFile, getTempFile, readXzLines, xzCompressor } = require('./lib/helper.js');
@@ -17,7 +17,7 @@ function start() {
 
 	miss.pipe(
 		Readable.from(getBlocks()),
-		transform(16, (ids, callback) => {
+		transformParallel(ids => new Promise(res => {
 			let now = Date.now();
 
 			scraper.fetch(
@@ -27,10 +27,10 @@ function start() {
 					result.sort((a,b) => (a.id_str.length - b.id_str.length) || (a.id_str < b.id_str ? -1 : 1));
 					result = result.map(e => JSON.stringify(e)+'\n').join('');
 					result = Buffer.from(result);
-					callback(null, result);
+					res(result);
 				}
 			)
-		}),
+		}), 16),
 		xzCompressor(),
 		fs.createWriteStream(tempFilename),
 		() => fs.renameSync(tempFilename, dataFilename)
