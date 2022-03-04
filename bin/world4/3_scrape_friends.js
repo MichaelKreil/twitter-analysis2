@@ -38,7 +38,7 @@ function start() {
 				)
 			})
 		}, 16),
-		xzCompressor(3),
+		xzCompressor(),
 		fs.createWriteStream(tempFilename),
 		() => fs.renameSync(tempFilename, dataFilename)
 	)
