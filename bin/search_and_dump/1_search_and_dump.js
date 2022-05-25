@@ -124,6 +124,7 @@ var queries = [
 	{name: 'gretathunberg2',                query: {q:'greta thunberg,gretathunberg,@gretathunberg'.expand()}},
 	{name: 'groko',                         query: {q:'#groko'.expand()}},
 	{name: 'grossstaedte',                  query: {q:'berlin,hamburg,münchen,köln,frankfurt,stuttgart,düsseldorf,dortmund,essen,leipzig,bremen,dresden,hannover,nürnberg,duisburg,bochum,wuppertal,bielefeld,bonn,münster'.toOR()}},
+	{name: 'gun_control',                   query: {q:'"gun control"'}},
 	{name: 'hakenkreuz',                    query: {q:'hakenkreuz'}},
 	{name: 'halle',                         query: {q:'halle,#halle0910,antisemitismus,#hal0910,#haltdiefresse,#yomkippur,einzeltäter,#natsanalyse,#christchurch,#merkel,rassismus,rechterterror,#halleshooting,#wirstehenzusammen,alarmzeichen,#yomkippour,rechtsterrorismus,#jomkippur,synagoge,synagogue,rechtsextremismus,antisemitisch,terroranschlag'.toOR()}},
 	{name: 'haltdiefressebild',             query: {q:'haltdiefressebild'}},
