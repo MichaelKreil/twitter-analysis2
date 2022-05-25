@@ -248,6 +248,7 @@ var queries = [
 	{name: 'polizei2',                      query: {q:'polizei,polizist,polizistin,polizisten'.expand()}},
 	{name: 'polizeigesetz',                 query: {q:'nopag OR polizeigesetz'}},
 	{name: 'polizeiproblem',                query: {q:'polizeiproblem'}},
+	{name: 'propaganda',                    query: {q:'propaganda'}},
 	{name: 'quattromob',                    query: {q:'quattromob'}},
 	{name: 'racism',                        query: {q:'racism,racist,racists,prejudice,anti-semitic,homophobe,lgbtq,lgbtq+,supremacy,superiority,blacklivesmater,blacklivesmatter,youaintblack'.toOR(), splitTime:6}},
 	{name: 'racism2',                       query: {q:'racismo,racisme,saynotoracism'.expand()}},
