@@ -427,45 +427,39 @@ function runScraper(entry, cbScraper) {
 		console.log(colors.grey('   Starting '+title));
 	}
 
-	var outputStream = new OutputStream(tempFilename, filename)
+	let outputStream = new OutputStream(tempFilename, filename)
 
 	function OutputStream(tempFilename, filename) {
 		// Prepare Compressor
-		var bufferStream = BufferStream(64*1024*1024);
+		let threadCount = entry.query.splitTime ? 2 : 1;
+		let compressor = child_process.spawn('xz', ['-z9T',threadCount]);
 
-		var T = entry.query.splitTime ? 2 : 1;
-
-		var compressor = child_process.spawn('xz', ('-zkfc9 -T '+T+' -').split(' '));
-		compressor = miss.duplex(compressor.stdin, compressor.stdout);
-
-		var writeStream = fs.createWriteStream(tempFilename, {highWaterMark: 8*1024*1024});
-
-		bufferStream.pipe(compressor).pipe(writeStream);
-
+		let writeStream = fs.createWriteStream(tempFilename, {highWaterMark: 8*1024*1024});
+		compressor.stdout.pipe(writeStream);
 
 		// Make sure that the folder exists
 		utils.ensureDir(filename);
 
+		return { flush, close }
+
 		// flush data buffer to lzma compressor
-		function flush(percent, cbFlush) {
-			var buffer = Buffer.concat(tweets);
+		function flush(cbFlush) {
+			let buffer = Buffer.concat(tweets);
 			tweets = [];
 			tweetCount = 0;
 
 			if (buffer.length === 0) return cbFlush();
 
-			if (bufferStream.write(buffer)) {
+			if (compressor.stdin.write(buffer)) {
 				cbFlush();
 			} else {
-				bufferStream.once('drain', cbFlush);
+				compressor.stdin.once('drain', cbFlush);
 			}
 		}
 
 		// when finished: flush data and close file
 		function close(cbClose) {
-			//console.log(colors.green('prepare closing '+title));
-			flush(1, () => {
-				//console.log(colors.green('closing '+title));
+			flush(() => {
 				writeStream.on('finish', () => {
 					console.log(colors.grey.bold('   closed '+title));
 					if (!dry) {
@@ -474,14 +468,8 @@ function runScraper(entry, cbScraper) {
 					}
 					cbClose();
 				})
-				//console.log(colors.green('ending '+title));
-				bufferStream.end();
+				compressor.stdin.end();
 			})
-		}
-
-		return {
-			flush: flush,
-			close: close,
 		}
 	}
 
@@ -500,9 +488,7 @@ function runScraper(entry, cbScraper) {
 	async.each(
 		queries,
 		scrape,
-		() => {
-			outputStream.close(cbScraper)
-		}
+		() => outputStream.close(cbScraper)
 	)
 
 	function scrape(query, cbScrape) {
@@ -551,7 +537,7 @@ function runScraper(entry, cbScraper) {
 					var sum2 = queries.reduce((s,q) => s+(q.maxDateValue - q.minDateValue || 0), 0);
 					var percent = 1 - sum1/sum2;
 					console.log(colors.grey('   flushing '+title+' - '+(100*percent).toFixed(1)+'%'))
-					outputStream.flush(percent, checkRerun);
+					outputStream.flush(checkRerun);
 
 					function checkRerun() {
 						if (isIdBiggerThan(nextMaxId, since_id)) {
@@ -620,57 +606,6 @@ function splitQueryByLength(query) {
 	})
 
 	return newQueries;
-}
-
-function BufferStream(maxSize) {
-	var bufferList = [];
-	var bufferSize = 0;
-	var cbsWrite = [];
-	var cbsRead = [];
-	var finished = false;
-
-	function write(data, enc, cb) {
-		bufferList.push(data);
-		bufferSize += data.length;
-
-		triggerRead();
-
-		if (bufferSize < maxSize) return cb();
-		cbsWrite.push(cb);
-	}
-
-	function flush(cb) {
-		finished = true;
-		triggerRead();
-		cb();
-	}
-
-	function triggerRead() {
-		while ((cbsRead.length > 0) && ((bufferList.length > 0) || finished)) {
-			read(0, cbsRead.shift());
-		}
-	}
-
-	function read(size, next) {
-		if (bufferList.length > 0) {
-			var chunk = bufferList.shift();
-			bufferSize -= chunk.length;
-			next(null, chunk);
-		} else {
-			if (finished) {
-				next(null, null)
-			} else {
-				cbsRead.push(next);
-			}
-		}
-
-		if ((cbsWrite.length > 0) && (bufferSize < maxSize/2)) {
-			cbsWrite.forEach(queueMicrotask);
-			cbsWrite = [];
-		}
-	}
-
-	return miss.duplex( miss.to(write, flush), miss.from(read) )
 }
 
 function dateValue2Id(date) {
