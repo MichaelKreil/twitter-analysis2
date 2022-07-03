@@ -12,6 +12,8 @@ const miss = require('mississippi2');
 const resolve = require('path').resolve;
 const scraper = require('../../lib/scraper.js')();
 
+require('events').EventEmitter.defaultMaxListeners = 20;
+
 String.prototype.toFromTo = function () {
 	return this.split(',').map(a => a.trim()).map(a => 'from:'+a+' OR to:'+a).join(' OR ')
 }
@@ -436,6 +438,12 @@ function runScraper(entry, cbScraper) {
 
 		let writeStream = fs.createWriteStream(tempFilename, {highWaterMark: 8*1024*1024});
 		compressor.stdout.pipe(writeStream);
+
+		compressor.stderr.pipe(process.stderr);
+		compressor.on('error', error => console.error(error));
+		compressor.stdin.on('error', error => console.error(error));
+		compressor.stdout.on('error', error => console.error(error));
+		compressor.stderr.on('error', error => console.error(error));
 
 		// Make sure that the folder exists
 		utils.ensureDir(filename);
