@@ -492,12 +492,12 @@ function runScraper(entry, cbScraper) {
 	)
 
 	function scrape(query, cbScrape) {
-		var since_id = dateValue2Id(query.minDateValue);
-		var max_id = dateValue2Id(query.maxDateValue);
+		let since_id = dateValue2Id(query.minDateValue);
+		let max_id   = dateValue2Id(query.maxDateValue);
 		scrapeRec(max_id);
 
 		function scrapeRec(max_id) {
-			var attributes = {result_type:'recent', tweet_mode:'extended', count:100, since_id:since_id, max_id:max_id};
+			let attributes = {result_type:'recent', tweet_mode:'extended', count:100, since_id, max_id};
 			Object.keys(query).forEach(key => {
 				switch (key) {
 					case 'q':
@@ -527,15 +527,15 @@ function runScraper(entry, cbScraper) {
 					}
 					tweetCount += result.statuses.length;
 
-					var minId = getTweetsMinId(result.statuses);
-					var nextMaxId = decId(minId);
+					let minId = getTweetsMinId(result.statuses);
+					let nextMaxId = decId(minId);
 					query.dateValue = id2DateValue(minId);
 
 					if (tweetCount < 2000) return checkRerun();
 
-					var sum1 = queries.reduce((s,q) => s+(   q.dateValue - q.minDateValue || 0), 0);
-					var sum2 = queries.reduce((s,q) => s+(q.maxDateValue - q.minDateValue || 0), 0);
-					var percent = 1 - sum1/sum2;
+					let sum1 = queries.reduce((s,q) => s+(   q.dateValue - q.minDateValue || 0), 0);
+					let sum2 = queries.reduce((s,q) => s+(q.maxDateValue - q.minDateValue || 0), 0);
+					let percent = 1 - sum1/sum2;
 					console.log(colors.grey('   flushing '+title+' - '+(100*percent).toFixed(1)+'%'))
 					outputStream.flush(checkRerun);
 
