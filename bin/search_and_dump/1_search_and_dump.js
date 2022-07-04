@@ -45,8 +45,8 @@ String.prototype.expand = function () {
 // List of search queries
 var queries = [
 	{name: '120db',                         query: {q:'frauenmarsch,120db,b1702,dd1702,ndh1702,niun1702,niun,no120db'.toOR()}},
-	{name: 'afd',                           query: {q:'#afd'}},
-	{name: 'afd2',                          query: {q:'afd'}},
+	{name: 'afd2',                          query: {q:'afd OR #afd'}},
+	{name: 'abortion',                      query: {q:'abortion'}},
 	{name: 'afghanistan1',                  query: {q:'afghanistan,kabul,kabulairport,afghanistanburning,taliban,afghan,afghans'.expand()}},
 	{name: 'afghanistan2',                  query: {q:'afganistan,afganisthan,afghanisthan'.expand()}},
 	{name: 'alicehasters',                  query: {q:'@alicehasters'.expand()}},
