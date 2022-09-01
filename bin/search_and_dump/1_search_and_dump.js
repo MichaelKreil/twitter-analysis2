@@ -36,7 +36,7 @@ String.prototype.expand = function () {
 		a = a.trim().toLowerCase();
 		if (a.length === 0) return;
 		if (a[0] !== '@') return set.add(a)
-		a = a.substr(1);
+		a = a.slice(1);
 		set.add('from:'+a);
 		set.add('to:'+a);
 		set.add('url:twitter.com/'+a+'/status');
@@ -74,6 +74,7 @@ var queries = [
 	{name: 'btw3',                          query: {q:'gendernneindanke,gendernjabitte,gruenermist,gruenermist2021,braunermist,blauermist,laschetkneift'.expand()}},
 	{name: 'btw4',                          query: {q:'btwahl2021,btwahl,wahl2021'.expand()}},
 	{name: 'buffalo',                       query: {q:'buffalo'}},
+	{name: 'brazilelections_1',             query: {q:'#brazil,#brazil22,#brazil2022,#brazilelections,#brazilelections2022,#presidentialelection2022,#eleicos,#eleicoes,#eleicoesbrasil,#eleicoes2022,#eleicoes22,#naovote,#candidato,@jairbolsonaro,#jairbolsonaro,bolsonaro,#bolsonaro,#nothim,#capitaodopovovaivencerdenovo ,#bolsonaro22,#bolsonaro2022,#bolsonaroreeleitoem2022,#bolsonaropresidenteate2026,@lulaoficial,#luizignazioluladasilva ,#lula,#lula2022,#lula22,#lulapresidente2022,#lulapresidente2022,@cirogomes,"ciro gomes",#ciro,#ciro2022,#ciro22,@simonetebetbr,"simone tebet",#tebet,#tebet2022,#tebet22'.expand()}},
 	{name: 'bundesregierung',               query: {q:'SilberhornMdB,Mi_Muentefering,RitaHaglKehl,SvenjaSchulze68,LambrechtMdB,katarinabarley,StSLindner,AdlerGunther,Thomas_Bareiss,AnjaKarliczek,AnetteKramme,MiRo_SPD,JochenFlasbarth,guenterkrings,MJaegerT,W_Schmidt_,peteraltmaier,LangeMdB,jensspahn,RegSprecher,DoroBaer,fuchtel,zierke,thomasgebhart,rischwasu,AndiScheuer,NielsAnnen,KerstinGriese,OlafScholz,ChristianHirte,meister_schafft,JuliaKloeckner,HeikoMaas,SteffenBilger,petertauber,FlorianPronold,HBraun,BoehningB,wanderwitz,hubertus_heil'.toWildFromTo()}},
 	{name: 'bundesverdienstkreuz',          query: {q:'bundesverdienstkreuz'}},
 	{name: 'bunkertrump',                   query: {q:'AmericaOrTrump,bunkerboy,cowardinchief,bunkertrump,bunkerdon,voteouthate,bunkerbabytrump,bunker'.toOR()}},
