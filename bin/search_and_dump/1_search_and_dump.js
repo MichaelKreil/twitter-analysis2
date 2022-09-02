@@ -196,7 +196,7 @@ var queries = [
 	{name: 'media4_news_ntd',               query: {q:'@news_ntd,url:ntd.com'.expand()}},
 	{name: 'media4_newsweek',               query: {q:'@newsweek,url:newsweek.com'.expand()}},
 	{name: 'media4_npr',                    query: {q:'@npr,url:npr.org'.expand()}},
-	{name: 'media4_ntv',                    query: {q:'url:n?tv.de,@ntv_EIL,@ntvde,@ntvde_auto,@ntvde_Politik,@ntvde_politik,@ntvde_sport'.expand()}},
+   {name: 'media4_ntv',                    query: {q:'url:n?tv.de,@ntv_EIL,@ntvde,@ntvde_auto,@ntvde_Politik,@ntvde_politik,@ntvde_sport'.expand()}},
 	{name: 'media4_nypost',                 query: {q:'@nypost,url:nypost.com'.expand()}},
 	{name: 'media4_nytimes',                query: {q:'@nytimes,url:nytimes.com,url:nyti.ms'.expand()}},
 	{name: 'media4_nzz',                    query: {q:'url:nzz.ch,@nzz,@NZZde,@NZZMeinung,@NZZSchweiz,@NZZWissen,@NZZStorytelling,@NZZzuerich,@NZZfeuilleton,@NZZAusland,@nzzwirtschaft,@NZZSport'.expand()}},
@@ -355,22 +355,18 @@ async.each(
 							'lists/members',
 							{list_id:list.id_str, count:5000, include_entities:false, skip_status:true},
 							response2 => {
-								var users = response2.users.map(u => u.screen_name);
+								let users = response2.users.map(u => u.screen_name);
 
 								if (users.length === 0) return cbList();
 
-								var name = (screen_name+'_list2_'+list.slug).toLowerCase();
+								let name = (screen_name+'_list2_'+list.slug).toLowerCase();
 								name = name.replace(/ü/g, 'ue');
 								name = name.replace(/ö/g, 'oe');
 								name = name.replace(/ä/g, 'ae');
 								name = name.replace(/ß/g, 'ss');
 
-								queries.push({
-									name: name,
-									query: {
-										q:users.map(u => 'from:'+u+' OR to:'+u+' OR url:twitter.com/'+u+'/status').join(' OR ')
-									}
-								})
+								let query = users.map(u => 'from:'+u+' OR to:'+u+' OR url:twitter.com/'+u+'/status').join(' OR ');
+								query = { name: name, query: { q: query } }
 								cbList();
 							}
 						)
