@@ -89,7 +89,6 @@ var queries = [
 	{name: 'climate',                       query: {q:'climate'}},
 	{name: 'climatestrike',                 query: {q:'#20eylüli̇klimgrevi,#actonclimate,#allefuersklima,#allefürsklima,#cambioclimatico,#cambioclimático,#climateactionnow,#climatechange,#climatecrisis,#climateemergency,#climatejustice,#climatejusticenow,#climatemarch,#climatemarchpakistan,#climatestrike,#climatestrikeke,#climatestrikes,#climatestrikethailand,#crisisclimatica,#extinctionrebellion,#fridayforfuture,#fridays4future,#fridaysforfurture,#fridaysforfuture,#fridaysforfutures,#globalclimatestrike,#globalclimatestrikes,#greennewdeal,#greveglobalpeloclima,#grevepourleclimat,#huelgamundialporelclima,#islamabadclimatemarch,#klimakabinett,#klimatstrejk,#marchepourleclimat,#schoolstrike4climate,#scientists4future,#scientistsforfuture,#strajkklimatyczny,#strike4climate,#viernesporelfuturo,#youthclimatestrike,#youthstrike4climate,#グローバル気候マーチ,from:gretathunberg,to:gretathunberg'.toOR()}},
 	{name: 'corbynwasright',                query: {q:'corbynwasright'}},
-	// sorry, habe corona falsch getippt, muss jetzt aber die id konstant weiter behalten
 	{name: 'coronar_allesoeffnen',          query: {q:'allesoeffnen,allesöffnen'.toOR()}},
 	{name: 'coronarvirus10',                query: {q:'vaccine,vaccination'.toOR()}},
 	{name: 'coronarvirus6',                 query: {q:'coronadeutschland,#coronadeutschland,coronapanik,#coronapanik,#corona,corona,covidiot,#covidiot,#coronaoutbreak,#coronarvirus,#coronavirus,#coronavirusde,#coronavirusoutbreak,#covid,#covid19,#covid2019,#covid_19,#covidー19,#wuhan,#wuhancoronavirus,#wuhancoronovirus,#wuhanvirus,#โควิด19,coronarvirus,coronavirus,coronavirusde,coronavírus,covid,covid-19,covid19,covid2019,covid_19,covidー19,epidemic,pandemic,quarantine,quarantined,wuhan,xj621,โควิด19'.toOR(), splitTime:6}},
@@ -129,6 +128,7 @@ var queries = [
 	{name: 'groko',                         query: {q:'#groko'.expand()}},
 	{name: 'grossstaedte',                  query: {q:'berlin,hamburg,münchen,köln,frankfurt,stuttgart,düsseldorf,dortmund,essen,leipzig,bremen,dresden,hannover,nürnberg,duisburg,bochum,wuppertal,bielefeld,bonn,münster'.toOR()}},
 	{name: 'gun_control',                   query: {q:'"gun control"'}},
+	{name: 'habeck',                        query: {q:'habeck,#habeck,#habeckRuecktritt,#habeckRuecktrittSofort'.expand()}},
 	{name: 'hakenkreuz',                    query: {q:'hakenkreuz'}},
 	{name: 'halle',                         query: {q:'halle,#halle0910,antisemitismus,#hal0910,#haltdiefresse,#yomkippur,einzeltäter,#natsanalyse,#christchurch,#merkel,rassismus,rechterterror,#halleshooting,#wirstehenzusammen,alarmzeichen,#yomkippour,rechtsterrorismus,#jomkippur,synagoge,synagogue,rechtsextremismus,antisemitisch,terroranschlag'.toOR()}},
 	{name: 'haltdiefressebild',             query: {q:'haltdiefressebild'}},
@@ -248,6 +248,7 @@ var queries = [
 	{name: 'netzdg',                        query: {q:'netzdg'}},
 	{name: 'nnc3',                          query: {q:'34c3 OR 35c3 OR 36c3 OR 37c3 OR 38c3 OR 39c3 OR 40c3 OR 41c3 OR 42c3'}},
 	{name: 'noafd',                         query: {q:'noafd'}},
+	{name: 'olafscholz',                    query: {q:'@OlafScholz,OlafScholz,#OlafScholz'.expand()}},
 	{name: 'parteien',                      query: {q:'linke,linken,grüne,grünen,spd,cdu,csu,fdp,afd'.toOR(), lang:'de'}},
 	{name: 'pflege',                        query: {q:'pflegenotstand OR pflege'}},
 	{name: 'polizei',                       query: {q:'Polizei_PP_ROS,LKA_RLP,Polizei_WOB,PolizeiStmk,polizeiOBN,GBA_b_BGH,SH_Polizei,polizeiopf,PolizeiSWS,PolizeiOFR,Polizei_CE,Polizei_ROW,Polizei_OL,Pol_Grafschaft,Polizei_OHA,Polizei_HOL,Polizei_NOM,Polizei_AUR_WTM,Polizei_LER_EMD,Polizei_HM,Polizei_EL,Polizei_HI,Polizei_WL,Polizei_LG,Polizei_OS,Polizei_BS,Polizei_SuedHE,PolizeiLB,polizeiNB,Polizei_WH,bka,ukask_de,PolizeiUFR,PolizeiBB,Polizei_MH,bpol_b_einsatz,bpol_nord,bpol_air_fra,bpol_bepo,bpol_kueste,bpol_koblenz,bpol_b,PolizeiKonstanz,Polizei_FT,Polizei_soh,Polizei_MSE,PolizeiNI_Fa,PolizeiMannheim,Polizei_OH,PolizeiBhv,Polizei_HST,Polizei_SN,PolizeiVG,LKA_Hessen,Polizei_PP_NB,bpol_by,bpol_bw,Polizei_NH,Polizei_Thuer,ADS_Bund,Polizei_KA,polizeiOBS,PolizeiBerlin_I,PolizeiHamburg,PolizeiPDNord,LPDWien,PolizeiMuenchen,Polizei_PS,PolizeiBerlin_E,polizeiberlin,polizei_nrw_ge,polizei_nrw_d,polizei_nrw_du,polizei_nrw_bi,Polizei_NRW_E,Polizei_nrw_ms,Polizei_Ffm,PolizeiTrier,PP_Rheinpfalz,polizei_nrw_ob,PolizeiMainz,Polizei_KO,Europol,Polizei_KL,Polizei_Rostock,polizei_nrw_do,BMI_Bund,PP_Stuttgart,polizei_nrw_k,PolizeiSachsen,FHPolBB,StadtpolizeiZH'.toWildFromTo()}},
