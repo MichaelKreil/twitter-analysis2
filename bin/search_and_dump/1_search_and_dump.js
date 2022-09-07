@@ -69,6 +69,7 @@ var queries = [
 	{name: 'bild2',                         query: {q:'dankebild'.expand()}},
 	{name: 'black_in_ai',                   query: {q:'@black_in_ai'.expand()}},
 	{name: 'brazilelections_1',             query: {q:'#brazil,#brazil22,#brazil2022,#brazilelections,#brazilelections2022,#presidentialelection2022,#eleicos,#eleicoes,#eleicoesbrasil,#eleicoes2022,#eleicoes22,#naovote,#candidato,@jairbolsonaro,#jairbolsonaro,bolsonaro,#bolsonaro,#nothim,#capitaodopovovaivencerdenovo ,#bolsonaro22,#bolsonaro2022,#bolsonaroreeleitoem2022,#bolsonaropresidenteate2026,@lulaoficial,#luizignazioluladasilva ,#lula,#lula2022,#lula22,#lulapresidente2022,#lulapresidente2022,@cirogomes,"ciro gomes",#ciro,#ciro2022,#ciro22,@simonetebetbr,"simone tebet",#tebet,#tebet2022,#tebet22'.expand()}},
+	{name: 'brazilelections_2',             query: {q:'#7desetembro,#7desetembrovaisergigante,independencia,#independenciadobrasil,#setedesetembro,#setedesetembroseragigante,#bolsonaromente,"dom pedro"'.expand()}},
 	{name: 'brexit',                        query: {q:'#brexit'.expand()}},
 	{name: 'brexit2',                       query: {q:'brexit,brexitdeal,brexit,theresa,borisjohnson,chlorinated,peoplesvotemarch,peoplesvote,corbyn,backstop,brexitshambles,nodeal,stopbrexit,borisjohnson,nigel_farage,meaningfulvote,farage,getbrexitdone,remainers'.toOR()}},
 	{name: 'brinkmannlab',                  query: {q:'@brinkmannlab'.expand()}},
