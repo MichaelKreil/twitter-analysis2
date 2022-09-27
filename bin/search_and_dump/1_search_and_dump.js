@@ -148,6 +148,7 @@ var queries = [
 	{name: 'iranprotests2',                 query: {q:'iranprotests,تظاهرات_سراسرى,مظاهرات_ايران,تظاهرات_سراسری,تظاهرات_سراسري'.expand()}},
 	{name: 'iranprotests3',                 query: {q:'نه_به_اعدام,stopexecutionsiniran,اعدام_نکنید,notoexecusion,notoexecusioniran,stopexecutionofiranianprotestors,نه_به_اعدام_معترضان,دادگاه_علنی,iranianlivesmatter,بهبهان,اعدام_نكنيد,stopexecutionofiranianprotesters,اعتراضات_سراسری,notoexecutioniniran,stopexecutioniniran,stopexecutionslnlran,اعدامنکنید,آزاد_کنید,بهطالبانباجندهید,noexecutioniniran'.expand()}},
 	{name: 'iranprotests4',                 query: {q:'@AlinejadMasih,MasihAlinejad,مسیح علی‌نژاد,ForcedHijab,حجاب'.expand()}},
+	{name: 'iranprotests5',                 query: {q:'برای_اینکه'}},
 	{name: 'israel',                        query: {q:'#israel'.expand()}},
 	{name: 'jensspahn2',                    query: {q:'@jensspahn'.expand()}},
 	{name: 'kippa',                         query: {q:'kippa', lang:'de'}},
