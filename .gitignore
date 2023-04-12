@@ -6,7 +6,6 @@
 *.tmp
 *.tsv
 *.xlsx
-*.xz
 *.zip
 .DS_Store
 .rustc_info.json
