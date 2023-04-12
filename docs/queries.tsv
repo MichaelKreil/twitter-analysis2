@@ -1,0 +1,759 @@
+folder	size in KB	description, when missing you can find the query in git commit history
+1mai	15780	
+1000gruende	620	
+100gruende	12	
+120db	278564	{q:'frauenmarsch,120db,b1702,dd1702,ndh1702,niun1702,niun,no120db'.toOR()}
+34c3	7444	#34c3
+35c3	34540	#35c3
+36c3	29660	#36c3
+37c3	5492	#37c3
+38c3	2764	#38c3
+39c3	1924	#39c3
+40c3	12892	#40c3
+41c3	988	#41c3
+42c3	1000	#42c3
+43c3	1080	#43c3
+abortion	7437332	{q:'abortion'}
+afd	1493980	
+afd_bundestagsabgeordnete	407716	
+afd_bundestagsmitglieder	264152	
+afd_bundesvorstand	294164	
+afd_landessprecher	99612	
+afd_landesverbaende	168392	
+afd_landtagsabgeordnete	277624	
+afd_landtagsfraktionen	35072	
+afd_list_bundestagsabgeordnete	144936	tweets of the of all account the named twitter list
+afd_list_bundesvorstand	106336	tweets of the of all account the named twitter list
+afd_list_eu-abgeordnete	35688	tweets of the of all account the named twitter list
+afd_list_landesverb-nde	18428	tweets of the of all account the named twitter list
+afd_list_landesvors-sprecher	50952	tweets of the of all account the named twitter list
+afd_list_landtagsabgeordnete	116552	tweets of the of all account the named twitter list
+afd_list_landtagsfraktionen	11820	tweets of the of all account the named twitter list
+afd_list_verifizierte-accounts	264044	tweets of the of all account the named twitter list
+afd_list2_bundestagsabgeordnete	280780	tweets of the of all account the named twitter list
+afd_list2_bundesvorstand	165732	tweets of the of all account the named twitter list
+afd_list2_eu-abgeordnete	71164	tweets of the of all account the named twitter list
+afd_list2_landesverb-nde	23644	tweets of the of all account the named twitter list
+afd_list2_landesvors-sprecher	87904	tweets of the of all account the named twitter list
+afd_list2_landtagsabgeordnete	176824	tweets of the of all account the named twitter list
+afd_list2_landtagsfraktionen	20984	tweets of the of all account the named twitter list
+afd_list2_verifizierte-accounts	448548	tweets of the of all account the named twitter list
+afd_verifizierte_accounts	698516	
+afd2	5229292	{q:'afd OR #afd'}
+afdkompakt_alles_auf_einen_blick	2852540	
+afdkompakt_bundesvorstand	294160	
+afdkompakt_junge_alternative	298540	
+afdkompakt_landessprecher	99612	
+afdkompakt_landesverbaende	168480	
+afdkompakt_landtagsabgeordnete	260356	
+afdkompakt_landtagsfraktionen	35072	
+afdkompakt_list_alles-auf-einen-blick	212956	tweets of the of all account the named twitter list
+afdkompakt_list_bundestagsmitglieder	76668	tweets of the of all account the named twitter list
+afdkompakt_list_bundesvorstand	55536	tweets of the of all account the named twitter list
+afdkompakt_list_europawahl-kandidaten	3180	tweets of the of all account the named twitter list
+afdkompakt_list_junge-alternative	4204	tweets of the of all account the named twitter list
+afdkompakt_list_landessprecher-vors	32692	tweets of the of all account the named twitter list
+afdkompakt_list_landesverb-nde	12032	tweets of the of all account the named twitter list
+afdkompakt_list_landtagsabgeordnete	65428	tweets of the of all account the named twitter list
+afdkompakt_list_landtagsfraktionen	5676	tweets of the of all account the named twitter list
+afdkompakt_list_ltw-kandidaten-bb	740	tweets of the of all account the named twitter list
+afdkompakt_list_ltw-kandidaten-th-ringen	9284	tweets of the of all account the named twitter list
+afdkompakt_list_lv-baden-w-rttemberg	63400	tweets of the of all account the named twitter list
+afdkompakt_list_lv-bayern	13776	tweets of the of all account the named twitter list
+afdkompakt_list_lv-berlin	46028	tweets of the of all account the named twitter list
+afdkompakt_list_lv-brandenburg	4288	tweets of the of all account the named twitter list
+afdkompakt_list_lv-bremen	288	tweets of the of all account the named twitter list
+afdkompakt_list_lv-hamburg	8052	tweets of the of all account the named twitter list
+afdkompakt_list_lv-hessen	8304	tweets of the of all account the named twitter list
+afdkompakt_list_lv-mecklenburg-vorpommern	10500	tweets of the of all account the named twitter list
+afdkompakt_list_lv-niedersachsen	25192	tweets of the of all account the named twitter list
+afdkompakt_list_lv-nordrhein-westfalen	26368	tweets of the of all account the named twitter list
+afdkompakt_list_lv-rheinland-pfalz	13896	tweets of the of all account the named twitter list
+afdkompakt_list_lv-saarland	748	tweets of the of all account the named twitter list
+afdkompakt_list_lv-sachsen	11140	tweets of the of all account the named twitter list
+afdkompakt_list_lv-sachsen-anhalt	13296	tweets of the of all account the named twitter list
+afdkompakt_list_lv-schleswig-holstein	3808	tweets of the of all account the named twitter list
+afdkompakt_list_lv-th-ringen	26296	tweets of the of all account the named twitter list
+afdkompakt_list_unterst-tzer	26996	tweets of the of all account the named twitter list
+afdkompakt_lv_baden_wuerttemberg	316036	
+afdkompakt_lv_bayern	152304	
+afdkompakt_lv_berlin	202928	
+afdkompakt_lv_brandenburg	30096	
+afdkompakt_lv_bremen	24520	
+afdkompakt_lv_hamburg	37332	
+afdkompakt_lv_hessen	63376	
+afdkompakt_lv_mecklenburg_vorpommern	31512	
+afdkompakt_lv_niedersachsen	52188	
+afdkompakt_lv_nordrhein_westfalen	224996	
+afdkompakt_lv_rheinland_pfalz	45792	
+afdkompakt_lv_saarland	2136	
+afdkompakt_lv_sachsen	97632	
+afdkompakt_lv_sachsen_anhalt	81012	
+afdkompakt_lv_schleswig_holstein	30008	
+afdkompakt_lv_thueringen	106392	
+afdkompakt_unterstuetzer	125092	
+afdwegbassen	33180	
+afghanistan1	30381784	{q:'afghanistan,kabul,kabulairport,afghanistanburning,taliban,afghan,afghans'.expand()}
+afghanistan2	2505884	{q:'afganistan,afganisthan,afghanisthan'.expand()}
+afrin	643212	
+alicehasters	10564	{q:'@alicehasters'.expand()}
+amadeuantonio	40572	
+amadeuantonio2	19184	{q:'@amadeuantonio'.expand()}
+angst	12030044	{q:'furcht,fürchten,fürchte,befürchte,befürchten,angst,ängste,beängstigend,panik,sorge,sorgen,bedrohung,bedrohen,bedrohend,bedroht,bedrohlich,bedrohliche,bedrohlichen'.toOR()}
+antifa	4225880	
+antifa2	17011164	
+antifa3	77108	
+antifa4	27254896	{q:'#antifa,antifa,anti-faschismus,anti-faschist,anti-faschisten,anti-faschistin,anti-faschistisch,anti-fascism,anti-fascismo,anti-fascist,anti-fascista,anti-fascists,antifaschismus,antifaschist,antifaschisten,antifaschistin,antifaschistisch,antifascism,antifascismo,antifascist,antifascista,antifascists,faschismus,faschist,faschisten,faschistin,faschistisch,fascism,fascismo,fascist,fascista,fascists,exposeantifa,exposeantifaterrorists,iamantifa,yotambiensoyterrorista,weareantifa,iamantifascist,ichbinantifa,americanpatriotsareantifa,weareallantifa'.expand()}
+article13	34081812	{q:'#no11,#no12,#no13,acta2,antyart13,art11,art13,art13grafiken,article11,article13,article15,article16,article17,articulo11,articulo13,artigo13,artikel11,artikel12,artikel13,artikel13demo,artikel15,artikel16,artikel17,artikle13,artículo13,axelsurft,axelswelt,axelvoss,b0203,barleyfilter,berlingegen13,bots,censorship,censorshipmachine,censorshipmachines,censuracopyright,copylaw,copyright,copyrightdirective,copyrightirective,createyourinternet,dankejulia,delarticle13,deleteart11,deleteart13,deletearticle13,demogeld,demosold,derechoseninternet,DigitalSingleMarket,EUDigital,fairinternet,fairuse,fckart13,fixcopyright,gegenartikel13,gehtwaehlen,h2020,keinebots,kölngegen13,leistungsschutzrecht,linktax,lsr,luegenmanni,mepstaywithus,merkelfilter,mittelfingermittwoch,mob,mobgate,niemehrcdu,niemehrcsu,niemehrspd,niewiedercdu,no2article11,no2article12,no2article13,nochniecdu,nocreatorsnocontent,op13,pledge2019,ripinternet,safeyourinternet,saveourinternet,savetheinternet,savethelink,saveyourinternet,stopacta2,stoparticle13,stopartikel13,stopcensuracopyright,thankyoujulia,uploadfilter,uploadfiltern,uploadfilters,urheberrecht,urheberrechtsreform,vollvossten,vote4culture,weneedcopyrightdirective,wirsindbots,wirsinddiebots,wirsindkeinebots,yes2copyright,youtubersjoinus'.toOR()}
+article13_discussion	12028756	{q:'ansip_eu,authorsocieties,axelvossmdep,bmjv_bund,caspary,cdu,cdu_csu_ep,dsmeu,eff,ep_legal,eppgroup,eu_commission,euforcreators,evisual_artists,fairinternet4p,fim_musicians,gabrielmariya,gema_news,heidihautala,helgatruepel,hwieduwilt,juliaredamep,junckereu,katarinabarley,manfredweber,maxandersson,musikzeitung,peteraltmaier,politicoeurope,senficon,shkmep,spdeuropa,tadeuszzwiefka,urheber_verdi,woelken'.toWildFromTo()}
+article13_discussiona	43216	
+article13_discussionb	1083680	
+article13_discussionc	30368	
+article13a	1099664	
+article13b	9688	
+article13c	8112	
+article13d	7412196	
+article13e	89056	
+article13f	8660	
+article13g	55508	
+article13h	8744	
+article13i	28028	
+asyl	476964	{q:'asyl OR asylstreit OR asyltourismus OR asylgehalt'}
+aufstehen	328072	{q:'aufstehen'}
+b2908	15768	
+b3008	77176	{q:'#b2808,#b2908,#b3008,#b3108'.toOR()}
+b3008b	454900	{q:'#abstandhaltengegenrechts,#b2808info,#be2808,#b2908info,#be2908,#b3008info,#be3008,#b3108info,#be3108,#berlin2808,#berlin2908,#berlin3008,#berlin3108,#berlindemo,#berlinprotest,#berlinprotests,#coronademo,#covidioten,#demo,#demoberlin,#querdenken,#querdenken711,#sturmaufberlin'.toOR()}
+baerbock	305376	
+bahn	3702640	{q:'bahn OR bahnhof OR hbf OR zug OR bahnsteig OR to:dbbahn OR dbbahn OR fahrradabteil OR ice OR schaffner OR bordbistro OR verspätung OR anschluss OR umsteigen OR ansage OR anzeige OR stellwerk OR störung OR weiche', lang:'de'}
+beirut	5278844	{q:'beirut,lebanon'.expand()}
+berlin	43615824	{q:'', geocode:'52.5,13.4,50km'}
+besetzen	43512	
+bild	734376	{q:'BILD,BILD_Berlin,BILD_Digital,BILD_Frankfurt,BILD_Hamburg,BILD_Muenchen,BILD_News,BILD_Politik,BILD_TopNews,jreichelt'.toFromTo()}
+bild_list_bild-accounts	140632	tweets of the of all account the named twitter list
+bild_list_bild-bundesliga-news	9588	tweets of the of all account the named twitter list
+bild_list_bild-regional	19200	tweets of the of all account the named twitter list
+bild_list_bild-reporter-bei-b2908	484	tweets of the of all account the named twitter list
+bild_list_bild-reporter-digital	2236	tweets of the of all account the named twitter list
+bild_list_bild-reporter-news	4576	tweets of the of all account the named twitter list
+bild_list_bild-reporter-politik	46292	tweets of the of all account the named twitter list
+bild_list_bild-reporter-promis	8800	tweets of the of all account the named twitter list
+bild_list_bild-reporter-sport	11304	tweets of the of all account the named twitter list
+bild_list_bild-rt-redaktion	14876	tweets of the of all account the named twitter list
+bild_list_ehfk-gala-reporter-2015	4792	tweets of the of all account the named twitter list
+bild_list_ehfk-gala-reporter-20161	5060	tweets of the of all account the named twitter list
+bild_list_ein-herz-fuer-kinder	15692	tweets of the of all account the named twitter list
+bild_list_empfehlungen	58100	tweets of the of all account the named twitter list
+bild_list_g20-gipfel	10208	tweets of the of all account the named twitter list
+bild_list_hot-in-berlin	3524	tweets of the of all account the named twitter list
+bild_list_reporter-in-paris	13632	tweets of the of all account the named twitter list
+bild_list_wir-sind-bild	104164	tweets of the of all account the named twitter list
+bild_list_zugungl-ck-in-bad-aibling	1536	tweets of the of all account the named twitter list
+bild_list2_bild-accounts	403480	tweets of the of all account the named twitter list
+bild_list2_bild-bundesliga-news	15544	tweets of the of all account the named twitter list
+bild_list2_bild-regional	28308	tweets of the of all account the named twitter list
+bild_list2_bild-reporter-bei-b2908	5028	tweets of the of all account the named twitter list
+bild_list2_bild-reporter-digital	3040	tweets of the of all account the named twitter list
+bild_list2_bild-reporter-news	5860	tweets of the of all account the named twitter list
+bild_list2_bild-reporter-politik	94256	tweets of the of all account the named twitter list
+bild_list2_bild-reporter-promis	14008	tweets of the of all account the named twitter list
+bild_list2_bild-reporter-sport	13344	tweets of the of all account the named twitter list
+bild_list2_bild-rt-redaktion	66696	tweets of the of all account the named twitter list
+bild_list2_ehfk-gala-reporter-2015	11364	tweets of the of all account the named twitter list
+bild_list2_ehfk-gala-reporter-20161	16048	tweets of the of all account the named twitter list
+bild_list2_ein-herz-fuer-kinder	84256	tweets of the of all account the named twitter list
+bild_list2_empfehlungen	200260	tweets of the of all account the named twitter list
+bild_list2_g20-gipfel	15540	tweets of the of all account the named twitter list
+bild_list2_hot-in-berlin	5604	tweets of the of all account the named twitter list
+bild_list2_reporter-in-paris	11520	tweets of the of all account the named twitter list
+bild_list2_wir-sind-bild	390228	tweets of the of all account the named twitter list
+bild_list2_zugungl-ck-in-bad-aibling	912	tweets of the of all account the named twitter list
+bild2	3264	{q:'dankebild'.expand()}
+black_in_ai	5036	{q:'@black_in_ai'.expand()}
+bots_seitensprung_boersen	2852	
+brazilelections_1	22004028	{q:'#brazil,#brazil22,#brazil2022,#brazilelections,#brazilelections2022,#presidentialelection2022,#eleicos,#eleicoes,#eleicoesbrasil,#eleicoes2022,#eleicoes22,#naovote,#candidato,@jairbolsonaro,#jairbolsonaro,bolsonaro,#bolsonaro,#nothim,#capitaodopovovaivencerdenovo ,#bolsonaro22,#bolsonaro2022,#bolsonaroreeleitoem2022,#bolsonaropresidenteate2026,@lulaoficial,#luizignazioluladasilva ,#lula,#lula2022,#lula22,#lulapresidente2022,#lulapresidente2022,@cirogomes,"ciro gomes",#ciro,#ciro2022,#ciro22,@simonetebetbr,"simone tebet",#tebet,#tebet2022,#tebet22'.expand()}
+brazilelections_2	1358136	
+brazilelections_3	184208	
+brexit	30793932	{q:'#brexit'.expand()}
+brexit2	43197076	{q:'brexit,brexitdeal,brexit,theresa,borisjohnson,chlorinated,peoplesvotemarch,peoplesvote,corbyn,backstop,brexitshambles,nodeal,stopbrexit,borisjohnson,nigel_farage,meaningfulvote,farage,getbrexitdone,remainers'.toOR()}
+brinkmannlab	13856	{q:'@brinkmannlab'.expand()}
+btw1	173212	
+btw2	42233684	{q:'afdverhindern,baerbock,baerbockverhindern,btw,btw2021,btw21,bundestagswahl,bundestagswahl2021,bundestagswahl21,cdu,cducsu,chrupalla,csu,diegrünen,fdp,gruene,grünen,laschet,laschetverhindern,lindner,linke,niewiedercdu,niewiedercsu,scholz,spd,verbotsparteicdu,wahlprogramm,weidel'.expand()}
+btw3	155272	{q:'gendernneindanke,gendernjabitte,gruenermist,gruenermist2021,braunermist,blauermist,laschetkneift'.expand()}
+btw4	28852	{q:'btwahl2021,btwahl,wahl2021'.expand()}
+buffalo	2403292	{q:'buffalo'}
+bundesregierung	3799384	{q:'SilberhornMdB,Mi_Muentefering,RitaHaglKehl,SvenjaSchulze68,LambrechtMdB,katarinabarley,StSLindner,AdlerGunther,Thomas_Bareiss,AnjaKarliczek,AnetteKramme,MiRo_SPD,JochenFlasbarth,guenterkrings,MJaegerT,W_Schmidt_,peteraltmaier,LangeMdB,jensspahn,RegSprecher,DoroBaer,fuchtel,zierke,thomasgebhart,rischwasu,AndiScheuer,NielsAnnen,KerstinGriese,OlafScholz,ChristianHirte,meister_schafft,JuliaKloeckner,HeikoMaas,SteffenBilger,petertauber,FlorianPronold,HBraun,BoehningB,wanderwitz,hubertus_heil'.toWildFromTo()}
+bundesverdienstkreuz	48604	{q:'bundesverdienstkreuz'}
+bunkertrump	3372704	{q:'AmericaOrTrump,bunkerboy,cowardinchief,bunkertrump,bunkerdon,voteouthate,bunkerbabytrump,bunker'.toOR()}
+canceldisneyplus	34556	{q:'canceldisneyplus'.expand()}
+capitol	11562224	{q:'25amendmentnow,25thamendment,25thamendmentimmediately,25thamendmentnow,26thjanwithfarmers,amendment25,arrestdonaldtrump,arrestthemallnow,arresttrump,arresttrumpnow,capitalhill,#capitol,capitolbreach,capitolbreached,capitolbuilding,capitolhill,capitollockdown,capitolpolice,capitolriots,civilwar2021,#coup,coupattempt,dcprotests,dcriots,demvoice1,domesticterrorism,domesticterrorists,donaldtrump,#impeach,impeachment,impeachtrump,impeachtrumpagainnow,impeachtrumpnow,impeachtrumptonight,inaugurationday2021,invokethe25th,january6th,lockhimup,lockhimupnow,locktrumpup,magaiscancelled,magaterrorists,magathugs,removetrumpnow,resignnowtrump,riots2021,terroristtrump,traitortrump,trumpcoupattempt,trumpisanationalsecuritythreat,trumpresignnow,trumpthugs,twentyfifthamendmentnow,uscapitol,uscoupattempt,washingtondcprotest'.expand()}
+carrefour1	7044092	{q:'vidasnegrasimportam,carrefourassassino,blacklivesmatter,justicaporbeto,carrefour,carrefourracista,vidaspretasimportam,falasnegras,diadaconsciencianegra,consciencianegra,fogonosracistas,novembronegro,justiçaporbeto,memóriatemcor,boicotenacionalaocarrefour,racismo,diadaconsciêncianegra,justicaparabeto,boicotecarrefour,vidasnegras,historiasnegrasimportam'.expand()}
+ccc	284808	{q:'rc3,36c3,37c3,38c3,39c3,40c3,41c3,42c3,43c3,44c3,45c3,46c3,47c3,48c3,49c3,50c3'.expand()}
+cdu	732856	
+cdu2	2152556	{q:'cdu,@cdu'.expand()}
+chemnitz	379200	
+chemnitz2	7072	
+chemnitz3	87928	
+chemnitz4	6768	
+christchurch	3364240	{q:'christchurch,#christchurch,#eggboy,#fraseranning,#hellobrother,#neuseeland,#newzealand,#newzealandshooting,#newzealandterroristattack,حادث_نيوزيلندا_الارهابي'.toOR()}
+climate	25727424	{q:'climate'}
+climate_fightfor1point5	314212	{q:'fightfor1point5,facetheclimateemergency,makeparisreal,parisagreement,parisgoesbrussels,togetherforourplanet'.expand()}
+climatestrike	10270844	{q:'#20eylüli̇klimgrevi,#actonclimate,#allefuersklima,#allefürsklima,#cambioclimatico,#cambioclimático,#climateactionnow,#climatechange,#climatecrisis,#climateemergency,#climatejustice,#climatejusticenow,#climatemarch,#climatemarchpakistan,#climatestrike,#climatestrikeke,#climatestrikes,#climatestrikethailand,#crisisclimatica,#extinctionrebellion,#fridayforfuture,#fridays4future,#fridaysforfurture,#fridaysforfuture,#fridaysforfutures,#globalclimatestrike,#globalclimatestrikes,#greennewdeal,#greveglobalpeloclima,#grevepourleclimat,#huelgamundialporelclima,#islamabadclimatemarch,#klimakabinett,#klimatstrejk,#marchepourleclimat,#schoolstrike4climate,#scientists4future,#scientistsforfuture,#strajkklimatyczny,#strike4climate,#viernesporelfuturo,#youthclimatestrike,#youthstrike4climate,#グローバル気候マーチ,from:gretathunberg,to:gretathunberg'.toOR()}
+climatestrike2	2367832	
+corbynwasright	67012	{q:'corbynwasright'}
+coronar_allesoeffnen	19780	{q:'allesoeffnen,allesöffnen'.toOR()}
+coronarvirus	14353080	
+coronarvirus10	56744768	{q:'vaccine,vaccination'.toOR()}
+coronarvirus2	3110656	
+coronarvirus3	8844236	
+coronarvirus4	96356364	
+coronarvirus5	21728	
+coronarvirus6	1285977392	{q:'coronadeutschland,#coronadeutschland,coronapanik,#coronapanik,#corona,corona,covidiot,#covidiot,#coronaoutbreak,#coronarvirus,#coronavirus,#coronavirusde,#coronavirusoutbreak,#covid,#covid19,#covid2019,#covid_19,#covidー19,#wuhan,#wuhancoronavirus,#wuhancoronovirus,#wuhanvirus,#โควิด19,coronarvirus,coronavirus,coronavirusde,coronavírus,covid,covid-19,covid19,covid2019,covid_19,covidー19,epidemic,pandemic,quarantine,quarantined,wuhan,xj621,โควิด19'.toOR(), splitTime:6}
+coronarvirus7	845508	{q:'mutation'.toOR()}
+coronarvirus8	286936	{q:'zerocovid'.toOR()}
+coronarvirus9	9876	{q:'machtbueroszu,machtbüroszu,machtdiebueroszu,machtdiebüroszu,bueroszu,büroszu,diebueroszu,diebüroszu'.toOR()}
+covidatwork	4284	{q:'covidatwork'.expand()}
+crybabytrump	36768	{q:'crybabytrump'.expand()}
+csu	407244	
+csu2	1071980	{q:'csu,@csu'.expand()}
+csuliefert	864	
+cuentalo	418684	
+dammbruch	16480	{q:'dammbruch'.expand()}
+dankepolizei	8512	{q:'dankepolizei'.expand()}
+deutsche_mep	582160	
+dictaturesanitaire	120788	{q:'dictaturesanitaire'.expand()}
+dieletzteinstanz	2612	{q:'dieletzteinstanz,gottschalk,janine kunze,tom buhrow,jürgen milski'.expand()}
+donaldjtrump	36536	{q:'url:donaldjtrump.com'.expand()}
+donalphonso	114000	{q:'@_donalphonso'.expand()}
+dsgvo	7503564	{q:'#dsgvo,#dgsvo,#dataprotection,#cybersecurity,#gdpr,#datenschutz'.expand()}
+dunjahayali	105084	
+dunjahayali2	37476	{q:'@dunjahayali'.expand()}
+efail	14932	
+elysee	1365272	{q:'@elysee'.expand()}
+emmanuelmacron	4794048	
+emmanuelmacron2	1296952	{q:'@emmanuelmacron'.expand()}
+emojitetra	29416	
+emojitetra2	7760	{q:'@emojitetra'.expand()}
+epstein	9693860	{q:'clintonbodycount,clintoncrimefamily,clintonsbodycount,epstein,epsteinblackbook,epsteincoverup,epsteingate,epsteinmurder,epsteinsuicide,epsteinsuicidecoverup,epsteinsuicided,epsteinunsealed,epstien,jefferyepstein,jeffreyepstein,trumpbodycount'.toOR()}
+esc2018	1483684	
+eurovision	4146432	{q:'eurovision,eurovision2021,eurovisiesongfestival,esf21,esc21,dddesc'.expand()}
+euwahl1	116764168	{q:'#election,#ep,#euro,ek2019,elections2019,ep2019,eu2019,euelections,euelections2019,europa,europaparlament,europawahl,europawahl19,europawahl2019,europe,european,europeanparliament,europeennes2019,européennes,européennes2019,euw19,euwahl,futureofeurope,ps2019'.toOR()}
+fakenewssource1	3888	
+fakenewssource2	4324	{q:'url:berliner-express.com OR url:truth24.net'}
+fakenewssource3	10811064	{q:'16wmpo.com,100percentfedup.com,21stcenturywire.com,24newsflash.com,24wpn.com,247newsmedia.com,24online.news,24x365live.com,365usanews.com,4threvolutionarywar.wordpress.com,70news.wordpress.com,82.221.129.208,abcnewsgo.co,americanoverlook.com,ancient-code.com,anonjekloy.tk,americanpatriotdaily.com,aheadoftheherd.com,aanirfan.blogspot.co.uk,alternativemediasyndicate.com,americantoday.news,actualidadpanamericana.com,alt-market.com,aryannationswordwide1488.org,americablog.com,awazetribune.com,amposts.com,asamericanasapplepie.org,anonhq.com,amren.com,americasfreedomfighters.com,americanpoliticnews.co,associatedmediacoverage.com,armyusanews.com,americanflavor.news,americantoday.us,adobochronicles.com,anonews.co,americanpeoplenetwork.com,aceflashman.wordpress.com,awm.com,amtvmedia.com,antiwar.com,ammoland.com,activistpost.com,ahtribune.com,anonnews.co,automaticearth.com,asia-pacificresearch.com,acting-man.com,awdnews.com,abeldanger.net,anews24.org,americanborderpatrol.com,aurora-news.us,allnewspipeline.com,actforamerica.org,americanfreepress.net,abcnews.com.co,americannews.com,americanthinker.com,antoniusaquinas.wp.com,anotherdayintheempire.com,americankabuki.blogspot.com,a-news24.com,alabamaobserver.com,americanpresident.co,abriluno.com,abovetopsecret.com,adflegal.org,antinews.com,assassinationscience.com,americanreviewer.com,awarenessact.com,angrypatriotmovement.com,americanlookout.com,bvanews.com,bigbluevision.com,bloomberg.ma,bostonleader.com,bluevisionpost.com,breakingtop.world,bignuggetnews.com,blackinusrancenews.com,burrardstreetjournal.com,benjaminfulford.typepad.com,blackgenocide.org,blackagendareport.com,bigbluedimension.com,buzzfeedusa.com,bluevision.news,breakingnewsblast.com,bighairynews.com,bigamericannews.com,boilingfrogspost.com,brotherjohnf.com,breaking-cnn.com,breakpoint.org,bb4sp.com,breakingnews247.net,bizstandardnews.com,bostontribune.com,blog.veterantv.net,bullionbullscanada.com,beforeitsnews.com,barenakedislam.com,betootaadvocate.com,beehivebugle.com,borowitzreport.com,bients.com,breakingnews365.net,barnesreview.org,babylonbee.com,collectivelyconscious.net,canadafreepress.com,countdowntozerotime.com,conservativepaper.com,clashdaily.com,coed.com,cnnews3.com,celebtricity.com,centerforsecuritypolicy.org,conservativefrontline.com,cnsnews.com,counterpsyops.com,christianfightback.com,conservativerefocus.com,charismanews.com,conservativepapers.com,channel-7-news.com,cnnnext.com,conservativefighters.com,channel18news.com,cnn-trending.com,coffeebreakforyou.com,chronicle.su,crystalair.com,creambmp.com,callthecops.net,conspiracyplanet.com,cryptogon.com,conservativespirit.com,christwire.org,conservativefiringline.com,conservativestate.com,cbsnews.com.co,consciouslifenews.com,christiantimesnewspaper.com,clickhole.com,collective-evolution.com,cowgernation.com,cnn-business-news.ga,chaser.com.au,cnewsgo.com,conservativeoutfitters.com,cityworldnews.com,channel24news.com,cannasos.com,concisepolitics.com,conservapedia.com,conservativehq.com,conservativeinfocorner.com,conservativedailypost.com,christiantoday.info,citizensunited.org,creativitymovement.net,counterjihad.com,conservativebyte.com,checkoutthehealthyworld.com,conservative101.com,conservativetribune.com,countercurrentnews.com,coasttocoastam.com,conservativearmy88.com,civictribune.com,conservativeinfidel.com,conservativeflashnews.com,conspiracywire.com,cap-news.com,countynewsroom.info,corbettreport.com,conservativeview.info,dailyheadlines.net,dailynewsposts.info,dailysnark.com,davidduke.com,dcgazette.com,dutchsinse.com,diversitychronicle.wordpress.com,dataasylum.com,duffelblog.com,davidwolfe.com,dailysurge.com,derfmagazine.com,drrichswier.com,dandygoat.com,dailypoliticsusa.com,disclose.tv,dailycurrant.com,dailyusaupdate.com,dailyinfobox.com,democraticunderground.com,dailyfeed.news,dailynews5.com,donaldtrumppotus45.com,debunkingskeptics.com,dailythings.world,damnleaks.com,dailytelegraph.com.au,dailynews10.com,dailydiscord.com,dailysignal.com,democraticmoms.com,defenseusa.club,duffleblog.com,darkpolitricks.com,drudgereport.com.co,deadlyclear.wordpress.com,dailyheadlines.com,dineal.com,dailybuzzlive.com,ddemocraticunderground.com,denverinquirer.com,dont-tread-on.me,defenddemocracy.press,dcleaks.com,diyhours.net,der-postillon.com,dollarvigilante.com,dailynewsbin.com,dailysidnews.com,davejanda.com,downtrend.com,dailywire.com,dailystormer.com,donaldtrumpnews.co,departed.co,darkmoon.me,disclosuremedia.net,dailyoccupation.com,dailyleak.org,departedme.com,departedmedia.com,dailysquib.co.uk,denverguardian.com,dcclothesline.com,duhprogressive.com,dailyken.com,elelephantintheroom.blogspot.com,eyeopening.info,enabon.com,empiresports.co,endoftheamericandream.com,elmundotoday.com,empireherald.com,enhlive.com,enduringvision.com,electionnightgatekeepers.com,elkoshary.com,extraclubmagazine.com,expose1933.com,eutopia.buzz,express.co.uk,empirenews.net,expositiondaily.com,experimentalvaccines.org,embols.com,ewao.com,eutimes.net,ebolahoax.com,eaglerising.com,empirehearland.com,endtime.com,en-vovle.com,endingthefed.com,educate-yourself.org,en-volve.com,freedomsphoenix.com,fprnradio.com,foodbabe.com,flashnewscorner.com,freewoodpost.com,freepatriot.org,fedsalert.com,fridaymash.com,frontpagemag.com,fmobserver.com,freshdailyreport.com,firearmscoalition.org,fromthetrenchesworldreport.com,freedomoutpost.com,focusnews.info,farmwars.info,financialsurvivalnetwork.com,freedomforceinternational.com,federalisttribune.com,familysecuritymatters.org,floridasunpost.com,freedomjunkshun.com,fellowshipoftheminds.com,freedomsfinalstand.com,freedomcrossroads.us,fakingnews.com,forfreedomworld.com,fognews.ru,freedomworldnews.com,freakoutnation.com,fourwinds10.net,freebeacon.com,federalistpress.com,freeinfomedia.com,fox-news24.com,freedomdaily.com,greanvillepost.com,godlikeproductions.com,globalassociatednews.com,gummypost.com,greenmedinfo.com,goneleft.com,guerilla.news,galacticconnection.com,globalresearch.ca,gomerblog.com,globalrevolutionnetwork.com,geoengineeringwatch.org,gatesofvienna.net,givemeliberity01.com,glaringhypocrisy.com,govtslaves.info,globalpoliticsnow.com,gulagbound.com,guccifer2.wordpress.com,glossynews.com,gangstergovernment.com,gopthedailydose.com,gaia.com,givemeliberty01.com,healthycareandbeauty.com,hangthebankers.com,henrymakow.com,humortimes.com,holyobserver.com,heartland.org,horowitzfreedomcenter.org,humansarefree.com,houstonchronicle-tv.com,heresyblog.net,halfwaypost.com,healthy-holistic-living.com,huzlers.com,healthimpactnews.com,healthnutnews.com,healthyworldhouse.com,infowars.com,interestingthingsdaily.com,ifyouonlynews.com,isthatlegit.com,investmentwatchblog.com,intrendtoday.com,interestingdailynews.com,instaworldnews.com,informetoday.com,itaglive.com,in5d.com,intrepidreport.com,ilovemyfreedom.org,illuminati-news.com,iwanttoexplore.com,infiniteunknown.net,ironictimes.com,ihr.org,itccs.org,ihavethetruth.com,islamicanews.com,intellihub.com,informationclearinghouse.info,immediatesafety.org,itmakessenseblog.com,icr.org,investmentresearchdynamics.com,infostormer.com,johnnyrobish.com,jonesreport.com,jihadwatch.org,jamesrgrangerjr.com,jesus-is-savior.com,journal-neo.org,jewsnews.co.il,katehon.com,konkonsagh.biz,knowledgeoftoday.org,ky12news.com,kf13.com,kty24news.com,kmt11.com,krb7.com,kcst7.com,krbcnews.com,kbc14.com,libertyfederation.com,linkbeef.com,liberalbias.com,libertyvideos.org,landoverbaptist.org,libertytalk.fm,learnprogress.org,liberalplug.com,lifeprevention.com,liberaldarkness.com,loanpride.com,libertyalliance.com,lifeandabout.com,libertyblitzkrieg.com,lifenews.com,ladylibertysnews.com,local31news.com,libertynews.com,lushforlife.com,lastdeplorables.com,libertymovementradio.com,ladylibertynews.com,liberty-courier.com,liberalsociety.com,lewrockwell.com,libertywriters.com,libertyunyielding.com,liveactionnews.org,mzansiville.co.za,militianews.com,morningledger.com,msnbc.website,metropolitanworlds.com,madworldnews.com,mad-yet.blogspot.com,mpidailymagazine.com,megynkelly.us,moonofalabama.org,megafreshnews.com,makeamericagreattoday.com,majorthoughts.com,mediazone.news,magafeed.com,mentor2day.com,mississippiherald.com,myfreshnews.com,mrconservative.com,meanlefthook.com,morningnewsusa.com,mediafetcher.com,mediamass.net,madpatriots.com,molonlabemedia.com,maganews.co,myzonetoday.com,nationindistress.weebly.com,newzmagazine.com,newsbbc.net,nnn.is,newsformetoday.com,news-hound.org,nutritionalanarchy.com,nahadaily.com,nephef.com,nbc.com.co,newstoad.net,neonnettle.com,nationalreport.net,nomorefakenews.com,newsmax.com,nasamoonhoax.com,newsfeedhunter.com,nydailynews-tv.com,ncscooper.com,newsjustforyou1.blogspot.com,newsbiscuit.com,newsexaminer.net,newsmutiny.com,news4ktla.com,newspunch.com,newsbreakshere.com,newsbreakingspipe.com,newcenturytimes.com,newstarget.com,newsbreakers.org,newsdaily12.com,newsfrompolitics.com,newpoliticstoday.com,newsleak.co,newsbysquad.com,nunadisbereel.com,newsuptoday.com,notallowedto.com,naturalblaze.com,nationalinsiderpolitics.com,now8news.com,nnettle.com,northcrane.com,newsphd.com,newslo.com,npiamerica.org,nbcnews.com.co,newslogue.com,naturalnewsblogs.com,nevo.news,newsninja2012.com,nodisinfo.com,newsoftrump.com,nationalvanguard.org,newsbreakhere.com,nowtheendbegins.com,newyorker.com,newswithviews.com,newswatch28.com,nationonenews.com,newsbuzzdaily.com,newsmagazine.com,nationalufocenter.com,newsthump.com,newswire-24.com,naturalnews.com,nativestuff.us,newsconservative.com,newswatch33.com,oilgeopolitics.net,onlineconservativepress.com,openmindmagazine.com,ourlandofthefree.com,oathkeepers.org,orientalreview.org,onepoliticalplaza.com,offgridsurvival.com,opindia.com,oftwominds.com,off-guardian.org,observeronline.news,occupyliberals.com,openmagazines.com,objectiveministries.org,politicalsitenews.com,prisonplanet.tv,presstv.ir,patriotcrier.com,proudcons.com,patriotnewsdaily.com,patriotpost.us,politicsusanews.com,politicass.com,politicalblindspot.com,prntly.com,politicspaper.com,patriotchronicle.com,proudleader.com,politicalmayhem.news,pakalertpress.com,platosguns.com,politicops.com,puppetstringnews.com,pravda.ru,politicalears.com,patdollar.com,presstv.com,pamelageller.com,politicono.com,proamericanews.com,president45donaldtrump.com,politicot.com,progressivestoday.com,prepperwebsite.com,politicalcult.com,persecutes.com,projectveritas.com,patriotusa.website,patriotrising.com,pollhype.com,patriotupdate.com,politicalupdator.com,prisonplanet.com,politicalo.com,powerpoliticians.com,paulcraigroberts.org,palmerreport.com,pravdareport.com,politicsintheusa.com,qpolitical.com,revolutions2040.com,rickwells.us,rumorjournal.com,religionmind.com,rawforbeauty.com,redinfo.us,rhotv.com,rockcitytimes.com,realtruenews.com,redpolitics.us,rearfront.com,redcountry.us,realplanetnews.com,readconservatives.news,reagancoalition.com,reductress.com,rense.com,redflagnews.com,rogue-nation3.com,regated.com,redrocktribune.com,rightwingnews.com,redstatewatcher.com,rilenews.com,responsibletechnology.org,realnewsrightnow.com,russia-insider.com,returnofkings.com,religionlo.com,realtimepolitics.com,realfarmacy.com,rightalert.com,rumormillnews.com,react365.com,stneotscitizen.com,sputniknews.com,speld.nl,silverstealers.net,stuppid.com,silverbearcafe.com,silverdoctors.com,shareblue.com,sheepkillers.com,southernconservativeextra.com,sonsoflibertyradio.com,subjectpolitics.com,snoopack.com,superstation95.com,sjlendman.blogspot.com,success-street.com,supremepatriot.com,sportspickle.com,shoebat.com,sensationalisttimes.com,stormcloudsgathering.com,stgeorgegazette.com,sovereignman.com,sentinelblog.com,skeptiko.com,smag31.com,spinzon.com,states-tv.com,socialeverythings.com,satirewire.com,secretsofthefed.com,satiratribune.com,scrappleface.com,silver-coin-investor. com,surrealscoop.com,theexaminer.site,thetruthseeker.co.uk,therealshtick.com,teaparty.org,truthrevolt.org,therightists.com,themindunleashed.org,theextinctionprotocol.com,thegoldandoilguy.com,thewatchtowers.com,thelibertymill.com,thevalleyreport.com,tdtalliance.com,theusaconservative.com,themindunleashed.com,thetimesoftheworld.com,thehardtimes.net,thefreethoughtproject.com,the-insider.co,therightscoop.com,threepercenternation.com,thepremiumnews.com,theusa-news.com,theracketreport.com,thedailysheeple.com,truthfeed.com,thepeoplescube.com,thespoof.com,thepoke.co.uk,thepredicted.com,thebigriddle.com,themiamigazette.com,theamericanindependent.wordpress.com,the-postillon.com,thedailywtf.com,theinternetpost.net,thenewamerican.com,thetruthdivision.com,thenewyorkevening.com,trueamericans.me,truetrumpers.com,theduran.com,theshovel.com.au,theeventchronicle.com,therightstuff.biz,themoralofthestory.us,thetruthaboutcancer.com,the-global-news.com,thegatewaypundit.com,theineptowl.com,thenet24h.com,thewashingtonpress.com,times.com.mx,theskunk.org,themuslimissue.wordpress.com,thefederalistpapers.org,thelastgreatstand.com,thetrumpmedia.com,thereporterz.com,tmzworldnews.com,trumpvision365.com,theonion.com,therealstrategy.com,thenewsnerd.com,thebeaverton.com,theunrealtimes.com,truepundit.com,thebostontribune.com,thatviralfeed.net,teoinfo.com,thecommonsenseshow.com,thelibertybeacon.com,theeconomiccollapseblog.com,thestatelyharold.com,truthandaction.org,thefreepatriot.org,thecontroversialfiles.net,thenewsdoctors.com,theinformedamerican.net,theantimedia.org,thetruthwins.com,truthkings.com,theworldupdate.com,thelastlineofdefense.org,thephaser.com,truthbroadcastnetwork.com,truthfrequencyradio.com,topekasnews.com,theseattletribune.com,themideastbeast.com,thedailymash.co.uk,thirdestatenewsgroup.com,theforbiddenknowledge.com,theuspatriot.com,thepoliticalinsider.com,themadisonmisnomer.com,unz.com,usatoday.com.co,usanewsinsider.com,us.blastingnews.com,usaconservativereport.com,uconservative.net,unconfirmedsources.com,uspostman.com,usaonlinepolitics.com,usamagazinestudio.com,usanews4u.us,usasnich.com,universepolitics.com,usa2016elections.com,usainfobox.com,usatwentyfour.com,usanewsflash.com,usanewspolitics.com,uschronicle.com,usapoliticszone.com,usconservativetoday.com,ushealthylife.com,usaworldbox.com,usadailypost.us,usadailytime.com,usfanzone.com,unitedmediapublishing.com,usa-television.com,uspoliticslive.com,usatodaynews.me,usadailypolitics.com,usadailyinfo.com,usanewshome.com,usherald.com,usapolitics24hrs.com,uspoln.com,uspoliticsinfo.com,undergroundworldnews.com,usdefensewatch.com,usadailythings24.com,usasupreme.com,usaphase.com,usapoliticstoday.com,usa-radio.com,ustruthwire.com,usa360-tv.com,usafirstinformation.com,ushealthyadvisor.com,usawatchdog.com,usapoliticsnow.com,unclesamsmisguidedchildren.com,usadosenews.com,usinfonews.com,undergroundnewsreport.com,usanewstoday.com,ufoholic.com,usahitman.com,usviewer.com,voxtribune.com,viralliberty.com,vdare.com,veteranstoday.com,vigilantcitizen.com,veteransnewsnow.com,veteransfordonaldtrump.com,viralactions.com,weaselzippers.us,washingtonpost.com.co,whydontyoutrythis.com,westernjournalism.com,wearechange.org,wallstreetonparade.com,weshapelife.org,worldrumor.com,wy21news.com,wikileaks.com,worldnewspolitics.com,whatdoesitmean.com,washingtonsblog.com,weekendpoliticalnews.com,worldstoriestoday.com,wolfstreet.com,werk35.com,wundergroundmusic.com,williambanzai7.blogspot.com,wazanews.tk,wetheproudpatriots.com,wakingupwisconsin.com,winkprogress.com,worldtruth.tv,washingtonevening.com,whowhatwhy.com,worldnewsdailyreport.com,wonkie.com,whitepower.com,washingtonfed.com,washingtonfeed.com,wakingtimes.com,world.politics.com,waterfordwhispersnews.com,weconservative.com,winningdemocrats.com,wikileaks.org,witscience.org,weeklyworldnews.com,whatreallyhappened.com,wikispooks.com,worldpoliticsnow.com,worldnewscircle.com,webdaily.com,willyloman.wordpress.com,wrpm33.com,wakeupthesheep.com,wtoe5news.com,worldwidehealthy.com,wnd.com,westfieldpost.com,whowhatwhy.org,worldpoliticsus.com,x22report.com,youngcons.com,yourfunpage.com,yesimright.com,yournewswire.com,zerohedge.com,zootfeed.com,κβοι2.com,квоі2.com'.urlList()}
+floridashooting	4906900	{q:'emmagonzalez OR floridahighschool OR floridaschoolshooting OR floridashooter OR floridashooting OR floridastrong OR guncontrol OR guncontrolnow OR gunlawsnow OR gunreformnow OR gunsafety OR gunsense OR gunshooting OR highschoolshooter OR march4ourlives OR marchforourlives OR massshooting OR massshootings OR neveragain OR nrabloodmoney OR parklandschoolshooting OR parklandshooting OR righttobeararms OR schoolshooting'}
+floridashooting2	8693556	{q:'neveragain OR gunreformnow OR guncontrolnow OR guncontrol OR marchforourlives OR parkland OR parklandschoolshooting OR floridaschoolshooting OR parklandshooting OR #nra OR floridashooting OR nrabloodmoney OR banassaultweapons OR gunsense OR emmagonzalez OR schoolshooting OR parklandstudents OR parklandstudentsspeak OR gunviolence OR floridashooter OR wecallbs OR studentsstandup OR parklandstrong'}
+framingmanual	3784	
+fridaysforfuture2	9103352	{q:'fridaysforfuture,climatestrike,climatechange,climateaction,from:gretathunberg,to:gretathunberg,gretathunberg,klimastreik'.toOR()}
+gauland	168236	{q:'#gauland,#gaulandpause'.expand()}
+gelbwesten	44200	
+gendern	220264	{q:'gendern'}
+georgefloyd	3476060	
+georgefloyd2	1238880	
+georgefloyd3	3077176	
+georgefloyd4	441180	
+georgefloyd5	79348636	{q:'bluelivesmatter,bluelivesmatters,kpop,kpopdoesnotunderstandungaunga,kpopstans,opfancam,whitelivesmatter,whitelivesmatters,whitelivesmattertoo,whiteoutday,whiteouttuesday,whiteoutwednesday,black_lives_matter,blackhistorymonth,blacklivemattters,blacklivesmattter,blackoutday2020,blackouttuesday,dictatortrump,georgeflyod,trumpdictatorship,washingtondcprotest,whyididntreport,BLACK_LIVES_MATTERS,vidasnegrasimportam,protests2020,justiceforgeorgefloyd,georgefloyd,minneapolisriot,derekchauvin,georgefloydprotest,minneapolisprotests,chauvin,icantbreathe,justiceforgeorge,georgefloydmurder,justiceforfloyd,georgefloydwasmurdered,"george floyd"'.toOR(), splitTime:6}
+georgefloyd6	816758728	{q:'dcblackout,acab,adamatraore,alllivesmatters,americacontrump,antifaterrorists,backtheblue,black_live_matter,blacklivesmatteruk,blacklivesmattteruk,blackoutday,blackoutday2020,blackoutuesday,blacktranslivesmatter,blakelivesmatter,blm,blmprotest,blueline,breaking,breonnataylor,buildthewall,daviddorn,daviddornslifemattered,dcprotests,defundthepolice,desireebarnes,donaldtrump,fachaqueveofachaquefancameo,floyd,georgefloydprotests,giannafloyd,goergefloyd,haveafuckingplan,houstonprotest,icantbreath,iyannadior,junkterrorbillnow,justiceforahmaud,justiceforbreonnataylor,justicefordaviddorn,justicefordjevolve,justiceforgeorgesfloyd,justicepouradama,kag,kag2020,lashondaanderson,maga,maga2020,marktuan,minneapolis,nojusticenopeace,nyccurfew,nycprotests,palgharsadhulynching,paris,peacefulprotest,pmqs,policebrutality,policier,portlandprotest,protest,protest2020,protesters,racism,riots,riots2020,ripgeorgefloyd,sayhisname,saynotorapist,saytheirnames,seattleprotest,simply_kpop,stopracism,taketheknee,theshowmustbepaused,trump,trump2020,trumphasnoplan,trumpincitesviolence,trumpout2020,trumpresignnow,usaonfire,violencespolicieres,whitehouse,whitelivesmattter,whiteoutwednsday,womenfortrump'.toOR(), splitTime:6}
+georgefloyd7	29327472	{q:'FoxNewsisRacist,foxnews,BlackLivesMattters,cnnsesamestreet,sayhername,birthdayforbreonna,justiceforbreonna,justiceforblacklives,TrayvonMartin,AhmaudArbery,TamirRice,OscarGrant,EricGarner,PhilandoCastile,SamuelDubose,SandraBland,WalterScott,TerrenceCrutcher,RegisKorchinskiPaquet,TonyMcDade,QuaniceHayes,"Trayvon Martin","Breonna Taylor","Ahmaud Arbery","Tamir Rice","Oscar Grant","Eric Garner","Philando Castile","Samuel Dubose","Sandra Bland","Walter Scott","Terrence Crutcher","Regis Korchinski-Paquet","Tony McDade","Quanice Hayes",Normandy,DDay,DDay76'.toOR(), splitTime:4}
+georgefloyd8	754304	{q:'calminkirkland,opfancam,alllivesmatter,thinblueline,womenfortrump,noracism'.expand()}
+germandream	2308	
+gfd_grundgesetz_list_alles-auf-einen-blick	15484	tweets of the of all account the named twitter list
+gfd_grundgesetz_list_bundestagsmitglieder	5488	tweets of the of all account the named twitter list
+gfd_grundgesetz_list_bundesvorstand	4188	tweets of the of all account the named twitter list
+gfd_grundgesetz_list_junge-alternative	252	tweets of the of all account the named twitter list
+gfd_grundgesetz_list_landessprecher-vors	2276	tweets of the of all account the named twitter list
+gfd_grundgesetz_list_landesverb-nde	672	tweets of the of all account the named twitter list
+gfd_grundgesetz_list_landtagsabgeordnete	5012	tweets of the of all account the named twitter list
+gfd_grundgesetz_list_landtagsfraktionen	540	tweets of the of all account the named twitter list
+gfd_grundgesetz_list_ltw-kandidaten-th-ringen	756	tweets of the of all account the named twitter list
+gfd_grundgesetz_list_lv-baden-w-rttemberg	3940	tweets of the of all account the named twitter list
+gfd_grundgesetz_list_lv-bayern	1596	tweets of the of all account the named twitter list
+gfd_grundgesetz_list_lv-berlin	3248	tweets of the of all account the named twitter list
+gfd_grundgesetz_list_lv-brandenburg	292	tweets of the of all account the named twitter list
+gfd_grundgesetz_list_lv-bremen	44	tweets of the of all account the named twitter list
+gfd_grundgesetz_list_lv-hamburg	560	tweets of the of all account the named twitter list
+gfd_grundgesetz_list_lv-hessen	868	tweets of the of all account the named twitter list
+gfd_grundgesetz_list_lv-mecklenburg-vorpommern	688	tweets of the of all account the named twitter list
+gfd_grundgesetz_list_lv-niedersachsen	1580	tweets of the of all account the named twitter list
+gfd_grundgesetz_list_lv-nordrhein-westfalen	1956	tweets of the of all account the named twitter list
+gfd_grundgesetz_list_lv-rheinland-pfalz	820	tweets of the of all account the named twitter list
+gfd_grundgesetz_list_lv-saarland	108	tweets of the of all account the named twitter list
+gfd_grundgesetz_list_lv-sachsen	1096	tweets of the of all account the named twitter list
+gfd_grundgesetz_list_lv-sachsen-anhalt	676	tweets of the of all account the named twitter list
+gfd_grundgesetz_list_lv-schleswig-holstein	244	tweets of the of all account the named twitter list
+gfd_grundgesetz_list_lv-th-ringen	2408	tweets of the of all account the named twitter list
+gfd_grundgesetz_list_unterst-tzer	1708	tweets of the of all account the named twitter list
+github_microsoft	65304	
+giuliani	2126368	{q:'giuliani'}
+goldtogreen__list2_blackasiansolidarity	197916	
+gretathunberg	2186604	
+gretathunberg2	856316	{q:'greta thunberg,gretathunberg,@gretathunberg'.expand()}
+groko	295168	{q:'#groko'.expand()}
+grossstaedte	42332644	{q:'berlin,hamburg,münchen,köln,frankfurt,stuttgart,düsseldorf,dortmund,essen,leipzig,bremen,dresden,hannover,nürnberg,duisburg,bochum,wuppertal,bielefeld,bonn,münster'.toOR()}
+gun_control	1050088	{q:'"gun control"'}
+habeck	325132	
+hakenkreuz	69408	{q:'hakenkreuz'}
+halle	5590476	{q:'halle,#halle0910,antisemitismus,#hal0910,#haltdiefresse,#yomkippur,einzeltäter,#natsanalyse,#christchurch,#merkel,rassismus,rechterterror,#halleshooting,#wirstehenzusammen,alarmzeichen,#yomkippour,rechtsterrorismus,#jomkippur,synagoge,synagogue,rechtsextremismus,antisemitisch,terroranschlag'.toOR()}
+haltdiefressebild	74492	{q:'haltdiefressebild'}
+haltdiefressejasmina	4340	{q:'haltdiefressejasmina'.expand()}
+hambacherforst	1404612	{q:'aktionunterholz,braunkohle,braunkohleabbau,endcoal,endegelaende,hambach,hambacherforst,hambacherforstbleibt,hambacherwald,hambi,hambi_bleibt,hambibleibt,hambibleibtaktion,kohle,kohleausstieg,kohlekommission,rwe'.toOR()}
+hanau	579500	{q:'hanau,rechterterror,hanaushooting,rechtsterrorismus,hanauattack,rechtsextremismus'.toOR()}
+heimat	593520	{q:'heimat'}
+heimathorst	13292	
+heinsberg	221872	{q:'heinsberg,heinsbergstudie,heinsbergprotokoll,streeck,@hendrikstreeck,heinsberg-studie,storymachine,@hbergprotokoll,@mmronz'.expand()}
+hgmaassen	99848	
+homeoffice	369204	{q:'homeoffice'}
+hongkong	6560868	{q:'#HongKong,#HongKongProtests,#StandwithHK,#antiELAB,#HongKongPolice,#StandWithHongKong,#FreeHongKong,#HongKongProtest,#hkpolice,#chinazi,#HongKongProtester,#香港,#LIHKG,#policebrutality,#HKPoliceTerrorism,#hkpolicebrutality,#hongkongpolicebrutality,#PoliceTerrorism,#HongKongPoliceTerrorism,#antiELABhk,#Shout4HK,#StandwithHonKong,#HongKongProtesters,#HongKongHumanRightsAndDemocracyAct,#Eye4HK,#HKprotests,#FightForFreedom,#HK,#HongKongers,#antichinazi,#hkprotest,#香港デモ,#PoliceBrutalitiy,#FreedomHK'.toOR()}
+hugoboss	42632	
+iibigin_com	252	
+impfen1	4836516	{q:'impfaktion,impfbereitschaft,impfdosen,impfen,impfertminvergabe,impfgegner,impfkampagne,impfmotivation,impfpflicht,impfquote,impfschutz,impfskepsis,impfskeptischen,impfskeptisch,impfskeptische,impfstart,impfstoff,impfstoffe,impfstoffen,impfstoffs,impft,impften,impftermin,impfterminvergabe,impfung,impfungen,impfzentren,impfzentrum,impfzwang'.expand()}
+impfen2	7408	{q:'ichbereuedieimpfung'}
+inauguration2021	102182884	{q:'@joebiden,@kamalaharris,biden,bidenharris,bidenharrisinauguration,harris,inaugural,inauguration,inauguration2021,inaugurationday,inaugurationday2021,joebiden,kamala,kamalaharris,presidentbiden,trumpslastday,vicepresidentharris'.expand()}
+infowars	2274860	
+infowars2	1374908	{q:'@infowars,@RealAlexJones'.expand()+' OR "alex jones"'}
+iranprotests	1698652	{q:'تظاهرات_سراسری,IranProtests'.expand()}
+iranprotests2	1797912	{q:'iranprotests,تظاهرات_سراسرى,مظاهرات_ايران,تظاهرات_سراسری,تظاهرات_سراسري'.expand()}
+iranprotests3	2707228	{q:',نه_به_اعدام,stopexecutionsiniran,اعدام_نکنید,notoexecusion,notoexecusioniran,stopexecutionofiranianprotestors,نه_به_اعدام_معترضان,دادگاه_علنی,iranianlivesmatter,بهبهان,اعدام_نكنيد,stopexecutionofiranianprotesters,اعتراضات_سراسری,notoexecutioniniran,stopexecutioniniran,stopexecutionslnlran,اعدامنکنید,آزاد_کنید,بهطالبانباجندهید,noexecutioniniran'.expand()}
+iranprotests4	270932	{q:'@AlinejadMasih,MasihAlinejad,مسیح علی‌نژاد‎,ForcedHijab,حجاب'.expand()}
+iranprotests5	741376	
+israel	21289916	{q:'#israel'.expand()}
+itsa18	1376	
+jensspahn	286064	
+jensspahn2	81984	{q:'@jensspahn'.expand()}
+kippa	36320	{q:'kippa', lang:'de'}
+knobloch	18168	{q:'#knobloch'.expand()}
+koethen	41960	
+ladg	11344	{q:'ladg,landesantidiskriminierungsgesetz'.toOR()}
+lauterbach	1405968	{q:'lauterbach'.expand()}
+lockdownjetzt	33308	{q:'lockdownjetzt'.expand()}
+lufthansa	759872	{q:'lufthansa,lufthansablue,explorethenew'.toOR()}
+luisamneubauer	160772	{q:'@luisamneubauer'.expand()}
+maassen	985396	{q:'maassen,maaßen,verfassungsschutz,verfassungsschutzchef,vs-chef,vs-präsident,verfassung'.toOR()}
+maassen2	21036	
+maassen3	47520	{q:'@HGMaassen'.expand()}
+maennerwelten	847144	{q:'#maennerwelt,#maennerwelten,#männerwelt,#männerwelten,belästigen,belästigt,belästigung,belästigungen,dickpic,dickpics,dunkelziffer,fickbar,frauenhass,grabschen,missbrauch,schwanz,sexualisierte,sexuell,sexueller,vollgewichstes,würgen,übergriff,übergriffe'.expand()}
+mdb_bundestag	2676312	
+mdl_baden_wuerttemberg	96464	
+mdl_bayern	130712	
+mdl_berlin	160668	
+mdl_brandenburg	20972	
+mdl_bremen	11720	
+mdl_hamburg	21788	
+mdl_hessen	43944	
+mdl_mecklenburg_vorpommen	9176	
+mdl_niedersachsen	420196	
+mdl_nrw	130372	
+mdl_rheinland_pfalz	57988	
+mdl_saarland	10448	
+mdl_sachsen	314344	
+mdl_sachsen_anhalt	63564	
+mdl_schleswig_holstein	111316	
+mdl_thueringen	83068	
+mdr_sn	12784	
+media_20min	50144	
+media_bild	350244	
+media_blick_ch	41400	
+media_br24	22976	
+media_derstandard	98040	
+media_dpa	15684	
+media_epochtimes	78180	
+media_faz	90312	
+media_focus	289864	
+media_freitag	35024	
+media_huffingtonpost_de	22644	
+media_junge_freiheit	81716	
+media_jungewelt	22944	
+media_krone_at	74456	
+media_mdraktuell	83528	
+media_neues_deutschland	46144	
+media_ntv	31016	
+media_nzz	138040	
+media_pi_news	740	
+media_rbb	42388	
+media_rt_deutsch	57416	
+media_spiegel	613704	
+media_stern	97176	
+media_sueddeutsche	343228	
+media_swraktuell	4868	
+media_t_online	6240	
+media_tagesschau	292908	
+media_tagesspiegel	241460	
+media_taz	176152	
+media_tichyseinblick	96916	
+media_waz	32704	
+media_welt	498056	
+media_zdf	126184	
+media_zdf_heute	25876	
+media_zeit	333972	
+media2_20min	10196	
+media2_achgut	8020	
+media2_bild	84876	
+media2_blick_ch	9096	
+media2_br24	4228	
+media2_cicero	5080	
+media2_de_kurier	2700	
+media2_derstandard	18136	
+media2_dpa	1772	
+media2_dwn	1884	
+media2_epochtimes	14796	
+media2_faz	17700	
+media2_focus	55092	
+media2_freitag	7304	
+media2_huffingtonpost_de	100	
+media2_jouwatch	15396	
+media2_junge_freiheit	14864	
+media2_jungewelt	4864	
+media2_kenfm	1392	
+media2_krone_at	7968	
+media2_mdraktuell	15104	
+media2_neues_deutschland	8864	
+media2_ntv	6112	
+media2_nzz	27176	
+media2_pi_news	28	
+media2_politikversagen	664	
+media2_rbb	8760	
+media2_rt_deutsch	10540	
+media2_smopo	428	
+media2_spiegel	123772	
+media2_sputniknews	5892	
+media2_stern	19648	
+media2_sueddeutsche	66584	
+media2_swraktuell	1040	
+media2_t_online	988	
+media2_tagesschau	58944	
+media2_tagesspiegel	60544	
+media2_taz	42364	
+media2_theeuropean	796	
+media2_tichyseinblick	24488	
+media2_unzensuriert_at	1880	
+media2_unzensuriert_de	512	
+media2_voiceofeurope	27932	
+media2_waz	5392	
+media2_welt	86716	
+media2_zdf	27376	
+media2_zdf_heute	5272	
+media2_zeit	72164	
+media3_20min	187736	
+media3_achgut	25764	
+media3_bild	929488	
+media3_blick_ch	35024	
+media3_br24	42736	
+media3_cicero	17684	
+media3_de_kurier	1668	
+media3_derstandard	80344	
+media3_dpa	144160	
+media3_dwn	2472	
+media3_epochtimes	36676	
+media3_faz	272636	
+media3_focus	179728	
+media3_freitag	22332	
+media3_huffingtonpost_de	956	
+media3_jouwatch	61824	
+media3_junge_freiheit	56996	
+media3_jungewelt	17044	
+media3_kenfm	9992	
+media3_krone_at	43564	
+media3_mdraktuell	64964	
+media3_neues_deutschland	4148	
+media3_ntv	27776	
+media3_nzz	183456	
+media3_pi_news	800	
+media3_politikversagen	6244	
+media3_rbb	2176	
+media3_rt_deutsch	134564	
+media3_smopo	1324	
+media3_spiegel	434992	
+media3_sputniknews	17940	
+media3_stern	88296	
+media3_sueddeutsche	1727356	
+media3_swraktuell	15108	
+media3_t_online	11472	
+media3_tagesschau	431356	
+media3_tagesspiegel	290080	
+media3_taz	186048	
+media3_theeuropean	7376	
+media3_tichyseinblick	90872	
+media3_unzensuriert_at	7764	
+media3_unzensuriert_de	1380	
+media3_voiceofeurope	23900	
+media3_voiceofEurope	39328	
+media3_waz	21712	
+media3_welt	999644	
+media3_zdf	208560	
+media3_zdf_heute	44940	
+media3_zeit	327796	
+media4	365309736	{q:'1011now.com,1011np.com,10news.com,10tv.com,11alive.com,12news.com,12newsnow.com,13abc.com,13newsnow.com,13wham.com,13wmaz.com,14news.com,15atv.com,26nbc.com,3newsnow.com,4029tv.com,41nbc.com,5newsonline.com,6abc.com,883wppb.org,88fm.org,8newsnow.com,9and10news.com,9news.com,aaas.org,aarp.org,abajournal.com,abc-7.com,abc.net.au,abc10.com,abc10up.com,abc11.com,abc12.com,abc13.com,abc15.com,abc17news.com,abc23.com,abc27.com,abc3340.com,abc4.com,abc45.com,abc57.com,abc6.com,abc6onyourside.com,abc7.com,abc7amarillo.com,abc7chicago.com,abc7news.com,abc7ny.com,abcactionnews.com,abccolumbia.com,abcfoxmontana.com,abcstlouis.com,abovethelaw.com,abqjournal.com,accuracy.org,aclj.org,aclu-co.org,aclu-de.org,aclu-ia.org,aclu-il.org,aclu-in.org,aclu-ky.org,aclu-md.org,aclu-mn.org,aclu-mo.org,aclu-ms.org,aclu-nh.org,aclu-nj.org,aclu-nm.org,aclu-or.org,aclu-pr.org,aclu-tn.org,aclu-wa.org,aclu-wi.org,aclu-wy.org,aclu.org,acluak.org,aclualabama.org,acluarkansas.org,acluaz.org,acluca.org,acluct.org,acludc.org,aclufl.org,acluga.org,acluhi.org,acluidaho.org,aclukansas.org,aclum.org,aclumaine.org,aclumich.org,aclumontana.org,aclunc.org,aclund.org,aclunebraska.org,aclunv.org,acluofnorthcarolina.org,acluohio.org,acluok.org,aclupa.org,aclusandiego.org,aclusc.org,aclusd.org,aclusocal.org,aclutx.org,acluutah.org,acluva.org,acluvt.org,acluwv.org,acslaw.org,actionnewsjax.com,actionnewsnow.com,adl.org,adn.com,advocate.com,aei.org,aflcio.org,afp.com,ainonline.com,ajc.com,ajot.com,al-monitor.com,al.com,alabamanews.net,alaskapublic.org,albanyherald.com,aldianews.com,aljazeera.com,ama-assn.org,americamagazine.org,americanbar.org,americanexperiment.org,americanoversight.org,americanprogress.org,americanstripe.com,americasvoice.org,amnestyusa.org,amny.com,annenbergpublicpolicycenter.org,anthropocenemagazine.org,ap.org,apnews.com,app.com,apr.org,apradio.org,argusleader.com,arkansasonline.com,arklatexhomepage.com,arktimes.com,armenianweekly.com,armytimes.com,arstechnica.com,asahi.com,asianjournal.com,aspeninstitute.org,aspenpublicradio.org,atimes.com,atlantaintownpaper.com,atlanticcouncil.org,atr.org,au.org,auburnpub.com,aurorasentinel.com,austinchronicle.com,austinmonitor.com,autonews.com,axios.com,azcapitoltimes.com,azcentral.com,azcir.org,azfamily.com,azpm.org,bakersfield.com,bakersfieldnow.com,ballotpedia.org,baltimorebrew.com,baltimoresun.com,bangordailynews.com,barstoolsports.com,battlecreekenquirer.com,bbc.co.uk,bbc.com,beaumontenterprise.com,beloitdailynews.com,benitolink.com,berkeleyside.com,bettergov.org,beyondchron.org,bigcountryhomepage.com,billingsgazette.com,billmoyers.com,billypenn.com,binghamtonhomepage.com,bipartisanpolicy.org,birminghamwatch.org,bismarcktribune.com,blackhillsfox.com,blazer911wvub.com,bleacherreport.com,bloomberg.com,bna.com,bnd.com,bnonews.com,boisestate.edu,boisestatepublicradio.org,boltposts.com,boston.com,bostonglobe.com,bostonherald.com,bostonmagazine.com,bostonreview.net,bozemandailychronicle.com,bradenton.com,bradycampaign.org,breitbart.com,brennancenter.org,bridgemi.com,broadcastingcable.com,brookings.edu,brownsvilleherald.com,brproud.com,buffalonews.com,burlingtonfreepress.com,businessinsider.com,buzzfeed.com,buzzfeednews.com,c-span.org,cagop.org,cair.com,calgaryherald.com,californiahealthline.org,caller.com,calmatters.org,canberratimes.com.au,capeandislands.org,capitalandmain.com,capitalgazette.com,capitolweekly.net,capradio.org,carolinapublicpress.org,cato.org,cbc.ca,cbpp.org,cbs12.com,cbs17.com,cbs19.tv,cbs19news.com,cbs2iowa.com,cbs42.com,cbs46.com,cbs4indy.com,cbs4local.com,cbs58.com,cbs6albany.com,cbs7.com,cbs8.com,cbsaustin.com,cbsdenver.com,cbslocal.com,cbsnews.com,cbssports.com,cbstv2vi.com,cdapress.com,ced.org,cenlanow.com,centerforpolitics.org,centralillinoisproud.com,centredaily.com,centurylink.net,cepr.net,cfr.org,chalkbeat.org,channel3000.com,channel4.com,charlotteobserver.com,chicagobusiness.com,chicagomag.com,chicagomaroon.com,chicagoreader.com,chicagoreporter.com,chicagotribune.com,christianpost.com,chron.com,chronicle.com,cincinnati.com,cis.org,citizen-times.com,citizen.org,citizensforethics.org,citizenvox.org,city-journal.org,citylab.com,citylimits.org,citypages.com,civilbeat.org,civileats.com,civilrights.org,cjonline.com,cjr.org,clarionledger.com,cleveland.com,cleveland19.com,clevescene.com,click2houston.com,clickondetroit.com,clickorlando.com,cm-life.com,cnbc.com,cnet.com,cnn.com,cnsnews.com,cnycentral.com,cnyhomepage.com,coastradio.org,coloradoan.com,coloradoindependent.com,colorlines.com,columbiatribune.com,commentarymagazine.com,commercialappeal.com,commondreams.org,commonwealthclub.org,commonwealthfund.org,commonwealthmagazine.org,conchovalleyhomepage.com,concordmonitor.com,conservativereview.com,consumerreports.org,cookpolitical.com,counterpunch.org,counton2.com,courant.com,courier-journal.com,courier-tribune.com,courierpress.com,courthousenews.com,cpbn.org,cpj.org,cpr.org,crfb.org,crooked.com,crosscut.com,crossroadstoday.com,csbaonline.org,csg.org,csis.org,csmonitor.com,ctmirror.org,ctpost.com,ctvnews.ca,currentaffairs.org,cvilletomorrow.org,dailybreeze.com,dailycal.org,dailycaller.com,dailycamera.com,dailycommercial.com,dailydot.com,dailyherald.com,dailyinterlake.com,dailykos.com,dailymail.co.uk,dailynews.com,dailypress.com,dailyprogress.com,dailyrecord.com,dailysignal.com,dailywire.com,dallasnews.com,dawn.com,dayton247now.com,daytondailynews.com,dccc.org,dcreport.org,deadspin.com,decaturdaily.com,defense.gov,defensenews.com,defenseone.com,delawareonline.com,delish.com,delmarvapublicradio.net,deltabroadcasting.org,democracyjournal.org,democracynow.org,democratandchronicle.com,democrats.org,demos.org,denverite.com,denverpost.com,deseretnews.com,desertsun.com,desmogblog.com,desmoinesregister.com,detroitnews.com,dfl.org,digboston.com,digitaltrends.com,diplomaticourier.com,directexpose.com,dispatch.com,dissentmagazine.org,dmagazine.com,dnainfo.com,dnj.com,dol.gov,dollarsandsense.org,dothaneagle.com,dothanfirst.com,doverpost.com,drudgereport.com,dukechronicle.com,duluthnewstribune.com,dw.com,e360hub.com,eastbayexpress.com,eastbaytimes.com,eastoregonian.com,easttexasmatters.com,econlib.org,economichardship.org,economist.com,ecori.org,ecowatch.com,ed.gov,edsource.org,eff.org,ekathimerini.com,elkodaily.com,elle.com,elnuevodia.com,elpais.com,emersonpolling.com,encyclopediageopolitica.com,energy.gov,energynews.us,engadget.com,enmnews.com,envirodatagov.org,eonline.com,epa.gov,epi.org,epic.org,equalvotes.us,erienewsnow.com,espn.com,esquire.com,euractiv.com,euronews.com,everythinglubbock.com,ew.com,ewg.org,express.co.uk,factcheck.org,fair.org,fairvote.org,fastcompany.com,fayobserver.com,fcir.org,fed-soc.org,federalnewsnetwork.com,federaltimes.com,fee.org,fff.org,ffrf.org,fifthdomain.com,finchannel.com,firstcoastnews.com,firstthings.com,fivethirtyeight.com,flatheadbeacon.com,floridatoday.com,foodsafetynews.com,forbes.com,foreignaffairs.com,foreignpolicy.com,foresthillstimes.com,fortune.com,forward.com,fosters.com,fourstateshomepage.com,fox10tv.com,fox11online.com,fox13memphis.com,fox13news.com,fox13now.com,fox14tv.com,fox15abilene.com,fox16.com,fox17.com,fox17online.com,fox19.com,fox21delmarva.com,fox21news.com,fox21online.com,fox23.com,fox23maine.com,fox25boston.com,fox26houston.com,fox26medford.com,fox28iowa.com,fox28media.com,fox29.com,fox2detroit.com,fox2now.com,fox32chicago.com,fox34.com,fox35orlando.com,fox38corpuschristi.com,fox40.com,fox42kptm.com,fox43.com,fox43tv.com,fox44news.com,fox45now.com,fox46charlotte.com,fox47.com,fox47news.com,fox4beaumont.com,fox4kc.com,fox4news.com,fox4now.com,fox50.com,fox56.com,fox59.com,fox5atlanta.com,fox5dc.com,fox5krbk.com,fox5ny.com,fox5sandiego.com,fox5vegas.com,fox61.com,fox6guam.com,fox6now.com,fox7austin.com,fox8.com,fox8live.com,fox8tv.com,fox9.com,foxbaltimore.com,foxbangor.com,foxbusiness.com,foxcarolina.com,foxcharleston.com,foxillinois.com,foxkansas.com,foxla.com,foxlexington.com,foxnebraska.com,foxnews.com,foxprovidence.com,foxreno.com,foxrichmond.com,foxrio2.com,foxrochester.com,foxsanantonio.com,foxsyracuse.com,foxwilmington.com,fpif.org,fpri.org,france24.com,fredericksburg.com,freebeacon.com,freedomhouse.org,freep.com,freespeech.org,fresnobee.com,frontpagemag.com,fusion.net,gadsdentimes.com,gainesville.com,gallup.com,gazette.com,gctelegram.com,georgiastatesignal.com,gizmodo.com,glamour.com,globalnews.ca,globalwitness.org,globegazette.com,gmfus.org,go.com,google.com,gop.com,goskagit.com,gothamist.com,goupstate.com,governing.com,govexec.com,govtrack.us,govtrackinsider.com,gp.org,gpb.org,gq.com,grandforksherald.com,gravismarketing.com,greatfallstribune.com,greenbaypressgazette.com,greensboro.com,greenvilleonline.com,grist.org,guampdn.com,guttmacher.org,gwinnettdailypost.com,gwu.edu,haaretz.com,hamodia.com,hani.co.kr,harpers.org,harvard.edu,harvardpolitics.com,hattiesburgamerican.com,hawaiinewsnow.com,hawaiipublicradio.org,hawaiitribune-herald.com,hbr.org,hcn.org,healthjournalism.org,heartland.org,heartlandnewsfeed.com,helenair.com,heraldnet.com,heraldonline.com,heraldscotland.com,heraldsun.com,heraldtribune.com,heritage.org,highlandscurrent.com,hollywoodreporter.com,hometownstations.com,hongkongfp.com,hoover.org,hopenothate.com,houstonchronicle.com,houstonpress.com,houstonpublicmedia.org,hppr.org,hrc.org,hrw.org,huffingtonpost.ca,huffingtonpost.com,huffpost.com,hutchnews.com,i24news.tv,iava.org,ibtimes.com,icij.org,idahonews.com,idahostatesman.com,ideastations.org,ieee.org,igmchicago.org,ijpr.org,ijr.com,illinoishomepage.net,inc.com,independent.co.uk,independent.ie,independentmail.com,indianapublicmedia.org,indianapublicradio.org,indiancountrymedianetwork.com,indiatimes.com,indystar.com,inewsource.org,informnny.com,inforum.com,inquirer.com,insideclimatenews.org,insideedition.com,insidehighered.com,insidesources.com,inthesetimes.com,investigatemidwest.org,investigativepost.org,investors.com,invw.org,iowapublicradio.org,iowawatch.org,ip-watch.org,ips-dc.org,ipsos.com,irishexaminer.com,irishtimes.com,itep.org,ithacajournal.com,itv.com,ivn.us,jacksonfreepress.com,jacksonsun.com,jacksonville.com,jacobinmag.com,jalopnik.com,jamaicaobserver.com,janes.com,japantimes.co.jp,japantoday.com,jconline.com,joins.com,journalgazette.net,journalnow.com,journalstar.com,jpost.com,jsonline.com,judicialwatch.org,jurist.org,justia.com,justice.gov,justiceonline.org,justsecurity.org,k2tv.com,kaaltv.com,kabc.com,kacu.org,kadn.com,kagstv.com,kait8.com,kake.com,kalb.com,kalw.org,kansas.com,kansascity.com,kansaspublicradio.org,kanw.com,kapptv.com,kare11.com,kark.com,kasu.org,katc.com,kath.tv,katu.com,katv.com,kawc.org,kaxe.org,kazu.org,kbaq.org,kbbgfm.org,kbbi.org,kbia.org,kbjr6.com,kbrw.org,kbsi23.com,kbtx.com,kbut.org,kcaw.org,kcba.com,kcbd.com,kcbx.org,kcci.com,kccu.org,kcentv.com,kchu.org,kclu.org,kcme.org,kcoy.com,kcra.com,kcrg.com,kcrw.com,kctv5.com,kcukradio.org,kcur.org,kcwy13.com,kdfc.com,kdlg.org,kdll.org,kdlt.com,kdminer.com,kdnk.org,kdrv.com,kdsm17.com,kdvr.com,kecytv.com,kedm.org,kedt.org,keloland.com,kens5.com,kentucky.com,kentuckytoday.com,kenvtv.com,kenw.org,keos.org,keprtv.com,kera.org,keranews.org,kesq.com,ket.org,ketr.org,ketv.com,kexp.org,keyc.com,keyt.com,kezi.com,kfbb.com,kfdm.com,kff.org,kfor.com,kfoxtv.com,kfsk.org,kfvs12.com,kfyrtv.com,kget.com,kglp.org,kglt.net,kgns.tv,kgou.org,kgpr.org,kgun9.com,kgvafm.com,kgw.com,khn.org,khns.org,khon2.com,khou.com,khq.com,khqa.com,khsu.org,kiem-tv.com,kiiitv.com,kimatv.com,kimt.com,king5.com,kion546.com,kios.org,kiro7.com,kitv.com,kivitv.com,kiyu.com,kjct8.com,kjnbtv.com,kjrh.com,kjzz.org,kktv.com,klax-tv.com,klcc.org,kldotv.com,klewtv.com,klfy.com,klkntv.com,kltv.com,kmaland.com,kmbc.com,kmhd.org,kmir.com,kmot.com,kmov.com,kmph-kfre.com,kmuw.org,kmvt.com,kmxt.org,knau.org,knba.org,knch.org,kndu.com,knoe.com,knopnews2.com,knoxnews.com,knpr.org,kntu.com,koaa.com,koamtv.com,koat.com,kob.com,kobi5.com,koco.com,kohd.com,koin.com,kold.com,kolotv.com,komonews.com,komu.com,kopn.org,koreaherald.com,koreatimes.co.kr,kosu.org,kotaku.com,kotatv.com,koto.org,kotz.org,kpax.com,kpbs.org,kpbx.org,kpcw.org,kplctv.com,kplr11.com,kprgfm.com,kptv.com,kpvi.com,kq2.com,kqcd.com,kqed.org,krbd.org,krcb.org,krcgtv.com,krcrtv.com,krdo.com,krem.com,krgv.com,kristv.com,kron4.com,krps.org,krqe.com,krtv.com,krvs.org,krwg.org,krza.org,ksat.com,ksbw.com,ksby.com,ksdk.com,ksfy.com,ksgu.org,kshb.com,ksjd.org,ksl.com,ksla.com,kslu.org,ksn.com,ksnblocal4.com,ksnt.com,kspr.com,kstk.org,kstp.com,ksut.org,kswo.com,kswt.com,ktar.com,ktbs.com,kten.com,ktep.org,ktiv.com,ktla.com,ktna.org,ktnv.com,ktoo.org,ktre.com,ktsm.com,ktsuradio.com,kttc.com,kttw.com,kttz.org,ktul.com,ktuu.com,ktva.com,ktvb.com,ktvh.com,ktvl.com,ktvn.com,ktvo.com,ktvq.com,ktvu.com,ktvz.com,ktxk.org,ktxs.com,kuac.org,kuaf.com,kuam.com,kuar.org,kucb.org,kuhbradio.org,kulr8.com,kumv.com,kunm.org,kunr.org,kunv.org,kuow.org,kurdistan24.net,kusc.org,kusi.com,kut.org,kutv.com,kuvo.org,kuyi.net,kval.com,kveo.com,kvewtv.com,kvia.com,kviqcbs17.com,kvlu.org,kvnf.org,kvoa.com,kvpr.org,kvrr.com,kvue.com,kwbu.org,kwch.com,kwit.org,kwqc.com,kwtx.com,kwwl.com,kxan.com,kxcv.org,kxgn.com,kxii.com,kxlf.com,kxly.com,kxnet.com,kxt.org,kxwt.org,kxxv.com,ky3.com,kycir.org,kyivpost.com,kyma.com,kyoutv.com,kyvtradio.com,kztv10.com,kzum.org,kzyx.org,laaclu.org,laindependent.com,lakeshorepublicmedia.org,lambdalegal.org,lansingstatejournal.com,laobserved.com,lasentinel.net,lasvegassun.com,latimes.com,latinousa.org,lawandcrime.com,laweekly.com,lawfareblog.com,lawnewz.com,lcsun-news.com,ledger-enquirer.com,lex18.com,lgbtqnation.com,lifehacker.com,littlevillagemag.com,live5news.com,liveleak.com,ljworld.com,lmtonline.com,local10.com,local12.com,local21news.com,localmemphis.com,localnews8.com,localsyr.com,lohud.com,longwarjournal.org,losangelesblade.com,loudountimes.com,lp.org,lprri.org,lpsentinel.com,macleans.ca,macon.com,madison.com,madison365.com,magicvalley.com,magnews.live,mainepublic.org,maplight.org,marfapublicradio.org,marist.edu,marketplace.org,marketprimenews.com,marketwatch.com,marylandmatters.org,marylandreporter.com,massincpolling.com,masslive.com,mcall.com,mcclatchydc.com,mdjonline.com,meduza.io,mercedsunstar.com,mercurynews.com,merionwest.com,metrotimes.com,mg.co.za,miamiherald.com,miaminewtimes.com,miamitodaynews.com,mic.com,michiganradio.org,mifox32.com,military.com,militarytimes.com,minnpost.com,mises.org,mississippitoday.org,missoulian.com,mit.edu,mlive.com,modbee.com,mondediplo.com,monmouth.edu,montgomeryadvertiser.com,monthlyreview.org,montrealgazette.com,morganton.com,morningconsult.com,motherjones.com,mpbn.net,mpbonline.org,mpr.org,mprnews.org,mrt.com,msmagazine.com,msn.com,msnbc.com,msnewsnow.com,mtpr.net,mtstandard.com,myajc.com,myarklamiss.com,mycbs4.com,mycentraljersey.com,mychamplainvalley.com,mydaytondailynews.com,myfox10tv.com,myfox11.com,myfox23.com,myfox28columbus.com,myfox47.com,myfox8.com,myfoxspokane.com,myfoxtricities.com,myfoxzone.com,myhighplains.com,mylaredofox.com,mynbc15.com,mynbc5.com,mynews4.com,mynspr.org,mypalmbeachpost.com,mypanhandle.com,myrtlebeachonline.com,mysanantonio.com,mystateline.com,mystatesman.com,mysuncoast.com,mytwintiers.com,mywabashvalley.com,naco.org,nantucketnpr.org,naplesnews.com,nasa.gov,nashuatelegraph.com,nashvillepublicradio.org,nationalaffairs.com,nationalgeographic.com,nationalinterest.org,nationalobserver.com,nationalpost.com,nationalreview.com,nativenews.net,nativenewsonline.net,nativesunnews.today,nature.com,navajotimes.com,nbc-2.com,nbc11news.com,nbc12.com,nbc15.com,nbc16.com,nbc24.com,nbc25news.com,nbc26.com,nbc29.com,nbc4i.com,nbcbayarea.com,nbcboston.com,nbcchicago.com,nbcconnecticut.com,nbcdfw.com,nbclosangeles.com,nbcmiami.com,nbcmontana.com,nbcneb.com,nbcnews.com,nbcnewyork.com,nbcphiladelphia.com,nbcrightnow.com,nbcsandiego.com,nbcsports.com,nbcwashington.com,nbcwiregrass.com,nber.org,ncai.org,ncpolicywatch.com,ncregister.com,ncsl.org,nebraska.tv,necir.org,necn.com,nejm.org,nepr.net,netnebraska.org,newamerica.org,newbernsj.com,newhavenindependent.org,newrepublic.com,newrightnetwork.com,news-herald.com,news-journalonline.com,news-leader.com,news-press.com,news10.com,news12.com,news3lv.com,news4jax.com,news4sanantonio.com,news5cleveland.com,news8000.com,news9.com,newscenter1.tv,newscentermaine.com,newschannel10.com,newschannel20.com,newschannel5.com,newschannel6now.com,newschannel9.com,newscientist.com,newsday.com,newsleader.com,newsmax.com,newsminer.com,newsobserver.com,newson6.com,newspressnow.com,newstatesman.com,newstimes.com,newsweek.com,newswest9.com,newyorker.com,nextcity.org,nextgov.com,nhbr.com,nhonews.com,nhpr.org,nhregister.com,niagara-gazette.com,nickiswift.com,niemanlab.org,nj.com,njpublicradio.org,njspotlight.com,njtoday.net,nlc.org,nmindepth.com,nola.com,northcountrypublicradio.org,northernpublicradio.org,northjersey.com,nplusonemag.com,npr.org,nprillinois.org,nraila.org,nrcc.org,nrsc.org,nrtoday.com,nst.com.my,nv1.org,nwahomepage.com,nwaonline.com,nwitimes.com,nwlc.org,nwpr.org,ny1.com,nybooks.com,nyclu.org,nydailynews.com,nymag.com,nypost.com,nystateofpolitics.com,nysun.com,nytimes.com,oann.com,oberlinreview.org,observer.com,ocregister.com,ohio.com,okcfox.com,oklahoman.com,oklahomawatch.org,omaha.com,onewisconsinnow.org,opb.org,opensecrets.org,oregonlive.com,oregonsfox.com,orlandosentinel.com,ottawacitizen.com,ourfuture.org,ourquadcities.com,out.com,outsideonline.com,ozarksfirst.com,pahomepage.com,palmbeachpost.com,pasquines.us,passblue.com,patch.com,pbs.org,pcmag.com,pe.com,pennlive.com,people-press.org,people.com,peoplespolicyproject.org,peoplesworld.org,peoriapublicradio.org,pewglobal.org,pewresearch.org,pewtrusts.org,pfaw.org,pgpf.org,philasun.com,phillytrib.com,phillyvoice.com,phoenixnewtimes.com,pikecountycourier.com,pilotonline.com,pinknews.co.uk,pitchfork.com,pix11.com,plannedparenthood.org,pnj.com,pogo.org,politicalresearch.org,politico.com,politico.eu,politifact.com,popsugar.com,popularmechanics.com,portlandtribune.com,pos.org,post-gazette.com,postandcourier.com,postbulletin.com,poststar.com,poughkeepsiejournal.com,poynter.org,prairiepublic.org,press-citizen.com,pressdemocrat.com,pressherald.com,pressofatlanticcity.com,pri.org,pridepublishinggroup.com,princeton.edu,progressive.org,project-syndicate.org,propublica.org,prospect.org,prospectmagazine.co.uk,providencejournal.com,prri.org,prwatch.org,prx.org,psmag.com,psychologytoday.com,publicagenda.org,publicintegrity.org,publicpolicypolling.com,publicradioeast.org,publicsource.org,q13fox.com,qctimes.com,qu.edu,queenseagle.com,qz.com,rabble.ca,radioiowa.com,radioiq.org,radiomilwaukee.org,rand.org,rapidcityjournal.com,rare.us,rasmussenreports.com,rawstory.com,readfrontier.org,realclearpolitics.com,reason.com,recode.net,redding.com,redriverradio.org,religiondispatches.org,religionnews.com,reporternews.com,represent.us,restoreaccountability.com,reuters.com,reuters.tv,revealnews.org,reviewjournal.com,rgj.com,riaclu.org,richmond.com,rightwingwatch.org,ripr.org,riverfronttimes.com,roanoke.com,rochesterfirst.com,rocketcitynow.com,rockthevote.org,rollcall.com,rollingstone.com,ronpaulinstitute.org,rooseveltinstitute.org,rootsradio.com,rrstar.com,rte.ie,rutherford.org,sacbee.com,sacurrent.com,salon.com,sandiegouniontribune.com,sanluisobispo.com,santacruzsentinel.com,santafenewmexican.com,sbs.com.au,sbsun.com,scientificamerican.com,scmp.com,scotusblog.com,scpr.org,scpublicradio.org,sctimes.com,sdpb.org,seattlepi.com,seattletimes.com,seekingalpha.com,sentencingproject.org,sentinelsource.com,sevendaysvt.com,sfchronicle.com,sfexaminer.com,sfgate.com,shorensteincenter.org,shreveporttimes.com,si.com,sightline.org,silive.com,siouxlandnews.com,siouxlandproud.com,sj-r.com,sky.com,slate.com,sltrib.com,smh.com.au,smithsonianmag.com,snopes.com,socialistworker.org,sojo.net,southbendtribune.com,southcarolinapublicradio.org,space.com,spacenews.com,spectator.co.uk,spectator.org,spectator.us,spiegel.de,splcenter.org,spokesman.com,stanforddaily.com,star-telegram.com,staradvertiser.com,starcitybroadcasting.com,startribune.com,state.gov,statepress.com,statesman.com,statesmanjournal.com,statnews.com,stlouisfed.org,stlpublicradio.org,stltoday.com,stormlake.com,straitstimes.com,streetsblog.org,stripes.com,sun-sentinel.com,sunherald.com,sunjournal.com,sunlightfoundation.com,suntimes.com,surveyusa.com,swtimes.com,syracuse.com,tabletmag.com,talkingpointsmemo.com,tallahassee.com,tampabay.com,tarbell.org,taxfoundation.org,taxpolicycenter.org,tbo.com,tcf.org,tcpalm.com,techcrunch.com,techdirt.com,techonomy.com,teenvogue.com,telegram.com,telegraph.co.uk,tennessean.com,texasmonthly.com,texasobserver.org,texastribune.org,texomashomepage.com,the-american-interest.com,the-japan-news.com,the1a.org,theadvertiser.com,theadvocate.com,theage.com.au,theamericanconservative.com,theatlantavoice.com,theatlantic.com,thebaffler.com,thebalance.com,thebaycitybeacon.com,theblaze.com,thebulletin.org,thebulwark.com,thebureauinvestigates.com,thecalifornian.com,thecannabist.co,thechive.com,thecipherbrief.com,theconversation.com,thecut.com,thedailybeast.com,thedenverchannel.com,thediplomat.com,thedp.com,thefederalist.com,thefiscaltimes.com,thegavoice.com,thegazette.com,theglobeandmail.com,theguardian.com,thehill.com,thehumanist.com,theindychannel.com,theintelligencer.net,theintercept.com,thelensnola.org,themarshallproject.org,themoscowproject.org,themoscowtimes.com,thenation.com,thenevadaindependent.com,thenewamerican.com,thenewscenter.tv,thenewsstar.com,thenewstribune.com,thenotebook.org,theoaklandpress.com,theolympian.com,theonion.com,theoutline.com,thepublicdiscourse.com,therealnews.com,theregister.co.uk,therepublic.com,theroot.com,thescotsman.com,thespectrum.com,thestar.com,thestarpress.com,thestate.com,thestranger.com,thesunchronicle.com,thetimesnews.com,thetowntalk.com,thetrace.org,theverge.com,theweek.com,theworldin.com,thinkprogress.org,thisamericanlife.org,thv11.com,time.com,timesfreepress.com,timesofsandiego.com,timesunion.com,tmj4.com,tmz.com,today.com,toledoblade.com,tomdispatch.com,tomsguide.com,tomshardware.com,topix.com,torontosun.com,townandcountrymag.com,townhall.com,transparency.org,transportation.gov,trib.com,triblive.com,tribtalk.org,tristatehomepage.com,troypublicradio.org,truth-out.org,truthdig.com,tspr.org,tucson.com,tucsonsentinel.com,tufts.edu,tulsaworld.com,turnto10.com,turnto23.com,tuscaloosanews.com,twincities.com,typepad.com,ucsusa.org,undark.org,unesco.org,unfspinnaker.com,unh.edu,unionleader.com,univision.com,unwatch.org,upi.com,upmatters.com,upnorthlive.com,uppermichiganssource.com,upr.org,urban.org,usacanadanews.com,usafmc.org,usathrill.com,usatoday.com,usbreakingnews.net,uschamber.com,usmagazine.com,usnews.com,usnewsbox.com,usni.org,valleycentral.com,valleynewslive.com,vancouversun.com,vanityfair.com,variety.com,vcstar.com,vice.com,vidaenelvalle.com,villagevoice.com,viral199.us,voanews.com,vocalo.org,vogue.com,vox.com,vpap.org,vpr.net,vtdigger.org,waaytv.com,wabe.org,wabi.tv,wach.com,wacotrib.com,wafb.com,waff.com,wagmtv.com,walb.com,wamc.org,wamu.org,wandtv.com,wane.com,waow.com,wapt.com,warontherocks.com,washingtonblade.com,washingtonexaminer.com,washingtonian.com,washingtonmonthly.com,washingtonpost.com,washingtontimes.com,watchfox29.com,wate.com,waus.org,wausaupilotandreview.com,wave3.com,wavy.com,wbaa.org,wbal.com,wbaltv.com,wbay.com,wbbjtv.com,wbez.org,wbfo.org,wbgo.org,wbhm.org,wbir.com,wbkb11.com,wbko.com,wbng.com,wboc.com,wboi.org,wboy.com,wbrc.com,wbrh.org,wbrz.com,wbtv.com,wbtw.com,wbur.org,wcax.com,wcbe.org,wcbi.com,wchstv.com,wcjb.com,wclk.com,wcmu.org,wcnc.com,wcov.com,wcpn.org,wcpo.com,wcqs.org,wcsufm.org,wcti12.com,wctv.tv,wcvb.com,wcwp.org,wcyb.com,wdam.com,wdav.org,wday.com,wdaz.com,wdbj7.com,wdcb.org,wdde.org,wdef.com,wdet.org,wdio.com,wdiy.org,wdna.org,wdrb.com,wdsu.com,wdtn.com,wdtv.com,wearecentralpa.com,wearegreenbay.com,weareiowa.com,weartv.com,weau.com,webcenter11.com,wecsradio.com,wect.com,week.com,weeklystandard.com,weforum.org,weku.fm,wemu.org,weny.com,weos.org,wesa.fm,wesh.com,wesm913.org,westernmassnews.com,westernslopenow.com,westhawaiitoday.com,westword.com,wesufm.org,wets.org,wevv.com,wfaa.com,wfae.org,wfdd.org,wfft.com,wfit.org,wfla.com,wflx.com,wfmj.com,wfmynews2.com,wfmz.com,wfpk.org,wfsb.com,wfsu.org,wftv.com,wfuv.org,wfwm.org,wfxb.com,wfxg.com,wfxl.com,wfxrtv.com,wfyi.org,wgal.com,wgbctv.com,wgbh.org,wgcu.org,wgem.com,wglt.org,wgme.com,wgno.com,wgnradio.com,wgntv.com,wgrz.com,wgtd.org,wguc.org,wgvunews.org,wgxa.tv,whas11.com,whdh.com,whec.com,whil.org,whio.com,whitehouse.gov,whiznews.com,whnt.com,whotv.com,whowhatwhy.org,whqr.org,whsv.com,whtc.com,whyy.org,wibw.com,wickedlocal.com,wicn.org,wicz.com,wifr.com,wilsoncenter.org,wilsontimes.com,wilx.com,winknews.com,wiproud.com,wired.com,wisn.com,wistv.com,witf.org,witn.com,wivb.com,wjab.org,wjactv.com,wjbf.com,wjcl.com,wjct.org,wjfw.com,wjhg.com,wjhl.com,wjla.com,wjsu.org,wjtv.com,wkar.org,wkbn.com,wkbw.com,wkgc.org,wkms.org,wknofm.org,wkow.com,wkrg.com,wkrn.com,wksu.org,wktv.com,wkyc.com,wkyt.com,wkyufm.org,wlfi.com,wlky.com,wlns.com,wlos.com,wlov.com,wlox.com,wlrh.org,wlrn.org,wlsam.com,wltx.com,wltz.com,wlwt.com,wmar2news.com,wmbfnews.com,wmcactionnews5.com,wmdt.com,wmfe.org,wmht.org,wmky.org,wmlu.org,wmnf.org,wmra.org,wmtw.com,wmub.org,wmuk.org,wmur.com,wnbjtv.com,wnct.com,wncu.org,wncw.org,wndu.com,wned.org,wnem.com,wnep.com,wng.org,wnin.org,wnky.com,wnmufm.org,wnyc.org,wnyt.com,woay.com,wogx.com,wojb.org,woodtv.com,worldtruth.tv,wosu.org,wotv4women.com,woub.org,wowktv.com,wowt.com,wpbf.com,wpde.com,wpgh53.com,wpr.org,wpri.com,wprl.org,wpsdlocal6.com,wpsu.org,wpta21.com,wptv.com,wpxi.com,wqad.com,wqcs.org,wqed.org,wqln.org,wqow.com,wral.com,wrbl.com,wrc.fm,wrcbtv.com,wrdetv.com,wrdw.com,wreg.com,wrex.com,wric.com,wrkf.org,wrko.com,wrti.org,wrtu.pr,wrvo.fm,wrvo.org,wsav.com,wsaw.com,wsaz.com,wsbt.com,wsbtv.com,wset.com,wsfa.com,wshu.org,wsiltv.com,wsiu.org,wsj.com,wsjptv.com,wskg.org,wsls.com,wsmc.org,wsmh.com,wsmv.com,wsncradio.org,wsoctv.com,wspa.com,wsvh.org,wsvn.com,wsws.org,wtae.com,wthitv.com,wthr.com,wtip.org,wtjx.org,wtkr.com,wtnh.com,wtnzfox43.com,wtoc.com,wtok.com,wtol.com,wtop.com,wtov9.com,wtrf.com,wtsp.com,wttw.com,wtva.com,wtvm.com,wtvq.com,wtvr.com,wtvy.com,wtwc40.com,wtxl.com,wucf.org,wuft.org,wuga.org,wuky.org,wumb.org,wunc.org,wuot.org,wurc.org,wusa9.com,wusf.org,wutc.org,wutv29.com,wuwf.org,wuwm.com,wvah.com,wvasfm.org,wvgazettemail.com,wvgn.com,wvia.org,wvik.org,wvlt.tv,wvmetronews.com,wvnstv.com,wvof.org,wvpe.org,wvpublic.org,wvtf.org,wvtm13.com,wvva.com,wwaytv3.com,wweek.com,wwlp.com,wwltv.com,wwmt.com,wwno.org,wwnytv.com,wxii12.com,wxow.com,wxpr.org,wxtx.com,wxxi.org,wxxv25.com,wxyz.com,wyep.org,wyff4.com,wymt.com,wyomingnewsnow.tv,wyomingpublicmedia.org,wyomingpublicradio.net,wypr.org,wyso.org,wysu.org,wytv.com,wzzm13.com,xpn.org,yahoo.com,yale.edu,yalelawjournal.org,ydr.com,yellowstonepublicradio.org,yesmagazine.org,yonhapnews.co.kr,yorkdispatch.com,yougov.com,youralaskalink.com,yourbasin.com,yourbigsky.com,yourcentralvalley.com,yourdeltanews.com,yourerie.com,ypradio.org,zdnet.com,zeit.de,zerohedge.com,zogbyanalytics.com'.urlList()}
+media4_20min	109980	{q:'url:20min.ch,@20min'.expand()}
+media4_achgut	48416	{q:'url:achgut.com,@Achgut_com'.expand()}
+media4_bild	1023512	{q:'url:bild.de,@BILD,@BILD_Auto,@BILD_Bayern,@BILD_Berlin,@BILD_Blaulicht,@BILD_Bochum,@BILD_Bremen,@BILD_Chemnitz,@BILD_Digital,@BILD_Dresden,@BILD_Frankfurt,@bild_freiburg,@bild_fuerth,@BILD_Hamburg,@BILD_Hannover,@bild_ingolstadt,@BILD_kaempft,@BILD_Koeln,@BILD_Lautern,@BILD_Leipzig,@BILD_Lifestyle,@BILD_Muenchen,@BILD_News,@BILD_Nuernberg,@BILD_Politik,@BILD_Promis,@BILD_Reporter,@BILD_Ruhrgebiet,@BILD_Saarland,@BILD_Sport,@BILD_Stuttgart,@BILD_TopNews,@BILD_Wolfsburg,@BILDamSONNTAG,@BILDDuesseldorf,@BILDhilft,@BILDthueringen'.expand()}
+media4_blick_ch	109744	{q:'url:blick.ch,@Blickch'.expand()}
+media4_bloomberg	3963652	{q:'@bloomberg,url:bloomberg.com'.expand()}
+media4_br24	152036	{q:'url:br24.de,@BR24'.expand()}
+media4_breitbartnews	1605500	{q:'@breitbartnews,url:breitbart.com'.expand()}
+media4_cicero	47504	{q:'url:cicero.de,@cicero_online'.expand()}
+media4_cnn	10861444	{q:'@cnn,url:cnn.it,url:cnn.com'.expand()}
+media4_de_kurier	2636	{q:'url:deutschland?kurier.org,@de_kurier'.expand()}
+media4_de_kurier2	20356	
+media4_derstandard	196512	{q:'url:derstandard.at,@derStandardat,@PolitikStandard'.expand()}
+media4_dpa	21564	{q:'@dpa'.expand()}
+media4_dwn	4960	{q:'url:deutsche?wirtschafts?nachrichten.de'.expand()}
+media4_dwn2	5904	
+media4_epochtimes_cn	148040	{q:'@dajiyuan,url:epochtimes.com'.expand()}
+media4_epochtimes_de	72112	{q:'url:epochtimes.de,@EpochTimesDE'.expand()}
+media4_epochtimes_en	1204320	{q:'@epochtimes,url:theepochtimes.com,url:ept.ms'.expand()}
+media4_epochtimes_jp	208140	{q:'@epochtimes_jp,url:epochtimes.jp'.expand()}
+media4_faz	217012	{q:'url:faz.net,@FAZ_Auto,@FAZ_BerufChance,@FAZ_Buch,@FAZ_Eil,@FAZ_Feuilleton,@FAZ_Finanzen,@FAZ_Hanz,@FAZ_Immobilien,@FAZ_Kunstmarkt,@FAZ_Literatur,@FAZ_NET,@FAZ_Politik,@faz_Redaktion,@FAZ_Reise,@FAZ_RheinMain,@FAZ_Sport,@FAZ_Technik,@FAZ_Vermischtes,@FAZ_Wirtschaft,@FAZ_Wissen,@FAZBoersenspiel,@faznet'.expand()}
+media4_focus	519936	{q:'url:focus.de,@focusauto,@focusdigital,@focusonline,@focuspolitik,@focusreise,@focuswissen'.expand()}
+media4_foxnews	5927060	{q:'@foxnews,url:foxnews.com'.expand()}
+media4_freitag	41112	{q:'url:freitag.de,@derfreitag'.expand()}
+media4_guardian	12851752	{q:'@guardian,url:theguardian.com'.expand()}
+media4_huffingtonpost_de	2640	{q:'url:huffingtonpost.de,@HuffPostDE'.expand()}
+media4_huffpost	2132096	{q:'@huffpost,url:huffpost.com,url:huffp.st'.expand()}
+media4_independent	3122836	{q:'@independent,url:independent.co.uk'.expand()}
+media4_jouwatch	70360	{q:'url:journalistenwatch.com,@jouwatch'.expand()}
+media4_junge_freiheit	105500	{q:'url:jungefreiheit.de,@Junge_Freiheit'.expand()}
+media4_jungewelt	47980	{q:'url:jungewelt.de,@jungewelt'.expand()}
+media4_kenfm	8820	{q:'url:kenfm.de'.expand()}
+media4_krone_at	96000	{q:'url:krone.at,@krone_at'.expand()}
+media4_latimes	2065064	{q:'@latimes,url:latimes.com'.expand()}
+media4_mdraktuell	223184	{q:'url:mdr.de,@MDRAktuell'.expand()}
+media4_nbc	192760	{q:'@nbc,url:nbc.com'.expand()}
+media4_neues_deutschland	3996	{q:'url:neues?deutschland.de,@ndaktuell'.expand()}
+media4_neues_deutschland2	4376	
+media4_news_ntd	86184	{q:'@news_ntd,url:ntd.com'.expand()}
+media4_newsweek	1726296	{q:'@newsweek,url:newsweek.com'.expand()}
+media4_npr	3150712	{q:'@npr,url:npr.org'.expand()}
+media4_ntv	70124	{q:'url:n?tv.de,@ntv_EIL,@ntvde,@ntvde_auto,@ntvde_Politik,@ntvde_politik,@ntvde_sport'.expand()}
+media4_nypost	5922888	{q:'@nypost,url:nypost.com'.expand()}
+media4_nytimes	14611236	{q:'@nytimes,url:nytimes.com,url:nyti.ms'.expand()}
+media4_nzz	248852	{q:'url:nzz.ch,@nzz,@NZZde,@NZZMeinung,@NZZSchweiz,@NZZWissen,@NZZStorytelling,@NZZzuerich,@NZZfeuilleton,@NZZAusland,@nzzwirtschaft,@NZZSport'.expand()}
+media4_oann	349384	{q:'@oann,url:oann.com'.expand()}
+media4_pbs	563716	{q:'@pbs,url:pbs.org'.expand()}
+media4_politikversagen	13652	{q:'url:politikversagen.net,@staatsversagen'.expand()}
+media4_rbb	4372	{q:'url:rbb?online.de,rbb24.de,@rbbabendschau'.expand()}
+media4_rbb2	26164	
+media4_rt_deutsch	4288	{q:'url:deutsch.rt.com,@RT_Deutsch'.expand()}
+media4_smopo	2636	{q:'url:smopo.ch'}
+media4_spiegel	947248	{q:'url:spiegel.de,@SPIEGEL_24,@SPIEGEL_alles,@SPIEGEL_Auto,@SPIEGEL_Data,@SPIEGEL_EIL,@SPIEGEL_English,@SPIEGEL_Gesund,@SPIEGEL_kolumne,@SPIEGEL_Kultur,@SPIEGEL_live,@SPIEGEL_Netz,@SPIEGEL_Pano,@SPIEGEL_Politik,@SPIEGEL_Reise,@SPIEGEL_Rezens,@SPIEGEL_SPAM,@SPIEGEL_Sport,@SPIEGEL_Top,@SPIEGEL_Video,@SPIEGEL_Wirtsch,@SPIEGEL_Wissen,@SPIEGELDAILY,@SPIEGELONLINE,@SPIEGELTV,@SPIEGELzwischen'.expand()}
+media4_sputniknews	3544	{q:'url:de.sputniknews.com'.expand()}
+media4_stern	152420	{q:'url:stern.de,@sternde'.expand()}
+media4_sueddeutsche	551996	{q:'url:sueddeutsche.de,@SZ,@SZ_WolfratsToel,@SZ_Starnberg,@SZ_Ebersberg,@SZ_Dachau,@SZ_Freising,@SZ_FFB,@SZ_Erding,@SZ_Bildung,@SZ_Medien,@SZ_Eilmeldungen,@SZ_Reise,@SZ_Gesundheit,@SZ_Wissen,@SZ_Digital,@SZ-Digital,@SZ_Auto,@SZ_Bayern,@SZ_Muenchen,@SZ_Karriere,@SZ_Gesellschaft,@SZ_Sport,@SZ_Kultur,@SZ_Geld,@SZ_Wirtschaft,@SZ_Politik,@szmagazin,@SZ_TopNews'.expand()}
+media4_swr	35352	
+media4_swraktuell	2692	{q:'url:SWRAktuell.de,@SWRAktuell'.expand()}
+media4_t_online	27064	{q:'url:www.t?online.de,@tonline_news'.expand()}
+media4_t_online2	9832	
+media4_tagesschau	961456	{q:'url:tagesschau.de,@tagesschau'.expand()}
+media4_tagesspiegel	538604	{q:'url:tagesspiegel.de,@Tagesspiegel,@TspBerlin,@TspCausa,@TspLeute,@TSPSonntag,@tspsport'.expand()}
+media4_taz	353084	{q:'url:taz.de,@tazgezwitscher,@taz_news'.expand()}
+media4_theeuropean	7276	{q:'url:theeuropean.de,@theeuropean'.expand()}
+media4_tichyseinblick	216844	{q:'url:tichyseinblick.de,@TichysEinblick'.expand()}
+media4_unherd	191704	{q:'@unherd,url:unherd.com'.expand()}
+media4_unzensuriert_at	13912	{q:'url:unzensuriert.at,@unzensuriert'.expand()}
+media4_unzensuriert_de	2640	{q:'url:unzensuriert.de'.expand()}
+media4_vicenews	1064612	{q:'@vicenews,url:vice.com'.expand()}
+media4_voiceofEurope	3492	{q:'url:voiceofeurope.com,@VoiceofEurope'.expand()}
+media4_washingtonpost	9958004	{q:'@washingtonpost,url:washingtonpost.com'.expand()}
+media4_waz	50064	{q:'url:waz.de,@WAZ_Redaktion'.expand()}
+media4_welt	1231988	{q:'url:welt.de,@WELT,@WELT_EIL,@WELT_Wissen,@WELT_Webwelt,@WELT_Kultur,@WELT_Sport,@WELT_Medien,@WELT_Panorama,@WELT_Geld,@WELT_Economy,@WELT_Politik'.expand()}
+media4_worldnetdaily	105588	{q:'@worldnetdaily,url:wnd.com'.expand()}
+media4_wsj	3586040	{q:'@wsj,url:wsj.com'.expand()}
+media4_yahoo_news	2348708	{q:'url:news.yahoo.com'.expand()}
+media4_zdf	299620	{q:'url:zdf.de,@ZDF'.expand()}
+media4_zdf_heute	43088	{q:'url:heute.de,@heutejournal,@heuteplus'.expand()}
+media4_zeit	614372	{q:'url:zeit.de,@zeitonline,@zeitonline_dig,@zeitonline_ent,@zeitonline_fam,@zeitonline_kul,@zeitonline_live,@zeitonline_pol,@zeitonline_vid,@zeitonline_wir,@zeitonline_wis,@zeitonlinesport'.expand()}
+menaretrash	117548	{q:'menaretrash OR #menaretrash'}
+mequeer	31736	
+merz1	603312	{q:'aufbruch2020,ausmerzen,frauenfuermerz,frauenfürmerz,frauengegenmerz,merz,merzworte,teammerz,wirfrauenfuermerz,wirfrauenfürmerz,wirfrauengegenmerz,wirfuermerz,wirfürmerz,@_FriedrichMerz'.expand()}
+metoo	6469044	{q:'#metoo OR metoo'}
+metwo	48524	{q:'#metwo OR metwo'}
+mietendeckel	483268	{q:'mietendeckel,mietpreisbremse,url:mietendeckel,url:mietpreisbremse,mietenwahnsinn,mietendeckelrechner,miethöhe,miete,mieten,mieter,dwenteignen,vermieter,vermieterin,vermietende,vermietende,wohnungsmarkt'.toOR()}
+migrationshintergrund	64316	{q:'migrationshintergrund'}
+ministerien	513156	{q:'sksachsentweets,Arne_Wiechmann,SMIsachsen,ChriSchni,StRegSprecherin,Boschemann,julitalk,svefri,amtzweinull,HaufeStephan,jettebo,Opp_Sprecher,ZimmermannSina,al_krampe,Medienheld,bauerzwitschert,hard_er,MSchroeren,pampel_muse,evamariamarks,RouvenKlein,ninasuza,andreasblock,foeniculum,zumtesthier'.toWildFromTo()}
+ministerien2	5722000	{q:'AA_SicherReisen,Digital_Bund,BMVg_Afrika,BundesKultur,TDE2018Berlin,bfarm_de,bka,Stammtisch20,BVerfG,BSI_Presse,Bundestag,ADS_Bund,BBK_Bund,BMBF_Bund,BStU_Presse,BMG_Bund,BMJV_Bund,BAFA_Bund,BMAS_Bund,BAMF_Dialog,BMWi_Bund,netzausbau,BMI_Bund,BMFSFJ,BMF_Bund,GermanyDiplo,BMZ_Bund,bmel,AuswaertigesAmt,BMVI,destatis,RegSprecher,Bundestagsradar,bmu,Umweltbundesamt,bundesrat,bpb_de,HiBTag'.toWildFromTo()}
+moria1	1048568	{q:'moria'}
+muenster	92692	
+muslime	680828	{q:'islam,moslem,moslems,moslimisch,moslimische,moslimischer,moslimischen,muslim,muslima,muslime,muslimen,muslimin,muslimisch,muslimische,muslimischen,muslimischer'.toOR(), lang:'de'}
+muslimestarten2020	8872	{q:'muslimestarten2020,neujahrsputz,neujahrsmorgen,silvesterabfall,ahmadiyyajugend'.toOR()}
+musterfeststellungsklage	6944	
+nazisraus	187452	{q:'nazisraus OR #nazisraus'}
+netzdg	70900	{q:'netzdg'}
+nichtohnemeinkopftuch	12504	
+nnc3	215404	{q:'34c3 OR 35c3 OR 36c3 OR 37c3 OR 38c3 OR 39c3 OR 40c3 OR 41c3 OR 42c3'}
+noafd	673192	{q:'noafd'}
+nobillag	2504	
+olafscholz	177472	
+olympics_2018	97632	
+omaumweltsau	49032	
+omaumweltsau2	7992	
+parteien	15129532	{q:'linke,linken,grüne,grünen,spd,cdu,csu,fdp,afd'.toOR(), lang:'de'}
+pedohitler	33260	
+pflege	656804	{q:'pflegenotstand OR pflege'}
+polizei	2587348	{q:'Polizei_PP_ROS,LKA_RLP,Polizei_WOB,PolizeiStmk,polizeiOBN,GBA_b_BGH,SH_Polizei,polizeiopf,PolizeiSWS,PolizeiOFR,Polizei_CE,Polizei_ROW,Polizei_OL,Pol_Grafschaft,Polizei_OHA,Polizei_HOL,Polizei_NOM,Polizei_AUR_WTM,Polizei_LER_EMD,Polizei_HM,Polizei_EL,Polizei_HI,Polizei_WL,Polizei_LG,Polizei_OS,Polizei_BS,Polizei_SuedHE,PolizeiLB,polizeiNB,Polizei_WH,bka,ukask_de,PolizeiUFR,PolizeiBB,Polizei_MH,bpol_b_einsatz,bpol_nord,bpol_air_fra,bpol_bepo,bpol_kueste,bpol_koblenz,bpol_b,PolizeiKonstanz,Polizei_FT,Polizei_soh,Polizei_MSE,PolizeiNI_Fa,PolizeiMannheim,Polizei_OH,PolizeiBhv,Polizei_HST,Polizei_SN,PolizeiVG,LKA_Hessen,Polizei_PP_NB,bpol_by,bpol_bw,Polizei_NH,Polizei_Thuer,ADS_Bund,Polizei_KA,polizeiOBS,PolizeiBerlin_I,PolizeiHamburg,PolizeiPDNord,LPDWien,PolizeiMuenchen,Polizei_PS,PolizeiBerlin_E,polizeiberlin,polizei_nrw_ge,polizei_nrw_d,polizei_nrw_du,polizei_nrw_bi,Polizei_NRW_E,Polizei_nrw_ms,Polizei_Ffm,PolizeiTrier,PP_Rheinpfalz,polizei_nrw_ob,PolizeiMainz,Polizei_KO,Europol,Polizei_KL,Polizei_Rostock,polizei_nrw_do,BMI_Bund,PP_Stuttgart,polizei_nrw_k,PolizeiSachsen,FHPolBB,StadtpolizeiZH'.toWildFromTo()}
+polizei2	2327868	{q:'polizei,polizist,polizistin,polizisten'.expand()}
+polizeigesetz	64660	{q:'nopag OR polizeigesetz'}
+polizeiproblem	129436	{q:'polizeiproblem'}
+propaganda	8387000	{q:'propaganda'}
+pyeongchang2018	103604	
+quattromob	9692	{q:'quattromob'}
+racism	148216468	{q:'racism,racist,racists,prejudice,anti-semitic,homophobe,lgbtq,lgbtq+,supremacy,superiority,blacklivesmater,blacklivesmatter,youaintblack'.toOR(), splitTime:6}
+racism2	10195192	{q:'racismo,racisme,saynotoracism'.expand()}
+rass_kritischesweißsein	9464	{q:'kritischesweißsein,kritischeweissheiten,rassismusgegenweisse,kritischeweißheiten,kritischesweisssein,kritischesalmansein,rassismusgegendeutsche'.expand()}
+rass_whiteprivilege	245148	{q:'whiteprivilege,criticalwhiteness'.expand()}
+rbg	8714184	{q:'rbg,roshhashanah,ruthbaderginsburg,ruthbaderginsberg,ginsburg,ginsberg,ripruthbaderginsburg,ripruthbaderginsberg,scotus,riprbg,rbgrip'.toOR()}
+rc3	12104	
+rechts	803064	{q:'afdwaehlen,antifaverbot,merkelmussweg,staatsfernsehen,stopasyl,stopislam,widerstand'.toOR()}
+rechts_aufbruch	360	
+rechts2	10011864	{q:'"aufrecht erhalten","bedauerlicher einzelfall","esreicht","fake news","große verfall","illegale masseneinwanderung","illegale migranten","islamistische gefährder","islamistischer gefährder","kampf gegen","kapituliert vor","kein einzelfall","konstatiert kontrollverlust","leistet widerstand","links grün versifft","mein vaterland","merkelmussweg","mundtot gemacht","mundtot machen","plünderung freigegeben","politisch inkorrekt","politische korrektheit","rechte ecke","schweigende mehrheit","unkontrollierte einwanderung","unkontrollierte masseneinwanderung","unser land","volkspädagogische kampagne","widerliches pack","wirklichkeitsverweigerung",abmerkeln,abschiebung,achgut,afdimbundestag,afdwaehlen,alllivesmatter,alternativemedien,altparteien,anarchokapitalist,anpassungsmoralismus,antiantifa,antifaverbot,antigender,antimerkel,antisystem,antivegan,armenimport,asyl,asylindustrie,aufrecht,banislam,bedauerlich,bereicherung,bevormundung,bimbo,bluehand,dankeerikasteinbach,defendeurope,defendgermany,demokratur,denkverbot,deplorable,deraustausch,deutschfam,diktatur,dirigismus,ditib,drachenlord,dreck,einwanderung,einzelfall,einzelfallinfos,einzeltäter,endgov,entbrüsseln,erklärung2018,erziehungsmedien,eudssr,fakenews,fakerefugees,familiennachzug,fckislm,flintenuschi,flüchtlingsproblematik,flüchtlingswelle,freekolja,freilerner,frühsexualisierung,gabfam,gedankenpolizei,gefährder,gegenlinks,gegenzecken,geldsystemkritiker,"gender mainstreaming",gendergaga,genderismus,genderterror,gesinnungsterror,gleichgeschaltet,gleichschaltung,grueneversenken,gutmensch,gutmenschen,heimatbewusst,herrschaftsfrei,heterophob,hetzer,homolobby,ichbinpack,identitätspolitik,immigrationskritik,invasoren,invasorenwelle,islambeiuns,islamisierung,islamnixgut,jungefreiheit,kartellparteien,kartoffeldeutsch,kinderehe,kinderfickersekte,klartext,klimalüge,konservativ-freiheitlich,kopftuch,kopftuchverbot,koppverlag,kriegstreiber,krimigranten,kulturbereicherer,kulturtaliban,kuscheljustiz,köterrasse,landeshochverrat,linksextremismus,linksfaschismus,linksmaden,linksnicker,linksversifft,lügenpresse,lügner,machtelite,machtwechsel,maskulist,masseneinwanderung,maulkorb,mediendiktatur,meinungsdiktat,meinungsdiktatur,meinungsfreiheit,merkelei,merkelmussweg,merkelregime,mgga,migrassoren,migrationswaffe,minimalstaat,multikultitötet,mundtot,muslime,muslimisch,männerbeauftragter,männerrechtler,nafri,national-liberal,nationalkonservativ,nationalstolz,nazikeule,neger,neokonservativ,netzdg,nichtohnemeinkopftuch,opfer-abo,opferindustrie,paulanergarten,pckills,proborders,propaganda,propagandaschau,propolizei,quotenneger,realitätsverweigerer,rechtsstaat,redpill,refugeesnotwelcome,remigration,rückführungshelfer,scharia,scheinasylant,schleiereule,schuldkult,selbstabschaffung,selbstviktimiserung,sozial-libertär,sozialparadies,sozialschmarotzer,sozialsysteme,sozialtourist,sprachpolizei,staatsfernsehen,staatspresse,stasi,steuerstaat,stopasyl,stopislam,superstaat,systemgünstlinge,systemkonform,systemkritisch,systempresse,taxationistheft,terror,terroristen,teuro,thewestisbest,tichyseinblick,toleranzdiktatur,traudichdeutschland,tugendterror,tugendwächter,umerziehung,umvolkung,unbequem,unkontrolliert,untertanengeist,unterwerfung,vaterland,vaterländisch,verabschiedungskultur,verbotskultur,verbotspartei,verbrechen,verbrecher,verfassungspatriot,verhindern,verschwulung,voelkisch,volksbetrug,volksdeutsche,volksempfinden,volkspädagogik,volksthumsleugnung,volkstod,volksverräter,voluntarismus,völkisch,werteunion,wertkonservativ,widerlich,widerstand,wirtschaftsflüchtling,zensurland,zuwanderung,zuwanderungskritisch,zwangsgebühren'.toOR(), lang:'de'}
+rechts3	6056	{q:'mischvölker,halbneger'.toOR(), lang:'de'}
+rechts4	246236	{q:'staatsfunk,massenmigration,mischvolk,endlösung,überfremdung'.toOR(), lang:'de'}
+rechts5	5599268	{q:'afghane,afghanen,afghanisch,afghanistan,afrikaner,albaner,albanisch,araber,arabisch,arabische,asyl,asylbewerber,asylpolitik,asyltourist,asylurlauber,attacke,ausländer,ausländisch,ausländische,ausländischer,ausländischen,dankemerkel,einwanderer,einzelfall,ersticht,erstochen,flüchtling,flüchtlinge,flüchtlingsheim,hochzeitskorso,irak,iraker,islam,islamisch,islamische,islamisierung,kopftuch,krawall,krawalle,kriminalität,kuscheljustiz,körperverletzung,libyer,masseneinwanderung,merkel,messer,messermigrant,messermigranten,messermigration,messermord,migrant,migranten,migration,mord,muslim,muslima,muslime,muslimisch,muslimische,muslimischen,muslimischer,noislam,pakistan,pakistanisch,pistole,rumäne,rumänien,rumänisch,schlägerei,schusswaffe,schusswaffen,syrer,syrisch,syrische,syrischen,syrischer,südländer,südländisch,südländische,südländischen,südländischer,türke,türkei,türken,türkin,türkisch,umvolkung,verbrechen,vergewaltigen,vergewaltigt,vergewaltigung,vergewaltigungen'.toOR(), lang:'de'}
+reisewarnung	30728	{q:'reisewarnung OR reisehinweis'}
+revolution2019	1952	
+rezovideo	1853376	{q:'rezovideo,#rezo,@rezomusik,to:rezomusik,from:rezomusik,@cdu,to:cdu,from:cdu,amthor,amthorvideo,#cdu,www.youtube.com/watch?v=4Y1lZQsyuSQ,"Zerstörung der CDU"'.toOR()}
+rp18	380540	
+rp18-hash	18572	
+rp18-hash2	76300	
+rp19-hash	16116	
+rp19-hash2	80128	
+rp20-hash	82552	
+rp21-hash	41640	
+rücktritt	227072	{q:'rücktritt'.expand()}
+rundfunkbeitrag	66496	{q:'rundfunkbeitrag'}
+russianelection	26096	
+sarrazin	145236	{q:'sarrazin OR sarazin'}
+sawsanchebli	212336	
+sawsanchebli2	99764	{q:'@sawsanchebli'.expand()}
+scholl	132688	{q:'scholl'}
+seebruecke	105836	{q:'seebruecke OR seebrücke'}
+seehofer	585432	{q:'seehofer OR #seehofer'}
+shitstormopfer1	422924	
+shitstormopfer2	504320	{q:'@dunjahayali,@janboehm,@georgrestle,@sawsanchebli,@ebonyplusirony,@fatma_morgana,@igorpianist,@sibelschick,@hatinjuce'.expand()}
+shitstormopfer3	384348	{q:'@migrantifa,@oezgeschmoezge,@habichthorn,@natascha_strobl,@kattascha,@schwarzblond,@_vanessavu,@afelia,@luisamneubauer'.expand()}
+shooting	9735540	{q:'shooting'.expand()}
+shooting3	1236284	{q:'santafehighschool,santafe,SantaFeShooting,SantaFeSchoolShooting,HoustonShooting'.expand()}
+sibelschick	51504	
+sibelschick2	13344	{q:'@sibelschick'.expand()}
+skygo	280052	
+spd	881336	{q:'#spd'}
+splitternackt__list2_b-time-to-go-out	924	tweets of the of all account the named twitter list
+splitternackt__list2_blacktwittergermany	1087912	tweets of the of all account the named twitter list
+splitternackt__list2_list	910288	tweets of the of all account the named twitter list
+splitternackt__list2_lol	376572	tweets of the of all account the named twitter list
+splitternackt__list2_news	7251416	tweets of the of all account the named twitter list
+splitternackt__list2_time-to-go-out-again-47928	60916	tweets of the of all account the named twitter list
+sterbenmitstreeck	10244	{q:'sterbenmitstreeck'}
+sticker	3608	{q:'@stickerarchive,@c3stoc'.expand()}
+stopasianhate	1069208	{q:'stopaapihate,stopasianhate,stopasianhatecrimes'.expand()}
+stopgates	6047472	{q:'#closethegates,#stopgates,soros,#banbill,#soros,#wwg1wgaworldwide,#infowar,#wwg1gwa,@byoblu24,#byoblu24,#byoblu,@byoblu,#oann,@oann'.expand()}
+syria	16246236	{q:'syria'}
+tabubruch	11864	{q:'tabubruch'.expand()}
+talk_annewill	395648	{q:'@annewill,@AnneWillTalk,‏#annewill,annewill,"anne will"'.expand()}
+talk_hartaberfair	143632	{q:'#hartaberfair,#Plasberg,"frank plasberg"'.expand()}
+talk_maischberger	276624	{q:'@maischberger,#maischberger,maischberger'.expand()}
+talk_markuslanz	378320	{q:'@ZDFMarkusLanz,"Markus Lanz",#lanz'.expand()}
+talk_maybritillner	239288	{q:'@maybritillner,#illner,#maybritillner,maybritillner,"maybrit illner"'.expand()}
+tamponsteuer	3524	
+tempolimit	305704	{q:'tempolimit OR #tempolimit'}
+tenderage	256232	{q:'"tender age"'}
+thomaswalde	12332	
+thueringenmpwahl	40227716	{q:'afd,afdp,akk,antifa,björn,bodoramelow,c_lindner,cdu,cdu_fraktion_th,cdu_thueringen,dammbruch,faschist,faschisten,fckfdp,fdp,fdp_thueringen,gnaden,hirte,höcke,kanzlerin,kemmerich,kemmerichruecktritt,kemmerichrücktritt,kemmerichs,kemmerichthl,kramp-karrenbauer,lindner,merkel,mikemohring,ministerpräsident,ministerpräsidentenwahl,mohring,mpwahl,neuwahl,niewieder,noafd,paktieren,paktiert,ramelow,rechtsextremen,rot-rot-grün,steigbügelhalter,tabubruch,thueringen,thueringenwahl,thüringen,thüringens,unfassbar,unverzeihlich,werteunion'.toOR()}
+timnit_gebru	28828	{q:'Timnit Gebru,@timnitgebru,istandwithtimnit'.expand()}
+toptweets_de_20	1384504	{q:'lang:de min_retweets:20'}
+toptweets_de_50	445872	{q:'lang:de min_retweets:50'}
+toptweets_en_10k	79312	{q:'lang:en min_retweets:10000'}
+trier	265256	{q:'trier'}
+trudeaumustgo	778044	{q:'trudeaumustgo OR #trudeaumustgo'}
+trump_hashtags_1	597568	{q:'trumptreason,trumpbeggedlikeadog,lockhimup,trumpmeltdown,countryovertrump,impeachagain,trumptape,trumpisacriminal,trumptapes,trumpbegged'.expand()}
+trump_mentions	302057760	{q:'to:realdonaldtrump OR to:potus OR realdonaldtrump OR potus', splitTime:6}
+trump_quoted	3553732	{q:'url:twitter.com/realdonaldtrump OR url:twitter.com/potus'}
+trump_tweets	15664	{q:'from:realdonaldtrump OR from:potus'}
+tupoka_o	3576	{q:'@tupoka_o'.expand()}
+ueberwachung	2534760	{q:'überwachungspaket OR staatstrojaner OR bundestrojaner OR ueberwachungspaket OR zib2 OR überwachung OR privatsphäre OR datenschutz OR sicherheit OR vds OR sicherheitspaket'}
+ukelection	587732	{q:'GeneralElection2019,UKElection,GE2019'.toOR()}
+ukraine	122148712	{q:'ukraine,putin,russia,selenskyj'.expand()}
+unionsstreit1	7598340	{q:'unionsstreit,seehofer,csu,asylstreit,merkel,afd,ultimatum,zuwanderung,groko'.toOR(), lang:'de'}
+unteilbar	96020	{q:'unteilbar,unteilbar_,to:unteilbar_,from:unteilbar_'.toOR()}
+uploadfilter	487060	{q:'uploadfilter,saveyourinternet,leistungsschutzrecht,deleteart13,censorshipmachine,axelvossmdep,from:axelvossmdep,to:axelvossmdep,fixcopyright'.toOR()}
+uselection2020_accounts_1	44063088	{q:'@gop,@housedemocrats,@housegop,@joebiden,@kamalaharris,@mike_pence,@realdonaldtrump,@senatedems,@senategop,@thedemocrats'.expand()}
+uselection2020_accounts_2	6030020	{q:'@GovBillWeld,@MarkSanford,@WalshFreedom,@MichaelBennet,@CoryBooker,@GovernorBullock,@PeteButtigieg,@JulianCastro,@BilldeBlasio,@JohnDelaney,@TulsiGabbard,@gillbrandny,@SenKamalaHarris,@Hickenlooper,@JayInslee,@amyklobuchar,@SenAmyKlobuchar,@WayneMessam,@sethmoulton,@BetoORourke,@TimRyan,@BernieSanders,@ericswalwell,@ewarren,@SenWarren,@marwilliamson,@AndrewYang,@JoeSestak,@MikeGravel,@TomSteyer,@DevalPatrick,@MikeBloomberg,@staceyabrams,@SenDuckworth,@TammyforIL,@KeishaBottoms,@RepValDemings,@val_demings,@AmbassadorRice,@GovMLG,@Michelle4NM,@SenatorBaldwin,@tammybaldwin,@KarenBassTweets,@RepKarenBass,@Maggie_Hassan,@SenatorHassan,@GovRaimondo,@GinaRaimondo,@GovWhitmer'.expand()}
+uselection2020_hashtags_1	55680280	{q:'#1u,#2018midterms,#2020election,#2020elections,#absenteeballot,#activemeasures,#aksen,#alsen,#america,#americafirst,#american,#americans,#arsen,#azsen,#ballots,#beatexasvoter,#berniesanders,#biden,#biden2020,#bidenforprison,#bidenharris,#bidenharris2020,#bidenharris2020landslide,#bidenharris2020tosaveamerica,#bidenharrislandslide2020,#bidensamerica,#bidenstoplyin,#blue2020,#bluetsunami,#bluetsunami2018,#bluewave,#bluewave2018,#bluewave2020,#bluewavecoming2018,#bluewaveiscoming,#buildthewall,#bunkerboy,#casen,#cavotes,#ccot,#ccp,#cheatbymail,#clinton,#colinpowell,#congress,#corruptdemocrats,#cosen,#ctsen,#demcast,#demconvention,#demconvention2020,#demforce,#democrat,#democratic,#democraticconvention,#democraticconvention2020,#democraticnationalconvention,#democraticparty,#democrats,#democratsaredestroyingamerica,#democratshateamerica,#dems,#demsenate2020,#demswork4usa,#desen,#dnc,#dnc2020,#dncconvention,#dncconvention2020,#dobbs,#donaldtrump,#draintheswamp,#dumptrump,#dumptrump2020,#election,#election2018,#election2020,#election2020-nov-3,#election2024,#electioncommission,#electionday,#electionfraud,#elections,#elections2020,#electionseason,#electiontwitter,#extrememagashoutout,#fairelections,#fakenews,#fakepolls,#fakepresident,#fbr,#fbresistance,#fbrparty,#fighttovote,#flipitblue,#flsen,#fucktrump,#gasen,#geeksresist,#gop,#gopbetrayedamerica,#gotv,#govote,#greatawakening,#harris,#harrisbiden2020,#hillaryclinton,#hisen,#hunterbiden,#iasen,#idsen,#ilsen,#impeach45,#impeachtrump,#imwithher,#indivisible,#insen,#insidepolitics,#joebiden,#joebiden2020,#joebidenforpresident2020,#joebidenisapedo,#joebidenkamalaharris2020,#kag,#kag2018,#kag2020,#kamalaharris,#kamalaharrisvp,#kavanaugh,#keepitblue,#kssen,#kysen,#lasen,#leadership,#letherspeak,#maga,#maga2020,#mailboxes,#mailinballot,#mailinballots,#mailinvoterfraud,#mailinvoting,#makeamericagreatagain,#marxist,#masen,#maskup,#mdsen,#mesen,#michelleobama,#midterm,#midterm18,#midterm2018,#midterms,#midterms2018,#milesguo,#misen,#mnsen,#mosen,#mssen,#mtsen,#myvotematters,#ncsen,#ndsen,#nesen,#neverbiden,#nevertrump,#nhsen,#njsen,#nmsen,#notmypresident,#november2020,#nra,#nvsen,#ny24,#nysen,#ohsen,#oksen,#openthedebates,#orangecounty,#orsen,#paresists,#pasen,#patriots,#plaidshirtguy,#politics,#polls,#portland,#postalservice,#postoffice,#potus,#president,#presidentbiden,#presidential,#presidentialelection,#presidentialelection2020,#presidenttrump,#propaganda,#protectthevote,#realdonaldtrump,#reconnectthemailsortersnow,#redwave,#redwave2020,#redwaverising,#registertovote,#registertovote2020,#rememberinnovember,#replacepelosi,#republican,#republicans,#republicansforbiden,#resist,#resistance,#ridinwithbiden,#risen,#rnc2020,#savethepostalservice,#savethepostoffice,#scsen,#sdsen,#senate,#settleforbiden,#signofresistance,#sleepyjoe,#sleepyjoebiden,#socialismkills,#specialelection,#stayhometovote,#stevebannon,#streamtext,#strongertogether,#swingstates,#takeitback,#taxcuts,#tcot,#teambidenharris,#thanksgop,#thanksobama,#theatlantavoice,#thegreatawakening,#theresistance,#thursdaymotivation,#tnsen,#tradewar,#trump,#trump2020,#trump2020landslide,#trump2020nowmorethanever,#trumpcanceledamerica,#trumpcorruption,#trumpisanationaldisgrace,#trumpislosing,#trumpisnotwell,#trumpmeltdown,#trumprussia,#trumptrain,#trumpvirus,#txsen,#unrigthesystem,#us,#usa2020,#uspostalservice,#usps,#uspsprotests,#uspssabotage,#ussenate,#utpol,#utsen,#vasen,#vote,#vote2020,#votebidenharris2020,#votebidenharristosaveamerica,#voteblue,#voteblue2018,#voteblue2020,#voteblueforamerica,#votebluetoendthisnightmare,#votebluetosaveamerica,#votebluetosaveamerica2020,#votebold,#votebymail,#votebymail2020,#votebymailearly,#votedem,#voteearly,#votefordemocracy,#voteforher,#votegold,#votegold2020,#votegopout,#votehimout,#votelikeyourlifedependsonit,#votered,#votered2018,#votered2020,#voteredtosaveamerica,#voteredtosaveamerica2020,#voterepublican,#voterfraud,#voterid,#voters,#votersfirst,#votersuppression,#votersuppressionisreal,#votethemout,#votetrumpout,#votewhileyoustillcan,#voting,#votingmatters,#vtsen,#wakeupamerica,#walkaway,#walkawaycampaign,#walkawayfromdemocrats,#walkawayfromdemocrats2018,#wasen,#wethepeople,#winblue,#wisen,#wrwy,#wvsen,#wwg1wga,#wysen,#yeswecan,#yourvotematters'.expand()}
+uselection2020_hashtags_2	1638088	{q:'#debate2020,#presidentialdebate,#debates2020,#presidentialdebate2020'.expand()}
+uselection2020_hashtags_3	1950560	{q:'#battlegroundstate,#blacksfortrump,#counteverylegalvote,#counteveryvote,#eleccion2020,#electionday,#electionmeddling,#electionnight,#electionresults,#electionresults2020,#givebacktrumpvotes,#thepostelection,#trumpvsbiden,#usaelection2020,#usaelections2020,#usaelection,#usaelectionresults,#usaelectionresults2020,#usaelections,#uselection,#uselection2020,#uselectionresults,#uselectionresults2020,#uselections,#uselections2020,#voterfraud,#voterfruad'.expand()}
+uselection2020_keywords_1	296122876	{q:'ballot,mailin,mail-in,mail,donaldtrump,donaldjtrump,donald,joebiden,biden,mike,michael,mikepence,michaelpence,kamala,kamalaharris,#DonaldTrump,PresidentTrump,MAGA,trump2020,Sleepy,Sleepyjoe,HidenBiden,CreepyJoeBiden,NeverBiden,BidenUkraineScandal,DumpTrump,NeverTrump,VoteRed,VoteBlue,RussiaHoax'.expand()}
+uselection2020_keywords_2	957020	{q:'@milionmagamarch,bidenharrisvictoryday,bidenharrisvictoyday,blacklivesmetter,dcprotests,url:milionmagamarch,url:1327653470502084613,url:1327631118280122369,url:1327629900350681088,url:1327625910724546568,url:1327646530103369728,url:1327646657538891781,url:1327659829372993542,url:1327639369377869824,url:1327645784544784384,itstimetoconcede,magamarch,magamarchdc,magamillionmarch,magamillionmarch2020,marchers,marchfortrump,#marching,milionmagamarch,millionmagamarch,millionmagamarch2020,millionmoronmarch,millionsmagamarch,#pancakes,proudboys,stopthesteai,stopthesteal,trumpconcede'.expand()}
+verschwoerung1	6379884	{q:'billgatesisevil,clintonbodycount,clintoncrimefamily,clintonemails,coronahoax,covid1984,deepstate,frazzledrip,generalflynn,georgesorosriots,greatawakeningworldwide,inittogether,isaackappy,justiceiscoming,merkelgate,obamagate,obamagate,pedogate,pedowood,pizzagate,podestaemails,qanon,qanongermany,transitiontogreatness,unitednotdivided,wachtauf,wakeupworld,wearethenewsnow,wearetherevolution,weinerslaptop,weltfrieden,wwg1wga'.expand()}
+victorialinnea1_list2_asian-twitter	78040	tweets of the of all account the named twitter list
+victorialinnea1_list2_deutschsprachige-buchleut	256428	tweets of the of all account the named twitter list
+virologen	274460	
+virologen2	703500	{q:'drosten,kekule,streeck,@c_drosten,@alexanderkekule,@hendrikstreeck'.expand()}
+volkmarsen	54028	{q:'volkmarsen,menschenmenge,rosenmontag,rosenmontagsumzug,rosenmontagszug'.toOR()}
+wahl_beobachter_list_abgeordnetenhaus-agh	102880	tweets of the of all account the named twitter list
+wahl_beobachter_list_alle-25-parteien-ep2014	117324	tweets of the of all account the named twitter list
+wahl_beobachter_list_bundesministerien	86948	tweets of the of all account the named twitter list
+wahl_beobachter_list_bundesrat	82912	tweets of the of all account the named twitter list
+wahl_beobachter_list_bundesregierung	175084	tweets of the of all account the named twitter list
+wahl_beobachter_list_bundestagsfraktionen	76240	tweets of the of all account the named twitter list
+wahl_beobachter_list_deutsche-mep-2019-2024	155128	tweets of the of all account the named twitter list
+wahl_beobachter_list_hamburger-senat	5040	tweets of the of all account the named twitter list
+wahl_beobachter_list_kandidaten-europawahl	224112	tweets of the of all account the named twitter list
+wahl_beobachter_list_landesvertretungen	41652	tweets of the of all account the named twitter list
+wahl_beobachter_list_mdb-bundestag	776720	tweets of the of all account the named twitter list
+wahl_beobachter_list_mdbb-bremen	9052	tweets of the of all account the named twitter list
+wahl_beobachter_list_mdhb-hamburg	17040	tweets of the of all account the named twitter list
+wahl_beobachter_list_mdl-baden-w-rttemberg	10912	tweets of the of all account the named twitter list
+wahl_beobachter_list_mdl-bayern	68308	tweets of the of all account the named twitter list
+wahl_beobachter_list_mdl-brandenburg	10820	tweets of the of all account the named twitter list
+wahl_beobachter_list_mdl-hessen	18696	tweets of the of all account the named twitter list
+wahl_beobachter_list_mdl-mecklenburg-vorpommen	7452	tweets of the of all account the named twitter list
+wahl_beobachter_list_mdl-niedersachsen	14468	tweets of the of all account the named twitter list
+wahl_beobachter_list_mdl-nrw	57916	tweets of the of all account the named twitter list
+wahl_beobachter_list_mdl-rheinland-pfalz1	33104	tweets of the of all account the named twitter list
+wahl_beobachter_list_mdl-saarland	6500	tweets of the of all account the named twitter list
+wahl_beobachter_list_mdl-sachsen	26420	tweets of the of all account the named twitter list
+wahl_beobachter_list_mdl-sachsen-anhalt	20812	tweets of the of all account the named twitter list
+wahl_beobachter_list_mdl-schleswig-holstein	81668	tweets of the of all account the named twitter list
+wahl_beobachter_list_mdl-th-ringen	50808	tweets of the of all account the named twitter list
+wahl_beobachter_list_ministeriums-twitterati	7784	tweets of the of all account the named twitter list
+wahl_beobachter_list_open-government-hamburg	12420	tweets of the of all account the named twitter list
+wahl_beobachter_list_politikwissenschaftler	43392	tweets of the of all account the named twitter list
+wahl_beobachter_list2_1422829468742213632	56324	tweets of the of all account the named twitter list
+wahl_beobachter_list2_1464165893336928259	108628	tweets of the of all account the named twitter list
+wahl_beobachter_list2_abgeordnetenhaus-agh	142816	tweets of the of all account the named twitter list
+wahl_beobachter_list2_alle-25-parteien-ep2014	310244	tweets of the of all account the named twitter list
+wahl_beobachter_list2_botschaften	7340	tweets of the of all account the named twitter list
+wahl_beobachter_list2_bundesministerien	266964	tweets of the of all account the named twitter list
+wahl_beobachter_list2_bundesrat	436064	tweets of the of all account the named twitter list
+wahl_beobachter_list2_bundesregierung	849912	tweets of the of all account the named twitter list
+wahl_beobachter_list2_bundestagsfraktionen	185216	tweets of the of all account the named twitter list
+wahl_beobachter_list2_deutsche-mep-2019-2024	341452	tweets of the of all account the named twitter list
+wahl_beobachter_list2_hamburger-senat	31848	tweets of the of all account the named twitter list
+wahl_beobachter_list2_kandidaten-europawahl	453804	tweets of the of all account the named twitter list
+wahl_beobachter_list2_landesvertretungen	156308	tweets of the of all account the named twitter list
+wahl_beobachter_list2_mdb-bundestag	2363920	tweets of the of all account the named twitter list
+wahl_beobachter_list2_mdbb-bremen	13164	tweets of the of all account the named twitter list
+wahl_beobachter_list2_mdhb-hamburg	35996	tweets of the of all account the named twitter list
+wahl_beobachter_list2_mdl-baden-w-rttemberg	33740	tweets of the of all account the named twitter list
+wahl_beobachter_list2_mdl-bayern	279080	tweets of the of all account the named twitter list
+wahl_beobachter_list2_mdl-brandenburg	20552	tweets of the of all account the named twitter list
+wahl_beobachter_list2_mdl-hessen	36064	tweets of the of all account the named twitter list
+wahl_beobachter_list2_mdl-mecklenburg-vorpommen	27708	tweets of the of all account the named twitter list
+wahl_beobachter_list2_mdl-niedersachsen	43764	tweets of the of all account the named twitter list
+wahl_beobachter_list2_mdl-nrw	166284	tweets of the of all account the named twitter list
+wahl_beobachter_list2_mdl-rheinland-pfalz1	27568	tweets of the of all account the named twitter list
+wahl_beobachter_list2_mdl-saarland	19724	tweets of the of all account the named twitter list
+wahl_beobachter_list2_mdl-sachsen	65944	tweets of the of all account the named twitter list
+wahl_beobachter_list2_mdl-sachsen-anhalt	38196	tweets of the of all account the named twitter list
+wahl_beobachter_list2_mdl-schleswig-holstein	58260	tweets of the of all account the named twitter list
+wahl_beobachter_list2_mdl-th-ringen	84440	tweets of the of all account the named twitter list
+wahl_beobachter_list2_ministeriums-twitterati	10688	tweets of the of all account the named twitter list
+wahl_beobachter_list2_open-government-hamburg	13596	tweets of the of all account the named twitter list
+wahl_beobachter_list2_politikwissenschaftler	100832	tweets of the of all account the named twitter list
+wallstreetbets	3087544	{q:'gamestop,robinhood,wallstreetbets'.expand()}
+weidel	278108	{q:'weidel'.expand()}
+wirmachenauf	34616	{q:'wirmacheneuchdicht,wirmachenauf,lasstdieschulenzu,wirhabenplatz,wirmacheneuchwiederzu,keinlockdownmehr'.expand()}
+wirsindmaassen	3080	
+wirvsvirushackathon	684016	{q:'wirvsvirus,#wirvsvirus,wirvsvirushackathon,#wirvsvirushackathon,from:wirvsvirushack,to:wirvsvirushack,wirvsvirushack,#wirvsvirushack,hackathon,#hackathon'.toOR()}
+wuerzburg	123492	{q:'wuerzburg,würzburg'.expand()}
+wwdc18	55076	
+xsarahleee	13108	{q:'xsarahleee,to:xsarahleee,from:xsarahleee,rassismus gegen weisse'.expand()}
+youtube_3z0gnXgK8Do	868	
+zeckenbiss	4492	
