@@ -1,15 +1,11 @@
 # twitter-analysis
-Framework, data and results of the twitter analysis of "social bots, fake news and filter bubbles"
 
-You can find the [slides](docs/slides_social_bots.pdf) and the [video](https://media.ccc.de/v/34c3-9268-social_bots_fake_news_und_filterblasen) (both in german) of the [34C3](https://events.ccc.de/congress/2017/wiki/index.php/Main_Page) [talk](https://events.ccc.de/congress/2017/Fahrplan/events/9268.html) online.
+I have been using this framework for 5 years (since March 2018) to scrape and analyse numerous topics on Twitter, including: Corona, George Floyd, Trump, US election 2018, Ukraine, climate change, ...
 
-## libraries
+Since 12/4/2023, the API has been closed due to Elon Musk's restrictive API policy.
 
-The core of the twitter scraper is in the [`lib`](lib) folder.
+But I managed to collect 23 billion tweets (120 TB uncompressed, 5 TB compressed). 
 
-## example 1: Searching for Hashtags/Words
+A list of all queries can be found here: [docs/queries.tsv](https://github.com/MichaelKreil/twitter-analysis2/blob/master/docs/queries.tsv)
 
-- code is in [`bin/hashtags`](bin/hashtags)
-- resulting data is in [`data/hashtags`](data/hashtags)
-
-
+I am open to suggestions on how to make these 5 TB available for download.
